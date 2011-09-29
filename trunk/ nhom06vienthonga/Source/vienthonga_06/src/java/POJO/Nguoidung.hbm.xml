@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 30, 2011 2:20:10 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="POJO.Nguoidung" table="nguoidung" catalog="vienthonga">
+        <id name="maNguoiDung" type="string">
+            <column name="MaNguoiDung" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="loainguoidung" class="POJO.Loainguoidung" fetch="select">
+            <column name="MaLoaiNguoiDung" length="45" />
+        </many-to-one>
+        <property name="tenNguoiDung" type="string">
+            <column name="TenNguoiDung" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" />
+        </property>
+        <property name="cmnd" type="java.lang.Integer">
+            <column name="CMND" />
+        </property>
+        <property name="dienThoai" type="java.lang.Integer">
+            <column name="DienThoai" />
+        </property>
+        <property name="diaChi" type="string">
+            <column name="DiaChi" length="45" />
+        </property>
+        <property name="ngayDangKy" type="timestamp">
+            <column name="NgayDangKy" length="19" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+        <set name="donhangs" inverse="true">
+            <key>
+                <column name="MaNguoiDung" length="45" />
+            </key>
+            <one-to-many class="POJO.Donhang" />
+        </set>
+    </class>
+</hibernate-mapping>
