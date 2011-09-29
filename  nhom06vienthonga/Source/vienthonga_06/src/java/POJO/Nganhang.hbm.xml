@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 30, 2011 2:20:10 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="POJO.Nganhang" table="nganhang" catalog="vienthonga">
+        <id name="maNganHang" type="string">
+            <column name="MaNganHang" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="tenNganHang" type="string">
+            <column name="TenNganHang" length="45" />
+        </property>
+        <property name="soTaiKhoan" type="string">
+            <column name="SoTaiKhoan" length="45" />
+        </property>
+        <property name="diaChi" type="string">
+            <column name="DiaChi" length="45" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+    </class>
+</hibernate-mapping>

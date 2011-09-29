@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 30, 2011 2:20:10 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="POJO.Chitietdonhang" table="chitietdonhang" catalog="vienthonga">
+        <id name="maChiTietDonHang" type="string">
+            <column name="MaChiTietDonHang" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="sanpham" class="POJO.Sanpham" fetch="select">
+            <column name="MaSanPham" length="45" />
+        </many-to-one>
+        <many-to-one name="donhang" class="POJO.Donhang" fetch="select">
+            <column name="MaDonHang" length="45" />
+        </many-to-one>
+        <property name="soLuong" type="string">
+            <column name="SoLuong" length="45" />
+        </property>
+        <property name="donGia" type="string">
+            <column name="DonGia" length="45" />
+        </property>
+        <property name="giamGia" type="string">
+            <column name="GiamGia" length="45" />
+        </property>
+        <property name="thanhTien" type="string">
+            <column name="ThanhTien" length="45" />
+        </property>
+        <property name="trangThai" type="string">
+            <column name="TrangThai" length="45" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+    </class>
+</hibernate-mapping>
