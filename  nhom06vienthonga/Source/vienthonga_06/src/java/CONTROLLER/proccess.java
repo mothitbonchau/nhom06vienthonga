@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author LAPTOP
+ * @author HP
  */
-@WebServlet(name = "view", urlPatterns = {"/view"})
-public class view extends HttpServlet {
+@WebServlet(name = "proccess", urlPatterns = {"/proccess"})
+public class proccess extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,8 +31,16 @@ public class view extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
-            response.sendRedirect("TrangChu.jsp");
+            /* TODO output your page here
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet proccess</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet proccess at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+             */
         } finally {            
             out.close();
         }

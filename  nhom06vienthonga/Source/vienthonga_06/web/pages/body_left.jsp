@@ -83,30 +83,6 @@
                 %>
                                
             </ul>
-
-        </div>
-        <div class="blocCategory">
-            <h2 style="background-image: url(images/linhtinh/bgd_title.gif)" >Phụ kiện</h2>
-            <ul>
-                <li><a alt="Phụ kiện  chính hãng gía rẻ" title="Phụ kiện  chính hãng " href="http://www.hnammobile.com/component/option,com_accesories/task,memory/">Thẻ nhớ</a></li>
-                <li><a alt="Phụ kiện Đầu đọc thẻ nhớ chính hãng gía rẻ" title="Phụ kiện Đầu đọc thẻ nhớ chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,12/">Đầu đọc thẻ nhớ</a></li><li><a alt="Phụ kiện USB Flash &amp; USB 3G chính hãng gía rẻ" title="Phụ kiện USB Flash &amp; USB 3G chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,13/">USB Flash &amp; USB 3G</a></li><li><a alt="Phụ kiện Phụ kiện Samsung chính hãng gía rẻ" title="Phụ kiện Phụ kiện Samsung chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,14/">Phụ kiện Samsung</a></li><li><a alt="Phụ kiện Phụ kiện HTC chính hãng gía rẻ" title="Phụ kiện Phụ kiện HTC chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,15/">Phụ kiện HTC</a></li><li><a alt="Phụ kiện Tai nghe Bluetooth chính hãng gía rẻ" title="Phụ kiện Tai nghe Bluetooth chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,2/">Tai nghe Bluetooth</a></li><li><a alt="Phụ kiện Phụ kiện iPhone 3 chính hãng gía rẻ" title="Phụ kiện Phụ kiện iPhone 3 chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,7/">Phụ kiện iPhone 3</a></li><li><a alt="Phụ kiện Phụ kiện iPhone 4 chính hãng gía rẻ" title="Phụ kiện Phụ kiện iPhone 4 chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,11/">Phụ kiện iPhone 4</a></li><li><a alt="Phụ kiện Phụ kiện iPad/iPad2 chính hãng gía rẻ" title="Phụ kiện Phụ kiện iPad/iPad2 chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,1/">Phụ kiện iPad/iPad2</a></li><li><a alt="Phụ kiện Phụ kiện Sony Ericsson chính hãng gía rẻ" title="Phụ kiện Phụ kiện Sony Ericsson chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,10/">Phụ kiện Sony Ericsson</a></li><li><a alt="Phụ kiện Loa di động chính hãng gía rẻ" title="Phụ kiện Loa di động chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,3/">Loa di động</a></li><li><a alt="Phụ kiện Sạc nhanh, sạc otô chính hãng gía rẻ" title="Phụ kiện Sạc nhanh, sạc otô chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,5/">Sạc nhanh, sạc otô</a></li><li><a alt="Phụ kiện Pin (Battery) chính hãng gía rẻ" title="Phụ kiện Pin (Battery) chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,6/">Pin (Battery)</a></li><li><a alt="Phụ kiện Miếng dán màn hình chính hãng gía rẻ" title="Phụ kiện Miếng dán màn hình chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,9/">Miếng dán màn hình</a></li><li><a alt="Phụ kiện Miếng dán da chính hãng gía rẻ" title="Phụ kiện Miếng dán da chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,16/">Miếng dán da</a></li><li><a alt="Phụ kiện Phụ kiện khác chính hãng gía rẻ" title="Phụ kiện Phụ kiện khác chính hãng gía rẻ" href="http://www.hnammobile.com/component/option,com_accesories/task,type/tid,4/">Phụ kiện khác</a></li>
-            </ul>
-        </div>
-        <div class="blocCategory">
-            <h2 style="background-image: url(images/linhtinh/bgd_title.gif)">Thông tin</h2>
-            <ul>
-                <li><a title="Giới thiệu Hnam" href="http://www.hnammobile.com/tin-tuc/gioi-thieu.4.9.0.html">Giới thiệu Hnam</a></li>
-                <li><a title="Thông tin khuyến mãi" href="/khuyen-mai">Thông tin khuyến mãi</a></li>
-                <li><a title="Tin tức ĐTDD" href="/tin-tuc">Tin tức ĐTDD</a></li>
-                <li><a title="Thủ thuật điện thoại" href="/thu-thuat">Thủ thuật điện thoại</a></li>
-                <li><a title="Chế độ bảo hành" href="component/option,com_content/task,news/sectionid,4/catid,7/">Chế độ bảo hành</a></li>
-            </ul>
-        </div>
-        <div class="blocCategory">
-            <h2 style="background-image: url(images/linhtinh/bgd_title.gif)">Cài đặt</h2>
-            <ul>
-                <li class=""><a title="Nâng cấp I-Phone" href="/thong-tin/nang-cap-i-phone.3.4.html">Nâng cấp I-Phone</a></li><li class=""><a title="Cài đặt iPhone/iPad " href="/thong-tin/cai-dat-iphoneipad.3.5.html">Cài đặt iPhone/iPad </a></li>
-            </ul>
-        </div>                                                                                                                            
+        </div>                                                                                                                           
     </div>
 </div>
