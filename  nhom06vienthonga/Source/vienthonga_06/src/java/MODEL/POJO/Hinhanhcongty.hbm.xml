@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 30, 2011 3:17:42 PM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated Sep 30, 2011 4:04:43 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="MODEL.POJO.Hinhanhcongty" table="hinhanhcongty" catalog="vienthonga">
         <id name="maHinhAnhCongTy" type="string">
