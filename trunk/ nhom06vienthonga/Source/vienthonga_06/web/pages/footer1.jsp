@@ -5,7 +5,7 @@
         <ul>
             <div align="center" style="font-size: 12px;"> 
                 <div align="left">
-                    <strong style="color: rgb(255, 0, 0);">Hàng HNAM</strong>
+                    <strong style="color: rgb(255, 0, 0);">Hàng PASSION</strong>
                 </div> 
             </div>
 
@@ -49,7 +49,7 @@
         </ul>
     </div>
     <div class="blocDiscount" style="background-image: url(images/linhtinh/bottom_back_03.gif);">
-        <h2>Mua bất kỳ máy nào tại Hnammobile bạn sẽ được hổ trợ</h2>
+        <h2>Mua bất kỳ máy nào tại Passionmobile bạn sẽ được hổ trợ</h2>
         <ul>
             <li>Tặng 01 bao da hoặc nắp sau thời trang trị giá <strong>100.000đ </strong>(Chỉ dành cho điện thoại iPhone)</li>
 

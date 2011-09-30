@@ -17,7 +17,7 @@
         <div style="display: none;" class="supportOnline">
             <h2>Hỗ trợ trực tuyến</h2>
             <ul>
-                <li class="messenger"><a title="HnamMoblie" href="ymsgr:sendIM?hnammobile">HnamMoblie</a></li>
+                <li class="messenger"><a title="PassionMoblie" href="ymsgr:sendIM?hnammobile">PassionMoblie</a></li>
                 <li class="phone">(08) 66 59 69 79</li>
             </ul>
         </div>
