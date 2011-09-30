@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 30, 2011 3:17:42 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="MODEL.POJO.Chitietlaptop" table="chitietlaptop" catalog="vienthonga">
+        <id name="maChiTietLaptop" type="string">
+            <column name="MaChiTietLaptop" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="sanpham" class="MODEL.POJO.Sanpham" fetch="select">
+            <column name="MaSanPham" length="45" />
+        </many-to-one>
+        <property name="congNgheCpu" type="string">
+            <column name="CongNgheCPU" />
+        </property>
+        <property name="tocDoCpu" type="string">
+            <column name="TocDoCPU" />
+        </property>
+        <property name="boNhoDem" type="string">
+            <column name="BoNhoDem" />
+        </property>
+        <property name="fortSizeBus" type="string">
+            <column name="FortSizeBus" />
+        </property>
+        <property name="hangCpu" type="string">
+            <column name="HangCPU" />
+        </property>
+        <property name="thongTinMotherBoard" type="string">
+            <column name="ThongTinMotherBoard" />
+        </property>
+        <property name="dungLuongRam" type="string">
+            <column name="DungLuongRam" />
+        </property>
+        <property name="congNgheRam" type="string">
+            <column name="CongNgheRam" />
+        </property>
+        <property name="busRam" type="string">
+            <column name="BusRam" />
+        </property>
+        <property name="mucRamToiDa" type="string">
+            <column name="MucRamToiDa" />
+        </property>
+        <property name="dungLuongOcung" type="string">
+            <column name="DungLuongOCung" />
+        </property>
+        <property name="congNgheOcung" type="string">
+            <column name="CongNgheOCung" />
+        </property>
+        <property name="giaoThucKetNoi" type="string">
+            <column name="GiaoThucKetNoi" />
+        </property>
+        <property name="soVongQuay" type="string">
+            <column name="SoVongQuay" />
+        </property>
+        <property name="kichThuocManHinh" type="string">
+            <column name="KichThuocManHinh" />
+        </property>
+        <property name="chuanManHinh" type="string">
+            <column name="ChuanManHinh" />
+        </property>
+        <property name="cardDoHoa" type="string">
+            <column name="CardDoHoa" />
+        </property>
+        <property name="loaiCard" type="string">
+            <column name="LoaiCard" />
+        </property>
+        <property name="dungLuongCard" type="string">
+            <column name="DungLuongCard" />
+        </property>
+        <property name="cardAmThanh" type="string">
+            <column name="CardAmThanh" />
+        </property>
+        <property name="chuanAmThanh" type="string">
+            <column name="ChuanAmThanh" />
+        </property>
+        <property name="ketNoi" type="string">
+            <column name="KetNoi" />
+        </property>
+        <property name="bluetooth" type="string">
+            <column name="Bluetooth" />
+        </property>
+        <property name="camera" type="string">
+            <column name="Camera" />
+        </property>
+        <property name="videoOut" type="string">
+            <column name="VideoOut" />
+        </property>
+        <property name="usb" type="string">
+            <column name="USB" />
+        </property>
+        <property name="cardReader" type="string">
+            <column name="CardReader" />
+        </property>
+        <property name="adapter" type="string">
+            <column name="Adapter" />
+        </property>
+        <property name="congNghePin" type="string">
+            <column name="CongNghePin" />
+        </property>
+        <property name="thoiGianSuDungPin" type="string">
+            <column name="ThoiGianSuDungPin" />
+        </property>
+        <property name="thongTinHeDieuHanh" type="string">
+            <column name="ThongTinHeDieuHanh" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+    </class>
+</hibernate-mapping>
