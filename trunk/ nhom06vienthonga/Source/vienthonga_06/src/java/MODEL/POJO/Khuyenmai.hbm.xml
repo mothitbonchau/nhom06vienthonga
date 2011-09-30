@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 30, 2011 3:17:42 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="MODEL.POJO.Khuyenmai" table="khuyenmai" catalog="vienthonga">
+        <id name="maKhuyenMai" type="string">
+            <column name="MaKhuyenMai" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="tenKhuyenMai" type="string">
+            <column name="TenKhuyenMai" length="45" />
+        </property>
+        <property name="noiDungKhuyenMai" type="string">
+            <column name="NoiDungKhuyenMai" />
+        </property>
+        <property name="ngayBatDau" type="timestamp">
+            <column name="NgayBatDau" length="19" />
+        </property>
+        <property name="ngayKetThuc" type="timestamp">
+            <column name="NgayKetThuc" length="19" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+        <set name="hinhanhkhuyenmais" inverse="true">
+            <key>
+                <column name="MaKhuyenMai" length="45" />
+            </key>
+            <one-to-many class="MODEL.POJO.Hinhanhkhuyenmai" />
+        </set>
+    </class>
+</hibernate-mapping>
