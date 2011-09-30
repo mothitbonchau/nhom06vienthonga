@@ -1,4 +1,11 @@
+<%@page import="MODEL.POJO.Hang"%>
+<%@page import="java.util.List"%>
+<%@page import="MODEL.DAO.HangDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    List<Hang> list = HangDAO.LayHang();
+%>
 
 <div id="body_left" style="float: left; width: 15%; margin-left: -25px;">
     <div class="highlightLev"> <div style="background: none repeat scroll 0% 0% transparent; width: 160px; height: 115px; display: none;" class="blocksearch">
@@ -61,61 +68,20 @@
         <div class="blocCategory">
             <h2 style="background-image: url(images/linhtinh/bgd_title.gif)" >Sản phẩm</h2>
             <ul>
-                <li>
-                    <a style="text-transform: none;" title="HTC chính hãng" href="/loai-dien-thoai/htc-showlist0.9.1.html">HTC</a>
+                <%
+                for(int i=0; i<list.size(); i++)
+                                       {
+                    Hang h = list.get(i);
+                    
+                    %>
+                    <li>
+                    <a style="text-transform: none;" title="HTC chính hãng" href="/loai-dien-thoai/htc-showlist0.9.1.html"><%= h.getTenHang()%></a>
                     <span><img alt="HTC chính hãng" src="images/linhtinh/9_logo_htc.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="APPLE iPhone chính hãng" href="/loai-dien-thoai/apple-iphone-showlist0.16.1.html">APPLE iPhone</a>
-                    <span><img alt="APPLE iPhone chính hãng" src="images/linhtinh/16_logo_apple.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="APPLE iPad chính hãng" href="/loai-dien-thoai/apple-ipad-showlist0.18.1.html">APPLE iPad</a><span><img alt="APPLE iPad chính hãng" src="images/linhtinh/18_16_logo_apple.gif" /></span></li><li><a style="text-transform: none;" title="ARCHOS chính hãng" href="/loai-dien-thoai/archos-showlist0.22.1.html">ARCHOS</a>
-                    <span><img alt="ARCHOS chính hãng" src="images/linhtinh/22_Logo-Archos-s.jpg" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="NOKIA chính hãng" href="/loai-dien-thoai/nokia-showlist0.2.1.html">NOKIA</a>
-                    <span><img alt="NOKIA chính hãng" src="images/linhtinh/2_logo_nokia.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="SAMSUNG chính hãng" href="/loai-dien-thoai/samsung-showlist0.3.1.html">SAMSUNG</a>
-                    <span><img alt="SAMSUNG chính hãng" src="images/linhtinh/3_logo_samsung.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="SONY ERICSSON chính hãng" href="/loai-dien-thoai/sony-ericsson-showlist0.4.1.html">SONY ERICSSON</a>
-                    <span><img alt="SONY ERICSSON chính hãng" src="images/linhtinh/4_logo_ericsson.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="LG chính hãng" href="/loai-dien-thoai/lg-showlist0.11.1.html">LG</a>
-                    <span><img alt="LG chính hãng" src="images/linhtinh/11_logo_lg.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="BLACKBERRY chính hãng" href="/loai-dien-thoai/blackberry-showlist0.17.1.html">BLACKBERRY</a>
-                    <span><img alt="BLACKBERRY chính hãng" src="images/linhtinh/17_logo_blackberry.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="MOTOROLA chính hãng" href="/loai-dien-thoai/motorola-showlist0.5.1.html">MOTOROLA</a>
-                    <span><img alt="MOTOROLA chính hãng" src="images/linhtinh/5_moto-s.jpg" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="DELL chính hãng" href="/loai-dien-thoai/dell-showlist0.19.1.html">DELL</a>
-                    <span><img alt="DELL chính hãng" src="images/linhtinh/19_dell.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="Q-Mobile chính hãng" href="/loai-dien-thoai/q-mobile-showlist0.20.1.html">Q-Mobile</a>
-                    <span><img alt="Q-Mobile chính hãng" src="images/linhtinh/20_q_logo_copy.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="VIETTEL Mobile chính hãng" href="/loai-dien-thoai/viettel-mobile-showlist0.26.1.html">VIETTEL Mobile</a>
-                    <span><img alt="VIETTEL Mobile chính hãng" src="images/linhtinh/26_viettels.gif" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="ALCATEL chính hãng" href="/loai-dien-thoai/alcatel-showlist0.21.1.html">ALCATEL</a>
-                    <span><img alt="ALCATEL chính hãng" src="images/linhtinh/21_al.jpg" /></span>
-                </li>
-                <li>
-                    <a style="text-transform: none;" title="Kho Máy Cũ chính hãng" href="/loai-dien-thoai/kho-may-cu-showlist0.7.1.html">Kho Máy Cũ</a>
-                </li>
+                </li> 
+                    <%
+                }
+                %>
+                               
             </ul>
 
         </div>
