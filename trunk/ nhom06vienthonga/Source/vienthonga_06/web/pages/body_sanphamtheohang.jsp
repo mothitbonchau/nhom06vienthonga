@@ -6,16 +6,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    List<Sanpham> list = SanPhamDAO.LaySanPham();
+    List<Sanpham> list = (List<Sanpham>) request.getAttribute("list");
 %>
 
 <div id="body_mid" style="float:left; width:60%;">
     <div class="contentCenter">                 
         <div class="topProducts"> 
-            <h2 style="background-image: url(images/linhtinh/title_product.gif)">HÀNG BÁN CHẠY NHẤT</h2>
+            <h2 style="background-image: url(images/linhtinh/title_product.gif)">HÀNG CHÍNH HÃNG <%= list.get(0).getHang().getTenHang() %></h2>
             <div class="topProductsWrap">
                 <%
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < list.size(); i++) {
                         Hinhanhsanpham hasp = (Hinhanhsanpham) list.get(i).getHinhanhsanphams().toArray()[0];
                         String path_lsp = "";
                         String path_hang = "";

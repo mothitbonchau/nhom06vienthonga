@@ -10,5 +10,13 @@
         <put-attribute name="body_right" value="/pages/body_right.jsp" />
         <put-attribute name="footer1" value="/pages/footer1.jsp" />
         <put-attribute name="footer2" value="/pages/footer2.jsp" />
-    </definition>    
+    </definition>
+    
+    <definition name="sanphamtheohang" extends="template_vienthonga">
+        <put-attribute name="body_mid" value="/pages/body_sanphamtheohang.jsp" />        
+    </definition>
+    
+    <definition name="chitietsanpham" extends="template_vienthonga">
+        <put-attribute name="body_mid" value="/pages/body_chitietsanpham.jsp" />        
+    </definition>
 </tiles-definitions>
