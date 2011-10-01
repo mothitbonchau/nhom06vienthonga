@@ -414,3 +414,20 @@ ul.border_bot li{border-bottom:1px dotted #999999}
     padding-top: 0px;
     width: 160px;
 }
+.maintabletitle { 
+    background-image: url("attachment:/14/attachment14.gif");
+    background-repeat: no-repeat;
+    color: rgb(51, 51, 51);
+    font-family: "Arial", "Helvetica", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    height: 28px;
+    margin-left: 20px;
+    padding-left: 10px;
+ }
+ .titleSPChitiet { 
+    color: rgb(0, 51, 102);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+ }
