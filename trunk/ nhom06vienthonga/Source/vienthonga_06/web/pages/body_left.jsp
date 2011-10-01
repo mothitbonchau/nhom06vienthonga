@@ -66,7 +66,7 @@
             </form>
         </div>
         <div class="blocCategory">
-            <h2 style="background-image: url(images/linhtinh/bgd_title.gif)" >Sản phẩm</h2>
+            <h2 style="background-image: url(images/linhtinh/bgd_title.gif)" >Hãng Sản Xuất</h2>
             <ul>
                 <%
                 for(int i=0; i<list.size(); i++)
@@ -75,9 +75,9 @@
                     
                     %>
                     <li>
-                    <a style="text-transform: none;" title="HTC chính hãng" href="/loai-dien-thoai/htc-showlist0.9.1.html"><%= h.getTenHang()%></a>
-                    <span><img alt="HTC chính hãng" src="images/linhtinh/9_logo_htc.gif" /></span>
-                </li> 
+                        <a style="text-transform: none;" href="view?task=sanphamtheohang&MH=<%= h.getMaHang() %>"><%= h.getTenHang()%></a>
+                        <!--<span><img alt="HTC chính hãng" src="images/linhtinh/9_logo_htc.gif" /></span>-->
+                    </li> 
                     <%
                 }
                 %>

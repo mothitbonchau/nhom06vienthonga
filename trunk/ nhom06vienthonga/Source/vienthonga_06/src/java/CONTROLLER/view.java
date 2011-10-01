@@ -31,8 +31,24 @@ public class view extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            String task = "";
+            if(request.getParameter("task") != null)
+            {
+                task = request.getParameter("task").toString();
+            }
             
-            response.sendRedirect("TrangChu.jsp");
+            //<editor-fold defaultstate="collapsed" desc="show sản phẩm của hãng">
+            if(task.equals("sanphamtheohang"))
+            {
+                String MH = request.getParameter("MH");
+                
+                
+                request.getRequestDispatcher("SanPhamTheoHang.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+            
+            request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
         } finally {            
             out.close();
         }
