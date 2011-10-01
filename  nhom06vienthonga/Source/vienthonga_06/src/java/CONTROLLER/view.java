@@ -4,8 +4,11 @@
  */
 package CONTROLLER;
 
+import MODEL.DAO.SanPhamDAO;
+import MODEL.POJO.Sanpham;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,8 +45,23 @@ public class view extends HttpServlet {
             {
                 String MH = request.getParameter("MH");
                 
+                List<Sanpham> list = SanPhamDAO.LaySanPhamTheoHang(MH);
                 
+                request.setAttribute("list", list);
                 request.getRequestDispatcher("SanPhamTheoHang.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+            
+            //<editor-fold defaultstate="collapsed" desc="show chi tiết sản phẩm">
+            if(task.equals("chitietsanpham"))
+            {
+                String MSP = request.getParameter("MSP");
+                
+                Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(MSP);
+                
+                request.setAttribute("sanpham", sp);
+                request.getRequestDispatcher("ChiTietSanPham.jsp").forward(request, response);
                 return;
             }
             //</editor-fold>
