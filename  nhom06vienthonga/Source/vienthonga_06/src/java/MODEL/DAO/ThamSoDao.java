@@ -4,7 +4,9 @@
  */
 package MODEL.DAO;
 
+import MODEL.POJO.Thamso;
 import MODEL.UTIL.HibernateUtil;
+import org.hibernate.CacheMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -25,5 +27,19 @@ public class ThamSoDao {
         
         session.close();
         return path;
+    }
+    
+    public static int LaySoSanPhamTrenTrang()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        int sp1trang = 0;
+        
+        String hql = "SELECT soSanPhamTrenTrang FROM Thamso";
+        Query query = session.createQuery(hql);
+        sp1trang = (Integer) query.uniqueResult();
+        
+        session.close();
+        return sp1trang;
     }
 }

@@ -358,7 +358,7 @@
 </tr>
 <tr>
 <td>
-    <div class="detail_tab_content">
+    <div class="detail_tab_content" style="margin-left: 10px;">
         <a style="color: rgb(255, 255, 255);" id="Focus" href="#">&nbsp;</a>
         <div id="detail_1" style="">
 
@@ -694,19 +694,16 @@
 </tr>
 <tr>
 <td>
-
-
+    <!--
     <table cellspacing="5" cellpadding="5" border="0" width="100%" id="sp_cungloai">
         <tr>
-        <td background="12" align="left" style="color: rgb(177, 0, 50);" colspan="4"><b>Sản phẩm cùng loại</b></td>
+            <td background="12" align="left" style="color: rgb(177, 0, 50);" colspan="4"><b>Sản phẩm cùng loại</b></td>
         </tr>
         <tr>
-
-        <td align="center" class="graytdborder1"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN9-64-GB/1470/17"><img border="0" width="47" src="http://www.vienthonga.com/App_Themes/SanphamDienThoai/thumb/N9-small-64.jpg"></a><br><span class="producttitle"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN9-64-GB/1470/17">Nokia N9 64 GB</a></span><br><span class="detail_price">14,749,000 VNĐ</span>  </td><td align="center" class="graytdborder1"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN9-16-GB/1375/17"><img border="0" width="47" src="http://www.vienthonga.com/App_Themes/SanphamDienThoai/thumb/N9-small.jpg"></a><br><span class="producttitle"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN9-16-GB/1375/17">Nokia N9 16 GB</a></span><br><span class="detail_price">13,249,000 VNĐ</span>  </td><td align="center" class="graytdborder1"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaE7/1264/17"><img border="0" width="47" src="http://www.vienthonga.com/App_Themes/SanphamDienThoai/thumb/E7.jpg"></a><br><span class="producttitle"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaE7/1264/17">Nokia E7</a></span><br><span class="detail_price">11,049,000 VNĐ</span>  </td><td align="center" class="graytdborder1"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN900/1015/17"><img border="0" width="47" src="http://www.vienthonga.com/App_Themes/SanphamDienThoai/thumb/N900.jpg"></a><br><span class="producttitle"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN900/1015/17">Nokia N900</a></span><br><span class="detail_price">9,899,000 VNĐ</span>  </td>
-
-</tr>
-</table>
-
+            <td align="center" class="graytdborder1"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN9-64-GB/1470/17"><img border="0" width="47" src="http://www.vienthonga.com/App_Themes/SanphamDienThoai/thumb/N9-small-64.jpg"></a><br><span class="producttitle"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN9-64-GB/1470/17">Nokia N9 64 GB</a></span><br><span class="detail_price">14,749,000 VNĐ</span>  </td><td align="center" class="graytdborder1"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN9-16-GB/1375/17"><img border="0" width="47" src="http://www.vienthonga.com/App_Themes/SanphamDienThoai/thumb/N9-small.jpg"></a><br><span class="producttitle"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN9-16-GB/1375/17">Nokia N9 16 GB</a></span><br><span class="detail_price">13,249,000 VNĐ</span>  </td><td align="center" class="graytdborder1"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaE7/1264/17"><img border="0" width="47" src="http://www.vienthonga.com/App_Themes/SanphamDienThoai/thumb/E7.jpg"></a><br><span class="producttitle"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaE7/1264/17">Nokia E7</a></span><br><span class="detail_price">11,049,000 VNĐ</span>  </td><td align="center" class="graytdborder1"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN900/1015/17"><img border="0" width="47" src="http://www.vienthonga.com/App_Themes/SanphamDienThoai/thumb/N900.jpg"></a><br><span class="producttitle"><a class="TextTieuDeSP" href="http://www.vienthonga.com/dien-thoai/chi-tiet/NokiaN900/1015/17">Nokia N900</a></span><br><span class="detail_price">9,899,000 VNĐ</span>  </td>
+        </tr>
+    </table>
+    -->
 </td>
 </tr>
 <tr>

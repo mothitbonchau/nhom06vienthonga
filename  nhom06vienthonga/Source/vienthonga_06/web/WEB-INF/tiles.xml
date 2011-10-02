@@ -19,4 +19,12 @@
     <definition name="chitietsanpham" extends="template_vienthonga">
         <put-attribute name="body_mid" value="/pages/body_chitietsanpham.jsp" />        
     </definition>
+    
+    <definition name="sanphamtheoloai" extends="template_vienthonga">
+        <put-attribute name="body_mid" value="/pages/body_sanphamtheoloai.jsp" />        
+    </definition>
+    
+    <definition name="timkiem" extends="template_vienthonga">
+        <put-attribute name="body_mid" value="/pages/body_timkiem.jsp" />        
+    </definition>
 </tiles-definitions>
