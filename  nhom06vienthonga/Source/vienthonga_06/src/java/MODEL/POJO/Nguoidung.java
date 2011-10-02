@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Sep 30, 2011 5:07:38 PM by Hibernate Tools 3.2.1.GA
+// Generated Oct 2, 2011 5:46:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -14,6 +14,8 @@ public class Nguoidung  implements java.io.Serializable {
 
      private String maNguoiDung;
      private Loainguoidung loainguoidung;
+     private String tenDangNhap;
+     private String matKhau;
      private String tenNguoiDung;
      private String email;
      private Integer cmnd;
@@ -30,9 +32,11 @@ public class Nguoidung  implements java.io.Serializable {
     public Nguoidung(String maNguoiDung) {
         this.maNguoiDung = maNguoiDung;
     }
-    public Nguoidung(String maNguoiDung, Loainguoidung loainguoidung, String tenNguoiDung, String email, Integer cmnd, Integer dienThoai, String diaChi, Date ngayDangKy, Integer tinhTrang, Set donhangs) {
+    public Nguoidung(String maNguoiDung, Loainguoidung loainguoidung, String tenDangNhap, String matKhau, String tenNguoiDung, String email, Integer cmnd, Integer dienThoai, String diaChi, Date ngayDangKy, Integer tinhTrang, Set donhangs) {
        this.maNguoiDung = maNguoiDung;
        this.loainguoidung = loainguoidung;
+       this.tenDangNhap = tenDangNhap;
+       this.matKhau = matKhau;
        this.tenNguoiDung = tenNguoiDung;
        this.email = email;
        this.cmnd = cmnd;
@@ -56,6 +60,20 @@ public class Nguoidung  implements java.io.Serializable {
     
     public void setLoainguoidung(Loainguoidung loainguoidung) {
         this.loainguoidung = loainguoidung;
+    }
+    public String getTenDangNhap() {
+        return this.tenDangNhap;
+    }
+    
+    public void setTenDangNhap(String tenDangNhap) {
+        this.tenDangNhap = tenDangNhap;
+    }
+    public String getMatKhau() {
+        return this.matKhau;
+    }
+    
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
     public String getTenNguoiDung() {
         return this.tenNguoiDung;
