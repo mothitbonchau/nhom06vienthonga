@@ -20,7 +20,7 @@
     </div>
 
     <div class="lev1" style="background-image: url(images/linhtinh/quanly.gif); margin-top: -5px; margin-right: 120px; text-align: right; vertical-align: middle; height: 22px;">
-        <a style="float: right; text-transform: lowercase;" href="" >| đăng nhập</a>
+        <a style="float: right; text-transform: lowercase;" href="DangNhap.jsp" >| đăng nhập</a>
         <a style="float: right; text-transform: lowercase;" href="" >| đăng ký </a>
         <a style="float: right; text-transform: lowercase;" href="" >| giỏ hàng</a>
         <a style="float: right; text-transform: lowercase;" href="" >quản lý</a>

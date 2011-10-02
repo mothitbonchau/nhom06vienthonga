@@ -7,15 +7,12 @@ package MODEL.DAO;
 import MODEL.POJO.Hang;
 
 import MODEL.UTIL.HibernateUtil;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
 
 /**
  *
@@ -33,10 +30,7 @@ public class HangDAO {
             Query query = session.createQuery(hql);
             //query.setInteger("tt", 0);
             list = query.list();
-            
-            //
-            Hang h = new Hang();
-            session.saveOrUpdate(h);
+                 
         } catch (Exception ex) {
             Logger.getLogger(HangDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
