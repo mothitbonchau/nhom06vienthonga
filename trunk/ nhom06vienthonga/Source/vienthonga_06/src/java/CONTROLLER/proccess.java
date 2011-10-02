@@ -4,8 +4,14 @@
  */
 package CONTROLLER;
 
+import MODEL.DAO.SanPhamDAO;
+import MODEL.DAO.ThamSoDao;
+import MODEL.POJO.Hang;
+import MODEL.POJO.Loaisanpham;
+import MODEL.POJO.Sanpham;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,19 +35,52 @@ public class proccess extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet proccess</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet proccess at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-        } finally {            
+            String task = "";
+            if (request.getParameter("task") != null) {
+                task = request.getParameter("task").toString();
+            }
+
+            //<editor-fold defaultstate="collapsed" desc="tìm kiếm sản phẩm">
+            if (task.equals("timkiem")) {
+                Sanpham sp = new Sanpham();
+                sp.setTenSanPham(request.getParameter("TSP"));
+                Loaisanpham lsp = new Loaisanpham();
+                lsp.setMaLoaiSanPham(request.getParameter("MLSP"));
+                sp.setLoaisanpham(lsp);
+                Hang h = new Hang();
+                h.setMaHang(request.getParameter("MH"));
+                sp.setHang(h);
+                sp.setGiaBan(Float.parseFloat(request.getParameter("Gia").toString()));
+                
+                int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                int tongsotrang = 0;
+                int trang = 1;
+                if (request.getParameter("trang") != null) {
+                    trang = Integer.parseInt(request.getParameter("trang").toString());
+                }
+                int batdau = 0;
+                if (trang > 1) {
+                    batdau = sp1trang * trang - sp1trang;
+                }
+
+                List<Sanpham> list = SanPhamDAO.TimKiem(sp, batdau, -1);
+                tongsotrang = list.size() / sp1trang;
+                if (list.size() % sp1trang > 0) {
+                    tongsotrang = tongsotrang + 1;
+                }
+                list = SanPhamDAO.TimKiem(sp, batdau, sp1trang);
+                //list = list.subList(0, sp1trang);
+
+                request.setAttribute("tongsotrang", tongsotrang);
+                request.setAttribute("list", list);
+                request.getRequestDispatcher("TimKiem.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+        } finally {
             out.close();
         }
     }

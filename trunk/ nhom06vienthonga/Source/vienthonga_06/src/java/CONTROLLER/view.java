@@ -4,8 +4,8 @@
  */
 package CONTROLLER;
 
-import MODEL.DAO.SanPhamDAO;
-import MODEL.POJO.Sanpham;
+import MODEL.DAO.*;
+import MODEL.POJO.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -35,39 +35,114 @@ public class view extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             String task = "";
-            if(request.getParameter("task") != null)
-            {
+            if (request.getParameter("task") != null) {
                 task = request.getParameter("task").toString();
             }
-            
+
             //<editor-fold defaultstate="collapsed" desc="show sản phẩm của hãng">
-            if(task.equals("sanphamtheohang"))
-            {
+            if (task.equals("sanphamtheohang")) {
+                int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                int tongsotrang = 0;
+                int trang = 1;
+                if (request.getParameter("trang") != null) {
+                    trang = Integer.parseInt(request.getParameter("trang").toString());
+                }
+                int batdau = 0;
+                if (trang > 1) {
+                    batdau = sp1trang * trang - sp1trang;
+                }
+
                 String MH = request.getParameter("MH");
-                
-                List<Sanpham> list = SanPhamDAO.LaySanPhamTheoHang(MH);
-                
+                List<Sanpham> list = SanPhamDAO.LaySanPhamTheoHang(MH, batdau, -1);
+                tongsotrang = list.size() / sp1trang;
+                if (list.size() % sp1trang > 0) {
+                    tongsotrang = tongsotrang + 1;
+                }
+                list = SanPhamDAO.LaySanPhamTheoHang(MH, batdau, sp1trang);
+                //list = list.subList(0, sp1trang);
+
+                request.setAttribute("tongsotrang", tongsotrang);
                 request.setAttribute("list", list);
                 request.getRequestDispatcher("SanPhamTheoHang.jsp").forward(request, response);
                 return;
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="show chi tiết sản phẩm">
-            if(task.equals("chitietsanpham"))
-            {
+            if (task.equals("chitietsanpham")) {
                 String MSP = request.getParameter("MSP");
-                
+
                 Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(MSP);
-                
+
                 request.setAttribute("sanpham", sp);
                 request.getRequestDispatcher("ChiTietSanPham.jsp").forward(request, response);
                 return;
             }
             //</editor-fold>
-            
+
+            //<editor-fold defaultstate="collapsed" desc="show theo danh mục sản phẩm">
+            if (task.equals("danhmucsanpham")) {
+                String task_chitiet = request.getParameter("task_chitiet");
+                //<editor-fold defaultstate="collapsed" desc="show sản phẩm điện thoại">
+                if (task_chitiet.equals("dienthoai")) {
+                    int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                    int tongsotrang = 0;
+                    int trang = 1;
+                    if (request.getParameter("trang") != null) {
+                        trang = Integer.parseInt(request.getParameter("trang").toString());
+                    }
+                    int batdau = 0;
+                    if (trang > 1) {
+                        batdau = sp1trang * trang - sp1trang;
+                    }
+
+                    List<Sanpham> list = SanPhamDAO.LaySanPhamTheoLoai("DT", batdau, -1);
+                    tongsotrang = list.size() / sp1trang;
+                    if (list.size() % sp1trang > 0) {
+                        tongsotrang = tongsotrang + 1;
+                    }
+                    list = SanPhamDAO.LaySanPhamTheoLoai("DT", batdau, sp1trang);
+                    //list = list.subList(0, sp1trang);
+
+                    request.setAttribute("tongsotrang", tongsotrang);
+                    request.setAttribute("list", list);
+                    request.getRequestDispatcher("DanhMucSanPham.jsp").forward(request, response);
+                    return;
+                }
+                //</editor-fold>
+
+                //<editor-fold defaultstate="collapsed" desc="show sản phẩm laptop">
+                if (task_chitiet.equals("laptop")) {
+                    int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                    int tongsotrang = 0;
+                    int trang = 1;
+                    if (request.getParameter("trang") != null) {
+                        trang = Integer.parseInt(request.getParameter("trang").toString());
+                    }
+                    int batdau = 0;
+                    if (trang > 1) {
+                        batdau = sp1trang * trang - sp1trang;
+                    }
+
+                    List<Sanpham> list = SanPhamDAO.LaySanPhamTheoLoai("LT", batdau, -1);
+                    tongsotrang = list.size() / sp1trang;
+                    if (list.size() % sp1trang > 0) {
+                        tongsotrang = tongsotrang + 1;
+                    }
+                    list = SanPhamDAO.LaySanPhamTheoLoai("LT", batdau, sp1trang);
+                    //list = list.subList(0, sp1trang);
+
+                    request.setAttribute("tongsotrang", tongsotrang);
+                    request.setAttribute("list", list);
+                    request.getRequestDispatcher("DanhMucSanPham.jsp").forward(request, response);
+                    return;
+                }
+                //</editor-fold>
+            }
+            //</editor-fold>            
+
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
-        } finally {            
+        } finally {
             out.close();
         }
     }

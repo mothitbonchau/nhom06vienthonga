@@ -532,6 +532,241 @@ INSERT INTO `loaisanpham` VALUES ('DT','Điện Thoại',0),('LT','Laptop',0);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `m_cart`
+--
+
+DROP TABLE IF EXISTS `m_cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `m_cart` (
+  `cart_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cart_customer` int(10) unsigned DEFAULT NULL,
+  `cart_day` datetime NOT NULL,
+  `cart_number` int(10) unsigned NOT NULL DEFAULT '0',
+  `cart_total` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cart_id`),
+  UNIQUE KEY `cart_customer` (`cart_customer`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `m_cart`
+--
+
+LOCK TABLES `m_cart` WRITE;
+/*!40000 ALTER TABLE `m_cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `m_cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `m_cartdetail`
+--
+
+DROP TABLE IF EXISTS `m_cartdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `m_cartdetail` (
+  `cd_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cd_cart` int(10) unsigned NOT NULL,
+  `cd_product` int(10) unsigned NOT NULL,
+  `cd_number` int(10) unsigned NOT NULL,
+  `cd_total` decimal(10,0) unsigned NOT NULL,
+  PRIMARY KEY (`cd_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `m_cartdetail`
+--
+
+LOCK TABLES `m_cartdetail` WRITE;
+/*!40000 ALTER TABLE `m_cartdetail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `m_cartdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `m_carthistory`
+--
+
+DROP TABLE IF EXISTS `m_carthistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `m_carthistory` (
+  `his_id` int(11) NOT NULL AUTO_INCREMENT,
+  `his_user` int(11) NOT NULL,
+  `his_datebuy` date DEFAULT NULL,
+  `his_dateship` date DEFAULT NULL,
+  `his_total` decimal(10,0) unsigned NOT NULL,
+  `his_state` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`his_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `m_carthistory`
+--
+
+LOCK TABLES `m_carthistory` WRITE;
+/*!40000 ALTER TABLE `m_carthistory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `m_carthistory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `m_customer`
+--
+
+DROP TABLE IF EXISTS `m_customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `m_customer` (
+  `cus_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cus_username` varchar(128) NOT NULL,
+  `cus_password` varchar(128) NOT NULL,
+  `cus_email` varchar(128) NOT NULL,
+  `cus_isadmin` int(11) NOT NULL,
+  PRIMARY KEY (`cus_id`),
+  UNIQUE KEY `cus_username` (`cus_username`),
+  UNIQUE KEY `cus_email` (`cus_email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `m_customer`
+--
+
+LOCK TABLES `m_customer` WRITE;
+/*!40000 ALTER TABLE `m_customer` DISABLE KEYS */;
+INSERT INTO `m_customer` VALUES (1,'customer1','827ccb0eea8a706c4c34a16891f84e7b','custom@mail.com',0),(2,'admin','21232f297a57a5a743894a0e4a801fc3','taki_lnt@yahoo.com',1);
+/*!40000 ALTER TABLE `m_customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `m_infomation`
+--
+
+DROP TABLE IF EXISTS `m_infomation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `m_infomation` (
+  `info_id` int(11) NOT NULL AUTO_INCREMENT,
+  `info_name` text COLLATE utf8_unicode_ci NOT NULL,
+  `info_address` text COLLATE utf8_unicode_ci NOT NULL,
+  `info_phonenum` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `info_user` int(11) DEFAULT NULL,
+  `info_notes` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`info_id`),
+  UNIQUE KEY `info_user` (`info_user`),
+  CONSTRAINT `m_infomation_ibfk_1` FOREIGN KEY (`info_user`) REFERENCES `m_customer` (`cus_id`),
+  CONSTRAINT `m_infomation_ibfk_2` FOREIGN KEY (`info_user`) REFERENCES `m_customer` (`cus_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `m_infomation`
+--
+
+LOCK TABLES `m_infomation` WRITE;
+/*!40000 ALTER TABLE `m_infomation` DISABLE KEYS */;
+INSERT INTO `m_infomation` VALUES (1,'Nguyễn Văn Tèo','123 An Dương Vương Q.5, Tp.HCM','01223456432',1,NULL);
+/*!40000 ALTER TABLE `m_infomation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `m_producer`
+--
+
+DROP TABLE IF EXISTS `m_producer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `m_producer` (
+  `pc_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pc_name` varchar(128) NOT NULL,
+  `pc_logo` text,
+  PRIMARY KEY (`pc_id`),
+  UNIQUE KEY `pc_name` (`pc_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `m_producer`
+--
+
+LOCK TABLES `m_producer` WRITE;
+/*!40000 ALTER TABLE `m_producer` DISABLE KEYS */;
+INSERT INTO `m_producer` VALUES (1,'Nokia',NULL),(2,'LG',NULL),(3,'Samsung',NULL),(4,'Sony Ericsson',NULL),(5,'HTC',NULL),(6,'Motorola',NULL),(7,'Black Berry',NULL),(8,'Apple',NULL),(9,'Mobell',NULL),(10,'Philips',NULL);
+/*!40000 ALTER TABLE `m_producer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `m_product`
+--
+
+DROP TABLE IF EXISTS `m_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `m_product` (
+  `p_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `p_model` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `p_name` text COLLATE utf8_unicode_ci,
+  `p_producer` int(10) unsigned NOT NULL,
+  `p_cost` decimal(10,0) unsigned NOT NULL,
+  `p_images` text COLLATE utf8_unicode_ci,
+  `p_imageb` text COLLATE utf8_unicode_ci,
+  `p_states` int(128) unsigned DEFAULT NULL,
+  PRIMARY KEY (`p_id`),
+  UNIQUE KEY `p_model` (`p_model`,`p_states`),
+  KEY `p_producer` (`p_producer`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `m_product`
+--
+
+LOCK TABLES `m_product` WRITE;
+/*!40000 ALTER TABLE `m_product` DISABLE KEYS */;
+INSERT INTO `m_product` VALUES (1,'E7','Nokia E7',1,11049000,'./images/product/Nokia E7-s.jpg','./images/product/Nokia E7-b.jpg',10),(2,'X7-00','Nokia X7-00',1,9299000,'./images/product/Nokia X7-00-s.jpg','./images/product/Nokia X7-00-b.jpg',10),(3,'E71','Nokia E71',1,5739000,'./images/product/Nokia E71-s.jpg','./images/product/Nokia E71-b.jpg',10),(4,'5030','Nokia 5030',1,809000,'./images/product/Nokia 5030-s.jpg','./images/product/Nokia 5030-b.jpg',10),(5,'2X P990','LG Optimus 2X P990',2,11900000,'./images/product/LG Optimus 2X P990-s.jpg','./images/product/LG Optimus 2X P990-b.jpg',10),(6,'E900 Optimus 7','LG E900 Optimus 7',2,6499000,'./images/product/LG E900 Optimus 7-s.jpg','./images/product/LG E900 Optimus 7-b.jpg',10),(7,'Optimus P500','LG Optimus One P500',2,4489000,'./images/product/LG Optimus One P500-s.jpg','./images/product/LG Optimus One P500-b.jpg',10),(8,'X330','LG X330',2,1599000,'./images/product/LG X330-s.jpg','./images/product/LG X330-b.jpg',10),(9,'I9100 Galaxy S II','Samsung I9100 Galaxy S II',3,13449000,'./images/product/Samsung I9100 Galaxy S II-s.jpg','./images/product/Samsung I9100 Galaxy S II-b.jpg',10),(10,'Galaxy S i9003','Samsung Galaxy S i9003 4GB',3,9399000,'./images/product/','./images/product/',10),(11,'S5233W','Samsung Star S5233W',3,2899000,'./images/product/Samsung Star S5233W-s.jpg','./images/product/Samsung Star S5233W-b.jpg',10),(12,'C3053','Samsung C3053',3,1359000,'./images/product/Samsung C3053-s.jpg','./images/product/Samsung C3053-b.jpg',10),(13,'XPERIA Arc LT15i','Sony Ericsson XPERIA Arc LT15i',4,13850000,'./images/product/Sony Ericsson XPERIA Arc LT15i-s.jpg','./images/product/Sony Ericsson XPERIA Arc LT15i-b.jpg',10),(14,'Xperia mini pro SK17i','Sony Ericsson Xperia mini pro SK17i',4,6950000,'./images/product/Sony Ericsson Xperia mini pro SK17i-s.jpg','./images/product/Sony Ericsson Xperia mini pro SK17i-b.jpg',10),(15,'XPERIA X8','Sony Ericsson XPERIA X8',4,4680000,'./images/product/Sony Ericsson XPERIA X8-s.jpg','./images/product/Sony Ericsson XPERIA X8-b.jpg',10),(16,'Spiro W100i','Sony Ericsson Spiro W100i',4,1680000,'./images/product/Sony Ericsson Spiro W100i-s.jpg','./images/product/Sony Ericsson Spiro W100i-b.jpg',10),(17,'Desire','HTC Desire',5,10900000,'./images/product/HTC Desire-s.jpg','./images/product/HTC Desire-b.jpg',10),(18,'Hero','HTC Hero',5,6999000,'./images/product/HTC Hero-s.jpg','./images/product/HTC Hero-b.jpg',10),(19,'ChaCha','HTC ChaCha',5,7189000,'./images/product/HTC ChaCha-s.jpg','./images/product/HTC ChaCha-b.jpg',10),(20,'Wildfire','HTC Wildfire',5,6190000,'./images/product/HTC Wildfire-s.jpg','./images/product/HTC Wildfire-b.jpg',10),(21,'XT720 Milestone','Motorola XT720 Milestone',6,7499000,'./images/product/Motorola XT720 Milestone-s.jpg','./images/product/Motorola XT720 Milestone-b.jpg',10),(22,'EX115','Motorola EX115',6,1919000,'./images/product/Motorola EX115-s.jpg','./images/product/Motorola EX115-b.jpg',10),(23,'Bold 9780','BlackBerry Bold 9780',6,11990000,'./images/product/BlackBerry Bold 9780-s.jpg','./images/product/BlackBerry Bold 9780-b.jpg',10),(24,'Curve 8520','BlackBerry Curve 8520',6,5899000,'./images/product/BlackBerry Curve 8520-s.jpg','./images/product/BlackBerry Curve 8520-b.jpg',10),(25,'4 16GB','iPhone 4 16GB',7,17000000,'./images/product/iPhone 4 16GB-s.jpg','./images/product/iPhone 4 16GB-b.jpg',10),(26,'3GS','iPhone 3GS',7,8000000,'./images/product/iPhone 3GS-s.jpg','./images/product/iPhone 3GS-b.jpg',10),(27,'M770','Mobell M770',9,1789000,'./images/product/Mobell M770-s.jpg','./images/product/Mobell M770-b.jpg',10),(28,'M610','Mobell M610',9,1189000,'./images/product/Mobell M610-s.jpg','./images/product/Mobell M610-b.jpg',10),(29,'X710','Philips X710',10,4290000,'./images/product/Philips X710-s.jpg','./images/product/Philips X710-b.jpg',10),(30,'X501','Philips X501',10,2660000,'./images/product/Philips X501-s.jpg','./images/product/Philips X501-b.jpg',10);
+/*!40000 ALTER TABLE `m_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `m_productdetail`
+--
+
+DROP TABLE IF EXISTS `m_productdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `m_productdetail` (
+  `pd_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pd_phone` int(10) unsigned NOT NULL,
+  `pd_feature` text COLLATE utf8_unicode_ci,
+  `pd_entertainment` text COLLATE utf8_unicode_ci,
+  `pd_application` text COLLATE utf8_unicode_ci,
+  `pd_ring` text COLLATE utf8_unicode_ci,
+  `pd_memory` text COLLATE utf8_unicode_ci,
+  `pd_contacts` text COLLATE utf8_unicode_ci,
+  `pd_connect` text COLLATE utf8_unicode_ci,
+  `pd_screen` text COLLATE utf8_unicode_ci,
+  `pd_general` text COLLATE utf8_unicode_ci,
+  `pd_pin` text COLLATE utf8_unicode_ci,
+  `pd_additional` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`pd_id`),
+  UNIQUE KEY `pd_phone` (`pd_phone`),
+  CONSTRAINT `m_productdetail_ibfk_1` FOREIGN KEY (`pd_phone`) REFERENCES `m_product` (`p_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `m_productdetail`
+--
+
+LOCK TABLES `m_productdetail` WRITE;
+/*!40000 ALTER TABLE `m_productdetail` DISABLE KEYS */;
+INSERT INTO `m_productdetail` VALUES (1,1,'- Hệ điều hành Symbian ^3.\r\n- Màn hình cảm ứng điện dung đa điểm.\r\n- Máy ảnh 8 MP với Flash kép.\r\n- Nghe nhạc xem phim nhiều định dạng.\r\n- Kết nối Tivi qua cổng HDMI.\r\n- Hệ thống âm thanh Dolby Digital Plus.\r\n- Mạng 3G, kết nối Wifi, Bluetooth 3.0.\r\n- Ứng dụng Microsoft office (Word, Excel, PowerPoint, PDF).','+Máy ảnh	8.0 MP (3264x2448 pixels)\r\n+Đặc tính máy ảnh\r\n- Lấy nét tự động, LED flash kép\r\n- Nhận diện khuôn mặt và nụ cười\r\n- Ổn định Video\r\n+Máy ảnh phụ : VGA (0.3 Mpx)\r\n+Videocall\r\n+Quay phim : HD 720p@25fps\r\n+ Xem phim : 3GP, H.263, H.264(MPEG4-AVC), MP4, WMV\r\n+ Nghe nhạc : MP3, WAV, WMA, eAAC+\r\n+ FM radio : RDS\r\n+ Xem Tivi : Mạng 3G','+ Ghi âm\r\n+ Ghi âm cuộc gọi\r\n+ Java : MIDP 2.1\r\n+ Trò chơi :\r\n- Bộ xử lý đồ hoạ chuyên dụng với OpenGL 2.0 cho phép xử lý hình ảnh 3D\r\n- Sử dụng gia tốc kế để chơi game\r\n+ Kết nối Tivi\r\n+ Ứng dụng văn phòng\r\n+ Soạn thảo văn bản\r\n+ Ứng dụng khác :\r\n- Microsoft Office\r\n- Kết nối Tivi (720p video) qua cổng HDMI và composite\r\n- Hỗ trợ Flash video\r\n- âm thanh Dolby Digital Plus\r\n- Chỉnh sửa hình ảnh, video\r\n- Flash Lite 4.0\r\n- Lọc tiếng ồn với mic chuyên dụng\r\n- Ovi map 3.0\r\n- La bàn kỹ thuật số\r\n- HTML 4.1','+ Loại : MP3, Midi, WAV\r\n+ Tải nhạc\r\n+ Loa ngoài\r\n+ Báo rung\r\n+ Jack tai nghe : 3.5 mm','+ Bộ nhớ trong : 16 GB\r\n+ RAM : 256 MB, ROM 1 GB\r\n+ Vi xử lý CPU : ARM 11 680 MHz processor','+ Danh bạ : Không giới hạn\r\n+ Tin nhắn : SMS/MMS/Instant Messaging\r\n+ Email : SMTP/IMAP4/POP3/Push Mail','+ Băng tần 2G GSM 850/900/1800/1900\r\n+ Băng tần 3G HSDPA 850/900/1700/2100/1900\r\n+ MobiFone, VinaPhone, Viettel, Vietnamobile, Beeline\r\n+ GPRS Class 32\r\n+ EDGE\r\n+ 3G HSDPA 10.2 Mbps; HSUPA 2.0 Mbpsi\r\n+ Wi-Fi 802.11 b/g/n\r\n+ HTML, RSS feeds, Wap 2.0/xHTML\r\n+ A-GPS\r\n+ Bluetooth V3.0 với A2DP\r\n+ Micro USB','+ AMOLED 16 triệu màu\r\n+ Độ phân giải 360 x 640 pixels\r\n+ Kích thước 4.0 inches\r\n+ Cảm ứng điện dung, đa điểm\r\n+ Chức năng cảm ứng :\r\n- Scratch-resistant surface\r\n- Touch sensitive controls\r\n+ Thông tin khác :\r\n- Cảm biến tự động xoay màn hình\r\n- Cảm biến tiệm cận\r\n- Cảm biến ánh sáng xung quanh','+ Hệ điều hành Symbian ^3\r\n+ Kiểu dáng Trượt\r\n+ Bàn phím Qwerty\r\n+ Kích thước 123.7 x 62.4 x 13.6mm\r\n+ Trọng lượng (g) 175\r\n+ Ngôn ngữ Tiếng Anh, Tiếng Việt\r\n+ Bảo hành 12 tháng','+ Loại pin Pin Nokia BL-4D\r\n+ Dung lượng pin 1200 mAh\r\n+ Thời gian đàm thoại 9 giờ\r\n+ Thời gian chờ 400 giờ','+ Sạc\r\n+ Tai nghe\r\n+ Sách hướng dẫn'),(2,2,'- Màn hình OLED, 16 triệu màu, rộng 4.0 inches\r\n- Hệ điều hành mới nhất của Nokia Symbian Anna\r\n- Máy ảnh 8.0 MP, hỗ trợ Flash kép\r\n- Tích hợp 2 loa, và mic chuyên dụng\r\n- Kết nối 3G, Wi-Fi 802.11 b/g/n, A-GPS, Bluetooth\r\n- Ứng dụng Quickoffice xem file văn bản','+ Máy ảnh 8.0 MP (3264x2448 pixels)\r\n+ Đặc tính máy ảnh:\r\n- Lấy nét cố định, LED flash kép\r\n- Zoom 3x cho quay phim\r\n- Nhận diện khuôn mặt\r\n+ Videocall\r\n+ Quay phim HD 720p@25fps\r\n+ Xem phim 3GP, DivX, H.263, H.264(MPEG4-AVC), MP4, WMV\r\n+ Nghe nhạc MP3, WAV, WMA, eAAC+\r\n+ FM radio với RDS\r\n+ Xem Tivi mạng 3G','+ Ghi âm\r\n+ Ghi âm cuộc gọi\r\n+ Java MIDP 2.1\r\n+ Trò chơi cài đặt sẵn trong máy, có thể cài thêm\r\n+ Ứng dụng văn phòng\r\n+ Xem file văn bản\r\n+ Ứng dụng khác:\r\n- Lọc tiếng ồn với mic chuyên dụng\r\n- Quickoffice\r\n- Adobe Reader\r\n- Flash Lite 4.0','+ Loại MP3, Midi, WAV\r\n+ Tải nhạc\r\n+ Loa ngoài\r\n+ Báo rung\r\n+ Jack tai nghe 3.5 mm','+ Bộ nhớ trong 1 GB\r\n+ RAM 256 MB, ROM 1 GB\r\n+ Vi xử lý CPU ARM 11 680 MHz processor\r\n+ Bộ nhớ ngoài MicroSD (T-Flash)\r\n+ Hỗ trợ thẻ tối đa 32 GB','+ Danh bạ không giới hạn\r\n+ Tin nhắn SMS/EMS/MMS/Instant Messaging\r\n+ Email SMTP/IMAP4/POP3/Push Mail','+ Băng tần 2G GSM 850/900/1800/1900\r\n+ Băng tần 3G HSDPA 850/900/1700/2100/1900\r\n+ MobiFone, VinaPhone, Viettel, Vietnamobile, Beeline\r\n+ GPRS Class 33\r\n+ EDGE\r\n+ 3G HSDPA 10.2 Mbps; HSUPA 2.0 Mbps\r\n+ Wi-Fi 802.11 b/g/n\r\n+ HTML\r\n+ A-GPS\r\n+ Bluetooth V3.0 với A2DP\r\n+ Micro USB','+ Loại OLED, 16 triệu màu\r\n+ Độ phân giải 360 x 640 pixels\r\n+ Kích thước 4.0 inches\r\n+ Cảm ứng điện dung\r\n+ Mặt kính Gorilla\r\n+ Thông tin khác\r\n- Cảm biến tự động xoay màn hình\r\n- Cảm biến tự động turn-off','+ Hệ điều hành Symbian Anna\r\n+ Kiểu dáng Cảm ứng\r\n+ Bàn phím Qwerty ảo\r\n+ Kích thước 119.7 x 62.8 x 11.9 mm\r\n+ Trọng lượng (g) 146\r\n+ Ngôn ngữ Tiếng Anh\r\n+ Bảo hành 12 tháng','+ Loại pin Pin Nokia BL-5K\r\n+ Dung lượng pin 1300 mAh\r\n+ Thời gian đàm thoại 6 giờ\r\n+ Thời gian chờ 450 giờ','+ Sạc\r\n+ Tai nghe\r\n+ Sách hướng dẫn'),(3,3,'+ Màn hình rộng\r\n+ Bàn phím QWERTY đầy đủ\r\n+ Camera 3.2 MP, video(VGA 22fps)\r\n+ Chức năng định vị GPS\r\n+ Ứng dụng văn phòng\r\n+ Đài FM','+ Máy ảnh 3.2 MP (2048 x 1536 pixels)\r\n+ Đặc tính máy ảnh lấy nét tự động, Flash\r\n+ Máy ảnh phụ QCIF@15fps\r\n+ Videocall\r\n+ Quay phim\r\n+ Xem phim 3GP, AVI, MP4\r\n+ Nghe nhạc AAC, AAC+, AAC++, MP3, WAV, WMA\r\n+ FM radio with RDS, Visual radio\r\n+ Xem Tivi mạng 3G','+ Ghi âm\r\n+ Ghi âm cuộc gọi\r\n+ Java MIDP 2.0\r\n+ Trò chơi cài sẵn trong máy, có thể cài đặt thêm\r\n+ Ứng dụng văn phòng\r\n+ Soạn thảo văn bản\r\n+ Ứng dụng khác:\r\n- MS Office 2007\r\n- Push to talk\r\n- Nokia Maps','+ Loại 64 âm sắc, AAC, AMR, MP3, Midi, WAV\r\n+ Tải nhạc\r\n+ Loa ngoài\r\n+ Báo rung','+ Bộ nhớ trong 110 MB\r\n+ RAM 128 MB\r\n+ Vi xử lý CPU ARM 11 369 MHz processor\r\n+ Thẻ nhớ ngoài MicroSD (T-Flash)\r\n+ Hỗ trợ thẻ tối đa 8 GB','+ Danh bạ không giới hạn\r\n+ Tin nhắn SMS/MMS/Instant Messaging\r\n+ Email','+ Băng tần 2G GSM 850/900/1800/1900\r\n+ Băng tần 3G HSDPA 900/2100\r\n+ MobiFone, VinaPhone, Viettel, Vietnamobile, Beeline\r\n+ GPRS Class 32, 100 kbps\r\n+ EDGE 296 Kbps\r\n+ 3G HSDPA 3.6 Mbps\r\n+ Wi-Fi 802.11 b/g\r\n+ HTML, Wap 2.0/xHTML\r\n+ A-GPS\r\n+ Bluetooth V2.0 với A2DP\r\n+ Hồng ngoại\r\n+ Micro USB','+ Loại TFT, 16 triệu màu\r\n+ Độ phân giải 320 x 240 Pixels\r\n+ Phím scroll điều khiển 5 chiều','+ Hệ điều hành Symbian OS 9.2, S60 rel. 3.1\r\n+ Kiểu dáng Thanh (thẳng)\r\n+ Bàn phím Qwerty\r\n+ Kích thước 107.5 x 49.5 x 13.6 mm, 62.6 c\r\n+ Trọng lượng (g) 121\r\n+ Ngôn ngữ Tiếng Anh, Tiếng Việt\r\n+ Bảo hành 12 tháng','+ Loại pin Pin Nokia BL-4L\r\n+ Dung lượng pin 1500 mAh\r\n+ Thời gian đàm thoại 10 giờ\r\n+ Thời gian chờ 400 giờ','+ Sạc\r\n+ Sách hướng dẫn'),(4,4,'- Máy nghe radio chuyên nghiệp\r\n- Các phím chọn kênh và phím radio FM - chuyên dụng\r\n- Màn hình 65.000 màu\r\n- Hỗ trợ đèn Pin\r\n- Danh bạn 1000 số','+ Máy ảnh không có','+ Ghi âm có\r\n+ Trò chơi cài sẵn trong máy','+ Loại 32 âm sắc, Midi\r\n+ Tải nhạc\r\n+ Loa ngoài\r\n+ Báo rung','+ Bộ nhớ trong 4 MB','+ Danh bạ 500 số\r\n+ Tin nhắn SMS','+ Băng tần 2G GSM 900/1800\r\n+ MobiFone, VinaPhone, Viettel, Vietnamobile, Beeline','+ Loại TFT, 65.536 màu\r\n+ Độ phân giải 128 x 160 Pixels\r\n+ Kích thước 1.8 inches','+ Kiểu dáng thanh (thẳng)\r\n+ Kích thước 108 x 45 x 15 mm\r\n+ Trọng lượng (g) 82\r\n+ Ngôn ngữ Tiếng Việt\r\n+ Bảo hành 12 tháng','+ Loại pin Pin Nokia BL-5C\r\n+ Dung lượng pin 1020 mAh\r\n+ Thời gian đàm thoại 10 giờ\r\n+ Thời gian chờ 250 giờ','+ Sạc'),(5,5,'- Hệ điều hành Android 2.2 Froyo\r\n- Chip xử lý 2 nhân (NVIDIA Tegra 2 Dual-Core 1GHz)\r\n- Máy ảnh 8.0 MP, hỗ trợ quay phim Full HD 1080p\r\n- Máy ảnh phụ 1.3 MP, thực hiện videocall\r\n- Xem phim Full HD, cổng kết nối HDMI và âm thanh 7.1\r\n- Kết nối 3G, Wi-Fi 802.11 b/g/n, A-GPS, Bluetooth\r\n- Pin dung lượng cao 1500 mAh','+Máy ảnh 8.0 MP (3264x2448 pixels)\r\n+Đặc tính máy ảnh\r\n- Lấy nét tự động, LED flash kép\r\n- Nhận diện khuôn mặt và nụ cười\r\n- Ổn định Video\r\n+Máy ảnh phụ : 1.3 Mpx\r\n+Videocall\r\n+Quay phim : FullHD 1080p@30fps\r\n+ Xem phim : 3GP, H.263, H.264(MPEG4-AVC), MP4, WMV\r\n+ Nghe nhạc : MP3, WAV, WMA, eAAC+\r\n+ Xem Tivi : Mạng 3G','+ Ghi âm\r\n+ Java : MIDP 3.0\r\n+ Trò chơi : cài đặt sẵn trong máy\r\n+ Kết nối Tivi\r\n+ Ứng dụng văn phòng\r\n+ Soạn thảo văn bản\r\n+ Ứng dụng khác :\r\n- Kết nối Tivi qua cổng HDMI\r\n- Google Search, Maps, Gmail\r\n- YouTube, Google Talk\r\n- Adobe Flash 10.1\r\n- La bàn kỹ thuật số','+ Loại : MP3, Midi, WAV\r\n+ Tải nhạc\r\n+ Loa ngoài\r\n+ Báo rung\r\n+ Jack tai nghe : 3.5 mm','+ Bộ nhớ trong : 8 GB\r\n+ RAM : 512 MB\r\n+ Vi xử lý CPU : Tegra 2 AP20H Dual Core 1GHz processor\r\n+ Thẻ nhớ ngoài MicroSD (T-Flash)\r\n+ Hỗ trợ thẻ tối đa 32 GB','+ Danh bạ : Không giới hạn\r\n+ Tin nhắn : SMS/MMS/Instant Messaging\r\n+ Email : SMTP/IMAP4/POP3/Push Mail','+ Băng tần 2G GSM 850/900/1800/1900\r\n+ Băng tần 3G HSDPA 900/2100\r\n+ MobiFone, VinaPhone, Viettel, Vietnamobile, Beeline\r\n+ GPRS\r\n+ EDGE\r\n+ 3G HSDPA, 7.2 Mbps; HSUPA, 5.76 Mbps\r\n+ Wi-Fi 802.11 b/g/n\r\n+ HTML\r\n+ A-GPS\r\n+ Bluetooth  V2.1 với A2DP\r\n+ Micro USB','+ Super Clear LCD 16 triệu màu\r\n+ Độ phân giải 480 x 800 pixels\r\n+ Kích thước 4.0 inches\r\n+ Cảm ứng điện dung, đa điểm\r\n+ Chức năng cảm ứng :\r\n- Kính chống trầy Gyro sensor\r\n- Touch-sensitive controls\r\n+ Thông tin khác :\r\n- Cảm biến tự động xoay màn hình\r\n- Cảm biến gần tự động tắt','+ Hệ điều hành Android 2.2 Froyo\r\n+ Kiểu dáng Cảm ứng\r\n+ Bàn phím Qwerty phím ảo\r\n+ Kích thước 123.9 x 63.2 x 10.9 mm\r\n+ Trọng lượng (g) 139\r\n+ Ngôn ngữ Tiếng Anh, Tiếng Việt\r\n+ Bảo hành 12 tháng','+ Loại pin chuẩn Li-Ion\r\n+ Dung lượng pin 1500 mAh\r\n+ Thời gian đàm thoại 7.5 giờ\r\n+ Thời gian chờ 400 giờ','+ Sạc\r\n+ Tai nghe\r\n+ Sách hướng dẫn'),(6,6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(12,12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(13,13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(16,16,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(17,17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(18,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(19,19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(20,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(21,21,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(22,22,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(23,23,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(24,24,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(25,25,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(26,26,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(27,27,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(28,28,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(29,29,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(30,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `m_productdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `nganhang`
 --
 
@@ -567,6 +802,8 @@ DROP TABLE IF EXISTS `nguoidung`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nguoidung` (
   `MaNguoiDung` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `TenDangNhap` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `MatKhau` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `TenNguoiDung` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Email` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CMND` int(11) DEFAULT NULL,
@@ -587,7 +824,7 @@ CREATE TABLE `nguoidung` (
 
 LOCK TABLES `nguoidung` WRITE;
 /*!40000 ALTER TABLE `nguoidung` DISABLE KEYS */;
-INSERT INTO `nguoidung` VALUES ('MND1','Hoàng Thị Kim Như','hoangthikimnhu@yahoo.com',285150590,908021098,'Hồng Bàng, Q6. HCm','MLND1','2011-09-27 00:00:00',0),('MND2','Trần Ngọc Long','nhatlong1505@gmail.com',258159560,1685301683,'Trần Hưng Đạo, Q.1, HCM','MLND3','2011-09-27 00:00:00',0),('MND3','Nguyễn Trần Thị Thu Hà','nguyentran.thuha151189@yahoo.com',266456789,974567576,'Nguyễn Văn Cừ, Q.5, HCM','MLND3','2011-09-27 00:00:00',0),('MND4','Nguyễn Hải Bình','sau_con_89@yahoo,com',345678345,976589899,'Nguyễn Tất Thành, Q.4, HCM','MLND1','2011-09-27 00:00:00',0),('MND5','Nguyễn Thiên Anh','thienanh_89@yahoo.com',567898989,974345345,'Cầu Ông Luông, Q6, HCM','MLND2','2011-09-27 00:00:00',0);
+INSERT INTO `nguoidung` VALUES ('MND1','user1','123','Hoàng Thị Kim Như','hoangthikimnhu@yahoo.com',285150590,908021098,'Hồng Bàng, Q6. HCm','MLND1','2011-09-27 00:00:00',0),('MND2','user2','123','Trần Ngọc Long','nhatlong1505@gmail.com',258159560,1685301683,'Trần Hưng Đạo, Q.1, HCM','MLND3','2011-09-27 00:00:00',0),('MND3','user3','123','Nguyễn Trần Thị Thu Hà','nguyentran.thuha151189@yahoo.com',266456789,974567576,'Nguyễn Văn Cừ, Q.5, HCM','MLND3','2011-09-27 00:00:00',0),('MND4','user4','123','Nguyễn Hải Bình','sau_con_89@yahoo,com',345678345,976589899,'Nguyễn Tất Thành, Q.4, HCM','MLND1','2011-09-27 00:00:00',0),('MND5','user5','123','Nguyễn Thiên Anh','thienanh_89@yahoo.com',567898989,974345345,'Cầu Ông Luông, Q6, HCM','MLND2','2011-09-27 00:00:00',0);
 /*!40000 ALTER TABLE `nguoidung` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -741,4 +978,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-09-30 16:54:37
+-- Dump completed on 2011-10-02 18:44:24

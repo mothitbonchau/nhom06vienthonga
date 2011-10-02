@@ -10,8 +10,8 @@
 
         <ul class="lev1" style="background-image: url(images/linhtinh/menu_bar_03.gif); margin-left: -40px;">
             <li><a href="view"><span>Trang Chủ</span></a></li>
-            <li><a href="view?task=dienthoai"><span>Điện Thoại</span></a></li>
-            <li><a href="view?task=laptop"><span>Laptop</span></a></li>
+            <li><a href="view?task=danhmucsanpham&task_chitiet=dienthoai"><span>Điện Thoại</span></a></li>
+            <li><a href="view?task=danhmucsanpham&task_chitiet=laptop"><span>Laptop</span></a></li>
             <li><a href="view?task=khuyenmai"><span>Khuyến Mãi</span></a></li>
             <li><a href="view?task=tintuc"><span>Tin Tức</span></a></li>
             <li><a href="view?task=lienhe"><span>Liên Hệ</span></a></li>

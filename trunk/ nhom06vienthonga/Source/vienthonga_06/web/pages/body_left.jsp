@@ -9,41 +9,47 @@
 
 <div id="body_left" style="float: left; width: 15%; margin-left: -25px;">
     <div class="highlightLev"> <div style="background: none repeat scroll 0% 0% transparent; width: 160px; height: 115px; display: none;" class="blocksearch">
-            <a href="index.php?option=content&amp;task=news&amp;sectionid=5&amp;catid=10&amp;id=1747"><img src="images/linhtinh/icon_muahang.jpg" /></a>
+            <a href=""><img src="images/linhtinh/icon_muahang.jpg" /></a>
         </div>
         <div style="background: none repeat scroll 0% 0% transparent; width: 160px; height: 160px;" class="blocksearch">
-            <a href="http://www.hnammobile.com/index.php?option=content&amp;task=news&amp;sectionid=5&amp;catid=10&amp;id=2929">
+            <a href="">
                 <img border="0" width="160" style="display: block; margin: 0pt auto;" src="images/linhtinh/_tuyendung.jpg" />
             </a>
         </div>	
 
         <br />
         <div class="blocSearch">
-            <form style="background-image: url(images/linhtinh/bgd_top_timkiem.gif);" method="post" action="/" name="frmSearch" id="frmSearch">
+            <form style="background-image: url(images/linhtinh/bgd_top_timkiem.gif);" method="post" action="proccess?task=timkiem" name="frmSearch" id="frmSearch">
                 <input type="hidden" value="com_search" id="option" name="option" />
                 <input type="hidden" value="search" id="task" name="task" />
                 <h2>Tìm kiếm</h2>
-                <input type="text" name="keywords" id="keywords" />
-                <select name="type" id="type">
-                    <option value="1">- Điện Thoại - </option>
-                    <option value="2">- Phụ kiện - </option>
-                    <option value="3">- Thẻ nhớ - </option>
+                <input type="text" name="TSP" id="TSP" />
+                <select name="MLSP" id="MLSP">
+                    <option value="-1">- Tất Cả -</option>
+                    <option value="DT">- Điện Thoại -</option>
+                    <option value="LT">- Laptop -</option>
                 </select>
-                <select name="brand" id="brand">
-                    <option value="0">- Chọn hãng - </option>
-                    <option value="9"> HTC </option><option value="16"> APPLE iPhone </option><option value="18"> APPLE iPad </option><option value="22"> ARCHOS </option><option value="2"> NOKIA </option><option value="3"> SAMSUNG </option><option value="4"> SONY ERICSSON </option><option value="11"> LG </option><option value="17"> BLACKBERRY </option><option value="5"> MOTOROLA </option><option value="19"> DELL </option><option value="20"> Q-Mobile </option><option value="21"> ALCATEL </option><option value="7"> Kho Máy Cũ </option>
+                <select name="MH" id="MH">
+                    <option value="-1">- Chọn hãng -</option>
+                    <%
+                        for (int i = 0; i < list.size(); i++) {
+                            %>
+                            <option value="-1">- <%= list.get(i).getTenHang()%> -</option>                            
+                            <%
+                        }
+                    %>
                 </select>
 
-                <select style="width: 140px;" class="slsType01" name="priceFrom" id="priceFrom">
-                    <option value="0">- Chọn Giá - </option>
-                    <option value="1"> Dưới 1,000,000 </option>
-                    <option value="1000000"> 1,000,000 đến 3,000,000 </option>
+                <select style="width: 140px;" class="slsType01" name="Gia" id="Gia">
+                    <option value="-1">- Chọn Giá -</option>
+                    <option value="0"> Dưới 3,000,000 </option>                    
                     <option value="3000000"> 3,000,000 đến 5,000,000 </option>
                     <option value="5000000"> 5,000,000 đên 7,000,000 </option>
                     <option value="7000000"> 7,000,000 đến 9,000,000 </option>
-                    <option value="9000000"> Trên 11,000,000 </option>
+                    <option value="9000000"> Trên 9,000,000 </option>
                 </select>
 
+                <!--
                 <table cellspacing="0" cellpadding="0" border="0" width="100%">
                     <tbody><tr>
                             <td width="50%"><input type="checkbox" style="width: 20px; border: 0pt none; background: none repeat scroll 0% 0% transparent;" value="touch" id="touch" name="touch" /><label class="stext">Cảm ứng</label></td>
@@ -59,9 +65,9 @@
                         </tr>
                     </tbody>
                 </table>
+                -->
 
-
-                <input type="image" class="btnSearch" name="Search" id="Search" src="images/linhtinh/btn_timkiem.gif" />
+                <input style="margin-bottom: 5px;" type="image" class="btnSearch" name="Search" id="Search" src="images/linhtinh/btn_timkiem.gif" />
 
             </form>
         </div>
@@ -69,19 +75,18 @@
             <h2 style="background-image: url(images/linhtinh/bgd_title.gif)" >Hãng Sản Xuất</h2>
             <ul>
                 <%
-                for(int i=0; i<list.size(); i++)
-                                       {
-                    Hang h = list.get(i);
-                    
-                    %>
-                    <li>
-                        <a style="text-transform: none;" href="view?task=sanphamtheohang&MH=<%= h.getMaHang() %>"><%= h.getTenHang()%></a>
-                        <!--<span><img alt="HTC chính hãng" src="images/linhtinh/9_logo_htc.gif" /></span>-->
-                    </li> 
-                    <%
-                }
+                    for (int i = 0; i < list.size(); i++) {
+                        Hang h = list.get(i);
+
                 %>
-                               
+                <li>
+                    <a style="text-transform: none;" href="view?task=sanphamtheohang&MH=<%= h.getMaHang()%>"><%= h.getTenHang()%></a>
+                    <!--<span><img alt="HTC chính hãng" src="images/linhtinh/9_logo_htc.gif" /></span>-->
+                </li> 
+                <%
+                    }
+                %>
+
             </ul>
         </div>                                                                                                                           
     </div>
