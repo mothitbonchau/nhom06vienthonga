@@ -46,10 +46,17 @@
                                                     </td>
                                                     <td style="color: #ff0000">
                                                     <label>
-                                                        <input name="tenDangNhap" type="text" id="VTA_LoadContent1_ctl00_txtEmail" style="width:213px;"/>
+                                                        <input name="tenDangNhap" type="text" id="VTA_LoadContent1_ctl00_txtEmail" style="width:213px;"
+                                                            <%
+                                                            if (request.getParameter("tenDangNhap") != null) {
+                                                            %>
+                                                             value="<%=request.getParameter("tenDangNhap")%>"
+                                                            <%}%>                      
+                                                            />   
+                                                               
+                                                               
                                                     </label>
                                                     </td>
-                                                    </tr>
                                                     <tr>
                                                     <td align="right" style="width: 232px">
                                                         Mật khẩu 
@@ -67,7 +74,7 @@
                                                     </label>
                                                     <br/>
                                                     <div style="padding-top:5px;">
-                                                        <a id="VTA_LoadContent1_ctl00_lbtDangky" href="javascript:__doPostBack('VTA_LoadContent1$ctl00$lbtDangky','')">Đăng ký</a>
+                                                        <a id="VTA_LoadContent1_ctl00_lbtDangky" href="login?Action=TrangDangKy">Đăng ký</a>
                                                         |  
                                                         <a id="VTA_LoadContent1_ctl00_LinkButton1" href="javascript:__doPostBack('VTA_LoadContent1$ctl00$LinkButton1','')">Quên mật khẩu</a>
                                                         |  

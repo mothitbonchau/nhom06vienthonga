@@ -52,7 +52,8 @@ public class login extends HttpServlet {
                     if(ndung != null)
                     {
                         session.setAttribute("TenDangNhap", pojo.getTenNguoiDung());
-                        response.sendRedirect("view");
+                        request.getRequestDispatcher("view").forward(request, response);
+                        
                         
                     }
                     else
@@ -60,6 +61,7 @@ public class login extends HttpServlet {
                         response.sendRedirect("login?Action=DangNhap");                                       
                     }                   
                 }
+                
             }
         } finally {            
             out.close();
