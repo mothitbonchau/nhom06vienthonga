@@ -31,13 +31,15 @@
     <definition name="timkiem" extends="template_vienthonga">
         <put-attribute name="body_mid" value="/pages/body_mid_timkiem.jsp" />        
     </definition>
-    
-    <definition name="quanlynguoidung" extends="template_vienthonga">     
-        <put-attribute name="body_left" value="/pages/body_left_quanlynguoidung.jsp" />
-        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung.jsp" />
-        <put-attribute name="footer1" value="/pages/footer1_quanlynguoidung.jsp" />   
-    </definition>
+
     <definition name="TrangDangKy" extends="template_vienthonga">        
         <put-attribute name="body_mid" value="/pages/body_mid_dangky.jsp" />        
+    </definition>
+    
+    <definition name="quanly" extends="template_vienthonga">        
+        <put-attribute name="body_left" value="/pages/body_left_quanly.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung.jsp" />
+        <put-attribute name="body_right" value="/pages/null.jsp" />
+        <put-attribute name="footer1" value="/pages/null.jsp" />         
     </definition> 
 </tiles-definitions>

@@ -144,6 +144,28 @@ public class view extends HttpServlet {
             //<editor-fold defaultstate="collapsed" desc="chuyển trang đăng nhập">
             
             //</editor-fold>
+            
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
+            if(task.equals("quanly"))
+            {
+                if(request.getParameter("task_chitiet") != null)
+                {
+                    String task_chitiet = request.getParameter("task_chitiet");
+                    
+                    //<editor-fold defaultstate="collapsed" desc="công ty">
+                    if(task_chitiet.equals("congty"))
+                    {
+                        request.getRequestDispatcher("QuanLy.jsp").forward(request, response);
+                        return;
+                    }
+                    //</editor-fold>
+                }
+                
+                request.getRequestDispatcher("QuanLy.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+            
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
         } finally {
             out.close();

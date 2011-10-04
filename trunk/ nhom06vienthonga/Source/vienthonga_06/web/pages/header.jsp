@@ -40,7 +40,7 @@
         %>
         
         <a style="float: right; text-transform: uppercase;" href="" >| giỏ hàng</a>
-        <a style="float: right; text-transform: uppercase;" href="" >quản lý</a>
+        <a style="float: right; text-transform: uppercase;" href="view?task=quanly" >quản lý</a>
                                               
    </div>
 
