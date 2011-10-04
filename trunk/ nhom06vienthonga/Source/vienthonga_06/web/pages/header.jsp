@@ -22,6 +22,26 @@
 
     <div class="lev1" style="background-image: url(images/linhtinh/quanly.gif); margin-top: -5px; margin-right: 120px; text-align: right; vertical-align: middle; height: 22px;">
         <%
+            String tenDangNhap = (String)session.getAttribute("TenDangNhap");
+            if(tenDangNhap == null)
+           {
+        %>
+        <a style="float: right; text-transform: uppercase;" href="login?Action=DangNhap" >| Đăng nhập</a>
+        <a style="float: right; text-transform: uppercase;" href="DangKy_Controller?Action=DangKy" >| Đăng ký </a>
+        <%
+           }
+            else
+           {
+        %>
+        <a style="float: right; text-transform: uppercase;" href="DangXuat_Controller" >| Đăng Xuất</a>
+        <a style="float: right; text-transform: uppercase;" >Hi, <%=tenDangNhap%></a>        
+        <%
+           }
+        %>
+        
+        <a style="float: right; text-transform: uppercase;" href="" >| giỏ hàng</a>
+        <a style="float: right; text-transform: uppercase;" href="" >quản lý</a>
+        <%
             if (request.getParameter("tenDangNhap") == null) {
         %>                            
 
@@ -41,6 +61,6 @@
         %>
         <a style="float: right; text-transform: lowercase;" href="" >| giỏ hàng</a>
         <a style="float: right; text-transform: lowercase;" href="QuanLyNguoiDung.jsp" >quản lý</a>
-    </div>
+   </div>
 
 </div>
