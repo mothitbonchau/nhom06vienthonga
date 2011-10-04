@@ -1,3 +1,5 @@
+<%@page import="MODEL.POJO.Chitietlaptop"%>
+<%@page import="MODEL.POJO.Chitietdienthoai"%>
 <%@page import="MODEL.DAO.ThamSoDao"%>
 <%@page import="MODEL.POJO.Hinhanhsanpham"%>
 <%@page import="MODEL.POJO.Sanpham"%>
@@ -10,10 +12,19 @@
     Hinhanhsanpham hasp = (Hinhanhsanpham) sp.getHinhanhsanphams().toArray()[0];
     String path_lsp = "";
     String path_hang = "";
-    if(sp.getLoaisanpham().getMaLoaiSanPham().equals("DT"))
+    Chitietdienthoai ctdt = null;
+    if (sp.getChitietdienthoais().toArray().length > 0) {
+        ctdt = (Chitietdienthoai) sp.getChitietdienthoais().toArray()[0];
+    }
+    Chitietlaptop ctlt = null;
+    if (sp.getChitietlaptops().toArray().length > 0) {
+        ctlt = (Chitietlaptop) sp.getChitietlaptops().toArray()[0];
+    }
+    if (sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")) {
         path_lsp = "dien thoai/";
-    else
+    } else {
         path_lsp = "laptop/";
+    }
     path_hang = sp.getHang().getTenHang() + "/";
 %>
 
@@ -39,7 +50,7 @@
                                 <td align="center">
                                     <p>
                                         <br>
-                                        <img height="190" alt="<%= sp.getTenSanPham() %>" src="<%= ThamSoDao.LayDuongDanHinhAnh() %><%= path_lsp %><%= path_hang %><%= hasp.getDuongDan() %>" />
+                                        <img height="190" alt="<%= sp.getTenSanPham()%>" src="<%= ThamSoDao.LayDuongDanHinhAnh()%><%= path_lsp%><%= path_hang%><%= hasp.getDuongDan()%>" />
                                     </p>
                                 </td>
                                 </tr>
@@ -54,8 +65,6 @@
                             </table>
                         </td> 
                         <td width="67%" valign="top" class="bodyChitiet">
-
-
                             <table cellspacing="0" cellpadding="10" border="0" width="100%" class="leftBorderTable">
                                 <tr>
                                 <td>
@@ -74,7 +83,7 @@
 
 
                                 <p>
-                                <span class="chitietChucNang">Thời gian bảo hành:</span> <%= sp.getThoiGianBaoHanh() %>
+                                <span class="chitietChucNang">Thời gian bảo hành:</span> <%= sp.getThoiGianBaoHanh()%>
                                 </p>
 
                                 <div style="display: none;" id="VTA_LoadContent_ctl00_VTA_ThongTinTuVTA1_VTA_PhuKienKemTheo1_divPhukien">
@@ -110,7 +119,7 @@
                         <tr>
 
                         <td valign="top" style="width: 130px; text-align: center;">
-                            <a href="proccess?task=datmua">
+                            <a href="proccess?task=datmua&MSP=<%= sp.getMaSanPham() %>">
                                 <img alt="" style="border: 0px none;" src="images/linhtinh/dathang_but.gif" />
                             </a>
                         </td>  
@@ -358,11 +367,549 @@
 </tr>
 <tr>
 <td>
+    <%
+        if (ctlt != null) {
+            //chi tiết laptop
+%>
+    <div class="detail_tab_content" style="margin-left: 10px;">
+        <table cellspacing="0" cellpadding="0" width="100%" style="border: 1px solid rgb(220, 220, 220);" class="bodyChitiet">
+            <tr><td style="border-bottom: 1px solid rgb(220, 220, 220);" colspan="2">&nbsp;</td></tr>                      
+
+            <tr>
+            <td width="200" valign="middle" style="border: 0px solid rgb(220, 220, 220);">
+            <span class="CellPaddingLeft chitietTinhNang"><strong>Thông tin chung</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%" style="border-bottom: 1px solid rgb(220, 220, 220);">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Tên sản phẩm</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdTenSanPham"><%= sp.getTenSanPham()%></td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Hãng sản xuất</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdHangSX"><%= sp.getHang().getTenHang()%></td>
+
+                    </tr> 
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Cấu hình</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCauHinh">CPU: 2.1 GHz, RAM: 4GB, HDD: 500GB, CD/DVD: , Màn hình: 14.0 inch</td>
+
+                    </tr>    
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Nhóm người dùng</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdNhomNguoiDung">Multimedia - Laptop giải trí đa phương tiện</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Màu sắc</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdMauSac">Đen.</td>
+
+                    </tr>    
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Kích thước/trọng lượng</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKichThuocTrongLuong">342 x 244 x 31.52/34.68 mm mm/2.2 kg</td>
+
+                    </tr>   
+                    <tr>
+                    <td width="40%" class="borderLRTop">Bảo hành</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdbaohanh">Bảo hành 1 năm chính hãng.</td>
+
+                    </tr>   
+
+                </table>
+            </td>
+            </tr> 
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Bộ xử lý - CPU</strong></span></td>
+            <td align="right" valign="top">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">                              
+                    <tr>
+                    <td width="40%" class="borderLRTop">Thông tin CPU</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThongTinCPU">INTEL Core i3-2310M Sandy Bridge 2.1 GHz, 3MB L3 cache, 1333MHz FBS</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Công nghệ CPU</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheCPU">INTEL Core i3-2310M Sandy Bridge</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="height: 29px;" class="borderLRTop">Tốc độ CPU</td>
+                    <td width="60%" style="height: 29px;" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdTocdoCPU">2.1 GHz</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Bộ nhớ đệm (cache)</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBoNhoDem">3MB L3 cache</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Front side Bus (FSB)</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSB">1333MHz FBS</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Hãng sản xuất CPU</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdHangSXCPU">INTEL</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Bo mạch chủ - Motherboard</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Thông tin Motherboard</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThongTinMotherBoard">Mobile Intel&reg; HM65 Express Chipset</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Front side Bus hỗ trợ</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSBMotherboardHoTro">1333 MHz</td>
+
+                    </tr>
+                    <tr>
+
+
+                    </tr>
+                </table>
+            </td>
+            </tr>   		     
+
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Bộ nhớ chính - RAM</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Dung lượng RAM</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungLuongRAM">4GB</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Công nghệ RAM</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheRAM">DDR III</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Bus RAM</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBusRAM">1333MHz</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Mức RAM tối đa</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdRAMToida">6 GB</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Ổ đĩa cứng - HDD</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Dung lượng</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongHDD">500GB</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Công nghệ</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheHDD">Đĩa từ (HDD)</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Giao thức kết nối</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdGiaoThucKetNoiHDD">SATA</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Số vòng quay</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdSoVongQuayHDD">5400 prm</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Ổ đĩa quang - ODD</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Thông tin ổ đĩa</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThongTinDiaQuang">DVDRW Supermulti</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Chức năng</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChucNangdiaquang">Đọc, ghi DVD.</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Màn hình - Monitor display</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Kích thước</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKichThuocManHinh">14.0 inch</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Chuẩn màn hình</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanManHinh">HD WLED True-Life (1366x768)</td>
+
+                    </tr>                                                            
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Đồ họa - Graphic</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Card đồ họa</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardDoHoa">Intel&reg; HD Graphics 3000</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Loại card</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdLoaiCardDohoa">Onboard</td>
+
+                    </tr>
+                    <tr>
+                    <td width="40%" style="display: none;" class="borderLRTop">Công nghệ card</td>
+                    <td width="60%" style="display: none;" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdcongnghecarddohoa">-</td>
+
+                    </tr>
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Dung lượng card</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongcarddohoa">Shared with memory</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Âm thanh - Audio</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Card âm thanh</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardAmThanh">Dell Audio - 2 spkrs @ 2.0W ea</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Chuẩn âm thanh</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanAmThanh">2.0</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Kết nối</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKetNoiAmThanh">2 Speaker,Headphones, Microphone</td>
+
+                    </tr>
+
+
+                </table>
+            </td>
+            </tr>   		             
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Kết nối mạng - Network</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Modem (Dial up)</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdModemDial">Không hỗ trợ.</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">LAN (ADSL)</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdLAN_ADSL">Integrated 10/100/1000 Gigabit Ethernet LAN</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Wireless</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdWireless">802.11b/g/n Wireless LAN</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Bluetooth/Camera</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Bluetooth</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBluetooth">Bluetooth 3.0+HS</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Camera (Webcam)</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCamera">1.3 Megapixel</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Cổng giao tiếp</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">USB</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdUSB">3 x USB 2.0 ports</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Firewall (1394)</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFireWall">Không hỗ trợ.</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Video out</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdVideoOut">HDMI port with HDCP support, External display (VGA) port</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Card Reader</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardReader">Card Reader</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">e-SATA</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdeSATA">Không hỗ trợ.</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Hồng ngoại (IR)</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdHongNgoai_IR">Không hỗ trợ.</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Khác</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongGiaoTiepKhac">-</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		             
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Nguồn điện</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Adapter</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdAdaptor">220v</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Công nghệ Pin</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNghePin">6-Cell Lithium-Ion</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Thời gian sử dụng Pin</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThoigiansudungPin">Đang cập nhật</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Bảo mật</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Khe dùng gắn dây khóa máy</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKheDungGangDayKhoaMay">Kensington</td>
+
+                    </tr>
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Hệ thống bảo mật nhận diện</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdHeThongBaoMatNhanDien">Đang cập nhật</td>
+
+                    </tr>
+
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Hệ điều hành - OS</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Thông tin hệ điều hành</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThongTinHeDieuHanh">Free Dos</td>
+
+                    </tr>
+
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Các hệ điều hành hỗ trợ</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCacLoaiHDH">XP Home, XP Pro, Windows Media Center, Vista Starter, Vista Home asic, Vista Home Premium, Vista Business, Windows 7</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Thiết kế</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Kích thước</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKichThuoc">342 x 244 x 31.52/34.68 mm mm</td>
+
+                    </tr>
+                    <tr>
+                    <td width="40%" class="borderLRTop">Trọng lượng</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdTrongLuong">2.2 kg</td>
+
+                    </tr>
+                    <tr>
+                    <td width="40%" class="borderLRTop">Chất liệu</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChatLieu">Đang cập nhật</td>
+
+                    </tr>
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Màu sắc</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThietKeMauSac">Đen.</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Đóng gói</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Laptop</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdLapTop">01 x 01 Dell Inspiron   14 - N4050 - I3-2310 -4500 -KXJXJ2</td>
+
+                    </tr>
+                    <tr>
+                    <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Accessories</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdAccessories">Adapter, Pin, Catalogue</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+            <tr>
+            <td width="200" valign="middle" style="border: 1px solid rgb(220, 220, 220);"><span class="CellPaddingLeft chitietTinhNang"><strong>Thông tin khác</strong></span></td>
+            <td align="right">
+                <table cellspacing="0" cellpadding="5" border="0" width="100%">
+
+                    <tr>
+                    <td width="40%" class="borderLRTop">Phần cứng</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdPhanCung">-</td>
+
+                    </tr>
+                    <tr>
+                    <td width="40%" class="borderLRTop">Phần mềm</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdPhanMem">-</td>
+
+                    </tr>
+
+                </table>
+            </td>
+            </tr>   		     
+
+
+        </table>
+    </div>
+    <%            } else {
+        //chi tiết điện thoại
+%>
     <div class="detail_tab_content" style="margin-left: 10px;">
         <a style="color: rgb(255, 255, 255);" id="Focus" href="#">&nbsp;</a>
         <div id="detail_1" style="">
-
-
             <table cellspacing="0" cellpadding="0" border="0" width="100%" class="bodyChitiet">
                 <tr>
                 <td width="130" valign="top"><span class="CellPaddingLeft chitietTinhNang"><strong>Tổng quan</strong></span></td>
@@ -686,6 +1233,8 @@
 
         </div> 
     </div>
+    <%            }
+    %>
 </td>
 
 </tr>

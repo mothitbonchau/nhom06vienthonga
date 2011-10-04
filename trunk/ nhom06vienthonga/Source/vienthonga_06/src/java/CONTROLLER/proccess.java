@@ -81,6 +81,12 @@ public class proccess extends HttpServlet {
             }
             //</editor-fold>
             
+            //<editor-fold defaultstate="collapsed" desc="đặt mua sản phẩm">
+            if(task.equals("datmua"))
+            {
+                return;
+            }
+            //</editor-fold>
         } finally {
             out.close();
         }

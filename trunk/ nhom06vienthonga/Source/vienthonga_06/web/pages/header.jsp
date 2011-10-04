@@ -34,7 +34,7 @@
            {
         %>
         <a style="float: right; text-transform: uppercase;" href="DangXuat_Controller" >| Đăng Xuất</a>
-        <a style="float: right; text-transform: uppercase;" >Hi, <%=tenDangNhap%></a>        
+        <a style="float: right; text-transform: uppercase;" >Hi, <%= request.getParameter("tenDangNhap")%></a>        
         <%
            }
         %>
