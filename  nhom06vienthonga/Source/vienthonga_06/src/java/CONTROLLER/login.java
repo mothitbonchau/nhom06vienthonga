@@ -44,14 +44,10 @@ public class login extends HttpServlet {
                     request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
                 }
                 if(action.equals("XuLy")){
-                    Nguoidung ndung = null;
-                    Nguoidung pojo = new Nguoidung();
-//                    pojo.setMaNguoiDung(request.getParameter("tenDangNhap"));
-//                    pojo.set(request.getParameter("matKhau"));
-                    ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), request.getParameter("matKhau"));
+                    Nguoidung ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), request.getParameter("matKhau"));
                     if(ndung != null)
                     {
-                        session.setAttribute("TenDangNhap", pojo.getTenNguoiDung());
+                        session.setAttribute("TenDangNhap", ndung.getTenDangNhap());
                         request.getRequestDispatcher("view").forward(request, response);
                         
                         

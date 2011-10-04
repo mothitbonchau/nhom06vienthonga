@@ -34,7 +34,7 @@
                     <%
                         for (int i = 0; i < list.size(); i++) {
                             %>
-                            <option value="-1">- <%= list.get(i).getTenHang()%> -</option>                            
+                            <option value="<%= list.get(i).getMaHang() %>">- <%= list.get(i).getTenHang()%> -</option>                            
                             <%
                         }
                     %>
