@@ -4,12 +4,15 @@
  */
 package MODEL.DAO;
 
+import MODEL.POJO.Loainguoidung;
 import MODEL.POJO.Nguoidung;
 import MODEL.UTIL.HibernateUtil;
 import java.util.List;
+import javax.transaction.SystemException;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 /**
@@ -39,5 +42,59 @@ public class NguoiDungDAO {
         }
         return ndung;
     } 
+    public static int DangKy( Nguoidung kh) throws SystemException{
+        int kq = -1;
+        Session session =  HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try{
+            transaction = session.beginTransaction();
+            session.save(kh);
+            transaction.commit();
+            kq = 1;
+  
+        }catch(Exception ex){       
+            transaction.rollback();
+            System.err.println(ex);
+        }
+        finally
+        {
+            session.close();
+        }
+        return kq;
+   }
+    
+    public static Loainguoidung LayDoiTuongTheoMa(String maLND){
+        Loainguoidung lnd = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            lnd = (Loainguoidung) session.get(Loainguoidung.class, maLND);
+        }
+        catch(HibernateException ex){
+            System.err.println(ex);
+        }
+        finally{
+            session.close();
+        }                          
+        return lnd;
+    }
+    
+    public static String LayMaNguoiDungCuoiCung(){
+        String Ma = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            String hql = "select max(maNguoiDung) from Nguoidung";
+            Query query = session.createQuery(hql);
+            Object ob = query.uniqueResult();
+            Ma = (String)ob;
+        }
+        catch(HibernateException ex){
+            System.err.println();
+        }
+        finally{
+            session.close();
+        }
+        
+        return Ma;
+    }
     
 }
