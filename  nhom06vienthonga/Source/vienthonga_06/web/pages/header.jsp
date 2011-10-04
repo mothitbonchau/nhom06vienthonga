@@ -41,26 +41,7 @@
         
         <a style="float: right; text-transform: uppercase;" href="" >| giỏ hàng</a>
         <a style="float: right; text-transform: uppercase;" href="" >quản lý</a>
-        <%
-            if (request.getParameter("tenDangNhap") == null) {
-        %>                            
-
-        <a style="float: right; text-transform: lowercase;" href="login?Action=DangNhap" >| đăng nhập</a>
-        <a style="float: right; text-transform: lowercase;" href="DangKy_Controller?Action=DangKy" >| đăng ký </a>
-
-        <%   
-            } 
-            else 
-            {
-        %>
-        <a style="float: right; text-transform: lowercase;" href="view" >| Đăng Xuất</a>
-        <a style="float: right; text-transform: uppercase;" >Hi, <%= request.getParameter("tenDangNhap")%></a>        `
-
-        <%
-            }
-        %>
-        <a style="float: right; text-transform: lowercase;" href="" >| giỏ hàng</a>
-        <a style="float: right; text-transform: lowercase;" href="QuanLyNguoiDung.jsp" >quản lý</a>
+                                              
    </div>
 
 </div>
