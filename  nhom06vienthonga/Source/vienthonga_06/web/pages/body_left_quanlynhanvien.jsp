@@ -15,7 +15,7 @@
                 <a style="text-transform: none;" href="" style="text-transform: none;">Thông Tin</a>
             </li> 
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH1" style="text-transform: none;">Lịch Sử Mua Hàng</a>
+                <a href="view?task=sanphamtheohang&MH=MH1" style="text-transform: none;">Khu Vực Quản Lý</a>
             </li>            
         </ul>
     </div>

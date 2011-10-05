@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="css/maintabletitle.css" rel="stylesheet" type="text/css" />
 <div id="body_mid" style="float:left; width:60%;">
-    <form name="formDangNhap" id="formDangNhap" Action="login?Action=XuLy" method="post">
+    <form name="formDangNhap" id="formDangNhap" Action="proccess?task=XuLy" method="post">
         <table width="775" border="0" cellpadding="0" cellspacing="0">
             <tbody>
                 <tr>

@@ -4,10 +4,12 @@
  */
 package CONTROLLER;
 
+import MODEL.DAO.NguoiDungDAO;
 import MODEL.DAO.SanPhamDAO;
 import MODEL.DAO.ThamSoDao;
 import MODEL.POJO.Hang;
 import MODEL.POJO.Loaisanpham;
+import MODEL.POJO.Nguoidung;
 import MODEL.POJO.Sanpham;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,13 +19,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
 @WebServlet(name = "proccess", urlPatterns = {"/proccess"})
-public class proccess extends HttpServlet {
+public class process extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -85,6 +88,22 @@ public class proccess extends HttpServlet {
             if(task.equals("datmua"))
             {
                 return;
+            }
+            //</editor-fold>
+            
+            //<editor-fold defaultstate="collapsed" desc="Xử lý đăng nhập">
+            if(task.equals("XuLy")){
+                HttpSession session = request.getSession();
+                Nguoidung ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), request.getParameter("matKhau"));
+                if(ndung != null)
+                {
+                    session.setAttribute("TenDangNhap", ndung.getTenDangNhap());
+                    request.getRequestDispatcher("view").forward(request, response);
+                }
+                else
+                {
+                    response.sendRedirect("view?task=DangNhap");                                       
+                }                   
             }
             //</editor-fold>
         } finally {

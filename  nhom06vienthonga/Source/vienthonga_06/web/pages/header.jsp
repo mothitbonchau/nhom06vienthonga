@@ -26,7 +26,7 @@
             if(tenDangNhap == null)
            {
         %>
-        <a style="float: right; text-transform: uppercase;" href="login?Action=DangNhap" >| Đăng nhập</a>
+        <a style="float: right; text-transform: uppercase;" href="view?task=DangNhap" >| Đăng nhập</a>
         <a style="float: right; text-transform: uppercase;" href="DangKy_Controller?Action=DangKy" >| Đăng ký </a>
         <%
            }
@@ -34,7 +34,7 @@
            {
         %>
         <a style="float: right; text-transform: uppercase;" href="DangXuat_Controller" >| Đăng Xuất</a>
-        <a style="float: right; text-transform: uppercase;" >Hi, <%= request.getParameter("tenDangNhap")%></a>        
+        <a style="float: right; text-transform: uppercase;" >Hi, <%= session.getAttribute("TenDangNhap") %></a>        
         <%
            }
         %>
