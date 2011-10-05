@@ -57,7 +57,7 @@ public class process extends HttpServlet {
                 h.setMaHang(request.getParameter("MH"));
                 sp.setHang(h);
                 sp.setGiaBan(Float.parseFloat(request.getParameter("Gia").toString()));
-                
+
                 int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
                 int tongsotrang = 0;
                 int trang = 1;
@@ -83,27 +83,42 @@ public class process extends HttpServlet {
                 return;
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="đặt mua sản phẩm">
-            if(task.equals("datmua"))
-            {
+            if (task.equals("datmua")) {
                 return;
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="Xử lý đăng nhập">
-            if(task.equals("XuLy")){
+            if (task.equals("XuLy")) {
                 HttpSession session = request.getSession();
                 Nguoidung ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), request.getParameter("matKhau"));
-                if(ndung != null)
-                {
+                if (ndung != null) {
                     session.setAttribute("TenDangNhap", ndung.getTenDangNhap());
                     request.getRequestDispatcher("view").forward(request, response);
+                } else {
+                    response.sendRedirect("view?task=DangNhap");
                 }
-                else
-                {
-                    response.sendRedirect("view?task=DangNhap");                                       
-                }                   
+            }
+            //</editor-fold>
+
+            //<editor-fold defaultstate="collapsed" desc="xử lý quản lý admin">
+            if (task.equals("quanlyadmin")) {
+                if (request.getParameter("task_chitiet") != null) {
+                    String task_chitiet = request.getParameter("task_chitiet");
+
+                     //<editor-fold defaultstate="collapsed" desc="công ty">
+                    if (task_chitiet.equals("congty")) {
+
+                        request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
+                        return;
+                    }
+                    //</editor-fold>
+                }
+
+                request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
+                return;
             }
             //</editor-fold>
         } finally {

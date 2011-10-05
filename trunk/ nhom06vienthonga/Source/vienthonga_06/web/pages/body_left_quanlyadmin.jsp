@@ -12,31 +12,31 @@
         <h2 style="background-image: url(images/linhtinh/bgd_title.gif)" >QUẢN LÝ</h2>
         <ul>
             <li>
-                <a style="text-transform: none;" href="" style="text-transform: none;">Công Ty</a>
+                <a style="text-transform: none;" href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Công Ty</a>
             </li> 
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH1" style="text-transform: none;">Người Dùng</a>
+                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Người Dùng</a>
             </li>
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH10" style="text-transform: none;">Đơn Hàng</a>
+                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Đơn Hàng</a>
             </li>
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH11" style="text-transform: none;">Giảm Giá</a>
+                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Giảm Giá</a>
             </li>
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH11" style="text-transform: none;">Góp Ý</a>
+                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Góp Ý</a>
             </li>
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH11" style="text-transform: none;">Hãng</a>
+                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Hãng</a>
             </li>
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH11" style="text-transform: none;">Khuyến Mãi</a>
+                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Khuyến Mãi</a>
             </li>
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH11" style="text-transform: none;">Sản Phẩm</a>
+                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Sản Phẩm</a>
             </li>
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH11" style="text-transform: none;">Siêu Thị</a>
+                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Siêu Thị</a>
             </li>
         </ul>
     </div>
