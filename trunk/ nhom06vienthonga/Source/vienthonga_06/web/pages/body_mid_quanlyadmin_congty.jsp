@@ -8,16 +8,13 @@
 <%
     Congty ct = CongTyDAO.LayCongTy();
 %>
-<style>
-    .test tr
-    {
-        height: 30px;
-    }
-</style>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<div id="body_mid" style="float:left; width:76.5%;">
+<div id="body_mid" style="float:left; width:76.5%;">   
     <form action="process?task=quanlyadmin&task_chitiet=capnhatcongty" method="post">
+        <input name="maCongTy" type="hidden" value="<%= ct.getMaCongTy()%>" />
+        
         <table class="test" width="100%" border="2" cellspacing="2" cellpadding="2">
             <tr>
             <td colspan="2" align="center" style="font-size: 2EM; font-weight: bold; color: #a2c62d;">VIỄN THÔNG A</td>
@@ -54,8 +51,12 @@
             </tr>
             <tr>
             <td style="font-size: 1.2EM; font-weight: bold;">Giới thiệu: </td>
-            <td><legend><h1><%= ct.getGioiThieu()%></h1></legend></td>        
-            </tr>        
+            <td>
+                <!--<legend><h1><span name="gioiThieu" ><%= ct.getGioiThieu()%></span></h1></legend>-->
+                <!--<input size="50px" name="gioiThieu" type="text" value="<%= ct.getGioiThieu()%>" />-->
+                <textarea cols="36px" rows="10px" name="gioiThieu"><%= ct.getGioiThieu()%></textarea>
+            </td>
+            </tr>
         </table>
     </form>
 </div>

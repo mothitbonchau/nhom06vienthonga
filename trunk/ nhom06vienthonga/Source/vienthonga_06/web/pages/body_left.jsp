@@ -19,7 +19,7 @@
 
         <br />
         <div class="blocSearch">
-            <form style="background-image: url(images/linhtinh/bgd_top_timkiem.gif);" method="post" action="proccess?task=timkiem" name="frmSearch" id="frmSearch">
+            <form style="background-image: url(images/linhtinh/bgd_top_timkiem.gif);" method="post" action="process?task=timkiem" name="frmSearch" id="frmSearch">
                 <input type="hidden" value="com_search" id="option" name="option" />
                 <input type="hidden" value="search" id="task" name="task" />
                 <h2>Tìm kiếm</h2>

@@ -4,9 +4,11 @@
  */
 package CONTROLLER;
 
+import MODEL.DAO.CongTyDAO;
 import MODEL.DAO.NguoiDungDAO;
 import MODEL.DAO.SanPhamDAO;
 import MODEL.DAO.ThamSoDao;
+import MODEL.POJO.Congty;
 import MODEL.POJO.Hang;
 import MODEL.POJO.Loaisanpham;
 import MODEL.POJO.Nguoidung;
@@ -25,7 +27,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author HP
  */
-@WebServlet(name = "proccess", urlPatterns = {"/proccess"})
+@WebServlet(name = "process", urlPatterns = {"/process"})
 public class process extends HttpServlet {
 
     /** 
@@ -109,9 +111,28 @@ public class process extends HttpServlet {
                     String task_chitiet = request.getParameter("task_chitiet");
 
                      //<editor-fold defaultstate="collapsed" desc="công ty">
-                    if (task_chitiet.equals("congty")) {
-
-                        request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
+                    if (task_chitiet.equals("capnhatcongty")) {
+                        Congty ct = new Congty();
+                        ct.setMaCongTy(request.getParameter("maCongTy"));
+                        ct.setDiaChi(request.getParameter("diaChi"));
+                        ct.setDienThoai(request.getParameter("dienThoai"));
+                        ct.setEmail(request.getParameter("email"));
+                        ct.setFax(request.getParameter("fax"));
+                        ct.setHotLine(request.getParameter("hotLine"));
+                        ct.setTenCongTy(request.getParameter("tenCongTy"));
+                        ct.setWebsite(request.getParameter("website"));
+                        ct.setGioiThieu(request.getParameter("gioiThieu"));                                               
+                        
+                        int kq = CongTyDAO.CapNhatCongTy(ct);
+                        if(kq == 1)     
+                        {
+                            String thongbao = "";                        
+                            thongbao = "Đã cập nhật thành công";                                                
+                            request.setAttribute("thongbao", thongbao);
+                        }
+                        
+                        //request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
+                        response.sendRedirect("view?task=quanly&task_chitiet=congty");
                         return;
                     }
                     //</editor-fold>

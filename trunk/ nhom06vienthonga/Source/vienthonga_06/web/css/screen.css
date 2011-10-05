@@ -424,10 +424,14 @@ ul.border_bot li{border-bottom:1px dotted #999999}
     height: 28px;
     margin-left: 20px;
     padding-left: 10px;
- }
- .titleSPChitiet { 
+}
+.titleSPChitiet { 
     color: rgb(0, 51, 102);
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
- }
+}
+.test tr
+{
+    height: 30px;
+}
