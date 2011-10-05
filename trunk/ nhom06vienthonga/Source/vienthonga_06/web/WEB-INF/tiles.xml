@@ -36,10 +36,36 @@
         <put-attribute name="body_mid" value="/pages/body_mid_dangky.jsp" />        
     </definition>
     
-    <definition name="quanly" extends="template_vienthonga">        
-        <put-attribute name="body_left" value="/pages/body_left_quanly.jsp" />
-        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung.jsp" />
+    <definition name="quanlyadmin" extends="template_vienthonga">        
+        <put-attribute name="body_left" value="/pages/body_left_quanlyadmin.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_nguoidung.jsp" />
         <put-attribute name="body_right" value="/pages/null.jsp" />
         <put-attribute name="footer1" value="/pages/null.jsp" />         
-    </definition> 
+    </definition>
+    
+    <definition name="quanlyadmin_nguoidung" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_nguoidung.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_congty" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_congty.jsp" />      
+    </definition>
+    
+    <definition name="quanlynguoidung" extends="template_vienthonga">        
+        <put-attribute name="body_left" value="/pages/body_left_quanlynguoidung.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_thongtinnguoidung.jsp" />
+        <put-attribute name="body_right" value="/pages/null.jsp" />
+        <put-attribute name="footer1" value="/pages/null.jsp" />
+    </definition>
+    
+    <definition name="quanlynguoidung_thongtinnguoidung" extends="quanlynguoidung">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_thongtinnguoidung.jsp" />      
+    </definition>
+    
+    <definition name="quanlynhanvien" extends="template_vienthonga">        
+        <put-attribute name="body_left" value="/pages/body_left_quanlynhanvien.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynhanvien_thongtinnhanvien.jsp" />
+        <put-attribute name="body_right" value="/pages/null.jsp" />
+        <put-attribute name="footer1" value="/pages/null.jsp" />
+    </definition>
 </tiles-definitions>

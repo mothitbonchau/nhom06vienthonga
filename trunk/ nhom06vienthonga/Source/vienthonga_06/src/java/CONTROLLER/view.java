@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +33,9 @@ public class view extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
         try {
             String task = "";
             if (request.getParameter("task") != null) {
@@ -142,30 +145,83 @@ public class view extends HttpServlet {
             //</editor-fold>            
 
             //<editor-fold defaultstate="collapsed" desc="chuyển trang đăng nhập">
-            
-            //</editor-fold>
-            
-            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
-            if(task.equals("quanly"))
-            {
-                if(request.getParameter("task_chitiet") != null)
-                {
-                    String task_chitiet = request.getParameter("task_chitiet");
-                    
-                    //<editor-fold defaultstate="collapsed" desc="công ty">
-                    if(task_chitiet.equals("congty"))
-                    {
-                        request.getRequestDispatcher("QuanLy.jsp").forward(request, response);
-                        return;
-                    }
-                    //</editor-fold>
-                }
-                
-                request.getRequestDispatcher("QuanLy.jsp").forward(request, response);
-                return;
+            if(task.equals("DangNhap")){
+                request.getRequestDispatcher("DangNhap.jsp").forward(request, response);                        
             }
             //</editor-fold>
             
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
+            if (task.equals("quanly")) {
+                if (session.getAttribute("TenDangNhap") == null) {
+                    request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
+                    return;
+                }
+
+                Nguoidung nd = new Nguoidung();
+                nd.setTenDangNhap(session.getAttribute("TenDangNhap").toString());
+                nd = (NguoiDungDAO.TimKiem(nd)).get(0);
+
+                //admin
+                if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND1")) {
+                    if (request.getParameter("task_chitiet") != null) {
+                        String task_chitiet = request.getParameter("task_chitiet");
+
+                        //<editor-fold defaultstate="collapsed" desc="người dùng">
+                        if (task_chitiet.equals("nguoidung")) {
+                            
+                            
+                            request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+                        
+                        //<editor-fold defaultstate="collapsed" desc="công ty">
+                        if (task_chitiet.equals("congty")) {
+                            
+                            
+                            request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+                    }
+
+                    request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
+                    return;
+                }
+
+                //người dùng
+                if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND2")) {
+                    if (request.getParameter("task_chitiet") != null) {
+                        String task_chitiet = request.getParameter("task_chitiet");
+
+                        //<editor-fold defaultstate="collapsed" desc="thông tin người dùng">
+                        if (task_chitiet.equals("thongtinnguoidung")) {
+                            request.getRequestDispatcher("XXXXXX.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+                    }
+
+                    request.getRequestDispatcher("QuanLyNguoiDung.jsp").forward(request, response);
+                    return;
+                }
+
+                //nhân viên
+                if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND3")) {
+                    if (request.getParameter("task_chitiet") != null) {
+                        String task_chitiet = request.getParameter("task_chitiet");
+                        
+                        //<editor-fold defaultstate="collapsed" desc="sản phẩm">
+                        
+                        //</editor-fold>
+                    }
+
+                    request.getRequestDispatcher("QuanLyNhanVien.jsp").forward(request, response);
+                    return;
+                }
+            }
+            //</editor-fold>
+
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
         } finally {
             out.close();

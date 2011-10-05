@@ -1,24 +1,23 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Oct 4, 2011 11:02:17 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="MODEL.POJO.Hinhanhtintuc" table="hinhanhtintuc" catalog="vienthonga">
-        <id name="maHinhAnhTinTuc" type="string">
-            <column name="MaHinhAnhTinTuc" length="45" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="tintuc" class="MODEL.POJO.Tintuc" fetch="select">
-            <column name="MaTinTuc" length="45" />
-        </many-to-one>
-        <property name="tenHinhAnh" type="string">
-            <column name="TenHinhAnh" length="45" />
-        </property>
-        <property name="duongDan" type="string">
-            <column name="DuongDan" length="45" />
-        </property>
-        <property name="tinhTrang" type="java.lang.Integer">
-            <column name="TinhTrang" />
-        </property>
-    </class>
+  <class catalog="vienthonga" name="MODEL.POJO.Hinhanhtintuc" table="hinhanhtintuc">
+    <id name="maHinhAnhTinTuc" type="string">
+      <column length="45" name="MaHinhAnhTinTuc"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="MODEL.POJO.Tintuc" fetch="select" name="tintuc">
+      <column length="45" name="MaTinTuc"/>
+    </many-to-one>
+    <property name="tenHinhAnh" type="string">
+      <column length="45" name="TenHinhAnh"/>
+    </property>
+    <property name="duongDan" type="string">
+      <column length="45" name="DuongDan"/>
+    </property>
+    <property name="tinhTrang" type="java.lang.Integer">
+      <column name="TinhTrang"/>
+    </property>
+  </class>
 </hibernate-mapping>

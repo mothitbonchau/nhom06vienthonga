@@ -1,27 +1,26 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Oct 4, 2011 11:02:17 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="MODEL.POJO.Giamgia" table="giamgia" catalog="vienthonga">
-        <id name="maGiamGia" type="string">
-            <column name="MaGiamGia" length="45" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="sanpham" class="MODEL.POJO.Sanpham" fetch="select">
-            <column name="MaSanPham" length="45" />
-        </many-to-one>
-        <property name="giaGiam" type="java.lang.Integer">
-            <column name="GiaGiam" />
-        </property>
-        <property name="ngayBatDau" type="timestamp">
-            <column name="NgayBatDau" length="19" />
-        </property>
-        <property name="ngayKetThuc" type="timestamp">
-            <column name="NgayKetThuc" length="19" />
-        </property>
-        <property name="tinhTrang" type="java.lang.Integer">
-            <column name="TinhTrang" />
-        </property>
-    </class>
+  <class catalog="vienthonga" name="MODEL.POJO.Giamgia" table="giamgia">
+    <id name="maGiamGia" type="string">
+      <column length="45" name="MaGiamGia"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="MODEL.POJO.Sanpham" fetch="select" name="sanpham">
+      <column length="45" name="MaSanPham"/>
+    </many-to-one>
+    <property name="giaGiam" type="java.lang.Integer">
+      <column name="GiaGiam"/>
+    </property>
+    <property name="ngayBatDau" type="timestamp">
+      <column length="19" name="NgayBatDau"/>
+    </property>
+    <property name="ngayKetThuc" type="timestamp">
+      <column length="19" name="NgayKetThuc"/>
+    </property>
+    <property name="tinhTrang" type="java.lang.Integer">
+      <column name="TinhTrang"/>
+    </property>
+  </class>
 </hibernate-mapping>

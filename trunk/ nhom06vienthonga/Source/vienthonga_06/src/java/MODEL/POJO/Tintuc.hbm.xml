@@ -1,30 +1,29 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Oct 4, 2011 11:02:17 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="MODEL.POJO.Tintuc" table="tintuc" catalog="vienthonga">
-        <id name="maTinTuc" type="string">
-            <column name="MaTinTuc" length="45" />
-            <generator class="assigned" />
-        </id>
-        <property name="tenTinTuc" type="string">
-            <column name="TenTinTuc" length="45" />
-        </property>
-        <property name="noiDungtTinTuc" type="string">
-            <column name="NoiDungtTinTuc" />
-        </property>
-        <property name="ngayDang" type="timestamp">
-            <column name="NgayDang" length="19" />
-        </property>
-        <property name="tinhTrang" type="java.lang.Integer">
-            <column name="TinhTrang" />
-        </property>
-        <set name="hinhanhtintucs" inverse="true">
-            <key>
-                <column name="MaTinTuc" length="45" />
-            </key>
-            <one-to-many class="MODEL.POJO.Hinhanhtintuc" />
-        </set>
-    </class>
+  <class catalog="vienthonga" name="MODEL.POJO.Tintuc" table="tintuc">
+    <id name="maTinTuc" type="string">
+      <column length="45" name="MaTinTuc"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="tenTinTuc" type="string">
+      <column length="45" name="TenTinTuc"/>
+    </property>
+    <property name="noiDungtTinTuc" type="string">
+      <column name="NoiDungtTinTuc"/>
+    </property>
+    <property name="ngayDang" type="timestamp">
+      <column length="19" name="NgayDang"/>
+    </property>
+    <property name="tinhTrang" type="java.lang.Integer">
+      <column name="TinhTrang"/>
+    </property>
+    <set inverse="true" name="hinhanhtintucs">
+      <key>
+        <column length="45" name="MaTinTuc"/>
+      </key>
+      <one-to-many class="MODEL.POJO.Hinhanhtintuc"/>
+    </set>
+  </class>
 </hibernate-mapping>

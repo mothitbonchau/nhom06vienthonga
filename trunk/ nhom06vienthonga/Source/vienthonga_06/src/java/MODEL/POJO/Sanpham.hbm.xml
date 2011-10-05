@@ -1,69 +1,68 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Oct 4, 2011 11:02:17 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="MODEL.POJO.Sanpham" table="sanpham" catalog="vienthonga">
-        <id name="maSanPham" type="string">
-            <column name="MaSanPham" length="45" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="hang" class="MODEL.POJO.Hang" fetch="select" lazy="false">
-            <column name="MaHang" length="45" />
-        </many-to-one>
-        <many-to-one name="loaisanpham" class="MODEL.POJO.Loaisanpham" fetch="select" lazy="false">
-            <column name="MaLoaiSanPham" length="45" />
-        </many-to-one>
-        <property name="tenSanPham" type="string">
-            <column name="TenSanPham" />
-        </property>
-        <property name="giaBan" type="java.lang.Float">
-            <column name="GiaBan" precision="12" scale="0" />
-        </property>
-        <property name="mauSac" type="string">
-            <column name="MauSac" length="45" />
-        </property>
-        <property name="thoiGianBaoHanh" type="string">
-            <column name="ThoiGianBaoHanh" length="45" />
-        </property>
-        <property name="kichThuoc" type="string">
-            <column name="KichThuoc" length="45" />
-        </property>
-        <property name="trongLuong" type="string">
-            <column name="TrongLuong" length="45" />
-        </property>
-        <property name="tinhTrang" type="java.lang.Integer">
-            <column name="TinhTrang" />
-        </property>
-        <set name="chitietdonhangs" inverse="true" lazy="false">
-            <key>
-                <column name="MaSanPham" length="45" />
-            </key>
-            <one-to-many class="MODEL.POJO.Chitietdonhang" />
-        </set>
-        <set name="hinhanhsanphams" inverse="true" lazy="false">
-            <key>
-                <column name="MaSanPham" length="45" />
-            </key>
-            <one-to-many class="MODEL.POJO.Hinhanhsanpham" />
-        </set>
-        <set name="giamgias" inverse="true" lazy="false">
-            <key>
-                <column name="MaSanPham" length="45" />
-            </key>
-            <one-to-many class="MODEL.POJO.Giamgia" />
-        </set>
-        <set name="chitietlaptops" inverse="true" lazy="false">
-            <key>
-                <column name="MaSanPham" length="45" />
-            </key>
-            <one-to-many class="MODEL.POJO.Chitietlaptop" />
-        </set>
-        <set name="chitietdienthoais" inverse="true" lazy="false">
-            <key>
-                <column name="MaSanPham" length="45" />
-            </key>
-            <one-to-many class="MODEL.POJO.Chitietdienthoai" />
-        </set>
-    </class>
+  <class catalog="vienthonga" name="MODEL.POJO.Sanpham" table="sanpham">
+    <id name="maSanPham" type="string">
+      <column length="45" name="MaSanPham"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="MODEL.POJO.Hang" fetch="select" lazy="false" name="hang">
+      <column length="45" name="MaHang"/>
+    </many-to-one>
+    <many-to-one class="MODEL.POJO.Loaisanpham" fetch="select" lazy="false" name="loaisanpham">
+      <column length="45" name="MaLoaiSanPham"/>
+    </many-to-one>
+    <property name="tenSanPham" type="string">
+      <column name="TenSanPham"/>
+    </property>
+    <property name="giaBan" type="java.lang.Float">
+      <column name="GiaBan" precision="12" scale="0"/>
+    </property>
+    <property name="mauSac" type="string">
+      <column length="45" name="MauSac"/>
+    </property>
+    <property name="thoiGianBaoHanh" type="string">
+      <column length="45" name="ThoiGianBaoHanh"/>
+    </property>
+    <property name="kichThuoc" type="string">
+      <column length="45" name="KichThuoc"/>
+    </property>
+    <property name="trongLuong" type="string">
+      <column length="45" name="TrongLuong"/>
+    </property>
+    <property name="tinhTrang" type="java.lang.Integer">
+      <column name="TinhTrang"/>
+    </property>
+    <set inverse="true" lazy="false" name="chitietdonhangs">
+      <key>
+        <column length="45" name="MaSanPham"/>
+      </key>
+      <one-to-many class="MODEL.POJO.Chitietdonhang"/>
+    </set>
+    <set inverse="true" lazy="false" name="hinhanhsanphams">
+      <key>
+        <column length="45" name="MaSanPham"/>
+      </key>
+      <one-to-many class="MODEL.POJO.Hinhanhsanpham"/>
+    </set>
+    <set inverse="true" lazy="false" name="giamgias">
+      <key>
+        <column length="45" name="MaSanPham"/>
+      </key>
+      <one-to-many class="MODEL.POJO.Giamgia"/>
+    </set>
+    <set inverse="true" lazy="false" name="chitietlaptops">
+      <key>
+        <column length="45" name="MaSanPham"/>
+      </key>
+      <one-to-many class="MODEL.POJO.Chitietlaptop"/>
+    </set>
+    <set inverse="true" lazy="false" name="chitietdienthoais">
+      <key>
+        <column length="45" name="MaSanPham"/>
+      </key>
+      <one-to-many class="MODEL.POJO.Chitietdienthoai"/>
+    </set>
+  </class>
 </hibernate-mapping>
