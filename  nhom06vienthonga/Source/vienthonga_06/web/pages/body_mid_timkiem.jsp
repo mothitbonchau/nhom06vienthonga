@@ -66,7 +66,7 @@
             }
         </script>
         
-        <form action="proccess?task=timkiem" method="post" id="frmTimKiem" style="margin-bottom: 10px; height: 20px; text-align: center; font-size: 1.5em">
+        <form action="process?task=timkiem" method="post" id="frmTimKiem" style="margin-bottom: 10px; height: 20px; text-align: center; font-size: 1.5em">
             <%
                 if (sotrang - 1 < 1) {
             %>
