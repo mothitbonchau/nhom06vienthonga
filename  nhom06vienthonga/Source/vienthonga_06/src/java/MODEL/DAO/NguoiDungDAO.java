@@ -8,6 +8,7 @@ import MODEL.POJO.Loainguoidung;
 import MODEL.POJO.Nguoidung;
 import MODEL.UTIL.HibernateUtil;
 import java.util.List;
+import javax.print.DocFlavor.STRING;
 import javax.transaction.SystemException;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -112,4 +113,31 @@ public class NguoiDungDAO {
 
         return list;
     }
+    
+    public static Nguoidung LayThongTinNguoiDung(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Nguoidung nd = new Nguoidung();
+        String hql = "FROM Nguoidung";
+        Query query = session.createQuery(hql);
+        nd = (Nguoidung)query.list().get(0);
+        session.close();
+        return nd;
+    }
+    
+    public static List<Nguoidung> LayListNguoiDung(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List<Nguoidung> listnd = null;
+
+        try {
+            String hql = "FROM Nguoidung";
+            Query query = session.createQuery(hql);
+            listnd = query.list();
+        } catch (Exception ex) {
+        } finally {
+            session.close();
+        }
+        return listnd;
+    }
+    
 }

@@ -169,7 +169,6 @@ public class view extends HttpServlet {
                         //<editor-fold defaultstate="collapsed" desc="người dùng">
                         if (task_chitiet.equals("nguoidung")) {
                             
-                            
                             request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
                             return;
                         }
@@ -183,6 +182,8 @@ public class view extends HttpServlet {
                             return;
                         }
                         //</editor-fold>
+                        
+                      
                     }
 
                     request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);

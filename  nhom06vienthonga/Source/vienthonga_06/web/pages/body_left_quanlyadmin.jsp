@@ -15,7 +15,7 @@
                 <a style="text-transform: none;" href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Công Ty</a>
             </li> 
             <li>
-                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Người Dùng</a>
+                <a href="view?task=quanly&task_chitiet=nguoidung" style="text-transform: none;">Người Dùng</a>
             </li>
             <li>
                 <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Đơn Hàng</a>
