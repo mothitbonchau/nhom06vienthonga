@@ -110,7 +110,7 @@ public class process extends HttpServlet {
                 if (request.getParameter("task_chitiet") != null) {
                     String task_chitiet = request.getParameter("task_chitiet");
 
-                     //<editor-fold defaultstate="collapsed" desc="công ty">
+                    //<editor-fold defaultstate="collapsed" desc="công ty">
                     if (task_chitiet.equals("capnhatcongty")) {
                         Congty ct = new Congty();
                         ct.setMaCongTy(request.getParameter("maCongTy"));
@@ -133,6 +133,14 @@ public class process extends HttpServlet {
                         
                         //request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
                         response.sendRedirect("view?task=quanly&task_chitiet=congty");
+                        return;
+                    }
+                    //</editor-fold>
+                    
+                    //<editor-fold defaultstate="collapsed" desc="Người dùng">
+                    if (task_chitiet.equals("nguoidung")) {
+                        
+                        request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
                         return;
                     }
                     //</editor-fold>

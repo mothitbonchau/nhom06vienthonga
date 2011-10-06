@@ -36,6 +36,7 @@
         <put-attribute name="body_mid" value="/pages/body_mid_dangky.jsp" />        
     </definition>
     
+ 
     <definition name="quanlyadmin" extends="template_vienthonga">        
         <put-attribute name="body_left" value="/pages/body_left_quanlyadmin.jsp" />
         <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_nguoidung.jsp" />
