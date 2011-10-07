@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 4, 2011 11:02:17 AM by Hibernate Tools 3.2.1.GA -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 6, 2011 5:23:53 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="vienthonga" name="MODEL.POJO.Hang" table="hang">
-    <id name="maHang" type="string">
-      <column length="45" name="MaHang"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="tenHang" type="string">
-      <column length="45" name="TenHang"/>
-    </property>
-    <property name="tinhTrang" type="java.lang.Integer">
-      <column name="TinhTrang"/>
-    </property>
-    <set inverse="true" name="sanphams">
-      <key>
-        <column length="45" name="MaHang"/>
-      </key>
-      <one-to-many class="MODEL.POJO.Sanpham"/>
-    </set>
-  </class>
+    <class name="MODEL.POJO.Hang" table="hang" catalog="vienthonga">
+        <id name="maHang" type="string">
+            <column name="MaHang" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="tenHang" type="string">
+            <column name="TenHang" length="45" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+        <set name="sanphams" inverse="true">
+            <key>
+                <column name="MaHang" length="45" />
+            </key>
+            <one-to-many class="MODEL.POJO.Sanpham" />
+        </set>
+    </class>
 </hibernate-mapping>

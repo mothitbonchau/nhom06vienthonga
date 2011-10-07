@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 4, 2011 11:02:17 AM by Hibernate Tools 3.2.1.GA -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 6, 2011 5:23:53 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="vienthonga" name="MODEL.POJO.Thamso" table="thamso">
-    <id name="maThamSo" type="string">
-      <column length="45" name="MaThamSo"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="soSanPhamTrenTrang" type="java.lang.Integer">
-      <column name="SoSanPhamTrenTrang"/>
-    </property>
-    <property name="duongDanHinhAnh" type="string">
-      <column length="45" name="DuongDanHinhAnh"/>
-    </property>
-  </class>
+    <class name="MODEL.POJO.Thamso" table="thamso" catalog="vienthonga">
+        <id name="maThamSo" type="string">
+            <column name="MaThamSo" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="soSanPhamTrenTrang" type="java.lang.Integer">
+            <column name="SoSanPhamTrenTrang" />
+        </property>
+        <property name="duongDanHinhAnh" type="string">
+            <column name="DuongDanHinhAnh" length="45" />
+        </property>
+    </class>
 </hibernate-mapping>

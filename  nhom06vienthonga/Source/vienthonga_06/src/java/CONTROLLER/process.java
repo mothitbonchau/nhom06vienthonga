@@ -5,10 +5,12 @@
 package CONTROLLER;
 
 import MODEL.DAO.CongTyDAO;
+import MODEL.DAO.GioHangDAO;
 import MODEL.DAO.NguoiDungDAO;
 import MODEL.DAO.SanPhamDAO;
 import MODEL.DAO.ThamSoDao;
 import MODEL.POJO.Congty;
+import MODEL.POJO.Giohang;
 import MODEL.POJO.Hang;
 import MODEL.POJO.Loaisanpham;
 import MODEL.POJO.Nguoidung;
@@ -42,6 +44,7 @@ public class process extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
         try {
             String task = "";
             if (request.getParameter("task") != null) {
@@ -88,13 +91,41 @@ public class process extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="đặt mua sản phẩm">
             if (task.equals("datmua")) {
+                String msp = request.getParameter("MSP");
+
+                Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
+                Giohang gh = GioHangDAO.LayGioHangCuoiCung();
+                int mgh = 0;
+                try {
+                    Integer.parseInt(gh.getMaGioHang().substring(4));
+                    mgh = mgh + 1;
+                } catch(Exception ex)  {
+                    mgh = 1;
+                }
+                gh.setMaGioHang("MGH" + String.valueOf(mgh));
+                gh.setDonGia(sp.getGiaBan());
+                gh.setSanpham(sp);
+                gh.setSoLuong(1);
+                gh.setThanhTien((float) 0);
+                gh.setTinhTrang(0);
+                Nguoidung nd = NguoiDungDAO.LayNguoiDungTheoTenDangNhap(session.getAttribute("TenDangNhap").toString());
+                gh.setNguoidung(nd);
+
+                int kq = GioHangDAO.Them(gh);
+
+                if (kq == 1) {
+                    String thongbao = "";
+                    thongbao = "Đã đặt mua thành công";
+                    request.setAttribute("thongbao", thongbao);
+                }
+
+                request.getRequestDispatcher("view?task=chitietsanpham&MSP=MSP31").forward(request, response);
                 return;
             }
             //</editor-fold>
 
             //<editor-fold defaultstate="collapsed" desc="Xử lý đăng nhập">
             if (task.equals("XuLy")) {
-                HttpSession session = request.getSession();
                 Nguoidung ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), request.getParameter("matKhau"));
                 if (ndung != null) {
                     session.setAttribute("TenDangNhap", ndung.getTenDangNhap());
@@ -121,25 +152,23 @@ public class process extends HttpServlet {
                         ct.setHotLine(request.getParameter("hotLine"));
                         ct.setTenCongTy(request.getParameter("tenCongTy"));
                         ct.setWebsite(request.getParameter("website"));
-                        ct.setGioiThieu(request.getParameter("gioiThieu"));                                               
-                        
+                        ct.setGioiThieu(request.getParameter("gioiThieu"));
+
                         int kq = CongTyDAO.CapNhatCongTy(ct);
-                        if(kq == 1)     
-                        {
-                            String thongbao = "";                        
-                            thongbao = "Đã cập nhật thành công";                                                
+                        if (kq == 1) {
+                            String thongbao = "";
+                            thongbao = "Đã cập nhật thành công";
                             request.setAttribute("thongbao", thongbao);
                         }
-                        
-                        //request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
-                        response.sendRedirect("view?task=quanly&task_chitiet=congty");
+
+                        request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
                         return;
                     }
                     //</editor-fold>
-                    
+
                     //<editor-fold defaultstate="collapsed" desc="Người dùng">
                     if (task_chitiet.equals("nguoidung")) {
-                        
+
                         request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
                         return;
                     }

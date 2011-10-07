@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 4, 2011 11:02:12 AM by Hibernate Tools 3.2.1.GA
+// Generated Oct 6, 2011 5:23:49 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -24,6 +24,7 @@ public class Nguoidung  implements java.io.Serializable {
      private Date ngayDangKy;
      private Integer tinhTrang;
      private Set donhangs = new HashSet(0);
+     private Set giohangs = new HashSet(0);
 
     public Nguoidung() {
     }
@@ -32,7 +33,7 @@ public class Nguoidung  implements java.io.Serializable {
     public Nguoidung(String maNguoiDung) {
         this.maNguoiDung = maNguoiDung;
     }
-    public Nguoidung(String maNguoiDung, Loainguoidung loainguoidung, String tenDangNhap, String matKhau, String tenNguoiDung, String email, Integer cmnd, Integer dienThoai, String diaChi, Date ngayDangKy, Integer tinhTrang, Set donhangs) {
+    public Nguoidung(String maNguoiDung, Loainguoidung loainguoidung, String tenDangNhap, String matKhau, String tenNguoiDung, String email, Integer cmnd, Integer dienThoai, String diaChi, Date ngayDangKy, Integer tinhTrang, Set donhangs, Set giohangs) {
        this.maNguoiDung = maNguoiDung;
        this.loainguoidung = loainguoidung;
        this.tenDangNhap = tenDangNhap;
@@ -45,6 +46,7 @@ public class Nguoidung  implements java.io.Serializable {
        this.ngayDangKy = ngayDangKy;
        this.tinhTrang = tinhTrang;
        this.donhangs = donhangs;
+       this.giohangs = giohangs;
     }
    
     public String getMaNguoiDung() {
@@ -130,6 +132,13 @@ public class Nguoidung  implements java.io.Serializable {
     
     public void setDonhangs(Set donhangs) {
         this.donhangs = donhangs;
+    }
+    public Set getGiohangs() {
+        return this.giohangs;
+    }
+    
+    public void setGiohangs(Set giohangs) {
+        this.giohangs = giohangs;
     }
 
 

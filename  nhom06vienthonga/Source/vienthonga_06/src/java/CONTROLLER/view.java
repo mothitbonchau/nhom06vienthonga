@@ -145,11 +145,11 @@ public class view extends HttpServlet {
             //</editor-fold>            
 
             //<editor-fold defaultstate="collapsed" desc="chuyển trang đăng nhập">
-            if(task.equals("DangNhap")){
-                request.getRequestDispatcher("DangNhap.jsp").forward(request, response);                        
+            if (task.equals("DangNhap")) {
+                request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
             if (task.equals("quanly")) {
                 if (session.getAttribute("TenDangNhap") == null) {
@@ -168,22 +168,22 @@ public class view extends HttpServlet {
 
                         //<editor-fold defaultstate="collapsed" desc="người dùng">
                         if (task_chitiet.equals("nguoidung")) {
-                            
+
                             request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
                             return;
                         }
                         //</editor-fold>
-                        
+
                         //<editor-fold defaultstate="collapsed" desc="công ty">
                         if (task_chitiet.equals("congty")) {
-                            
-                            
+
+
                             request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
                             return;
                         }
                         //</editor-fold>
-                        
-                      
+
+
                     }
 
                     request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
@@ -211,9 +211,9 @@ public class view extends HttpServlet {
                 if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND3")) {
                     if (request.getParameter("task_chitiet") != null) {
                         String task_chitiet = request.getParameter("task_chitiet");
-                        
+
                         //<editor-fold defaultstate="collapsed" desc="sản phẩm">
-                        
+
                         //</editor-fold>
                     }
 
@@ -223,7 +223,23 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang khuyến mãi">
+            if (task.equals("khuyenmai")) {
+                if (request.getParameter("task_chitiet") != null) {
+                    String task_chitiet = request.getParameter("task_chitiet");
+                    if (task_chitiet.equals("chitietkhuyenmai")) {
+                        request.getRequestDispatcher("ChiTietKhuyenMai.jsp").forward(request, response);
+                        return;
+                    }
+                }
+
+                request.getRequestDispatcher("KhuyenMai.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+            
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
+
         } finally {
             out.close();
         }

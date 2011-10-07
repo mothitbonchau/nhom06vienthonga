@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 4, 2011 11:02:12 AM by Hibernate Tools 3.2.1.GA
+// Generated Oct 6, 2011 5:23:49 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -12,11 +12,11 @@ public class Chitietdonhang  implements java.io.Serializable {
      private String maChiTietDonHang;
      private Sanpham sanpham;
      private Donhang donhang;
-     private String soLuong;
-     private String donGia;
-     private String giamGia;
-     private String thanhTien;
-     private String trangThai;
+     private Integer soLuong;
+     private Float donGia;
+     private Float giamGia;
+     private Float thanhTien;
+     private Integer trangThai;
      private Integer tinhTrang;
 
     public Chitietdonhang() {
@@ -26,7 +26,7 @@ public class Chitietdonhang  implements java.io.Serializable {
     public Chitietdonhang(String maChiTietDonHang) {
         this.maChiTietDonHang = maChiTietDonHang;
     }
-    public Chitietdonhang(String maChiTietDonHang, Sanpham sanpham, Donhang donhang, String soLuong, String donGia, String giamGia, String thanhTien, String trangThai, Integer tinhTrang) {
+    public Chitietdonhang(String maChiTietDonHang, Sanpham sanpham, Donhang donhang, Integer soLuong, Float donGia, Float giamGia, Float thanhTien, Integer trangThai, Integer tinhTrang) {
        this.maChiTietDonHang = maChiTietDonHang;
        this.sanpham = sanpham;
        this.donhang = donhang;
@@ -59,39 +59,39 @@ public class Chitietdonhang  implements java.io.Serializable {
     public void setDonhang(Donhang donhang) {
         this.donhang = donhang;
     }
-    public String getSoLuong() {
+    public Integer getSoLuong() {
         return this.soLuong;
     }
     
-    public void setSoLuong(String soLuong) {
+    public void setSoLuong(Integer soLuong) {
         this.soLuong = soLuong;
     }
-    public String getDonGia() {
+    public Float getDonGia() {
         return this.donGia;
     }
     
-    public void setDonGia(String donGia) {
+    public void setDonGia(Float donGia) {
         this.donGia = donGia;
     }
-    public String getGiamGia() {
+    public Float getGiamGia() {
         return this.giamGia;
     }
     
-    public void setGiamGia(String giamGia) {
+    public void setGiamGia(Float giamGia) {
         this.giamGia = giamGia;
     }
-    public String getThanhTien() {
+    public Float getThanhTien() {
         return this.thanhTien;
     }
     
-    public void setThanhTien(String thanhTien) {
+    public void setThanhTien(Float thanhTien) {
         this.thanhTien = thanhTien;
     }
-    public String getTrangThai() {
+    public Integer getTrangThai() {
         return this.trangThai;
     }
     
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(Integer trangThai) {
         this.trangThai = trangThai;
     }
     public Integer getTinhTrang() {

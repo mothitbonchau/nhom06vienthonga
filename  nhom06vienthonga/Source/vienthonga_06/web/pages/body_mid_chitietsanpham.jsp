@@ -119,7 +119,7 @@
                         <tr>
 
                         <td valign="top" style="width: 130px; text-align: center;">
-                            <a href="proccess?task=datmua&MSP=<%= sp.getMaSanPham() %>">
+                            <a href="process?task=datmua&MSP=<%= sp.getMaSanPham() %>">
                                 <img alt="" style="border: 0px none;" src="images/linhtinh/dathang_but.gif" />
                             </a>
                         </td>  
@@ -373,8 +373,9 @@
 %>
     <div class="detail_tab_content" style="margin-left: 10px;">
         <table cellspacing="0" cellpadding="0" width="100%" style="border: 1px solid rgb(220, 220, 220);" class="bodyChitiet">
-            <tr><td style="border-bottom: 1px solid rgb(220, 220, 220);" colspan="2">&nbsp;</td></tr>                      
-
+            <tr>
+                <td style="border-bottom: 1px solid rgb(220, 220, 220);" colspan="2">&nbsp;</td>
+            </tr>                      
             <tr>
             <td width="200" valign="middle" style="border: 0px solid rgb(220, 220, 220);">
             <span class="CellPaddingLeft chitietTinhNang"><strong>Thông tin chung</strong></span></td>
@@ -413,12 +414,12 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Kích thước/trọng lượng</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKichThuocTrongLuong">342 x 244 x 31.52/34.68 mm mm/2.2 kg</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKichThuocTrongLuong"><%= sp.getKichThuoc() %></td>
 
                     </tr>   
                     <tr>
                     <td width="40%" class="borderLRTop">Bảo hành</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdbaohanh">Bảo hành 1 năm chính hãng.</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdbaohanh"><%= sp.getThoiGianBaoHanh() %></td>
 
                     </tr>   
 
@@ -438,31 +439,31 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Công nghệ CPU</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheCPU">INTEL Core i3-2310M Sandy Bridge</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheCPU"><%= ctlt.getCongNgheCpu() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="height: 29px;" class="borderLRTop">Tốc độ CPU</td>
-                    <td width="60%" style="height: 29px;" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdTocdoCPU">2.1 GHz</td>
+                    <td width="60%" style="height: 29px;" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdTocdoCPU"><%= ctlt.getTocDoCpu() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Bộ nhớ đệm (cache)</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBoNhoDem">3MB L3 cache</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBoNhoDem"><%= ctlt.getBoNhoDem() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Front side Bus (FSB)</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSB">1333MHz FBS</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSB"><%= ctlt.getFortSizeBus() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Hãng sản xuất CPU</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdHangSXCPU">INTEL</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdHangSXCPU"><%= ctlt.getHangCpu() %></td>
 
                     </tr>
 
@@ -477,13 +478,13 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Thông tin Motherboard</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThongTinMotherBoard">Mobile Intel&reg; HM65 Express Chipset</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThongTinMotherBoard"><%= ctlt.getThongTinMotherBoard() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Front side Bus hỗ trợ</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSBMotherboardHoTro">1333 MHz</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSBMotherboardHoTro"><%= ctlt.getFortSizeBus() %></td>
 
                     </tr>
                     <tr>
@@ -502,25 +503,25 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Dung lượng RAM</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungLuongRAM">4GB</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungLuongRAM"><%= ctlt.getDungLuongRam() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Công nghệ RAM</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheRAM">DDR III</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheRAM"><%= ctlt.getCongNgheRam() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Bus RAM</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBusRAM">1333MHz</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBusRAM"><%= ctlt.getBusRam() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Mức RAM tối đa</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdRAMToida">6 GB</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdRAMToida"><%= ctlt.getMucRamToiDa() %></td>
 
                     </tr>
 
@@ -535,25 +536,25 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Dung lượng</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongHDD">500GB</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongHDD"><%= ctlt.getDungLuongOcung() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Công nghệ</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheHDD">Đĩa từ (HDD)</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheHDD"><%= ctlt.getCongNgheOcung() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Giao thức kết nối</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdGiaoThucKetNoiHDD">SATA</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdGiaoThucKetNoiHDD"><%= ctlt.getGiaoThucKetNoi() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Số vòng quay</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdSoVongQuayHDD">5400 prm</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdSoVongQuayHDD"><%= ctlt.getSoVongQuay() %></td>
 
                     </tr>
 
@@ -596,7 +597,7 @@
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Chuẩn màn hình</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanManHinh">HD WLED True-Life (1366x768)</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanManHinh"><%= ctlt.getChuanManHinh() %></td>
 
                     </tr>                                                            
 
@@ -611,13 +612,13 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Card đồ họa</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardDoHoa">Intel&reg; HD Graphics 3000</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardDoHoa"><%= ctlt.getCardDoHoa() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Loại card</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdLoaiCardDohoa">Onboard</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdLoaiCardDohoa"><%= ctlt.getLoaiCard() %></td>
 
                     </tr>
                     <tr>
@@ -627,7 +628,7 @@
                     </tr>
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Dung lượng card</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongcarddohoa">Shared with memory</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongcarddohoa"><%= ctlt.getDungLuongCard() %></td>
 
                     </tr>
 
@@ -642,19 +643,19 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Card âm thanh</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardAmThanh">Dell Audio - 2 spkrs @ 2.0W ea</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardAmThanh"><%= ctlt.getCardAmThanh() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Chuẩn âm thanh</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanAmThanh">2.0</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanAmThanh"><%= ctlt.getChuanAmThanh() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Kết nối</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKetNoiAmThanh">2 Speaker,Headphones, Microphone</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKetNoiAmThanh"><%= ctlt.getKetNoi() %></td>
 
                     </tr>
 
@@ -697,13 +698,13 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Bluetooth</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBluetooth">Bluetooth 3.0+HS</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBluetooth"><%= ctlt.getBluetooth() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Camera (Webcam)</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCamera">1.3 Megapixel</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCamera"><%= ctlt.getCamera() %></td>
 
                     </tr>
 
@@ -718,7 +719,7 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">USB</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdUSB">3 x USB 2.0 ports</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdUSB"><%= ctlt.getUsb() %></td>
 
                     </tr>
 
@@ -730,19 +731,19 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Video out</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdVideoOut">HDMI port with HDCP support, External display (VGA) port</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdVideoOut"><%= ctlt.getVideoOut() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Card Reader</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardReader">Card Reader</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardReader"><%= ctlt.getCardReader() %></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">e-SATA</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdeSATA">Không hỗ trợ.</td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdeSATA"><%= ctlt.getGiaoThucKetNoi() %></td>
 
                     </tr>
 
@@ -781,7 +782,7 @@
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Thời gian sử dụng Pin</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThoigiansudungPin">Đang cập nhật</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThoigiansudungPin"><%= ctlt.getThoiGianSuDungPin() %></td>
 
                     </tr>
 
@@ -823,7 +824,7 @@
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Các hệ điều hành hỗ trợ</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCacLoaiHDH">XP Home, XP Pro, Windows Media Center, Vista Starter, Vista Home asic, Vista Home Premium, Vista Business, Windows 7</td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCacLoaiHDH"><%= ctlt.getThongTinHeDieuHanh() %></td>
 
                     </tr>
 
@@ -916,19 +917,16 @@
                 <td><table cellspacing="0" cellpadding="5" border="0" width="100%">
                         <tr>
                         <td class="borderLRTop">Mạng </td>
-                        <td class="borderCellTop">GSM 900 / 1800 - SIM1 &amp; SIM 2</td>
+                        <td class="borderCellTop"><%= ctdt.getMang() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Màu sắc</td>
-                        <td class="borderCellTop">
-                            Chrome Black, Golden White</td>
+                        <td class="borderCellTop"><%= sp.getMauSac() %></td>
                         </tr>
 
                         <tr>
                         <td width="144" class="borderFull">Kích thước/Trọng lượng </td>
-                        <td class="borderCellTopBottom">
-                            103 x 51.4 x 17 mm 
-                            115 g</td>
+                        <td class="borderCellTopBottom"><%= sp.getKichThuoc() %></td>
                         </tr>
                     </table></td>
                 </tr>
@@ -940,19 +938,15 @@
                 <td><table cellspacing="0" cellpadding="5" border="0" width="100%">
                         <tr>
                         <td width="144" class="borderLRTop">Ngôn ngữ </td>
-                        <td class="borderCellTop">
-                            Có Tiếng Việt</td>
+                        <td class="borderCellTop"><%= ctdt.getNgonNgu() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Loại màn hình </td>
-                        <td class="borderCellTop">
-                            TFT cảm ứng điện trỏ,  65.536 màu</td>
+                        <td class="borderCellTop"><%= ctdt.getLoaiManHinh() %></td>
                         </tr>
                         <tr>
                         <td class="borderFull">Kích thước hiển thị</td>
-                        <td class="borderCellTopBottom">
-                            240 x 320 pixels, 2.6 inches
-                            - Nhận dạng chữ viết tay cho tiếng Trung </td>
+                        <td class="borderCellTopBottom"><%= ctdt.getKichThuocHienThi() %></td>
                         </tr>
                     </table></td>
                 </tr>
@@ -964,23 +958,19 @@
                 <td><table cellspacing="0" cellpadding="5" border="0" width="100%">
                         <tr>
                         <td width="144" class="borderLRTop">Kiểu chuông </td>
-                        <td class="borderCellTop">
-                            Rung, Đa âm điệu ( MIDI), MP3</td>
+                        <td class="borderCellTop"><%= ctdt.getKieuChuong() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Tin nhắn</td>
-                        <td class="borderCellTop">SMS, MMS, Email, Push Email</td>
+                        <td class="borderCellTop"><%= ctdt.getTinNhan() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Kết nối</td>
-                        <td class="borderCellTop">
-                            Bluetooth
-
-                            USB</td>
+                        <td class="borderCellTop"><%= ctdt.getKetNoi() %></td>
                         </tr>
                         <tr>
                         <td class="borderFull">Camera</td>
-                        <td class="borderCellTopBottom">2 MP, 1600x1200 pixels</td>
+                        <td class="borderCellTopBottom"><%= ctdt.getCamera() %></td>
                         </tr>
                     </table></td>
                 </tr>
@@ -992,13 +982,11 @@
                 <td><table cellspacing="0" cellpadding="5" border="0" width="100%">
                         <tr>
                         <td width="144" class="borderLRTop">Danh bạ </td>
-                        <td class="borderCellTop">
-                            1000 số, danh bạ hình ảnh</td>
+                        <td class="borderCellTop"><%= ctdt.getDanhBa() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Bộ nhớ trong </td>
-                        <td class="borderCellTop">
-                            10 MB dùng chung</td>
+                        <td class="borderCellTop"><%= ctdt.getBoNhoTrong() %></td>
                         </tr>
                         <tr>
                         <td class="borderFull">Thẻ nhớ</td>
@@ -1021,11 +1009,11 @@
                         </tr>
                         <tr>
                         <td class="borderLRTop">Rung</td>
-                        <td class="borderCellTop">Có</td>
+                        <td class="borderCellTop"><%= ctdt.getRung() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">GPRS</td>
-                        <td class="borderCellTop">Class 12 (4+1/3+2/2+3/1+4 slots), 32 - 48 kbps</td>
+                        <td class="borderCellTop"><%= ctdt.getGpgs() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">HSCSD</td>
@@ -1037,11 +1025,11 @@
                         </tr>
                         <tr>
                         <td class="borderLRTop">3G</td>
-                        <td class="borderCellTop">-</td>
+                        <td class="borderCellTop"><%= ctdt.getM3g() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">WLAN</td>
-                        <td class="borderCellTop">Không</td>
+                        <td class="borderCellTop"><%= ctdt.getWlan() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Hệ điều hành</td>
@@ -1050,44 +1038,44 @@
 
                         <tr>
                         <td class="borderLRTop">Đồng hồ</td>
-                        <td class="borderCellTop"> Có</td>
+                        <td class="borderCellTop"><%= ctdt.getDongHo() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Báo thức</td>
-                        <td class="borderCellTop">Có</td>
+                        <td class="borderCellTop"><%= ctdt.getBaoThuc() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Đài FM</td>
-                        <td class="borderCellTop"> Có</td>
+                        <td class="borderCellTop"><%= ctdt.getDaiFm() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Trò chơi</td>
-                        <td class="borderCellTop"> Cài sẵn trong máy</td>
+                        <td class="borderCellTop"><%= ctdt.getTroChoi() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Trình duyệt</td>
-                        <td class="borderCellTop">   WAP 2.0/xHTML</td>
+                        <td class="borderCellTop"><%= ctdt.getTrinhDuyet() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Java</td>
-                        <td class="borderCellTop">  -</td>
+                        <td class="borderCellTop"><%= ctdt.getJaVa() %></td>
                         </tr>
 
                         <tr>
                         <td class="borderLRTop">Quay phim</td>
-                        <td class="borderCellTop"> QCIF@15fps</td>
+                        <td class="borderCellTop"><%= ctdt.getQuayPhim() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Ghi âm</td>
-                        <td class="borderCellTop">Có</td>
+                        <td class="borderCellTop"><%= ctdt.getGhiAm() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Nghe nhạc</td>
-                        <td class="borderCellTop">Mp3 Player</td>
+                        <td class="borderCellTop"><%= ctdt.getNgheNhac() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Xem phim</td>
-                        <td class="borderCellTop">MP4/H.264/H.263 player</td>
+                        <td class="borderCellTop"><%= ctdt.getXemPhim() %></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Ghi âm cuộc gọi</td>
@@ -1096,7 +1084,7 @@
                         <tr>
                         <td class="borderFull">
                             Loa ngoài</td>
-                        <td class="borderCellTopBottom"> Có</td>
+                        <td class="borderCellTopBottom"><%= ctdt.getLoaNgoai() %></td>
                         </tr>
                     </table></td>
                 </tr>
