@@ -228,16 +228,39 @@ public class view extends HttpServlet {
                 if (request.getParameter("task_chitiet") != null) {
                     String task_chitiet = request.getParameter("task_chitiet");
                     if (task_chitiet.equals("chitietkhuyenmai")) {
+                        Khuyenmai km = KhuyenMaiDAO.LayKhuyenMaiTheoMa(request.getParameter("MKM"));
+
+                        request.setAttribute("khuyenmai", km);
                         request.getRequestDispatcher("ChiTietKhuyenMai.jsp").forward(request, response);
                         return;
                     }
                 }
 
+                int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                int tongsotrang = 0;
+                int trang = 1;
+                if (request.getParameter("trang") != null) {
+                    trang = Integer.parseInt(request.getParameter("trang").toString());
+                }
+                int batdau = 0;
+                if (trang > 1) {
+                    batdau = sp1trang * trang - sp1trang;
+                }
+
+                List<Khuyenmai> list = KhuyenMaiDAO.LayKhuyenMai(batdau, -1);
+                tongsotrang = list.size() / sp1trang;
+                if (list.size() % sp1trang > 0) {
+                    tongsotrang = tongsotrang + 1;
+                }
+                list = KhuyenMaiDAO.LayKhuyenMai(batdau, sp1trang);
+                
+                request.setAttribute("tongsotrang", tongsotrang);
+                request.setAttribute("list", list);
                 request.getRequestDispatcher("KhuyenMai.jsp").forward(request, response);
                 return;
             }
             //</editor-fold>
-            
+
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
 
         } finally {

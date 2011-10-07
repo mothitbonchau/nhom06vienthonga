@@ -49,6 +49,7 @@
             </div>
         </div>                                                                                                                                                                                                        
         <br />
+        
         <!-- bắt đầu phân trang -->
         <%
             int sotrang = 1;
@@ -56,32 +57,35 @@
                 sotrang = Integer.parseInt(request.getParameter("trang").toString());
             }
         %>
-        <div style="margin-bottom: 10px; height: 20px; text-align: center; font-size: 1.5em">
-            <%
-                if (sotrang - 1 < 1) {
-            %>
-            <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=1" > Trang Đầu </a>
-            <%
-            } else {
-            %>
-            <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=<%= sotrang - 1%>" > <%= sotrang - 1%> </a>
-            <%
-                }                       
-            %>            
-            <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString()%>&trang=<%= sotrang%>" > <%= sotrang%> </a>
-            <%
-                if (sotrang + 1 > tongsotrang) {
-            %>
-            <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=1" > Trang Cuối </a>
-            <%
-            } else {
-            %>
-            <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=<%= sotrang + 1%>" > <%= sotrang + 1%> </a>
-            <%
-                }
-            %>
+        <div style="padding: 0pt;" class="paging">
+            <div class="_paging" style="width: 200px;">
+                <%
+                    if (sotrang - 1 < 1) {
+                %>
+                <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=1" > Trang Đầu </a>
+                <%            } else {
+                %>
+                <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=<%= sotrang - 1%>" > <%= sotrang - 1%> </a>
+                <%
+                    }
+                %>            
+                <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=<%= sotrang%>" > <%= sotrang%> </a>
+                <%
+                    if (sotrang + 1 > tongsotrang) {
+                %>
+                <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=<%= tongsotrang%>" > Trang Cuối </a>
+                <%
+                } else {
+                %>
+                <a href="view?task=sanphamtheohang&MH=<%= request.getParameter("MH").toString() %>&trang=<%= sotrang + 1%>" > <%= sotrang + 1%> </a>
+                <%
+                    }
+                %>
+            </div>
         </div>
         <!-- kết thúc phân trang -->
+        
+        <p>&nbsp;</p>
         <img style="margin-left: 10px;" alt="Advertisement" src="images/linhtinh/600x100_trungthuc.jpg" />
 
     </div>

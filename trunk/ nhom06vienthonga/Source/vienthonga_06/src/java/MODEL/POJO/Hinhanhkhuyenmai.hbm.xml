@@ -12,7 +12,7 @@
             <column name="MaKhuyenMai" length="45" />
         </many-to-one>
         <property name="duongDan" type="string">
-            <column name="DuongDan" length="45" />
+            <column name="DuongDan" />
         </property>
         <property name="tinhTrang" type="java.lang.Integer">
             <column name="TinhTrang" />
