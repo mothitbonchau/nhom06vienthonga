@@ -21,6 +21,7 @@ public class Sanpham  implements java.io.Serializable {
      private String kichThuoc;
      private String trongLuong;
      private Integer tinhTrang;
+     private Integer soLuong;
      private Set chitietdonhangs = new HashSet(0);
      private Set giohangs = new HashSet(0);
      private Set hinhanhsanphams = new HashSet(0);
@@ -35,11 +36,12 @@ public class Sanpham  implements java.io.Serializable {
     public Sanpham(String maSanPham) {
         this.maSanPham = maSanPham;
     }
-    public Sanpham(String maSanPham, Hang hang, Loaisanpham loaisanpham, String tenSanPham, Float giaBan, String mauSac, String thoiGianBaoHanh, String kichThuoc, String trongLuong, Integer tinhTrang, Set chitietdonhangs, Set giohangs, Set hinhanhsanphams, Set giamgias, Set chitietlaptops, Set chitietdienthoais) {
+    public Sanpham(String maSanPham, Hang hang, int soLuong, Loaisanpham loaisanpham, String tenSanPham, Float giaBan, String mauSac, String thoiGianBaoHanh, String kichThuoc, String trongLuong, Integer tinhTrang, Set chitietdonhangs, Set giohangs, Set hinhanhsanphams, Set giamgias, Set chitietlaptops, Set chitietdienthoais) {
        this.maSanPham = maSanPham;
        this.hang = hang;
        this.loaisanpham = loaisanpham;
        this.tenSanPham = tenSanPham;
+       this.soLuong = soLuong;
        this.giaBan = giaBan;
        this.mauSac = mauSac;
        this.thoiGianBaoHanh = thoiGianBaoHanh;
@@ -124,6 +126,15 @@ public class Sanpham  implements java.io.Serializable {
     public void setTinhTrang(Integer tinhTrang) {
         this.tinhTrang = tinhTrang;
     }
+    
+    public Integer getSoLuong() {
+        return this.soLuong;
+    }
+    
+    public void setSoLuong(Integer soLuong) {
+        this.soLuong = soLuong;
+    }
+    
     public Set getChitietdonhangs() {
         return this.chitietdonhangs;
     }
@@ -166,10 +177,6 @@ public class Sanpham  implements java.io.Serializable {
     public void setChitietdienthoais(Set chitietdienthoais) {
         this.chitietdienthoais = chitietdienthoais;
     }
-
-
-
-
 }
 
 

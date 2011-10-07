@@ -92,6 +92,15 @@ public class process extends HttpServlet {
             //<editor-fold defaultstate="collapsed" desc="đặt mua sản phẩm">
             if (task.equals("datmua")) {
                 String msp = request.getParameter("MSP");
+                
+                if (session.getAttribute("TenDangNhap") == null) {
+                    String thongbao = "";
+                    thongbao = "Vui lòng đăng nhập";
+                    request.setAttribute("thongbao", thongbao);
+                    
+                    request.getRequestDispatcher("view?task=chitietsanpham&MSP=" + msp).forward(request, response);
+                    return;
+                }                                
 
                 Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
                 Giohang gh = GioHangDAO.LayGioHangCuoiCung();
