@@ -43,7 +43,7 @@ public class SanPhamDAO {
             String hql = "FROM Sanpham s WHERE s.tinhTrang=0 and s.hang=:mh";
             Query query = session.createQuery(hql);
             query.setString("mh", mh);
-            if(batdau >= 0 && sp1trang > 1)
+            if(batdau >= 0 && sp1trang > 0)
             {
                 query.setFirstResult(batdau);
                 query.setMaxResults(sp1trang);
