@@ -35,6 +35,9 @@
         <property name="tinhTrang" type="java.lang.Integer">
             <column name="TinhTrang" />
         </property>
+        <property name="soLuong" type="java.lang.Integer">
+            <column name="SoLuong" />
+        </property>
         <set name="chitietdonhangs" inverse="true" lazy="false">
             <key>
                 <column name="MaSanPham" length="45" />
