@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 4, 2011 11:02:12 AM by Hibernate Tools 3.2.1.GA
+// Generated Oct 6, 2011 5:23:49 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -22,6 +22,7 @@ public class Sanpham  implements java.io.Serializable {
      private String trongLuong;
      private Integer tinhTrang;
      private Set chitietdonhangs = new HashSet(0);
+     private Set giohangs = new HashSet(0);
      private Set hinhanhsanphams = new HashSet(0);
      private Set giamgias = new HashSet(0);
      private Set chitietlaptops = new HashSet(0);
@@ -34,7 +35,7 @@ public class Sanpham  implements java.io.Serializable {
     public Sanpham(String maSanPham) {
         this.maSanPham = maSanPham;
     }
-    public Sanpham(String maSanPham, Hang hang, Loaisanpham loaisanpham, String tenSanPham, Float giaBan, String mauSac, String thoiGianBaoHanh, String kichThuoc, String trongLuong, Integer tinhTrang, Set chitietdonhangs, Set hinhanhsanphams, Set giamgias, Set chitietlaptops, Set chitietdienthoais) {
+    public Sanpham(String maSanPham, Hang hang, Loaisanpham loaisanpham, String tenSanPham, Float giaBan, String mauSac, String thoiGianBaoHanh, String kichThuoc, String trongLuong, Integer tinhTrang, Set chitietdonhangs, Set giohangs, Set hinhanhsanphams, Set giamgias, Set chitietlaptops, Set chitietdienthoais) {
        this.maSanPham = maSanPham;
        this.hang = hang;
        this.loaisanpham = loaisanpham;
@@ -46,6 +47,7 @@ public class Sanpham  implements java.io.Serializable {
        this.trongLuong = trongLuong;
        this.tinhTrang = tinhTrang;
        this.chitietdonhangs = chitietdonhangs;
+       this.giohangs = giohangs;
        this.hinhanhsanphams = hinhanhsanphams;
        this.giamgias = giamgias;
        this.chitietlaptops = chitietlaptops;
@@ -128,6 +130,13 @@ public class Sanpham  implements java.io.Serializable {
     
     public void setChitietdonhangs(Set chitietdonhangs) {
         this.chitietdonhangs = chitietdonhangs;
+    }
+    public Set getGiohangs() {
+        return this.giohangs;
+    }
+    
+    public void setGiohangs(Set giohangs) {
+        this.giohangs = giohangs;
     }
     public Set getHinhanhsanphams() {
         return this.hinhanhsanphams;

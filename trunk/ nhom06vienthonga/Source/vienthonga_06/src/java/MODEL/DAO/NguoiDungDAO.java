@@ -139,5 +139,26 @@ public class NguoiDungDAO {
         }
         return listnd;
     }
+
+    public static Nguoidung LayNguoiDungTheoTenDangNhap(String tdn) {
+        Nguoidung ndung = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String hql = "FROM Nguoidung WHERE tenDangNhap=:tenDangNhap";
+            Query query = session.createQuery(hql);
+            query.setString("tenDangNhap", tdn);
+            //List<Nguoidung> list = query.list();
+            //session.get(ndung.getClass(), ndung);
+            Object ob = query.uniqueResult();
+            ndung = (Nguoidung) ob;
+
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+
+        } finally {
+            session.close();
+        }
+        return ndung;
+    }
     
 }

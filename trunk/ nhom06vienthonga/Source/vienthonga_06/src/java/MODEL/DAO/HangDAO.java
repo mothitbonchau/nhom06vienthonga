@@ -30,12 +30,6 @@ public class HangDAO {
             Query query = session.createQuery(hql);
             //query.setInteger("tt", 0);
             list = query.list();
-
-            
-            //
-            Hang h = new Hang();
-            session.saveOrUpdate(h);
-
         } catch (Exception ex) {
             Logger.getLogger(HangDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

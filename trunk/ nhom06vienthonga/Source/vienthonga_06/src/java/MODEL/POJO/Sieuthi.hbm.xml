@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 4, 2011 11:02:17 AM by Hibernate Tools 3.2.1.GA -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 6, 2011 5:23:53 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="vienthonga" name="MODEL.POJO.Sieuthi" table="sieuthi">
-    <id name="maSieuThi" type="string">
-      <column length="45" name="MaSieuThi"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="MODEL.POJO.Vung" fetch="select" name="vung">
-      <column length="45" name="MaVung"/>
-    </many-to-one>
-    <property name="tenSieuThi" type="string">
-      <column length="45" name="TenSieuThi"/>
-    </property>
-    <property name="diaChi" type="string">
-      <column length="45" name="DiaChi"/>
-    </property>
-    <property name="tinhTrang" type="java.lang.Integer">
-      <column name="TinhTrang"/>
-    </property>
-  </class>
+    <class name="MODEL.POJO.Sieuthi" table="sieuthi" catalog="vienthonga">
+        <id name="maSieuThi" type="string">
+            <column name="MaSieuThi" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="vung" class="MODEL.POJO.Vung" fetch="select">
+            <column name="MaVung" length="45" />
+        </many-to-one>
+        <property name="tenSieuThi" type="string">
+            <column name="TenSieuThi" length="45" />
+        </property>
+        <property name="diaChi" type="string">
+            <column name="DiaChi" length="45" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+    </class>
 </hibernate-mapping>

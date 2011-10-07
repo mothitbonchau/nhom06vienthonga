@@ -12,7 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <div id="body_mid" style="float:left; width:76.5%;">   
-    <form action="process?task=quanlyadmin&task_chitiet=capnhatcongty" method="post">
+    <form action="process?task=quanlyadmin&task_chitiet=capnhatcongty" method="post" style="margin-left: 10px;">
         <input name="maCongTy" type="hidden" value="<%= ct.getMaCongTy()%>" />
         
         <table class="test" width="100%" border="2" cellspacing="2" cellpadding="2">

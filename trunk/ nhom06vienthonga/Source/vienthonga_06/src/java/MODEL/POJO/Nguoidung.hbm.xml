@@ -1,47 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 4, 2011 11:02:17 AM by Hibernate Tools 3.2.1.GA -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 6, 2011 5:23:53 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="vienthonga" name="MODEL.POJO.Nguoidung" table="nguoidung">
-    <id name="maNguoiDung" type="string">
-      <column length="45" name="MaNguoiDung"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="MODEL.POJO.Loainguoidung" fetch="select" name="loainguoidung">
-      <column length="45" name="MaLoaiNguoiDung"/>
-    </many-to-one>
-    <property name="tenDangNhap" type="string">
-      <column length="45" name="TenDangNhap"/>
-    </property>
-    <property name="matKhau" type="string">
-      <column length="45" name="MatKhau"/>
-    </property>
-    <property name="tenNguoiDung" type="string">
-      <column length="45" name="TenNguoiDung"/>
-    </property>
-    <property name="email" type="string">
-      <column length="45" name="Email"/>
-    </property>
-    <property name="cmnd" type="java.lang.Integer">
-      <column name="CMND"/>
-    </property>
-    <property name="dienThoai" type="java.lang.Integer">
-      <column name="DienThoai"/>
-    </property>
-    <property name="diaChi" type="string">
-      <column length="45" name="DiaChi"/>
-    </property>
-    <property name="ngayDangKy" type="timestamp">
-      <column length="19" name="NgayDangKy"/>
-    </property>
-    <property name="tinhTrang" type="java.lang.Integer">
-      <column name="TinhTrang"/>
-    </property>
-    <set inverse="true" name="donhangs">
-      <key>
-        <column length="45" name="MaNguoiDung"/>
-      </key>
-      <one-to-many class="MODEL.POJO.Donhang"/>
-    </set>
-  </class>
+    <class name="MODEL.POJO.Nguoidung" table="nguoidung" catalog="vienthonga">
+        <id name="maNguoiDung" type="string">
+            <column name="MaNguoiDung" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="loainguoidung" class="MODEL.POJO.Loainguoidung" fetch="select" lazy="false">
+            <column name="MaLoaiNguoiDung" length="45" />
+        </many-to-one>
+        <property name="tenDangNhap" type="string">
+            <column name="TenDangNhap" length="45" />
+        </property>
+        <property name="matKhau" type="string">
+            <column name="MatKhau" length="45" />
+        </property>
+        <property name="tenNguoiDung" type="string">
+            <column name="TenNguoiDung" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" />
+        </property>
+        <property name="cmnd" type="java.lang.Integer">
+            <column name="CMND" />
+        </property>
+        <property name="dienThoai" type="java.lang.Integer">
+            <column name="DienThoai" />
+        </property>
+        <property name="diaChi" type="string">
+            <column name="DiaChi" length="45" />
+        </property>
+        <property name="ngayDangKy" type="timestamp">
+            <column name="NgayDangKy" length="19" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+        <set name="donhangs" inverse="true" lazy="false">
+            <key>
+                <column name="MaNguoiDung" length="45" />
+            </key>
+            <one-to-many class="MODEL.POJO.Donhang" />
+        </set>
+        <set name="giohangs" inverse="true" lazy="false">
+            <key>
+                <column name="MaNguoiDung" length="45" />
+            </key>
+            <one-to-many class="MODEL.POJO.Giohang" />
+        </set>
+    </class>
 </hibernate-mapping>
