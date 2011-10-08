@@ -48,15 +48,16 @@ public class GioHangDAO {
     public static Giohang LayGioHangCuoiCung() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        Giohang gh = new Giohang();
+        Giohang gh = null;
 
-        String hql = "select max(MaSanPham), s.* ";
-        hql += "from SanPham s ";
-        hql += "where length(substring(MaSanPham,4)) = (select max(length(substring(MaSanPham,4))) from sanpham s)";
+        String hql = "select max(MaGioHang)";
+        hql += "from Giohang gh ";
+        hql += "where length(substring(MaGioHang,4)) = (select max(length(substring(MaGioHang,4))) from Giohang)";
 
         try {
             Query query = session.createQuery(hql);
-            gh = (Giohang) query.uniqueResult();
+            String mgh_cuoi = (String) query.uniqueResult();
+            gh = LayGioHangTheoMa(mgh_cuoi);
         } catch (Exception ex) {
         } finally {
             session.close();

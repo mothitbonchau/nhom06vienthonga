@@ -52,6 +52,14 @@
         <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_congty.jsp" />      
     </definition>
     
+    <definition name="quanlyadmin_sanpham" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_sanpham.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_sanpham_them" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_sanpham_them.jsp" />      
+    </definition>
+    
     <definition name="quanlynguoidung" extends="template_vienthonga">        
         <put-attribute name="body_left" value="/pages/body_left_quanlynguoidung.jsp" />
         <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_thongtinnguoidung.jsp" />

@@ -4,27 +4,26 @@
  */
 package CONTROLLER;
 
-import MODEL.DAO.CongTyDAO;
-import MODEL.DAO.GioHangDAO;
-import MODEL.DAO.NguoiDungDAO;
-import MODEL.DAO.SanPhamDAO;
-import MODEL.DAO.ThamSoDao;
-import MODEL.POJO.Congty;
-import MODEL.POJO.Giohang;
-import MODEL.POJO.Hang;
-import MODEL.POJO.Loaisanpham;
-import MODEL.POJO.Nguoidung;
-import MODEL.POJO.Sanpham;
+import MODEL.DAO.*;
+import MODEL.POJO.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 /**
  *
  * @author HP
@@ -92,15 +91,15 @@ public class process extends HttpServlet {
             //<editor-fold defaultstate="collapsed" desc="đặt mua sản phẩm">
             if (task.equals("datmua")) {
                 String msp = request.getParameter("MSP");
-                
+
                 if (session.getAttribute("TenDangNhap") == null) {
                     String thongbao = "";
                     thongbao = "Vui lòng đăng nhập";
                     request.setAttribute("thongbao", thongbao);
-                    
+
                     request.getRequestDispatcher("view?task=chitietsanpham&MSP=" + msp).forward(request, response);
                     return;
-                }                                
+                }
 
                 Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
                 Giohang gh = GioHangDAO.LayGioHangCuoiCung();
@@ -108,7 +107,7 @@ public class process extends HttpServlet {
                 try {
                     Integer.parseInt(gh.getMaGioHang().substring(4));
                     mgh = mgh + 1;
-                } catch(Exception ex)  {
+                } catch (Exception ex) {
                     mgh = 1;
                 }
                 gh.setMaGioHang("MGH" + String.valueOf(mgh));
@@ -179,6 +178,132 @@ public class process extends HttpServlet {
                     if (task_chitiet.equals("nguoidung")) {
 
                         request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
+                        return;
+                    }
+                    //</editor-fold>
+
+                    //<editor-fold defaultstate="collapsed" desc="Sản phẩm">
+                    if (task_chitiet.equals("sanpham")) {
+                        //thêm
+                        if (request.getParameter("Them") != null) {
+                            ArrayList<FileItem> hinhanhsanpham_data = new ArrayList<FileItem>();
+                            Hashtable params = new Hashtable();
+                            if (ServletFileUpload.isMultipartContent(request)) {
+                                ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
+                                try {
+                                    List fileItemsList = servletFileUpload.parseRequest(request);
+
+                                    Iterator it = fileItemsList.iterator();
+
+                                    while (it.hasNext()) {
+                                        FileItem fileItem = (FileItem) it.next();
+                                        if (fileItem.isFormField()) {
+                                            String value = fileItem.getString("UTF-8");
+                                            String key = fileItem.getFieldName();
+                                            params.put(key, value);
+                                        } else {
+                                            hinhanhsanpham_data.add(fileItem);                                            
+                                        }
+                                    }
+                                } catch (Exception e) {
+                                    out.println(e);
+                                    return;
+                                }
+                                
+                                Sanpham sp = new Sanpham();
+                                sp.setMaSanPham(params.get("MaSanPham").toString());
+                                sp.setTenSanPham(params.get("TenSanPham").toString());
+                                Loaisanpham lsp = new Loaisanpham();
+                                lsp.setMaLoaiSanPham(params.get("MaLoaiSanPham").toString());
+                                sp.setLoaisanpham(lsp);
+                                Hang h = new Hang();
+                                h.setMaHang(params.get("MaHang").toString());
+                                sp.setSoLuong(Integer.parseInt(params.get("SoLuong").toString()));
+                                sp.setGiaBan(Float.parseFloat(params.get("GiaBan").toString()));
+                                sp.setMauSac(params.get("MauSac").toString());
+                                sp.setThoiGianBaoHanh(params.get("ThoiGianBaoHanh").toString());
+                                sp.setKichThuoc(params.get("KichThuoc").toString());
+                                sp.setTrongLuong(params.get("TrongLuong").toString());
+                                sp.setTinhTrang(0);
+                                
+                                SanPhamDAO.Them(sp);
+                                
+                                String path = getServletContext().getRealPath("/") + "images\\";
+                                
+                                if(sp.getLoaisanpham().getMaLoaiSanPham().equals("DT"))
+                                {
+                                    path += "dien thoai\\";
+                                    
+                                    Chitietdienthoai ctdt = new Chitietdienthoai();
+                                    ctdt.setMaChiTietDienThoai("");
+                                    ctdt.setSanpham(sp);
+                                    ctdt.setMang(params.get("Mang").toString());
+                                    ctdt.setLoaiManHinh(params.get("LoaiManHinh").toString());
+                                    ctdt.setNgonNgu(params.get("NgonNgu").toString());
+                                    
+                                    ChiTietDienThoaiDAO.Them(ctdt);
+                                }
+                                
+                                if(sp.getLoaisanpham().getMaLoaiSanPham().equals("LT"))
+                                {
+                                    path += "laptop\\";
+                                    
+                                    Chitietlaptop ctlt = new Chitietlaptop();
+                                    ctlt.setMaChiTietLaptop("");
+                                    ctlt.setSanpham(sp);
+                                    ctlt.setCongNgheCpu(params.get("CongNgheCPU").toString());
+                                    ctlt.setTocDoCpu(params.get("TocDoCPU").toString());
+                                    ctlt.setBoNhoDem(params.get("BoNhoDem").toString());
+                                    
+                                    ChiTietLaptopDAO.Them(ctlt);
+                                }
+                                
+                                path += sp.getHang().getTenHang() + "\\";
+                                
+                                Hinhanhsanpham hasp_cuoi = HinhAnhSanPhamDAO.LayHinhAnhSanPhamCuoiCung();
+                                int chiso = Integer.parseInt(hasp_cuoi.getMaHinhAnhSanPham().substring(4));
+                                chiso += 1;
+                                String mhasp = "MHASP" + chiso;
+                                
+                                for(int i=0; i<hinhanhsanpham_data.size(); i++)
+                                {
+                                    Hinhanhsanpham hasp = new Hinhanhsanpham();
+                                    hasp.setMaHinhAnhSanPham(mhasp);
+                                    hasp.setSanpham(sp);
+                                    hasp.setTinhTrang(0);
+                                    hasp.setDuongDan(hinhanhsanpham_data.get(i).getName());
+                                                                        
+                                    HinhAnhSanPhamDAO.Them(hasp);
+                                    
+                                    File file = new File(path + hinhanhsanpham_data.get(i).getName());
+                                    try {
+                                        hinhanhsanpham_data.get(i).write(file);
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    
+                                    chiso += 1;
+                                    mhasp = "MHASP" + chiso;
+                                }
+                            }
+
+                            request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                            return;
+                        }
+
+                        //cập nhật
+                        if (request.getParameter("CapNhat") != null) {
+                            request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                            return;
+                        }
+
+                        //xoá
+                        if (request.getParameter("Xoa") != null) {
+                            request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                            return;
+                        }
+
+                        request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
                         return;
                     }
                     //</editor-fold>
