@@ -183,7 +183,47 @@ public class view extends HttpServlet {
                         }
                         //</editor-fold>
 
+                        //<editor-fold defaultstate="collapsed" desc="sản phẩm">
+                        if (task_chitiet.equals("sanpham")) {
+                            if (request.getParameter("Them") != null) {
+                                request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                                return;
+                            }
 
+                            if (request.getParameter("CapNhat") != null) {
+                                request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                                return;
+                            }
+
+                            if (request.getParameter("Xoa") != null) {
+                                request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                                return;
+                            }
+
+                            int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                            int tongsotrang = 0;
+                            int trang = 1;
+                            if (request.getParameter("trang") != null) {
+                                trang = Integer.parseInt(request.getParameter("trang").toString());
+                            }
+                            int batdau = 0;
+                            if (trang > 1) {
+                                batdau = sp1trang * trang - sp1trang;
+                            }
+
+                            List<Sanpham> list = SanPhamDAO.LaySanPham(batdau, -1);
+                            tongsotrang = list.size() / sp1trang;
+                            if (list.size() % sp1trang > 0) {
+                                tongsotrang = tongsotrang + 1;
+                            }
+                            list = SanPhamDAO.LaySanPham(batdau, sp1trang);
+
+                            request.setAttribute("tongsotrang", tongsotrang);
+                            request.setAttribute("list", list);
+                            request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
                     }
 
                     request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
@@ -253,7 +293,7 @@ public class view extends HttpServlet {
                     tongsotrang = tongsotrang + 1;
                 }
                 list = KhuyenMaiDAO.LayKhuyenMai(batdau, sp1trang);
-                
+
                 request.setAttribute("tongsotrang", tongsotrang);
                 request.setAttribute("list", list);
                 request.getRequestDispatcher("KhuyenMai.jsp").forward(request, response);

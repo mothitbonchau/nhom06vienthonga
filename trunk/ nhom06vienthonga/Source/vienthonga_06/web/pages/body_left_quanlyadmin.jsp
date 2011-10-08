@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<div id="body_left" style="float: left; width: 15%; margin-left: -25px; margin-top: -10px;">
+<div id="body_left" style="float: left; width: 15%; margin-left: -20px; margin-top: -10px;">
 
     <div class="blocCategory">
         <h2 style="background-image: url(images/linhtinh/bgd_title.gif)" >QUẢN LÝ</h2>
@@ -33,7 +33,7 @@
                 <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Khuyến Mãi</a>
             </li>
             <li>
-                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Sản Phẩm</a>
+                <a href="view?task=quanly&task_chitiet=sanpham" style="text-transform: none;">Sản Phẩm</a>
             </li>
             <li>
                 <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Siêu Thị</a>
