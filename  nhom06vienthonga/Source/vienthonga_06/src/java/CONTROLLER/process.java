@@ -4,11 +4,24 @@
  */
 package CONTROLLER;
 
+import MODEL.DAO.CongTyDAO;
+import MODEL.DAO.GioHangDAO;
+import MODEL.DAO.NguoiDungDAO;
+import MODEL.DAO.SanPhamDAO;
+import MODEL.DAO.ThamSoDao;
+import MODEL.POJO.Congty;
+import MODEL.POJO.Giohang;
+import MODEL.POJO.Hang;
+import MODEL.POJO.Loainguoidung;
+import MODEL.POJO.Loaisanpham;
+import MODEL.POJO.Nguoidung;
+import MODEL.POJO.Sanpham;
 import MODEL.DAO.*;
 import MODEL.POJO.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -21,6 +34,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.omg.CORBA.SystemException;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
@@ -181,7 +195,98 @@ public class process extends HttpServlet {
 
                     //<editor-fold defaultstate="collapsed" desc="Người dùng">
                     if (task_chitiet.equals("nguoidung")) {
-
+                        if(request.getParameter("btnXoa") != null ){
+                            String[] CacMaXoa = request.getParameterValues("cbXoa");
+                            if(CacMaXoa != null){
+                                for(int i = 0; i < CacMaXoa.length; i++){
+                                    String ms = CacMaXoa[i];
+                                    int j = NguoiDungDAO.XoaNguoiDungTheoMa(ms);
+                                }
+                            }   
+                        }
+                        if(request.getParameter("btnThem") != null ){
+                            String tenDN = request.getParameter("tbTenDangNhapMoi");
+                            String matKhau = request.getParameter("tbMatKhauMoi");
+                            String tenND = request.getParameter("tbTenNguoiDungMoi");
+                            String email = request.getParameter("tbEmailMoi");
+                            String cmnd = request.getParameter("tbCMNDMoi");
+                            String dienThoai = request.getParameter("tbDienThoaiMoi");
+                            String diaChi = request.getParameter("tbDiaChiMoi");
+                            String Malnd = request.getParameter("LND");
+                            String ngayDK = request.getParameter("tbNgayDangKyMoi");
+                            
+                            //Lấy giờ hệ thống
+                            long current_time = System.currentTimeMillis();
+                            java.sql.Date NgayHienTai = new java.sql.Date(current_time);
+                            //Lay Loai Nguoi Dung qua MLND
+                            Loainguoidung lnd = NguoiDungDAO.LayDoiTuongTheoMa(Malnd);
+                            //Lấy Mã người dùng kiểu String tăng tự động
+                            String MaND = NguoiDungDAO.LayMaNguoiDungCuoiCung();
+                            String ma = "MND";
+                            String ChuoiSo = MaND.substring(3);
+                            int So = Integer.parseInt(ChuoiSo) + 1;
+                            MaND = ma + So;   
+                            
+                            Nguoidung nd = new Nguoidung();
+                            nd.setMaNguoiDung(MaND);
+                            nd.setTenDangNhap(tenDN);
+                            nd.setMatKhau(matKhau);
+                            nd.setTenNguoiDung(tenND);
+                            nd.setEmail(email);
+                            nd.setCmnd(Integer.parseInt(cmnd));
+                            nd.setDienThoai(Integer.parseInt(dienThoai));
+                            nd.setDiaChi(diaChi);
+                            nd.setLoainguoidung(lnd);
+                            nd.setNgayDangKy(NgayHienTai);
+                            nd.setTinhTrang(0);
+                            
+                            try {
+                                //Them Nguoi Dung Moi
+                                int kq = NguoiDungDAO.DangKy(nd);
+                            } catch (SystemException ex) {
+                                Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        if(request.getParameter("btnCapNhat") != null){
+                            String[] CacMaCapNhat = request.getParameterValues("cbCapnhat");
+                            if(CacMaCapNhat != null){
+                                for(int i =0 ;i<CacMaCapNhat.length;i++){
+                                    //////                                    
+                                    String tenDN = request.getParameter("tbTenDangNhap"+CacMaCapNhat[i]);
+                                    String matKhau = request.getParameter("tbMatKhau"+CacMaCapNhat[i]);
+                                    String tenND = request.getParameter("tbTenNguoiDung"+CacMaCapNhat[i]);
+                                    String email = request.getParameter("tbEmail"+CacMaCapNhat[i]);
+                                    String cmnd = request.getParameter("tbCMND"+CacMaCapNhat[i]);
+                                    String dienThoai = request.getParameter("tbDienThoai"+CacMaCapNhat[i]);
+                                    String diaChi = request.getParameter("tbDiaChi"+CacMaCapNhat[i]);
+                                    
+                                                                        
+                                    //Lấy thông tin cũ của Người Dùng đó
+                                    Nguoidung ndCu = NguoiDungDAO.LayNguoiDungTheoMa(CacMaCapNhat[i]);
+                                    
+                                    Nguoidung nd = new Nguoidung();
+                                    nd.setMaNguoiDung(CacMaCapNhat[i]);
+                                    nd.setTenDangNhap(tenDN);
+                                    nd.setMatKhau(matKhau);
+                                    nd.setTenNguoiDung(tenND);
+                                    nd.setEmail(email);
+                                    nd.setCmnd(Integer.parseInt(cmnd));
+                                    nd.setDienThoai(Integer.parseInt(dienThoai));
+                                    nd.setDiaChi(diaChi);
+                                    nd.setLoainguoidung(ndCu.getLoainguoidung());
+                                    nd.setNgayDangKy(ndCu.getNgayDangKy());
+                                    nd.setTinhTrang(ndCu.getTinhTrang());
+                                    
+                                    try {
+                                    //Update lại
+                                    int kq = NguoiDungDAO.DangKy(nd);
+                                    } catch (SystemException ex) {
+                                        Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
+                        }
+                        //Load lai trang
                         request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
                         return;
                     }
@@ -339,7 +444,7 @@ public class process extends HttpServlet {
             request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
             return;
 
-        } finally {
+          } finally {
             out.close();
         }
     }

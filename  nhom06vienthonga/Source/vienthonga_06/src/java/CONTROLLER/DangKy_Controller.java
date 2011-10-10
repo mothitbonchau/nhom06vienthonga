@@ -49,7 +49,7 @@ public class DangKy_Controller extends HttpServlet {
                     
                     //Lấy Mã người dùng kiểu String tăng tự động
                     String MaND = NguoiDungDAO.LayMaNguoiDungCuoiCung();
-                    String ma = "MND000";
+                    String ma = "MND";
                     String ChuoiSo = MaND.substring(3);
                     int So = Integer.parseInt(ChuoiSo) + 1;
                     MaND = ma + So;   

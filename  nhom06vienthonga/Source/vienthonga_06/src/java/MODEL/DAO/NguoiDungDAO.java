@@ -43,17 +43,17 @@ public class NguoiDungDAO {
         return ndung;
     }
 
-    public static int DangKy(Nguoidung kh) throws SystemException {
+    public static int DangKy(Nguoidung kh){
         int kq = -1;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(kh);
+            session.saveOrUpdate(kh);
             transaction.commit();
             kq = 1;
 
-        } catch (Exception ex) {
+        } catch (HibernateException ex) {
             transaction.rollback();
             System.err.println(ex);
         } finally {
@@ -130,10 +130,11 @@ public class NguoiDungDAO {
         List<Nguoidung> listnd = null;
 
         try {
-            String hql = "FROM Nguoidung";
+            String hql = "FROM Nguoidung Where tinhTrang = 0";
             Query query = session.createQuery(hql);
             listnd = query.list();
         } catch (Exception ex) {
+            System.err.println(ex);
         } finally {
             session.close();
         }
@@ -160,5 +161,40 @@ public class NguoiDungDAO {
         }
         return ndung;
     }
+    
+    public static int XoaNguoiDungTheoMa(String maND){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        int i = 0;
+        try{
+            String hql = "Update Nguoidung Set tinhTrang=1 Where maNguoiDung = '" + maND + "'" ;
+            Query query = session.createQuery(hql);
+            //query.setString("maNguoiDung", maND);
+            //List list = query.list();
+            i = query.executeUpdate();
+            int k =2;
+        }
+        catch(HibernateException ex){
+            System.err.println(ex);
+        }
+        finally{
+            session.close();
+        }
+        return i;
+    }
+    public static Nguoidung LayNguoiDungTheoMa(String maND){
+        Nguoidung nd = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            nd = (Nguoidung) session.get(Nguoidung.class, maND);
+        }
+        catch(HibernateException ex){
+            System.err.println(ex);
+        }
+        finally{
+            session.close();
+        }
+        return nd;
+    }
+         
     
 }
