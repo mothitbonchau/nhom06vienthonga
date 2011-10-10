@@ -16,6 +16,37 @@ import org.hibernate.Transaction;
  * @author LAPTOP
  */
 public class ChiTietLaptopDAO {
+    public static Chitietlaptop LayChiTietLaptopCuoiCung() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Chitietlaptop ctlt = null;
+
+        String hql = "select max(ctlt.maChiTietLaptop)";
+        hql += "from Chitietlaptop ctlt ";
+        hql += "where length(substring(ctlt.maChiTietLaptop,4)) = (select max(length(substring(ctlt.maChiTietLaptop,4))) from Chitietlaptop ctlt)";
+        
+        try {
+            Query query = session.createQuery(hql);
+            String mctlt_cuoi = (String) query.uniqueResult();            
+            ctlt = LayChiTietLaptopTheoMa(mctlt_cuoi);
+        } catch (Exception ex) {
+        } finally {
+            session.close();
+        }
+
+        return ctlt;
+    }
+    
+    public static Chitietlaptop LayChiTietLaptopTheoMa(String mctlt) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Chitietlaptop ctlt = (Chitietlaptop) session.get(Chitietlaptop.class, mctlt);
+
+        session.close();
+
+        return ctlt;
+    }
+    
     public static int Them(Chitietlaptop ctlt) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         int kq = 0;

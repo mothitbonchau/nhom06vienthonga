@@ -21,9 +21,9 @@ public class HinhAnhSanPhamDAO {
 
         Hinhanhsanpham gh = null;
 
-        String hql = "select max(MaHinhAnhSanPham)";
-        hql += "from Hinhanhsanpham gh ";
-        hql += "where length(substring(MaHinhAnhSanPham,4)) = (select max(length(substring(MaHinhAnhSanPham,4))) from Hinhanhsanpham)";
+        String hql = "select max(hasp.maHinhAnhSanPham) ";
+        hql += "from Hinhanhsanpham hasp ";
+        hql += "where length(substring(hasp.maHinhAnhSanPham,4)) = (select max(length(substring(hasp.maHinhAnhSanPham,4))) from Hinhanhsanpham hasp)";
 
         try {
             Query query = session.createQuery(hql);
