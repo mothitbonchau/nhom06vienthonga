@@ -302,7 +302,7 @@ public class view extends HttpServlet {
             //</editor-fold>
 
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
-
+          
         } finally {
             out.close();
         }
