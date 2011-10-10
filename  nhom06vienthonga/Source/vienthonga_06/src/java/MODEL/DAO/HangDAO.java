@@ -40,4 +40,15 @@ public class HangDAO {
         
         return list;
     }
+    
+    public static Hang LayHangTheoMa(String mh) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Hang h = (Hang) session.get(Hang.class, mh);
+
+        session.close();
+
+        return h;
+    }
+    
 }

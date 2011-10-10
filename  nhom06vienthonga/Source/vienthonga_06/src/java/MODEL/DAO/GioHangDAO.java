@@ -50,9 +50,9 @@ public class GioHangDAO {
 
         Giohang gh = null;
 
-        String hql = "select max(MaGioHang)";
+        String hql = "select max(gh.maGioHang)";
         hql += "from Giohang gh ";
-        hql += "where length(substring(MaGioHang,4)) = (select max(length(substring(MaGioHang,4))) from Giohang)";
+        hql += "where length(substring(gh.maGioHang,4)) = (select max(length(substring(gh.maGioHang,4))) from Giohang gh)";
 
         try {
             Query query = session.createQuery(hql);
