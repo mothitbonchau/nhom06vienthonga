@@ -119,7 +119,9 @@
                         <tr>
 
                         <td valign="top" style="width: 130px; text-align: center;">
+
                             <a href="process?task=datmua&MSP=<%= sp.getMaSanPham() %>">
+
                                 <img alt="" style="border: 0px none;" src="images/linhtinh/dathang_but.gif" />
                             </a>
                         </td>  

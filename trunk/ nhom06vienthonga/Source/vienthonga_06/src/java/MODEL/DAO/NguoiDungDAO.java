@@ -8,7 +8,6 @@ import MODEL.POJO.Loainguoidung;
 import MODEL.POJO.Nguoidung;
 import MODEL.UTIL.HibernateUtil;
 import java.util.List;
-import javax.print.DocFlavor.STRING;
 import javax.transaction.SystemException;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -161,7 +160,20 @@ public class NguoiDungDAO {
         }
         return ndung;
     }
-    
+
+    public static Nguoidung LayNguoiDungTheoMa(String maND) {
+        Nguoidung nd = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            nd = (Nguoidung) session.get(Loainguoidung.class, maND);
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return nd;
+    }
+
     public static int XoaNguoiDungTheoMa(String maND){
         Session session = HibernateUtil.getSessionFactory().openSession();
         int i = 0;
@@ -181,20 +193,6 @@ public class NguoiDungDAO {
         }
         return i;
     }
-    public static Nguoidung LayNguoiDungTheoMa(String maND){
-        Nguoidung nd = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try{
-            nd = (Nguoidung) session.get(Nguoidung.class, maND);
-        }
-        catch(HibernateException ex){
-            System.err.println(ex);
-        }
-        finally{
-            session.close();
-        }
-        return nd;
-    }
-         
+             
     
 }
