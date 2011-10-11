@@ -145,7 +145,7 @@ public class view extends HttpServlet {
             //</editor-fold>            
 
             //<editor-fold defaultstate="collapsed" desc="chuyển trang đăng nhập">
-            if (task.equals("DangNhap")) {
+            if (task.equals("DangNhap")) {               
                 request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
             }
             //</editor-fold>
@@ -263,6 +263,14 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
+
+            //<editor-fold defaultstate="collapsed" desc="quản lý giỏ hàng">
+            if(task.equals("giohang")){
+                request.getRequestDispatcher("GioHang.jsp").forward(request, response);                        
+            }
+            //</editor-fold>
+            
+
             //<editor-fold defaultstate="collapsed" desc="chuyển trang khuyến mãi">
             if (task.equals("khuyenmai")) {
                 if (request.getParameter("task_chitiet") != null) {
@@ -301,9 +309,11 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
+
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
-          
-        } finally {
+            int ii =1;
+        
+     } finally {
             out.close();
         }
     }

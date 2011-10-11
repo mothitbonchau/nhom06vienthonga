@@ -75,7 +75,10 @@ public class DangKy_Controller extends HttpServlet {
                     
                     //Gán Session Tên Đăng Nhập
                     HttpSession session = request.getSession();
+                    session.setAttribute("MaNguoiDung", pojo.getMaNguoiDung());
                     session.setAttribute("TenDangNhap", pojo.getTenDangNhap());
+                    session.setAttribute("TenNguoiDung", pojo.getTenNguoiDung());
+                    session.setAttribute("Email", pojo.getEmail());
                                         
                     request.getRequestDispatcher("view").forward(request, response);                                  
                 }

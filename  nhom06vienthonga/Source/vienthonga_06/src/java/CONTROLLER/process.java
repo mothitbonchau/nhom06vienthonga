@@ -16,6 +16,8 @@ import MODEL.POJO.Loainguoidung;
 import MODEL.POJO.Loaisanpham;
 import MODEL.POJO.Nguoidung;
 import MODEL.POJO.Sanpham;
+import java.awt.Window;
+import java.awt.event.WindowEvent;
 import MODEL.DAO.*;
 import MODEL.POJO.*;
 import java.io.File;
@@ -105,46 +107,50 @@ public class process extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="đặt mua sản phẩm">
             if (task.equals("datmua")) {
-                String msp = request.getParameter("MSP");
-
-                if (session.getAttribute("TenDangNhap") == null) {
-                    String thongbao = "";
-                    thongbao = "Vui lòng đăng nhập";
-                    request.setAttribute("thongbao", thongbao);
-
-                    request.getRequestDispatcher("view?task=chitietsanpham&MSP=" + msp).forward(request, response);
-                    return;
-                }
-
+                 String msp = request.getParameter("MSP");
                 Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
-                Giohang gh = GioHangDAO.LayGioHangCuoiCung();
-                int mgh = 1;
-                if (gh == null) {
+                if (session.getAttribute("TenDangNhap") == null) {
+
+                    request.getRequestDispatcher("view?task=DangNhap").forward(request, response);
+                    return;
+                }      
+                else
+                {                                      
+                    
+                    Giohang gh = GioHangDAO.LayGioHangCuoiCung();
+                    int mgh = 1;
+                    if (gh == null) {
+                        gh = new Giohang();
+                    } else {
+                        mgh = Integer.parseInt(gh.getMaGioHang().substring(3));
+                        mgh = mgh + 1;
+                    }
                     gh = new Giohang();
-                } else {
-                    mgh = Integer.parseInt(gh.getMaGioHang().substring(3));
-                    mgh = mgh + 1;
-                }
-                gh = new Giohang();
-                gh.setMaGioHang("MGH" + String.valueOf(mgh));
-                gh.setDonGia(sp.getGiaBan());
-                gh.setSanpham(sp);
-                gh.setSoLuong(1);
-                gh.setThanhTien((float) 0);
-                gh.setTinhTrang(0);
-                Nguoidung nd = NguoiDungDAO.LayNguoiDungTheoTenDangNhap(session.getAttribute("TenDangNhap").toString());
-                gh.setNguoidung(nd);
+                    gh.setMaGioHang("MGH" + String.valueOf(mgh));
+                    gh.setDonGia(sp.getGiaBan());
+                    gh.setSanpham(sp);
+                    gh.setSoLuong(1);
+                    gh.setThanhTien((float) 0);
+                    gh.setTinhTrang(0);
+                    Nguoidung nd = NguoiDungDAO.LayNguoiDungTheoTenDangNhap(session.getAttribute("TenDangNhap").toString());
+                    gh.setNguoidung(nd);
 
-                int kq = GioHangDAO.Them(gh);
+                    request.setAttribute("TenSanPham", sp.getTenSanPham());
+                    request.setAttribute("ThanhTien", sp.getGiaBan());
 
-                if (kq == 1) {
-                    String thongbao = "";
-                    thongbao = "Đã đặt mua thành công";
-                    request.setAttribute("thongbao", thongbao);
-                }
+                    int kq = GioHangDAO.Them(gh);
 
-                sp = SanPhamDAO.LaySanPhamTheoMa(msp);
+                    if (kq == 1) {
+                        String thongbao = "";
+                        thongbao = "Đã đặt mua thành công";
+                        request.setAttribute("thongbao", thongbao);
+                    }
 
+                    request.getRequestDispatcher("view?task=giohang").forward(request, response);
+
+                }                          
+                                                     
+                //request.getRequestDispatcher("view?task=chitietsanpham&MSP=MSP31").forward(request, response);
                 request.setAttribute("sanpham", sp);
                 request.getRequestDispatcher("ChiTietSanPham.jsp").forward(request, response);
                 return;
@@ -153,9 +159,13 @@ public class process extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="Xử lý đăng nhập">
             if (task.equals("XuLy")) {
+
                 Nguoidung ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), request.getParameter("matKhau"));
                 if (ndung != null) {
+                    session.setAttribute("MaNguoiDung", ndung.getMaNguoiDung());
                     session.setAttribute("TenDangNhap", ndung.getTenDangNhap());
+                    session.setAttribute("TenNguoiDung", ndung.getTenNguoiDung());
+                    session.setAttribute("Email", ndung.getEmail());
                     request.getRequestDispatcher("view").forward(request, response);
                 } else {
                     response.sendRedirect("view?task=DangNhap");

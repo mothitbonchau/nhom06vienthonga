@@ -1,5 +1,12 @@
+<%@page import="com.sun.java.swing.plaf.windows.WindowsTextPaneUI"%>
+<%@page import="java.awt.Dialog"%>
+<%@page import="java.awt.event.WindowEvent"%>
+<%@page import="java.awt.Window"%>
+<%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="css/maintabletitle.css" rel="stylesheet" type="text/css" />
+
+
 <div id="body_mid" style="float:left; width:60%;">
     <form name="formDangNhap" id="formDangNhap" Action="process?task=XuLy" method="post">
         <table width="775" border="0" cellpadding="0" cellspacing="0">
@@ -12,11 +19,12 @@
                             <td>
                                 <table width="596" border="0" cellpadding="0" cellspacing="0">
                                     <tbody>
-                                        <tr>
+                                        <tr>                                        
                                         <td height="42" class="maintabletitle">
                                         <span class="titleSPChitiet">ĐĂNG NHẬP</span>
                                         </td>
-                                        </tr>
+                                        </tr>                                                                                                                          
+                                        
                                         <tr>
                                         <td style="height: 19px">  </td>
                                         </tr>
