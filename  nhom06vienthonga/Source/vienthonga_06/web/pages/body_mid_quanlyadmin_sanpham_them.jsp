@@ -43,21 +43,43 @@
 </script>
 
 <div id="chitietdienthoai" style="display: none">
-    Mạng:<br/>
-    <input type="text" name="Mang" /><br/>   
-    Loại màn hình:<br/>
-    <input type="text" name="LoaiManHinh" /><br/>
-    Ngôn ngữ:<br/>
-    <input type="text" name="NgonNgu" />
+    <table class="test" width="100%" border="0" cellspacing="2" cellpadding="2">
+        <tr>
+        <th colspan="2" align="center"><h2>CHI TIẾT ĐIỆN THOẠI</h2></th>
+        </tr>
+        <tr>
+        <td style="width: 35%;">Mạng: </td>
+        <td><input type="text" name="Mang" /></td>
+        </tr>
+        <tr>
+        <td style="width: 35%;">Loại màn hình: </td>
+        <td><input type="text" name="LoaiManHinh" /></td>
+        </tr>
+        <tr>
+        <td style="width: 35%;">Ngôn ngữ: </td>
+        <td><input type="text" name="NgonNgu" /></td>
+        </tr>
+    </table>
 </div>
 
 <div id="chitietlaptop" style="display: none">
-    Công nghệ CPU:<br/>
-    <input type="text" name="CongNgheCPU" /><br/>
-    Tốc độ CPU:<br/>
-    <input type="text" name="TocDoCPU" /><br/>
-    Bộ nhớ đệm:<br/>
-    <input type="text" name="BoNhoDem" />
+    <table class="test" width="100%" border="0" cellspacing="2" cellpadding="2">
+        <tr>
+        <th colspan="2" align="center"><h2>CHI TIẾT LAPTOP</h2></th>
+        </tr>
+        <tr>
+        <td style="width: 35%;">Công nghệ CPU: </td>
+        <td><input type="text" name="CongNgheCPU" /></td>
+        </tr>
+        <tr>
+        <td style="width: 35%;">Tốc độ CPU: </td>
+        <td><input type="text" name="TocDoCPU" /></td>
+        </tr>
+        <tr>
+        <td style="width: 35%;">Bộ nhớ đệm: </td>
+        <td><input type="text" name="BoNhoDem" /></td>
+        </tr>
+    </table>    
 </div>
 
 <div id="body_mid" style="float: left; width: 75%; margin-left: 0px;">
@@ -66,13 +88,38 @@
             <tr>
             <td>Mã Sản Phẩm</td>
             <td><input type="text" name="MaSanPham" value="<%= msp%>" readonly="readonly" /></td>
-            <td>Hình đại diện:</td>
-            <td><input style="height: 25px;" type="file" name="HinhDaiDien" value="Browse" /></td>
+            <td rowspan="10" style="vertical-align:top">
+                <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                    <tr>
+                    <td style="width: 35%;">Hình đại diện:</td>
+                    <td><input style="height: 25px;" type="file" name="HinhDaiDien" value="Browse" /></td>
+                    </tr>
+                </table>
+
+                <div id="thongtinchitiet" style="float: none;">
+                    <table class="test" width="100%" border="0" cellspacing="2" cellpadding="2">
+                        <tr>
+                        <th colspan="2" align="center"><h2>CHI TIẾT ĐIỆN THOẠI</h2></th>
+                        </tr>
+                        <tr>
+                        <td style="width: 35%;">Mạng: </td>
+                        <td><input type="text" name="Mang" /></td>
+                        </tr>
+                        <tr>
+                        <td style="width: 35%;">Loại màn hình: </td>
+                        <td><input type="text" name="LoaiManHinh" /></td>
+                        </tr>
+                        <tr>
+                        <td style="width: 35%;">Ngôn ngữ: </td>
+                        <td><input type="text" name="NgonNgu" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
             </tr>
             <tr>
             <td>Tên Sản Phẩm</td>
             <td><input type="text" name="TenSanPham" value="" /></td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
             <td>Loại Sản Phẩm</td>
@@ -80,56 +127,42 @@
                 <select id="MaLoaiSanPham" name="MaLoaiSanPham" style="width: 125px;" >
                     <option value="DT" onclick="showthongtin('DT');">- Điện Thoại -</option>
                     <option value="LT" onclick="showthongtin('LT');">- Laptop -</option>
-                </select>
-
-                <div id="thongtinchitiet">
-
-                </div>
+                </select>                
             </td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
             <td>Mã Hãng</td>
             <td><input type="text" name="MaHang" value="" /></td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
             <td>Số Lượng</td>
             <td><input type="text" name="SoLuong" value="" /></td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
             <td>Giá Bán</td>
             <td><input type="text" name="GiaBan" value="" /></td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
             <td>Màu Sắc</td>
             <td><input type="text" name="MauSac" value="" /></td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
             <td>Thời Gian Bảo Hành</td>
             <td><input type="text" name="ThoiGianBaoHanh" value="" /></td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
             <td>Kích Thước</td>
             <td><input type="text" name="KichThuoc" value="" /></td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
             <td>Trọng Lượng</td>
             <td><input type="text" name="TrongLuong" value="" /></td>
-            <td>&nbsp;</td>
             </tr>
             <tr>
-            <td align="center" colspan="5">
-                <input onclick="chuyentask('&Them=1')" type='submit' name='Them' id='Them' value='Thêm' style="height: 30px"/>
+            <td align="center" colspan="4">
+                <input onclick="chuyentask('&Them=1')" type='submit' name='Them' id='Them' value='Thêm' style="height: 30px"/>            
             <span>&nbsp;</span>
-            <input onclick="chuyentask('&CapNhat=1')" type='submit' name='CapNhat' id='CapNhat' value='Cập Nhật' style="height: 30px"/>
-            <span>&nbsp;</span>
-            <input onclick="chuyentask('&Xoa=1')" type='submit' name='Xoa' id='Xoa' value='Xóa' style="height: 30px"/>
+            <input type='reset' name='XoaNhapLai' id='XoaNhapLai' value='Xoá Nhập Lại' style="height: 30px"/>
             </td>
             </tr>
         </table>

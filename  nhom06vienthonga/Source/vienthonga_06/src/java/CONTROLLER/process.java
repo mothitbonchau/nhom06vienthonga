@@ -23,6 +23,8 @@ import MODEL.POJO.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -205,16 +207,16 @@ public class process extends HttpServlet {
 
                     //<editor-fold defaultstate="collapsed" desc="Người dùng">
                     if (task_chitiet.equals("nguoidung")) {
-                        if(request.getParameter("btnXoa") != null ){
+                        if (request.getParameter("btnXoa") != null) {
                             String[] CacMaXoa = request.getParameterValues("cbXoa");
-                            if(CacMaXoa != null){
-                                for(int i = 0; i < CacMaXoa.length; i++){
+                            if (CacMaXoa != null) {
+                                for (int i = 0; i < CacMaXoa.length; i++) {
                                     String ms = CacMaXoa[i];
                                     int j = NguoiDungDAO.XoaNguoiDungTheoMa(ms);
                                 }
-                            }   
+                            }
                         }
-                        if(request.getParameter("btnThem") != null ){
+                        if (request.getParameter("btnThem") != null) {
                             String tenDN = request.getParameter("tbTenDangNhapMoi");
                             String matKhau = request.getParameter("tbMatKhauMoi");
                             String tenND = request.getParameter("tbTenNguoiDungMoi");
@@ -224,7 +226,7 @@ public class process extends HttpServlet {
                             String diaChi = request.getParameter("tbDiaChiMoi");
                             String Malnd = request.getParameter("LND");
                             String ngayDK = request.getParameter("tbNgayDangKyMoi");
-                            
+
                             //Lấy giờ hệ thống
                             long current_time = System.currentTimeMillis();
                             java.sql.Date NgayHienTai = new java.sql.Date(current_time);
@@ -235,8 +237,8 @@ public class process extends HttpServlet {
                             String ma = "MND";
                             String ChuoiSo = MaND.substring(3);
                             int So = Integer.parseInt(ChuoiSo) + 1;
-                            MaND = ma + So;   
-                            
+                            MaND = ma + So;
+
                             Nguoidung nd = new Nguoidung();
                             nd.setMaNguoiDung(MaND);
                             nd.setTenDangNhap(tenDN);
@@ -249,7 +251,7 @@ public class process extends HttpServlet {
                             nd.setLoainguoidung(lnd);
                             nd.setNgayDangKy(NgayHienTai);
                             nd.setTinhTrang(0);
-                            
+
                             try {
                                 //Them Nguoi Dung Moi
                                 int kq = NguoiDungDAO.DangKy(nd);
@@ -257,23 +259,23 @@ public class process extends HttpServlet {
                                 Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
-                        if(request.getParameter("btnCapNhat") != null){
+                        if (request.getParameter("btnCapNhat") != null) {
                             String[] CacMaCapNhat = request.getParameterValues("cbCapnhat");
-                            if(CacMaCapNhat != null){
-                                for(int i =0 ;i<CacMaCapNhat.length;i++){
+                            if (CacMaCapNhat != null) {
+                                for (int i = 0; i < CacMaCapNhat.length; i++) {
                                     //////                                    
-                                    String tenDN = request.getParameter("tbTenDangNhap"+CacMaCapNhat[i]);
-                                    String matKhau = request.getParameter("tbMatKhau"+CacMaCapNhat[i]);
-                                    String tenND = request.getParameter("tbTenNguoiDung"+CacMaCapNhat[i]);
-                                    String email = request.getParameter("tbEmail"+CacMaCapNhat[i]);
-                                    String cmnd = request.getParameter("tbCMND"+CacMaCapNhat[i]);
-                                    String dienThoai = request.getParameter("tbDienThoai"+CacMaCapNhat[i]);
-                                    String diaChi = request.getParameter("tbDiaChi"+CacMaCapNhat[i]);
-                                    
-                                                                        
+                                    String tenDN = request.getParameter("tbTenDangNhap" + CacMaCapNhat[i]);
+                                    String matKhau = request.getParameter("tbMatKhau" + CacMaCapNhat[i]);
+                                    String tenND = request.getParameter("tbTenNguoiDung" + CacMaCapNhat[i]);
+                                    String email = request.getParameter("tbEmail" + CacMaCapNhat[i]);
+                                    String cmnd = request.getParameter("tbCMND" + CacMaCapNhat[i]);
+                                    String dienThoai = request.getParameter("tbDienThoai" + CacMaCapNhat[i]);
+                                    String diaChi = request.getParameter("tbDiaChi" + CacMaCapNhat[i]);
+
+
                                     //Lấy thông tin cũ của Người Dùng đó
                                     Nguoidung ndCu = NguoiDungDAO.LayNguoiDungTheoMa(CacMaCapNhat[i]);
-                                    
+
                                     Nguoidung nd = new Nguoidung();
                                     nd.setMaNguoiDung(CacMaCapNhat[i]);
                                     nd.setTenDangNhap(tenDN);
@@ -286,10 +288,10 @@ public class process extends HttpServlet {
                                     nd.setLoainguoidung(ndCu.getLoainguoidung());
                                     nd.setNgayDangKy(ndCu.getNgayDangKy());
                                     nd.setTinhTrang(ndCu.getTinhTrang());
-                                    
+
                                     try {
-                                    //Update lại
-                                    int kq = NguoiDungDAO.DangKy(nd);
+                                        //Update lại
+                                        int kq = NguoiDungDAO.DangKy(nd);
                                     } catch (SystemException ex) {
                                         Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
                                     }
@@ -304,7 +306,7 @@ public class process extends HttpServlet {
 
                     //<editor-fold defaultstate="collapsed" desc="Sản phẩm">
                     if (task_chitiet.equals("sanpham")) {
-                        //thêm
+                        //<editor-fold defaultstate="collapsed" desc="thêm">
                         if (request.getParameter("Them") != null) {
                             ArrayList<FileItem> hinhanhsanpham_data = new ArrayList<FileItem>();
                             Hashtable params = new Hashtable();
@@ -421,26 +423,53 @@ public class process extends HttpServlet {
                                     chiso += 1;
                                     mhasp = "MHASP" + chiso;
                                 }
-                                
+
                                 String thongbao = "";
                                 thongbao = "Đã thêm sản phẩm thành công";
                                 request.setAttribute("thongbao", thongbao);
                             }
-                        }
-
-                        //cập nhật
-                        if (request.getParameter("CapNhat") != null) {
+                            
                             request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
                             return;
                         }
+                        //</editor-fold>
 
-                        //xoá
+                        //<editor-fold defaultstate="collapsed" desc="cập nhật">                        
+                        if (request.getParameter("CapNhat") != null) {
+                            String[] stt = request.getParameterValues("ID");
+                            for(int i=0; i<stt.length; i++)
+                            {
+                                int k = Integer.parseInt(stt[i]);
+                                DecimalFormat df = new DecimalFormat("###,###,###");
+                                float giaban = 0;
+                                try {
+                                    giaban = df.parse(request.getParameterValues("GiaBan")[k].toString()).floatValue();
+                                } catch (ParseException ex) {
+                                    Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+
+                                Sanpham sp = new Sanpham();
+                                sp.setGiaBan(giaban);
+                                //SanPhamDAO.CapNhatSanPham(sp);
+                            }
+                            
+                            String thongbao = "";
+                            thongbao = "Đã cập nhật thành công";
+                            request.setAttribute("thongbao", thongbao);
+
+                            request.getRequestDispatcher("view?task=quanly&task_chitiet=sanpham").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+
+                        //<editor-fold defaultstate="collapsed" desc="xoá">                        
                         if (request.getParameter("Xoa") != null) {
                             request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
                             return;
                         }
+                        //</editor-fold>
 
-                        request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                        request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
                         return;
                     }
 
@@ -454,7 +483,7 @@ public class process extends HttpServlet {
             request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
             return;
 
-          } finally {
+        } finally {
             out.close();
         }
     }
