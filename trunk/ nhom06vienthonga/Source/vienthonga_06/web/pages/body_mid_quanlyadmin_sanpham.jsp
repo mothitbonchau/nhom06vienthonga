@@ -18,8 +18,77 @@
     }
 </style>
 
+<script type="text/javascript" >
+    function submit_them()
+    {
+        var task = document.getElementById('task');
+        task.setAttribute("name", "Them");
+        var frm = document.getElementById('frm_sanpham');
+        frm.setAttribute("action", "view?task=quanly&task_chitiet=sanpham");
+        frm.submit();
+    }
+    function submit_capnhat()
+    {
+        var task = document.getElementById('task');
+        task.setAttribute("name", "CapNhat");
+        var frm = document.getElementById('frm_sanpham');
+        frm.setAttribute("action", "process?task=quanlyadmin&task_chitiet=sanpham");
+        frm.submit();
+    }
+    function submit_xoa()
+    {
+        var task = document.getElementById('task');
+        task.setAttribute("name", "Xoa");
+        var frm = document.getElementById('frm_sanpham');
+        frm.setAttribute("action", "view?task=quanly&task_chitiet=sanpham");
+        frm.submit();
+    }
+    
+    function kiemtracheck()
+    {
+        var flag = 0;
+        var id = document.getElementsByName('ID');
+        for(var i=0; i<id.length; i++)
+        {
+            if(id[i].checked) 
+            {
+                flag = 1;
+            }
+        }
+
+        if(flag == 0)
+        {
+            alert("Chưa chọn sản phẩm để cập nhật !!!");
+            return false;
+        }               
+        
+        return true;
+    }
+    
+    function chuyen(task)
+    {
+        if(task == 'Them')
+        {
+            submit_them();
+        }
+        
+        if(task == 'CapNhat')
+        {
+            if(kiemtracheck() == true)
+            {
+                submit_capnhat();
+            }
+        }
+            
+        if(task == 'Xoa')
+        {
+            submit_xoa();
+        }
+    }
+</script>
+
 <div id="body_mid" style="float: left; width: 75%; margin-left: 0px;">
-    <form method="post" action="view?task=quanly&task_chitiet=sanpham">
+    <form id="frm_sanpham" method="post" action="">
         <table class="test" width="100%" border="2" cellspacing="2" cellpadding="2">            
             <tr align='center' style="background-color: #CCCCCC">
             <th>ID</th>            
@@ -42,7 +111,7 @@
 
             <tr>
             <td align='center'>
-                <input type='checkbox' name='ID' id='ID' value='<%= sp.getMaSanPham()%>' />
+                <input type='checkbox' name='ID' id='ID' value='<%= i%>' />
             </td>
             <td>
                 <input type='text' name='MaSanPham' id='MaSanPham' value='<%= sp.getMaSanPham()%>' style="width:50px;"/>
@@ -87,13 +156,14 @@
         <table class="test" width="100%" border="2" cellspacing="2" cellpadding="2">
             <tr>
             <td align="center">
-                <input type='submit' name='Them' id='Them' value='Thêm' style="height: 30px"/>
+                <input type='button' name="Them" id='Them' value='Thêm' style="height: 30px" onclick="chuyen('Them');" />
                 <span>&nbsp;</span>
-                <input type='submit' name='CapNhat' id='CapNhat' value='Cập Nhật' style="height: 30px"/>
+                <input type='button' name="CapNhat" id='CapNhat' value='Cập Nhật' style="height: 30px" onclick="chuyen('CapNhat');" />
                 <span>&nbsp;</span>
-                <input type='submit' name='Xoa' id='Xoa' value='Xóa' style="height: 30px"/>
+                <input type='button' name="Xoa" id='Xoa' value='Xóa' style="height: 30px" onclick="chuyen('Xoa');" />
             </td>
             </tr>
         </table>
+        <input type="hidden" name="" id="task" />
     </form>
 </div>

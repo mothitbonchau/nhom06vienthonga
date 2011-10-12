@@ -161,7 +161,7 @@ public class view extends HttpServlet {
                 nd.setTenDangNhap(session.getAttribute("TenDangNhap").toString());
                 nd = (NguoiDungDAO.TimKiem(nd)).get(0);
 
-                //admin
+                //<editor-fold defaultstate="collapsed" desc="admin">                                
                 if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND1")) {
                     if (request.getParameter("task_chitiet") != null) {
                         String task_chitiet = request.getParameter("task_chitiet");
@@ -186,16 +186,6 @@ public class view extends HttpServlet {
                         //<editor-fold defaultstate="collapsed" desc="sản phẩm">
                         if (task_chitiet.equals("sanpham")) {
                             if (request.getParameter("Them") != null) {
-                                request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
-                                return;
-                            }
-
-                            if (request.getParameter("CapNhat") != null) {
-                                request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
-                                return;
-                            }
-
-                            if (request.getParameter("Xoa") != null) {
                                 request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
                                 return;
                             }
@@ -229,8 +219,9 @@ public class view extends HttpServlet {
                     request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
                     return;
                 }
-
-                //người dùng
+                //</editor-fold>
+                
+                //<editor-fold defaultstate="collapsed" desc="người dùng">                               
                 if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND2")) {
                     if (request.getParameter("task_chitiet") != null) {
                         String task_chitiet = request.getParameter("task_chitiet");
@@ -246,8 +237,9 @@ public class view extends HttpServlet {
                     request.getRequestDispatcher("QuanLyNguoiDung.jsp").forward(request, response);
                     return;
                 }
-
-                //nhân viên
+                //</editor-fold>
+                
+                //<editor-fold defaultstate="collapsed" desc="nhân viên">                                
                 if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND3")) {
                     if (request.getParameter("task_chitiet") != null) {
                         String task_chitiet = request.getParameter("task_chitiet");
@@ -260,6 +252,7 @@ public class view extends HttpServlet {
                     request.getRequestDispatcher("QuanLyNhanVien.jsp").forward(request, response);
                     return;
                 }
+                //</editor-fold>
             }
             //</editor-fold>
 
