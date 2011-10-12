@@ -63,4 +63,21 @@ public class HinhAnhSanPhamDAO {
         }
         return kq;
     }
+
+    public static int CapNhatHinhAnhSanPham(Hinhanhsanpham hasp) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        int kq = 0;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(hasp);
+            transaction.commit();
+            kq = 1;
+        } catch (Exception ex) {
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        return kq;
+    }    
 }

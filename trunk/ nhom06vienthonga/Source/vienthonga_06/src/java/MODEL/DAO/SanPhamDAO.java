@@ -34,7 +34,7 @@ public class SanPhamDAO {
 
         return list;
     }
-
+        
     public static Sanpham LaySanPhamCuoiCung() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -77,7 +77,29 @@ public class SanPhamDAO {
 
         return list;
     }
+    
+    public static List<Sanpham> LayHetSanPham(int batdau, int sp1trang) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
+        List<Sanpham> list = null;
+
+        try {
+            String hql = "FROM Sanpham s";
+            Query query = session.createQuery(hql);
+            if (batdau >= 0 && sp1trang > 0) {
+                query.setFirstResult(batdau);
+                query.setMaxResults(sp1trang);
+            }
+
+            list = query.list();
+        } catch (Exception ex) {
+        } finally {
+            session.close();
+        }
+
+        return list;
+    }
+    
     public static List<Sanpham> LaySanPhamTheoHang(String mh, int batdau, int sp1trang) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -170,13 +192,30 @@ public class SanPhamDAO {
         return list;
     }
 
-    public static int Them(Sanpham sp) {
+    public static int ThemSanPham(Sanpham sp) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         int kq = 0;
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             session.save(sp);
+            transaction.commit();
+            kq = 1;
+        } catch (Exception ex) {
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        return kq;
+    }
+
+    public static int CapNhatSanPham(Sanpham sp) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        int kq = 0;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(sp);
             transaction.commit();
             kq = 1;
         } catch (Exception ex) {

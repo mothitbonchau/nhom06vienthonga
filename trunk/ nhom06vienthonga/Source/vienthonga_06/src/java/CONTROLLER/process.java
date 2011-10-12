@@ -4,20 +4,6 @@
  */
 package CONTROLLER;
 
-import MODEL.DAO.CongTyDAO;
-import MODEL.DAO.GioHangDAO;
-import MODEL.DAO.NguoiDungDAO;
-import MODEL.DAO.SanPhamDAO;
-import MODEL.DAO.ThamSoDao;
-import MODEL.POJO.Congty;
-import MODEL.POJO.Giohang;
-import MODEL.POJO.Hang;
-import MODEL.POJO.Loainguoidung;
-import MODEL.POJO.Loaisanpham;
-import MODEL.POJO.Nguoidung;
-import MODEL.POJO.Sanpham;
-import java.awt.Window;
-import java.awt.event.WindowEvent;
 import MODEL.DAO.*;
 import MODEL.POJO.*;
 import java.io.File;
@@ -25,7 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -109,16 +94,14 @@ public class process extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="đặt mua sản phẩm">
             if (task.equals("datmua")) {
-                 String msp = request.getParameter("MSP");
+                String msp = request.getParameter("MSP");
                 Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
                 if (session.getAttribute("TenDangNhap") == null) {
 
                     request.getRequestDispatcher("view?task=DangNhap").forward(request, response);
                     return;
-                }      
-                else
-                {                                      
-                    
+                } else {
+
                     Giohang gh = GioHangDAO.LayGioHangCuoiCung();
                     int mgh = 1;
                     if (gh == null) {
@@ -150,8 +133,8 @@ public class process extends HttpServlet {
 
                     request.getRequestDispatcher("view?task=giohang").forward(request, response);
 
-                }                          
-                                                     
+                }
+
                 //request.getRequestDispatcher("view?task=chitietsanpham&MSP=MSP31").forward(request, response);
                 request.setAttribute("sanpham", sp);
                 request.getRequestDispatcher("ChiTietSanPham.jsp").forward(request, response);
@@ -348,7 +331,7 @@ public class process extends HttpServlet {
                                 sp.setTrongLuong(params.get("TrongLuong").toString());
                                 sp.setTinhTrang(0);
 
-                                SanPhamDAO.Them(sp);
+                                SanPhamDAO.ThemSanPham(sp);
 
                                 String path = getServletContext().getRealPath("/") + "images\\";
 
@@ -428,7 +411,7 @@ public class process extends HttpServlet {
                                 thongbao = "Đã thêm sản phẩm thành công";
                                 request.setAttribute("thongbao", thongbao);
                             }
-                            
+
                             request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
                             return;
                         }
@@ -436,35 +419,184 @@ public class process extends HttpServlet {
 
                         //<editor-fold defaultstate="collapsed" desc="cập nhật">                        
                         if (request.getParameter("CapNhat") != null) {
-                            String[] stt = request.getParameterValues("ID");
-                            for(int i=0; i<stt.length; i++)
-                            {
-                                int k = Integer.parseInt(stt[i]);
-                                DecimalFormat df = new DecimalFormat("###,###,###");
-                                float giaban = 0;
-                                try {
-                                    giaban = df.parse(request.getParameterValues("GiaBan")[k].toString()).floatValue();
-                                } catch (ParseException ex) {
-                                    Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                            String capnhat = request.getParameter("CapNhat").toString();
+                            DecimalFormat df = new DecimalFormat("###,###,###");
 
-                                Sanpham sp = new Sanpham();
-                                sp.setGiaBan(giaban);
-                                //SanPhamDAO.CapNhatSanPham(sp);
+                            String msp = "";
+
+                            if (capnhat.equals("chitiet")) {
+                                //<editor-fold defaultstate="collapsed" desc="chi tiết">
+                                ArrayList<FileItem> hinhanhsanpham_data = new ArrayList<FileItem>();
+                                int[] hinhanhsanpham_chiso = new int[6];
+                                Hashtable params = new Hashtable();
+                                if (ServletFileUpload.isMultipartContent(request)) {
+                                    ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
+                                    try {
+                                        List fileItemsList = servletFileUpload.parseRequest(request);
+
+                                        Iterator it = fileItemsList.iterator();
+
+                                        while (it.hasNext()) {
+                                            FileItem fileItem = (FileItem) it.next();
+                                            if (fileItem.isFormField()) {
+                                                String value = fileItem.getString("UTF-8");
+                                                String key = fileItem.getFieldName();
+                                                params.put(key, value);
+                                            } else {
+                                                hinhanhsanpham_data.add(fileItem);
+                                            }
+                                        }
+                                    } catch (Exception e) {
+                                        out.println(e);
+                                        return;
+                                    }
+
+                                    msp = params.get("MaSanPham").toString();
+
+                                    Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(params.get("MaSanPham").toString());
+                                    sp.setTenSanPham(params.get("TenSanPham").toString());
+                                    Loaisanpham lsp = new Loaisanpham();
+                                    lsp.setMaLoaiSanPham(params.get("MaLoaiSanPham").toString());
+                                    sp.setLoaisanpham(lsp);
+                                    Hang h = HangDAO.LayHangTheoMa(params.get("MaHang").toString());
+                                    sp.setHang(h);
+                                    sp.setSoLuong(Integer.parseInt(params.get("SoLuong").toString()));
+                                    float giaban = 0;
+                                    try {
+                                        giaban = df.parse(params.get("GiaBan").toString()).floatValue();
+                                    } catch (ParseException ex) {
+                                        Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    sp.setGiaBan(giaban);
+                                    sp.setMauSac(params.get("MauSac").toString());
+                                    sp.setThoiGianBaoHanh(params.get("ThoiGianBaoHanh").toString());
+                                    sp.setKichThuoc(params.get("KichThuoc").toString());
+                                    sp.setTrongLuong(params.get("TrongLuong").toString());
+                                    sp.setTinhTrang(0);
+
+                                    SanPhamDAO.CapNhatSanPham(sp);
+
+                                    String path = getServletContext().getRealPath("/") + "images\\";
+
+                                    if (sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")) {
+                                        path += "dien thoai\\";
+
+                                        Chitietdienthoai ctdt = (Chitietdienthoai) sp.getChitietdienthoais().toArray()[0];
+                                        ctdt.setSanpham(sp);
+                                        ctdt.setMang(params.get("Mang").toString());
+                                        ctdt.setLoaiManHinh(params.get("LoaiManHinh").toString());
+                                        ctdt.setNgonNgu(params.get("NgonNgu").toString());
+
+                                        ChiTietDienThoaiDAO.CapNhatChiTietDienThoai(ctdt);
+                                    }
+
+                                    if (sp.getLoaisanpham().getMaLoaiSanPham().equals("LT")) {
+                                        path += "laptop\\";
+
+                                        Chitietlaptop ctlt = (Chitietlaptop) sp.getChitietlaptops().toArray()[0];
+                                        ctlt.setSanpham(sp);
+                                        ctlt.setCongNgheCpu(params.get("CongNgheCPU").toString());
+                                        ctlt.setTocDoCpu(params.get("TocDoCPU").toString());
+                                        ctlt.setBoNhoDem(params.get("BoNhoDem").toString());
+
+                                        ChiTietLaptopDAO.CapNhatChiTietLaptop(ctlt);
+                                    }
+
+                                    path += sp.getHang().getTenHang() + "\\";
+
+                                    for (int i = 0; i < hinhanhsanpham_data.size(); i++) {
+                                        Hinhanhsanpham hasp = (Hinhanhsanpham) sp.getHinhanhsanphams().toArray()[i];
+                                        hasp.setSanpham(sp);
+                                        hasp.setTinhTrang(0);
+                                        if (!hinhanhsanpham_data.get(i).getName().equals("")) {
+                                            hasp.setDuongDan(hinhanhsanpham_data.get(i).getName());
+                                        }
+
+                                        HinhAnhSanPhamDAO.CapNhatHinhAnhSanPham(hasp);
+
+                                        File file = new File(path + hinhanhsanpham_data.get(i).getName());
+                                        try {
+                                            hinhanhsanpham_data.get(i).write(file);
+                                        } catch (Exception ex) {
+                                            Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    }
+                                    //</editor-fold>
+                                }
+                            } else {
+                                //<editor-fold defaultstate="collapsed" desc="cơ bản">                                                                
+                                String[] stt = request.getParameterValues("ID");
+                                for (int i = 0; i < stt.length; i++) {
+                                    int k = Integer.parseInt(stt[i]);
+
+                                    String masanpham = request.getParameterValues("MaSanPham")[k].toString();
+                                    msp = masanpham;
+                                    String tensanpham = request.getParameterValues("TenSanPham")[k].toString();
+                                    Loaisanpham lsp = new Loaisanpham();
+                                    lsp.setMaLoaiSanPham(request.getParameterValues("MaLoaiSanPham")[k].toString());
+                                    Hang h = new Hang();
+                                    h.setMaHang(request.getParameterValues("MaHang")[k].toString());
+                                    int soluong = Integer.parseInt(request.getParameterValues("SoLuong")[k].toString());
+                                    float giaban = 0;
+                                    try {
+                                        giaban = df.parse(request.getParameterValues("GiaBan")[k].toString()).floatValue();
+                                    } catch (ParseException ex) {
+                                        Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    String mausac = request.getParameterValues("MauSac")[k].toString();
+                                    String thoigianbaohanh = request.getParameterValues("ThoiGianBaoHanh")[k].toString();
+                                    String kichthuoc = request.getParameterValues("KichThuoc")[k].toString();
+                                    String trongluong = request.getParameterValues("TrongLuong")[k].toString();
+                                    int tinhtrang = Integer.parseInt(request.getParameterValues("TinhTrang")[k].toString());
+
+                                    Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(masanpham);
+                                    sp.setTenSanPham(tensanpham);
+                                    sp.setLoaisanpham(lsp);
+                                    sp.setHang(h);
+                                    sp.setSoLuong(soluong);
+                                    sp.setGiaBan(giaban);
+                                    sp.setMauSac(mausac);
+                                    sp.setThoiGianBaoHanh(thoigianbaohanh);
+                                    sp.setKichThuoc(kichthuoc);
+                                    sp.setTrongLuong(trongluong);
+                                    sp.setTinhTrang(tinhtrang);
+
+                                    SanPhamDAO.CapNhatSanPham(sp);
+                                }
+                                //</editor-fold>
                             }
-                            
+
                             String thongbao = "";
                             thongbao = "Đã cập nhật thành công";
                             request.setAttribute("thongbao", thongbao);
 
-                            request.getRequestDispatcher("view?task=quanly&task_chitiet=sanpham").forward(request, response);
+                            if (capnhat.equals("chitiet")) {
+                                request.getRequestDispatcher("view?task=quanly&task_chitiet=sanpham&CapNhat=chitiet&MSP=" + msp).forward(request, response);
+                            } else {
+                                request.getRequestDispatcher("view?task=quanly&task_chitiet=sanpham").forward(request, response);
+                            }
                             return;
                         }
                         //</editor-fold>
 
                         //<editor-fold defaultstate="collapsed" desc="xoá">                        
                         if (request.getParameter("Xoa") != null) {
-                            request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                            String[] stt = request.getParameterValues("ID");
+                            for (int i = 0; i < stt.length; i++) {
+                                int k = Integer.parseInt(stt[i]);
+
+                                String masanpham = request.getParameterValues("MaSanPham")[k].toString();
+                                Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(masanpham);
+                                sp.setTinhTrang(1);
+
+                                SanPhamDAO.CapNhatSanPham(sp);
+                            }
+
+                            String thongbao = "";
+                            thongbao = "Đã xoá thành công";
+                            request.setAttribute("thongbao", thongbao);
+
+                            request.getRequestDispatcher("view?task=quanly&task_chitiet=sanpham").forward(request, response);
                             return;
                         }
                         //</editor-fold>
