@@ -60,6 +60,10 @@
         <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_sanpham_them.jsp" />      
     </definition>
     
+    <definition name="quanlyadmin_sanpham_capnhat" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_sanpham_capnhat.jsp" />      
+    </definition>
+    
     <definition name="quanlynguoidung" extends="template_vienthonga">        
         <put-attribute name="body_left" value="/pages/body_left_quanlynguoidung.jsp" />
         <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_thongtinnguoidung.jsp" />
@@ -77,14 +81,12 @@
         <put-attribute name="body_right" value="/pages/null.jsp" />
         <put-attribute name="footer1" value="/pages/null.jsp" />
     </definition>
-
     
     <definition name="GioHang" extends="template_vienthonga">      
         <put-attribute name="body_left" value="/pages/null.jsp" />
         <put-attribute name="body_mid" value="/pages/body_mid_giohang.jsp" />      
         <put-attribute name="body_right" value="/pages/null.jsp" />
     </definition>
-
     
     <definition name="khuyenmai" extends="template_vienthonga">        
         <put-attribute name="body_mid" value="/pages/body_mid_khuyenmai.jsp" />

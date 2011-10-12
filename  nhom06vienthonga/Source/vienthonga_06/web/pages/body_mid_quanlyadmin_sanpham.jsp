@@ -40,7 +40,7 @@
         var task = document.getElementById('task');
         task.setAttribute("name", "Xoa");
         var frm = document.getElementById('frm_sanpham');
-        frm.setAttribute("action", "view?task=quanly&task_chitiet=sanpham");
+        frm.setAttribute("action", "process?task=quanlyadmin&task_chitiet=sanpham");
         frm.submit();
     }
     
@@ -82,7 +82,10 @@
             
         if(task == 'Xoa')
         {
-            submit_xoa();
+            if(kiemtracheck() == true)
+            {
+                submit_xoa();
+            }
         }
     }
 </script>
@@ -114,17 +117,18 @@
                 <input type='checkbox' name='ID' id='ID' value='<%= i%>' />
             </td>
             <td>
-                <input type='text' name='MaSanPham' id='MaSanPham' value='<%= sp.getMaSanPham()%>' style="width:50px;"/>
+                <a href="view?task=quanly&task_chitiet=sanpham&CapNhat=chitiet&MSP=<%= sp.getMaSanPham()%>" style="width:50px;"><%= sp.getMaSanPham()%></a>
+                <input type='hidden' name='MaSanPham' id='MaSanPham' value='<%= sp.getMaSanPham()%>'/>
             </td>
             <td>
                 <input type='text' name='TenSanPham' id='TenSanPham' value='<%= sp.getTenSanPham()%>' style="width:90px;"/>
             </td>
             <td>
-                <input type='text' name='TenLoaiSanPham' id='TenLoaiSanPham' value='<%= sp.getLoaisanpham().getTenLoaiSanPham()%>' style="width:80px;"/>
+                <input readonly="readonly" type='text' name='TenLoaiSanPham' id='TenLoaiSanPham' value='<%= sp.getLoaisanpham().getTenLoaiSanPham()%>' style="width:80px;"/>
                 <input type='hidden' name='MaLoaiSanPham' id='MaLoaiSanPham' value='<%= sp.getLoaisanpham().getMaLoaiSanPham()%>' style="width:80px;"/>
             </td>
             <td>
-                <input type='text' name='TenHang' id='TenHang' value='<%= sp.getHang().getTenHang()%>' style="width:60px;"/>
+                <input readonly="readonly" type='text' name='TenHang' id='TenHang' value='<%= sp.getHang().getTenHang()%>' style="width:60px;"/>
                 <input type='hidden' name='MaHang' id='MaHang' value='<%= sp.getHang().getMaHang()%>' style="width:60px;"/>                
             </td> 
             <td>
@@ -157,13 +161,48 @@
             <tr>
             <td align="center">
                 <input type='button' name="Them" id='Them' value='Thêm' style="height: 30px" onclick="chuyen('Them');" />
-                <span>&nbsp;</span>
-                <input type='button' name="CapNhat" id='CapNhat' value='Cập Nhật' style="height: 30px" onclick="chuyen('CapNhat');" />
-                <span>&nbsp;</span>
-                <input type='button' name="Xoa" id='Xoa' value='Xóa' style="height: 30px" onclick="chuyen('Xoa');" />
+            <span>&nbsp;</span>
+            <input type='button' name="CapNhat" id='CapNhat' value='Cập Nhật' style="height: 30px" onclick="chuyen('CapNhat');" />
+            <span>&nbsp;</span>
+            <input type='button' name="Xoa" id='Xoa' value='Xóa' style="height: 30px" onclick="chuyen('Xoa');" />
             </td>
             </tr>
         </table>
         <input type="hidden" name="" id="task" />
     </form>
+
+    <!-- bắt đầu phân trang -->
+    <%
+        int sotrang = 1;
+        if (request.getParameter("trang") != null) {
+            sotrang = Integer.parseInt(request.getParameter("trang").toString());
+        }
+    %>
+    <div class="paging" style="width: 100%">
+        <div class="_paging" style="width: 200px; text-align: right;">
+            <%
+                if (sotrang - 1 < 1) {
+            %>
+            <a href="view?task=quanly&task_chitiet=sanpham&trang=1" > Trang Đầu </a>
+            <%            } else {
+            %>
+            <a href="view?task=quanly&task_chitiet=sanpham&trang=<%= sotrang - 1%>" > <%= sotrang - 1%> </a>
+            <%
+                }
+            %>            
+            <a href="view?task=quanly&task_chitiet=sanpham&trang=<%= sotrang%>" > <%= sotrang%> </a>
+            <%
+                if (sotrang + 1 > tongsotrang) {
+            %>
+            <a href="view?task=quanly&task_chitiet=sanpham&trang=<%= tongsotrang%>" > Trang Cuối </a>
+            <%
+            } else {
+            %>
+            <a href="view?task=quanly&task_chitiet=sanpham&trang=<%= sotrang + 1%>" > <%= sotrang + 1%> </a>
+            <%
+                }
+            %>
+        </div>
+    </div>
+    <!-- kết thúc phân trang -->
 </div>

@@ -145,7 +145,7 @@ public class view extends HttpServlet {
             //</editor-fold>            
 
             //<editor-fold defaultstate="collapsed" desc="chuyển trang đăng nhập">
-            if (task.equals("DangNhap")) {               
+            if (task.equals("DangNhap")) {
                 request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
             }
             //</editor-fold>
@@ -185,10 +185,27 @@ public class view extends HttpServlet {
 
                         //<editor-fold defaultstate="collapsed" desc="sản phẩm">
                         if (task_chitiet.equals("sanpham")) {
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang thêm">                           
                             if (request.getParameter("Them") != null) {
                                 request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
                                 return;
                             }
+                            //</editor-fold>
+
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang cập nhật">
+                            if (request.getParameter("CapNhat") != null) {
+                                String capnhat = request.getParameter("CapNhat").toString();
+
+                                if (capnhat.equals("chitiet")) {
+                                    String msp = request.getParameter("MSP");
+                                    Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
+
+                                    request.setAttribute("sanpham", sp);
+                                    request.getRequestDispatcher("QuanLyAdmin_SanPham_CapNhat.jsp").forward(request, response);
+                                    return;
+                                }
+                            }
+                            //</editor-fold>
 
                             int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
                             int tongsotrang = 0;
@@ -201,12 +218,12 @@ public class view extends HttpServlet {
                                 batdau = sp1trang * trang - sp1trang;
                             }
 
-                            List<Sanpham> list = SanPhamDAO.LaySanPham(batdau, -1);
+                            List<Sanpham> list = SanPhamDAO.LayHetSanPham(batdau, -1);
                             tongsotrang = list.size() / sp1trang;
                             if (list.size() % sp1trang > 0) {
                                 tongsotrang = tongsotrang + 1;
                             }
-                            list = SanPhamDAO.LaySanPham(batdau, sp1trang);
+                            list = SanPhamDAO.LayHetSanPham(batdau, sp1trang);
 
                             request.setAttribute("tongsotrang", tongsotrang);
                             request.setAttribute("list", list);
@@ -220,7 +237,7 @@ public class view extends HttpServlet {
                     return;
                 }
                 //</editor-fold>
-                
+
                 //<editor-fold defaultstate="collapsed" desc="người dùng">                               
                 if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND2")) {
                     if (request.getParameter("task_chitiet") != null) {
@@ -238,7 +255,7 @@ public class view extends HttpServlet {
                     return;
                 }
                 //</editor-fold>
-                
+
                 //<editor-fold defaultstate="collapsed" desc="nhân viên">                                
                 if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND3")) {
                     if (request.getParameter("task_chitiet") != null) {
@@ -256,13 +273,11 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
-
             //<editor-fold defaultstate="collapsed" desc="quản lý giỏ hàng">
-            if(task.equals("giohang")){
-                request.getRequestDispatcher("GioHang.jsp").forward(request, response);                        
+            if (task.equals("giohang")) {
+                request.getRequestDispatcher("GioHang.jsp").forward(request, response);
             }
             //</editor-fold>
-            
 
             //<editor-fold defaultstate="collapsed" desc="chuyển trang khuyến mãi">
             if (task.equals("khuyenmai")) {
@@ -302,11 +317,10 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
-
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
-            int ii =1;
-        
-     } finally {
+            int ii = 1;
+
+        } finally {
             out.close();
         }
     }
