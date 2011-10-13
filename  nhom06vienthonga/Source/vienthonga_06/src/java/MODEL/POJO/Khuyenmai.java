@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 6, 2011 5:23:49 PM by Hibernate Tools 3.2.1.GA
+// Generated Oct 13, 2011 8:14:39 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -27,8 +27,9 @@ public class Khuyenmai  implements java.io.Serializable {
     public Khuyenmai(String maKhuyenMai) {
         this.maKhuyenMai = maKhuyenMai;
     }
-    public Khuyenmai(String maKhuyenMai, String noiDungKhuyenMai, Date ngayBatDau, Date ngayKetThuc, Integer tinhTrang, Set hinhanhkhuyenmais) {
+    public Khuyenmai(String maKhuyenMai, String tenKhuyenMai, String noiDungKhuyenMai, Date ngayBatDau, Date ngayKetThuc, Integer tinhTrang, Set hinhanhkhuyenmais) {
        this.maKhuyenMai = maKhuyenMai;
+       this.tenKhuyenMai = tenKhuyenMai;
        this.noiDungKhuyenMai = noiDungKhuyenMai;
        this.ngayBatDau = ngayBatDau;
        this.ngayKetThuc = ngayKetThuc;
@@ -43,7 +44,6 @@ public class Khuyenmai  implements java.io.Serializable {
     public void setMaKhuyenMai(String maKhuyenMai) {
         this.maKhuyenMai = maKhuyenMai;
     }
-
     public String getTenKhuyenMai() {
         return this.tenKhuyenMai;
     }
@@ -51,7 +51,6 @@ public class Khuyenmai  implements java.io.Serializable {
     public void setTenKhuyenMai(String tenKhuyenMai) {
         this.tenKhuyenMai = tenKhuyenMai;
     }
-    
     public String getNoiDungKhuyenMai() {
         return this.noiDungKhuyenMai;
     }

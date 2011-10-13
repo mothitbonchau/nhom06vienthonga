@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 6, 2011 5:23:49 PM by Hibernate Tools 3.2.1.GA
+// Generated Oct 13, 2011 8:14:39 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -15,6 +15,7 @@ public class Loaisanpham  implements java.io.Serializable {
      private String tenLoaiSanPham;
      private Integer tinhTrang;
      private Set sanphams = new HashSet(0);
+     private Set loaisanphamhangs = new HashSet(0);
 
     public Loaisanpham() {
     }
@@ -23,11 +24,12 @@ public class Loaisanpham  implements java.io.Serializable {
     public Loaisanpham(String maLoaiSanPham) {
         this.maLoaiSanPham = maLoaiSanPham;
     }
-    public Loaisanpham(String maLoaiSanPham, String tenLoaiSanPham, Integer tinhTrang, Set sanphams) {
+    public Loaisanpham(String maLoaiSanPham, String tenLoaiSanPham, Integer tinhTrang, Set sanphams, Set loaisanphamhangs) {
        this.maLoaiSanPham = maLoaiSanPham;
        this.tenLoaiSanPham = tenLoaiSanPham;
        this.tinhTrang = tinhTrang;
        this.sanphams = sanphams;
+       this.loaisanphamhangs = loaisanphamhangs;
     }
    
     public String getMaLoaiSanPham() {
@@ -57,6 +59,13 @@ public class Loaisanpham  implements java.io.Serializable {
     
     public void setSanphams(Set sanphams) {
         this.sanphams = sanphams;
+    }
+    public Set getLoaisanphamhangs() {
+        return this.loaisanphamhangs;
+    }
+    
+    public void setLoaisanphamhangs(Set loaisanphamhangs) {
+        this.loaisanphamhangs = loaisanphamhangs;
     }
 
 

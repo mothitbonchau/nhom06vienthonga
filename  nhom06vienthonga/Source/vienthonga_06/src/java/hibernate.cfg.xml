@@ -13,6 +13,7 @@
     <mapping resource="MODEL/POJO/Thamso.hbm.xml"/>
     <mapping resource="MODEL/POJO/Gopy.hbm.xml"/>
     <mapping resource="MODEL/POJO/Nganhang.hbm.xml"/>
+    <mapping resource="MODEL/POJO/Loaisanphamhang.hbm.xml"/>
     <mapping resource="MODEL/POJO/Sieuthi.hbm.xml"/>
     <mapping resource="MODEL/POJO/Hinhanhtintuc.hbm.xml"/>
     <mapping resource="MODEL/POJO/Sanpham.hbm.xml"/>

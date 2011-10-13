@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 6, 2011 5:23:49 PM by Hibernate Tools 3.2.1.GA
+// Generated Oct 13, 2011 8:14:39 AM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -42,7 +42,6 @@ public class Hinhanhkhuyenmai  implements java.io.Serializable {
     public void setKhuyenmai(Khuyenmai khuyenmai) {
         this.khuyenmai = khuyenmai;
     }
-
     public String getDuongDan() {
         return this.duongDan;
     }

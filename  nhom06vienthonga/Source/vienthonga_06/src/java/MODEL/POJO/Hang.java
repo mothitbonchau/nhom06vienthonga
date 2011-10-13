@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 6, 2011 5:23:49 PM by Hibernate Tools 3.2.1.GA
+// Generated Oct 13, 2011 8:14:39 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ public class Hang  implements java.io.Serializable {
      private String maHang;
      private String tenHang;
      private Integer tinhTrang;
+     private Set loaisanphamhangs = new HashSet(0);
      private Set sanphams = new HashSet(0);
 
     public Hang() {
@@ -23,10 +24,11 @@ public class Hang  implements java.io.Serializable {
     public Hang(String maHang) {
         this.maHang = maHang;
     }
-    public Hang(String maHang, String tenHang, Integer tinhTrang, Set sanphams) {
+    public Hang(String maHang, String tenHang, Integer tinhTrang, Set loaisanphamhangs, Set sanphams) {
        this.maHang = maHang;
        this.tenHang = tenHang;
        this.tinhTrang = tinhTrang;
+       this.loaisanphamhangs = loaisanphamhangs;
        this.sanphams = sanphams;
     }
    
@@ -50,6 +52,13 @@ public class Hang  implements java.io.Serializable {
     
     public void setTinhTrang(Integer tinhTrang) {
         this.tinhTrang = tinhTrang;
+    }
+    public Set getLoaisanphamhangs() {
+        return this.loaisanphamhangs;
+    }
+    
+    public void setLoaisanphamhangs(Set loaisanphamhangs) {
+        this.loaisanphamhangs = loaisanphamhangs;
     }
     public Set getSanphams() {
         return this.sanphams;
