@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 13, 2011 8:14:41 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="MODEL.POJO.Loaisanphamhang" table="loaisanphamhang" catalog="vienthonga">
+        <id name="maLoaiSanPhamHang" type="string">
+            <column name="MaLoaiSanPhamHang" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="hang" class="MODEL.POJO.Hang" fetch="select">
+            <column name="MaHang" length="45" />
+        </many-to-one>
+        <many-to-one name="loaisanpham" class="MODEL.POJO.Loaisanpham" fetch="select">
+            <column name="MaLoaiSanPham" length="45" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
