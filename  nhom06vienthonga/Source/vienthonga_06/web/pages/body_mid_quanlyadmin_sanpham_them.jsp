@@ -131,7 +131,7 @@
             </td>
             </tr>
             <tr>
-            <td>Mã Hãng</td>
+            <td>Mã Hãng <a href="view?task=quanly&task_chitiet=hang">(Tra mã hãng)</a></td>
             <td><input type="text" name="MaHang" value="" /></td>
             </tr>
             <tr>

@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 13, 2011 8:14:39 AM by Hibernate Tools 3.2.1.GA
+// Generated Oct 13, 2011 11:58:40 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -14,7 +14,7 @@ public class Tintuc  implements java.io.Serializable {
 
      private String maTinTuc;
      private String tenTinTuc;
-     private String noiDungtTinTuc;
+     private String noiDungTinTuc;
      private Date ngayDang;
      private Integer tinhTrang;
      private Set hinhanhtintucs = new HashSet(0);
@@ -26,10 +26,10 @@ public class Tintuc  implements java.io.Serializable {
     public Tintuc(String maTinTuc) {
         this.maTinTuc = maTinTuc;
     }
-    public Tintuc(String maTinTuc, String tenTinTuc, String noiDungtTinTuc, Date ngayDang, Integer tinhTrang, Set hinhanhtintucs) {
+    public Tintuc(String maTinTuc, String tenTinTuc, String noiDungTinTuc, Date ngayDang, Integer tinhTrang, Set hinhanhtintucs) {
        this.maTinTuc = maTinTuc;
        this.tenTinTuc = tenTinTuc;
-       this.noiDungtTinTuc = noiDungtTinTuc;
+       this.noiDungTinTuc = noiDungTinTuc;
        this.ngayDang = ngayDang;
        this.tinhTrang = tinhTrang;
        this.hinhanhtintucs = hinhanhtintucs;
@@ -49,12 +49,12 @@ public class Tintuc  implements java.io.Serializable {
     public void setTenTinTuc(String tenTinTuc) {
         this.tenTinTuc = tenTinTuc;
     }
-    public String getNoiDungtTinTuc() {
-        return this.noiDungtTinTuc;
+    public String getNoiDungTinTuc() {
+        return this.noiDungTinTuc;
     }
     
-    public void setNoiDungtTinTuc(String noiDungtTinTuc) {
-        this.noiDungtTinTuc = noiDungtTinTuc;
+    public void setNoiDungTinTuc(String noiDungTinTuc) {
+        this.noiDungTinTuc = noiDungTinTuc;
     }
     public Date getNgayDang() {
         return this.ngayDang;

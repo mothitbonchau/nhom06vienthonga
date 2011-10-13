@@ -57,7 +57,7 @@
                 sotrang = Integer.parseInt(request.getParameter("trang").toString());
             }
         %>
-        
+
         <script type="text/javascript" >
             function show(t)
             {		
@@ -65,29 +65,34 @@
                 document.getElementById("frmTimKiem").submit();
             }
         </script>
-        
-        <form action="process?task=timkiem" method="post" id="frmTimKiem" style="margin-bottom: 10px; height: 20px; text-align: center; font-size: 1.5em">
-            <%
-                if (sotrang - 1 < 1) {
-            %>
-            <a href="#" onclick="show(1);" > Trang Đầu </a>
-            <%            } else {
-            %>
-            <a href="#" onclick="show(<%= sotrang - 1%>);" > <%= sotrang - 1%> </a>
-            <%
-                }
-            %>            
-            <a href="#" onclick="show(<%= sotrang%>);" > <%= sotrang%> </a>
-            <%
-                if (sotrang + 1 > tongsotrang) {
-            %>
-            <a href="#" onclick="show(<%= tongsotrang%>);"  > Trang Cuối </a>
-            <%            } else {
-            %>
-            <a href="#" onclick="show(<%= sotrang + 1%>);" > <%= sotrang + 1%> </a>
-            <%
-                }
-            %>
+
+        <form action="process?task=timkiem" method="post" id="frmTimKiem" style="margin-bottom: 10px; height: 20px; text-align: center;">
+            <div class="paging" style="width: 100%">
+                <div class="_paging" style="width: 200px; text-align: right;">
+                    <%
+                        if (sotrang - 1 < 1) {
+                    %>
+                    <a href="#" onclick="show(1);" > Trang Đầu </a>
+                    <%            } else {
+                    %>
+                    <a href="#" onclick="show(<%= sotrang - 1%>);" > <%= sotrang - 1%> </a>
+                    <%
+                        }
+                    %>            
+                    <a href="#" onclick="show(<%= sotrang%>);" > <%= sotrang%> </a>
+                    <%
+                        if (sotrang + 1 > tongsotrang) {
+                    %>
+                    <a href="#" onclick="show(<%= tongsotrang%>);"  > Trang Cuối </a>
+                    <%            } else {
+                    %>
+                    <a href="#" onclick="show(<%= sotrang + 1%>);" > <%= sotrang + 1%> </a>
+                    <%
+                        }
+                    %>
+                </div>
+            </div>
+            
             <input type="hidden" name="MH" value="<%= request.getParameter("MH")%>" />
             <input type="hidden" name="TSP" value="<%= request.getParameter("TSP")%>" />
             <input type="hidden" name="MLSP" value="<%= request.getParameter("MLSP")%>" />
@@ -95,7 +100,7 @@
             <input type="hidden" name="trang" id="trang" value="" />
         </form>
         <!-- kết thúc phân trang -->
+        <div>&nbsp;</div>
         <img style="margin-left: 10px;" alt="Advertisement" src="images/linhtinh/600x100_trungthuc.jpg" />
-
     </div>
 </div>

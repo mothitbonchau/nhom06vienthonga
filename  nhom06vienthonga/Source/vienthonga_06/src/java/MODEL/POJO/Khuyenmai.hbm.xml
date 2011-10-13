@@ -23,7 +23,7 @@
         <property name="tinhTrang" type="java.lang.Integer">
             <column name="TinhTrang" />
         </property>
-        <set name="hinhanhkhuyenmais" inverse="true">
+        <set name="hinhanhkhuyenmais" inverse="true" lazy="false">
             <key>
                 <column name="MaKhuyenMai" length="45" />
             </key>

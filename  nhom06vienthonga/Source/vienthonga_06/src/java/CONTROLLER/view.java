@@ -317,6 +317,44 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang tin tức">
+            if (task.equals("tintuc")) {
+                if (request.getParameter("task_chitiet") != null) {
+                    String task_chitiet = request.getParameter("task_chitiet");
+                    if (task_chitiet.equals("chitiettintuc")) {
+                        Tintuc tt = TinTucDAO.LayTinTucTheoMa(request.getParameter("MTT"));
+
+                        request.setAttribute("tintuc", tt);
+                        request.getRequestDispatcher("ChiTietTinTuc.jsp").forward(request, response);
+                        return;
+                    }
+                }
+
+                int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                int tongsotrang = 0;
+                int trang = 1;
+                if (request.getParameter("trang") != null) {
+                    trang = Integer.parseInt(request.getParameter("trang").toString());
+                }
+                int batdau = 0;
+                if (trang > 1) {
+                    batdau = sp1trang * trang - sp1trang;
+                }
+
+                List<Tintuc> list = TinTucDAO.LayTinTuc(batdau, -1);
+                tongsotrang = list.size() / sp1trang;
+                if (list.size() % sp1trang > 0) {
+                    tongsotrang = tongsotrang + 1;
+                }
+                list = TinTucDAO.LayTinTuc(batdau, sp1trang);
+
+                request.setAttribute("tongsotrang", tongsotrang);
+                request.setAttribute("list", list);
+                request.getRequestDispatcher("TinTuc.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+            
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
             int ii = 1;
 

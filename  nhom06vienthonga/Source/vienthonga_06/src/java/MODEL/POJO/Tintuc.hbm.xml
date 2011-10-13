@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 13, 2011 8:14:41 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated Oct 13, 2011 11:58:44 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="MODEL.POJO.Tintuc" table="tintuc" catalog="vienthonga">
         <id name="maTinTuc" type="string">
@@ -11,8 +11,8 @@
         <property name="tenTinTuc" type="string">
             <column name="TenTinTuc" length="45" />
         </property>
-        <property name="noiDungtTinTuc" type="string">
-            <column name="NoiDungtTinTuc" />
+        <property name="noiDungTinTuc" type="string">
+            <column name="NoiDungTinTuc" />
         </property>
         <property name="ngayDang" type="timestamp">
             <column name="NgayDang" length="19" />
@@ -20,7 +20,7 @@
         <property name="tinhTrang" type="java.lang.Integer">
             <column name="TinhTrang" />
         </property>
-        <set name="hinhanhtintucs" inverse="true">
+        <set name="hinhanhtintucs" inverse="true" lazy="false">
             <key>
                 <column name="MaTinTuc" length="45" />
             </key>
