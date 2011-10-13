@@ -1,5 +1,5 @@
 package MODEL.POJO;
-// Generated Oct 13, 2011 8:14:39 AM by Hibernate Tools 3.2.1.GA
+// Generated Oct 13, 2011 11:58:40 AM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -11,7 +11,6 @@ public class Hinhanhtintuc  implements java.io.Serializable {
 
      private String maHinhAnhTinTuc;
      private Tintuc tintuc;
-     private String tenHinhAnh;
      private String duongDan;
      private Integer tinhTrang;
 
@@ -22,10 +21,9 @@ public class Hinhanhtintuc  implements java.io.Serializable {
     public Hinhanhtintuc(String maHinhAnhTinTuc) {
         this.maHinhAnhTinTuc = maHinhAnhTinTuc;
     }
-    public Hinhanhtintuc(String maHinhAnhTinTuc, Tintuc tintuc, String tenHinhAnh, String duongDan, Integer tinhTrang) {
+    public Hinhanhtintuc(String maHinhAnhTinTuc, Tintuc tintuc, String duongDan, Integer tinhTrang) {
        this.maHinhAnhTinTuc = maHinhAnhTinTuc;
        this.tintuc = tintuc;
-       this.tenHinhAnh = tenHinhAnh;
        this.duongDan = duongDan;
        this.tinhTrang = tinhTrang;
     }
@@ -43,13 +41,6 @@ public class Hinhanhtintuc  implements java.io.Serializable {
     
     public void setTintuc(Tintuc tintuc) {
         this.tintuc = tintuc;
-    }
-    public String getTenHinhAnh() {
-        return this.tenHinhAnh;
-    }
-    
-    public void setTenHinhAnh(String tenHinhAnh) {
-        this.tenHinhAnh = tenHinhAnh;
     }
     public String getDuongDan() {
         return this.duongDan;

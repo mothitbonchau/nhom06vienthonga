@@ -92,8 +92,15 @@
         <put-attribute name="body_mid" value="/pages/body_mid_khuyenmai.jsp" />
     </definition>
     
+    <definition name="tintuc" extends="template_vienthonga">        
+        <put-attribute name="body_mid" value="/pages/body_mid_tintuc.jsp" />
+    </definition>
+    
     <definition name="chitietkhuyenmai" extends="template_vienthonga">        
         <put-attribute name="body_mid" value="/pages/body_mid_chitietkhuyenmai.jsp" />
     </definition>
 
+    <definition name="chitiettintuc" extends="template_vienthonga">        
+        <put-attribute name="body_mid" value="/pages/body_mid_chitiettintuc.jsp" />
+    </definition>    
 </tiles-definitions>
