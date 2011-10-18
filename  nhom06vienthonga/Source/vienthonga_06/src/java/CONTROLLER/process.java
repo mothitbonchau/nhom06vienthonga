@@ -157,6 +157,59 @@ public class process extends HttpServlet {
                 }
             }
             //</editor-fold>
+            
+            //<editor-fold defaultstate="collapsed" desc="Xử lý đăng ký">
+            if(task.equals("Luu"))
+            {
+                Nguoidung pojo=new Nguoidung();
+                Loainguoidung lnd = NguoiDungDAO.LayDoiTuongTheoMa("MLND2");
+
+                //Lấy Mã người dùng kiểu String tăng tự động
+                String MaND = NguoiDungDAO.LayMaNguoiDungCuoiCung();
+                String ma = "MND";
+                String ChuoiSo = MaND.substring(3);
+                int So = Integer.parseInt(ChuoiSo) + 1;
+                MaND = ma + So;   
+
+                //Lấy giờ hệ thống
+                long current_time = System.currentTimeMillis();
+                java.sql.Date NgayHienTai = new java.sql.Date(current_time);
+
+
+                pojo.setMaNguoiDung(MaND);
+                pojo.setTenDangNhap(request.getParameter("txtTenDangNhap"));
+                pojo.setTenNguoiDung(request.getParameter("txtName"));
+                pojo.setMatKhau(request.getParameter("txtPass"));
+                pojo.setEmail(request.getParameter("txtEmail"));
+                pojo.setCmnd(Integer.parseInt(request.getParameter("txtCMND")));
+                pojo.setDienThoai(Integer.parseInt(request.getParameter("txtDienThoai")));
+                pojo.setDiaChi(request.getParameter("txtDiaChi"));
+                pojo.setNgayDangKy(NgayHienTai);
+                pojo.setLoainguoidung(lnd);
+                pojo.setTinhTrang(0);
+
+                int kq = NguoiDungDAO.DangKy(pojo);        
+
+                //Gán Session Tên Đăng Nhập                    
+                session.setAttribute("TenDangNhap", pojo.getTenDangNhap());                                        
+                request.getRequestDispatcher("view").forward(request, response);                                  
+            }
+            //</editor-fold>
+            
+            //<editor-fold defaultstate="collapsed" desc="Xử lý đăng xuất">
+            if (task.equals("DangXuat")) 
+            {
+                session.invalidate();
+                request.getRequestDispatcher("view").forward(request, response);
+            }
+            //</editor-fold>
+            
+            //<editor-fold defaultstate="collapsed" desc="Xử lý liên hệ">
+            if (task.equals("LienHe")) 
+            {                
+                request.getRequestDispatcher("view").forward(request, response);
+            }
+            //</editor-fold>
 
             //<editor-fold defaultstate="collapsed" desc="xử lý quản lý admin">
             if (task.equals("quanlyadmin")) {
