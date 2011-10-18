@@ -147,7 +147,7 @@
 <link href="css/maintabletitle.css" rel="stylesheet" type="text/css" />
 <div id="body_mid" style="float:left; width:60%;">
 
-    <form action="DangKy_Controller?Action=Luu" name="formDangKy" method="post" id="formDangKy" onsubmit='return TestDangKy()'>
+    <form action="process?task=Luu" name="formDangKy" method="post" id="formDangKy" onsubmit='return TestDangKy()'>
         <table border="0" cellpadding="0" cellspacing="0" width="500px">
             <tbody>
                 <tr>

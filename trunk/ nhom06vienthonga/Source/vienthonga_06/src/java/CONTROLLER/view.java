@@ -149,7 +149,20 @@ public class view extends HttpServlet {
                 request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
             }
             //</editor-fold>
-
+            
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang đăng ký">
+            if (task.equals("DangKy")) {
+                request.getRequestDispatcher("DangKy.jsp").forward(request, response);
+            }
+            //</editor-fold>
+            
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang liên hệ">
+            if (task.equals("LienHe")) {
+                request.getRequestDispatcher("LienHe.jsp").forward(request, response);
+            }
+            //</editor-fold>
+            
+           
             //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
             if (task.equals("quanly")) {
                 if (session.getAttribute("TenDangNhap") == null) {

@@ -32,7 +32,7 @@
         <put-attribute name="body_mid" value="/pages/body_mid_timkiem.jsp" />        
     </definition>
 
-    <definition name="TrangDangKy" extends="template_vienthonga">        
+    <definition name="DangKy" extends="template_vienthonga">        
         <put-attribute name="body_mid" value="/pages/body_mid_dangky.jsp" />        
     </definition>
     
@@ -90,6 +90,10 @@
     
     <definition name="khuyenmai" extends="template_vienthonga">        
         <put-attribute name="body_mid" value="/pages/body_mid_khuyenmai.jsp" />
+    </definition>
+    
+    <definition name="LienHe" extends="template_vienthonga">                 
+        <put-attribute name="body_mid" value="/pages/body_mid_lienhe.jsp" />            
     </definition>
     
     <definition name="tintuc" extends="template_vienthonga">        

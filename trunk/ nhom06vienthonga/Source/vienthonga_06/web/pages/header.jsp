@@ -15,7 +15,7 @@
             <li><a href="view?task=danhmucsanpham&task_chitiet=laptop"><span>Laptop</span></a></li>
             <li><a href="view?task=khuyenmai"><span>Khuyến Mãi</span></a></li>
             <li><a href="view?task=tintuc"><span>Tin Tức</span></a></li>
-            <li><a href="view?task=lienhe"><span>Liên Hệ</span></a></li>
+            <li><a href="view?task=LienHe"><span>Liên Hệ</span></a></li>
             <li><a href="view?task=diendan"><span>Diễn Đàn</span></a></li>
         </ul>
     </div>
@@ -27,13 +27,13 @@
            {
         %>
         <a style="float: right; text-transform: uppercase;" href="view?task=DangNhap" >| Đăng nhập</a>
-        <a style="float: right; text-transform: uppercase;" href="DangKy_Controller?Action=DangKy" >| Đăng ký </a>
+        <a style="float: right; text-transform: uppercase;" href="view?task=DangKy" >| Đăng ký </a>
         <%
            }
             else
            {
         %>
-        <a style="float: right; text-transform: uppercase;" href="DangXuat_Controller" >| Đăng Xuất</a>
+        <a style="float: right; text-transform: uppercase;" href="process?task=DangXuat" >| Đăng Xuất</a>
         <a style="float: right; text-transform: uppercase;" >Hi, <%= session.getAttribute("TenDangNhap") %></a>        
         <%
            }
