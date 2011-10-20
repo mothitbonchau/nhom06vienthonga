@@ -50,5 +50,26 @@ public class HangDAO {
 
         return h;
     }
-    
+ 
+    public static List<Hang> LayHangTheoMaLoaiSanPham(String mlsp)
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List<Hang> list = null;        
+
+        try {
+            String hql = "SELECT lsph.hang FROM Loaisanphamhang lsph WHERE maLoaiSanPham=:mlsp";
+            Query query = session.createQuery(hql);
+            query.setString("mlsp", mlsp);
+            list = query.list();
+        } catch (Exception ex) {
+            Logger.getLogger(HangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return list;
+    }
 }

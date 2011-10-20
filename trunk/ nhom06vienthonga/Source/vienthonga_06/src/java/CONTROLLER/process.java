@@ -6,9 +6,17 @@ package CONTROLLER;
 
 import MODEL.DAO.*;
 import MODEL.POJO.*;
+import com.itextpdf.text.Image;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.CharBuffer;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -23,8 +31,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.tomcat.util.http.ContentType;
 import org.omg.CORBA.SystemException;
 import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -506,7 +516,16 @@ public class process extends HttpServlet {
 
                                     msp = params.get("MaSanPham").toString();
 
+                                    String path_cu = getServletContext().getRealPath("/") + "images\\";;
+
                                     Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(params.get("MaSanPham").toString());
+                                    if (sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")) {
+                                        path_cu += "dien thoai\\";
+                                    } else {
+                                        path_cu += "laptop\\";
+                                    }
+                                    path_cu += sp.getHang().getTenHang() + "\\" + ((Hinhanhsanpham) sp.getHinhanhsanphams().toArray()[0]).getDuongDan();
+
                                     sp.setTenSanPham(params.get("TenSanPham").toString());
                                     Loaisanpham lsp = new Loaisanpham();
                                     lsp.setMaLoaiSanPham(params.get("MaLoaiSanPham").toString());
@@ -563,8 +582,26 @@ public class process extends HttpServlet {
                                         hasp.setTinhTrang(0);
                                         if (!hinhanhsanpham_data.get(i).getName().equals("")) {
                                             hasp.setDuongDan(hinhanhsanpham_data.get(i).getName());
+                                        } else {
+                                            try {
+                                                String path_moi = path + hasp.getDuongDan();
+                                                File hinh_cu = new File(path_cu);
+                                                FileInputStream fis = new FileInputStream(hinh_cu);
+                                                File hinh_moi = new File(path_moi);
+                                                FileOutputStream fos = new FileOutputStream(hinh_moi);
+                                                
+                                                byte[] temp = new byte[10000];
+                                                do {
+                                                    fis.read(temp);
+                                                    fos.write(temp);
+                                                } while (fis.available() > 0);
+                                                
+                                                hinh_cu.delete();
+                                                fis.close();
+                                                fos.close();
+                                            } catch (Exception ex) {
+                                            }
                                         }
-
                                         HinhAnhSanPhamDAO.CapNhatHinhAnhSanPham(hasp);
 
                                         File file = new File(path + hinhanhsanpham_data.get(i).getName());

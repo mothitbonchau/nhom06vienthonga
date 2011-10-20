@@ -7,7 +7,7 @@
 
 <%
     DecimalFormat df = new DecimalFormat("###,###,###");
-    
+
     Sanpham sp = (Sanpham) request.getAttribute("sanpham");
     String path_hinhanh = "images/";
     Chitietdienthoai ctdt = new Chitietdienthoai();
@@ -34,16 +34,24 @@
 <script type="text/javascript" language="javascript">
     function showthongtin(lsp)
     {
-        var hienthi = document.getElementById("thongtinchitiet");
-        var laptop = document.getElementById("chitietlaptop");
-        var dienthoai = document.getElementById("chitietdienthoai");
+        var hienthichitiet = document.getElementById("thongtinchitiet");
+        var hienthihang = document.getElementById("hang");
+        
+        var hanglaptop = document.getElementById("hanglaptop");
+        var hangdienthoai = document.getElementById("hangdienthoai");
+        
+        var chitietlaptop = document.getElementById("chitietlaptop");
+        var chitietdienthoai = document.getElementById("chitietdienthoai");
+        
         if(lsp == "DT")
         {
-            hienthi.innerHTML = dienthoai.innerHTML;
+            hienthichitiet.innerHTML = chitietdienthoai.innerHTML;
+            hienthihang.innerHTML = hangdienthoai.innerHTML;
         }
         else
         {
-            hienthi.innerHTML = laptop.innerHTML;
+            hienthichitiet.innerHTML = chitietlaptop.innerHTML;
+            hienthihang.innerHTML = hanglaptop.innerHTML;
         }
     }
     
@@ -53,6 +61,33 @@
         frm.setAttribute("action", "process?task=quanlyadmin&task_chitiet=sanpham" + task);
     }
 </script>
+
+<%
+    List<Hang> list_hang_dienthoai = HangDAO.LayHangTheoMaLoaiSanPham("DT");
+    List<Hang> list_hang_laptop = HangDAO.LayHangTheoMaLoaiSanPham("LT");
+%>
+
+<div id="hangdienthoai" style="display: none">
+    <select name="MaHang" id="MaHang" style="width: 125px;">
+        <%
+            for (int i = 0; i < list_hang_dienthoai.size(); i++) {
+        %>
+        <option value="<%= list_hang_dienthoai.get(i).getMaHang()%>"><%= list_hang_dienthoai.get(i).getTenHang()%></option>
+        <%                }
+        %>        
+    </select>
+</div>
+
+<div id="hanglaptop" style="display: none">
+    <select name="MaHang" id="MaHang" style="width: 125px;">
+        <%
+            for (int i = 0; i < list_hang_laptop.size(); i++) {
+        %>
+        <option value="<%= list_hang_laptop.get(i).getMaHang()%>"><%= list_hang_laptop.get(i).getTenHang()%></option>
+        <%                }
+        %>        
+    </select>
+</div>
 
 <div id="chitietdienthoai" style="display: none">
     <table class="test" width="100%" border="0" cellspacing="2" cellpadding="2">
@@ -157,21 +192,45 @@
             </tr>
             <tr>
             <td>Tên Sản Phẩm</td>
-            <td><input type="text" name="TenSanPham" value="<%= sp.getTenSanPham() %>" /></td>
+            <td><input type="text" name="TenSanPham" value="<%= sp.getTenSanPham()%>" /></td>
             </tr>
             <tr>
             <td>Loại Sản Phẩm</td>
             <td>
                 <select id="MaLoaiSanPham" name="MaLoaiSanPham" style="width: 125px;" >
-                    <option <% if(sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")){%>selected="true"<%} %> value="DT" onclick="showthongtin('DT');">- Điện Thoại -</option>
-                    <option <% if(sp.getLoaisanpham().getMaLoaiSanPham().equals("LT")){%>selected="true"<%} %> value="LT" onclick="showthongtin('LT');">- Laptop -</option>
+                    <option <% if (sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")) {%>selected="true"<%}%> value="DT" onclick="showthongtin('DT');">- Điện Thoại -</option>
+                    <option <% if (sp.getLoaisanpham().getMaLoaiSanPham().equals("LT")) {%>selected="true"<%}%> value="LT" onclick="showthongtin('LT');">- Laptop -</option>
                 </select>
             </td>
             </tr>
             <tr>
-            <td>Mã Hãng <a href="view?task=quanly&task_chitiet=hang">(Tra mã hãng)</a></td>
+            <td>Mã Hãng</td>
             <td>
-                <input type="text" name="MaHang" value="<%= sp.getHang().getMaHang()%>" />
+                <div id="hang">
+                    <%
+                        if (sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")) {
+                    %>
+                    <select name="MaHang" id="MaHang" style="width: 125px;">
+                        <%
+                            for (int i = 0; i < list_hang_dienthoai.size(); i++) {
+                        %>
+                        <option <% if(list_hang_dienthoai.get(i).getMaHang().equals(sp.getHang().getMaHang())) {%>selected="true"<%} %> value="<%= list_hang_dienthoai.get(i).getMaHang()%>"><%= list_hang_dienthoai.get(i).getTenHang()%></option>
+                        <%                }
+                        %>        
+                    </select>
+                    <%} else {
+                    %>
+                    <select name="MaHang" id="MaHang" style="width: 125px;">
+                        <%
+                            for (int i = 0; i < list_hang_laptop.size(); i++) {
+                        %>
+                        <option <% if(list_hang_laptop.get(i).getMaHang().equals(sp.getHang().getMaHang())) {%>selected="true"<%} %> value="<%= list_hang_laptop.get(i).getMaHang()%>"><%= list_hang_laptop.get(i).getTenHang()%></option>
+                        <%                }
+                        %>        
+                    </select>
+                    <%            }
+                    %>
+                </div>
             </td>
             </tr>
             <tr>
