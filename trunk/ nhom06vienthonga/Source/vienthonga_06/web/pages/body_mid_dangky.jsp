@@ -4,10 +4,15 @@
     Author     : thien-anh
 --%>
 
+<%@page import="net.tanesha.recaptcha.ReCaptchaFactory"%>
+<%@page import="net.tanesha.recaptcha.ReCaptcha"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="css/maintabletitle.css" rel="stylesheet" type="text/css" />
+
 <script language="javascript">
     function TestDangKy()
     {
-       //Kiểm tra tên đăng nhập
+        //Kiểm tra tên đăng nhập
         myformobj = document.formDangKy
         if(myformobj.txtTenDangNhap.value == '')
         {
@@ -142,129 +147,137 @@
     }
 </script>
 
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link href="css/maintabletitle.css" rel="stylesheet" type="text/css" />
 <div id="body_mid" style="float:left; width:60%;">
 
     <form action="process?task=Luu" name="formDangKy" method="post" id="formDangKy" onsubmit='return TestDangKy()'>
         <table border="0" cellpadding="0" cellspacing="0" width="500px">
             <tbody>
                 <tr>
-                    <td height="42" class="maintabletitle">
-                        <span class="titleSPChitiet" >ĐĂNG KÝ TÀI KHOẢN</span>
-                    </td>
+                <td height="42" class="maintabletitle">
+                <span class="titleSPChitiet" >ĐĂNG KÝ TÀI KHOẢN</span>
+                </td>
                 </tr>
                 <tr>
-                    <td class="graytdborder">
-                        <table border="0" cellpadding="0" cellspacing="0" class="card" style="background-color: #ffffff">
-                            <tbody>
-                                <tr>
-                                    <td align="right" style="width: 202px; height: 19px"> </td>
-                                    <td style="color: #ff0000; height: 19px"> </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" style="width: 202px;">
-                                        Tên Đăng Nhập
-                                        <span class="style23" style="color: #ff0000">(*)     </span>
-                                    </td>
-                                    <td>
-                                        <input name="txtTenDangNhap" type="text" id="txtTenDangNhap" style="width:213px;"/>
-                                        <span id='txtTenDangNhapError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
-                                        <span id="txtTenDangNhapOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" style="width: 202px; height: 45px;">
-                                        Mật khẩu 
-                                        <span class="style23" style="color: #ff0000">(*)     </span>
-                                    </td>
-                                    <td style="height: 45px">
-                                        <input name="txtPass" type="password" id="txtPass" style="width:213px;"/>
-                                        <span id='txtPassError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
-                                        <span id="txtPassOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" style="width: 202px;">
-                                        Nhập Lại Mật khẩu 
-                                        <span class="style23" style="color: #ff0000">(*)     </span>
-                                    </td>
-                                    <td >
-                                        <input name="txtAgainPass" type="password" id="txtAgainPass" style="width:213px;"/>
-                                        <span id='txtAgainPassError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
-                                        <span id="txtAgainPassOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" style="width: 202px; height: 45px;">
-                                        Họ tên  
-                                        <span class="style23" style="color: #ff0000">(*)  </span>
-                                    </td>
-                                    <td>
-                                        <input name="txtName" type="text" id="txtName" style="width:213px;"/>
-                                        <span id='txtNameError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
-                                        <span id="txtNameOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" style="width: 202px;">
-                                        Email
-                                        <span class="style23" style="color: #ff0000"> (*)    </span>
-                                    </td>
-                                    <td>
-                                        <input name="txtEmail" type="text" id="txtEmail" style="width:213px;"/>
-                                        <span id='txtEmailError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
-                                        <span id="txtEmailOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td align="right" style="width: 202px; height: 45px;">
-                                        CMND
-                                        <span class="style23" style="color: #ff0000">(*)     </span>
-                                    </td>
-                                    <td>
-                                        <input name="txtCMND" type="text" id="txtCMND" style="width:213px;"/>
-                                        <span id='txtCMNDError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
-                                        <span id="txtCMNDOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right"> </td>
-                                    <td>
-                                        <span id="lblStatus"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" style="width: 202px;"> Điện Thoại </td>
-                                    <td>
-                                        <input name="txtDienThoai" type="text" id="txtDienThoai" style="width:213px;"/>
-                                        <span id='txtDienThoaiError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
-                                        <span id="txtDienThoaiOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" style="width: 202px; height: 45px;">
-                                        Địa Chỉ
-                                        <span class="style23" style="color: #ff0000">(*)     </span>
-                                    </td>
-                                    <td>
-                                        <input name="txtDiaChi" type="text" id="txtDiaChi" style="width:213px;"/>
-                                        <span id='txtDiaChiError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
-                                        <span id="txtDiaChiOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
-                                    </td>
-                                </tr>                      
-                                <tr>
-                                    <td align="right" style="width: 202px;">  </td>
-                                    <td>
-                                        <input type="image" name="btnDangKy" id="btnDangKy" src="images/linhtinh/dangky.gif" style="border-width:0px;height: 25px;"/>
-                                        <input type="image" name="btnXoa" id="btnXoa" src="images/linhtinh/xoa_btn.gif" style="border-width:0px;height: 25px;"/>
-                                    </td>
-                                </tr>
-                            </tbody> 
-                        </table>
-                    </td>
+                <td class="graytdborder">
+                    <table border="0" cellpadding="0" cellspacing="0" class="card" style="background-color: #ffffff">
+                        <tbody>
+                            <tr>
+                            <td align="right" style="width: 202px; height: 19px"> </td>
+                            <td style="color: #ff0000; height: 19px"> </td>
+                            </tr>
+                            <tr>
+                            <td align="right" style="width: 202px;">
+                                Tên Đăng Nhập
+                            <span class="style23" style="color: #ff0000">(*)     </span>
+                            </td>
+                            <td>
+                                <input name="txtTenDangNhap" type="text" id="txtTenDangNhap" style="width:213px;"/>
+                            <span id='txtTenDangNhapError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
+                            <span id="txtTenDangNhapOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="right" style="width: 202px; height: 45px;">
+                                Mật khẩu 
+                            <span class="style23" style="color: #ff0000">(*)     </span>
+                            </td>
+                            <td style="height: 45px">
+                                <input name="txtPass" type="password" id="txtPass" style="width:213px;"/>
+                            <span id='txtPassError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
+                            <span id="txtPassOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="right" style="width: 202px;">
+                                Nhập Lại Mật khẩu 
+                            <span class="style23" style="color: #ff0000">(*)     </span>
+                            </td>
+                            <td >
+                                <input name="txtAgainPass" type="password" id="txtAgainPass" style="width:213px;"/>
+                            <span id='txtAgainPassError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
+                            <span id="txtAgainPassOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="right" style="width: 202px; height: 45px;">
+                                Họ tên  
+                            <span class="style23" style="color: #ff0000">(*)  </span>
+                            </td>
+                            <td>
+                                <input name="txtName" type="text" id="txtName" style="width:213px;"/>
+                            <span id='txtNameError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
+                            <span id="txtNameOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="right" style="width: 202px;">
+                                Email
+                            <span class="style23" style="color: #ff0000"> (*)    </span>
+                            </td>
+                            <td>
+                                <input name="txtEmail" type="text" id="txtEmail" style="width:213px;"/>
+                            <span id='txtEmailError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
+                            <span id="txtEmailOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
+                            </td>
+                            </tr>
+
+                            <tr>
+                            <td align="right" style="width: 202px; height: 45px;">
+                                CMND
+                            <span class="style23" style="color: #ff0000">(*)     </span>
+                            </td>
+                            <td>
+                                <input name="txtCMND" type="text" id="txtCMND" style="width:213px;"/>
+                            <span id='txtCMNDError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
+                            <span id="txtCMNDOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="right"> </td>
+                            <td>
+                            <span id="lblStatus"/>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="right" style="width: 202px;"> Điện Thoại </td>
+                            <td>
+                                <input name="txtDienThoai" type="text" id="txtDienThoai" style="width:213px;"/>
+                            <span id='txtDienThoaiError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
+                            <span id="txtDienThoaiOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="right" style="width: 202px; height: 45px;">
+                                Địa Chỉ
+                            <span class="style23" style="color: #ff0000">(*)     </span>
+                            </td>
+                            <td>
+                                <input name="txtDiaChi" type="text" id="txtDiaChi" style="width:213px;"/>
+                            <span id='txtDiaChiError' style='visibility:hidden' class='hidden'>&nbsp;&nbsp;<img src='images/linhtinh/error.jpg' width='16' height='16' /> </span>
+                            <span id="txtDiaChiOk" style="visibility: hidden" class="hidden">&nbsp;&nbsp;<image src="images/linhtinh/ok.jpg" width='16' height='16' /> </span>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <form action="" method="post">
+                                    <%
+                                        ReCaptcha c = ReCaptchaFactory.newReCaptcha("6Ld03sgSAAAAAELYRYbjvhqsILWyj1zxc6DX4cwT ", "6Ld03sgSAAAAAGI9a-JBcCtJHNgL4umXwtW0uNW- ", false);
+                                        out.print(c.createRecaptchaHtml("abc", null));
+                                    %>
+                                </form>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td align="right" style="width: 202px;">  </td>
+                            <td>
+                                <input type="image" name="btnDangKy" id="btnDangKy" src="images/linhtinh/dangky.gif" style="border-width:0px;height: 25px;"/>
+                                <input type="image" name="btnXoa" id="btnXoa" src="images/linhtinh/xoa_btn.gif" style="border-width:0px;height: 25px;"/>
+                            </td>
+                            </tr>
+                        </tbody> 
+                    </table>
+                </td>
                 </tr>        
             </tbody>
         </table>

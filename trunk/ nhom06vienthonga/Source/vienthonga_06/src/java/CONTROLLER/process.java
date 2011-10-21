@@ -32,6 +32,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import net.tanesha.recaptcha.ReCaptchaImpl;
+import net.tanesha.recaptcha.ReCaptchaResponse;
 import org.apache.tomcat.util.http.ContentType;
 import org.omg.CORBA.SystemException;
 import org.apache.tomcat.util.http.fileupload.FileItem;
@@ -171,6 +173,20 @@ public class process extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="Xử lý đăng ký">
             if (task.equals("Luu")) {
+                String remoteAddr = request.getRemoteAddr();
+                ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
+                reCaptcha.setPrivateKey("6Ld03sgSAAAAAGI9a-JBcCtJHNgL4umXwtW0uNW- ");
+
+                String challenge = request.getParameter("recaptcha_challenge_field");
+                String uresponse = request.getParameter("recaptcha_response_field");
+                ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
+
+                if (!reCaptchaResponse.isValid()) {
+                    request.setAttribute("thongbao", "Sai captcha !!!");
+                    request.getRequestDispatcher("view?task=DangKy").forward(request, response);
+                    return;
+                }
+
                 Nguoidung pojo = new Nguoidung();
                 Loainguoidung lnd = NguoiDungDAO.LayDoiTuongTheoMa("MLND2");
 
@@ -527,10 +543,8 @@ public class process extends HttpServlet {
                                     sp.setTenSanPham(params.get("TenSanPham").toString());
                                     Loaisanpham lsp = new Loaisanpham();
                                     lsp.setMaLoaiSanPham(params.get("MaLoaiSanPham").toString());
-                                    if(!sp.getLoaisanpham().getMaLoaiSanPham().equals(lsp.getMaLoaiSanPham()))
-                                    {
-                                        if(sp.getLoaisanpham().getMaLoaiSanPham().equals("DT"))
-                                        {
+                                    if (!sp.getLoaisanpham().getMaLoaiSanPham().equals(lsp.getMaLoaiSanPham())) {
+                                        if (sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")) {
                                             ChiTietDienThoaiDAO.Xoa(sp.getMaSanPham());
                                             Chitietlaptop ctlt = ChiTietLaptopDAO.LayChiTietLaptopCuoiCung();
                                             int chiso = 1;
@@ -547,9 +561,7 @@ public class process extends HttpServlet {
                                             ctlt.setBoNhoDem(params.get("BoNhoDem").toString());
 
                                             ChiTietLaptopDAO.Them(ctlt);
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             ChiTietLaptopDAO.Xoa(sp.getMaSanPham());
                                             Chitietdienthoai ctdt = ChiTietDienThoaiDAO.LayChiTietDienThoaiCuoiCung();
                                             int chiso = 1;

@@ -1,8 +1,8 @@
-<%@page import="com.itextpdf.text.BaseColor"%>
-<%@page import="com.itextpdf.text.Image"%>
-<%@page import="com.sun.mail.handlers.image_jpeg"%>
+<%@page import="net.tanesha.recaptcha.ReCaptchaResponse"%>
 <%@page import="net.tanesha.recaptcha.ReCaptchaResponse"%>
 <%@page import="net.tanesha.recaptcha.ReCaptchaImpl"%>
+<%@page import="com.itextpdf.text.BaseColor"%>
+<%@page import="com.itextpdf.text.Image"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
 <%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
