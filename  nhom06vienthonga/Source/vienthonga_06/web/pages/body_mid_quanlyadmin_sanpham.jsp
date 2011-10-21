@@ -124,11 +124,11 @@
                 <input type='text' name='TenSanPham' id='TenSanPham' value='<%= sp.getTenSanPham()%>' style="width:90px;"/>
             </td>
             <td>
-                <input readonly="readonly" type='text' name='TenLoaiSanPham' id='TenLoaiSanPham' value='<%= sp.getLoaisanpham().getTenLoaiSanPham()%>' style="width:80px;"/>
+                <label><%= sp.getLoaisanpham().getTenLoaiSanPham()%></label>
                 <input type='hidden' name='MaLoaiSanPham' id='MaLoaiSanPham' value='<%= sp.getLoaisanpham().getMaLoaiSanPham()%>' style="width:80px;"/>
             </td>
             <td>
-                <input readonly="readonly" type='text' name='TenHang' id='TenHang' value='<%= sp.getHang().getTenHang()%>' style="width:60px;"/>
+                <label><%= sp.getHang().getTenHang()%></label>
                 <input type='hidden' name='MaHang' id='MaHang' value='<%= sp.getHang().getMaHang()%>' style="width:60px;"/>                
             </td> 
             <td>

@@ -18,8 +18,8 @@ public class Nguoidung  implements java.io.Serializable {
      private String matKhau;
      private String tenNguoiDung;
      private String email;
-     private Integer cmnd;
-     private Integer dienThoai;
+     private String cmnd;
+     private String dienThoai;
      private String diaChi;
      private Date ngayDangKy;
      private Integer tinhTrang;
@@ -33,7 +33,7 @@ public class Nguoidung  implements java.io.Serializable {
     public Nguoidung(String maNguoiDung) {
         this.maNguoiDung = maNguoiDung;
     }
-    public Nguoidung(String maNguoiDung, Loainguoidung loainguoidung, String tenDangNhap, String matKhau, String tenNguoiDung, String email, Integer cmnd, Integer dienThoai, String diaChi, Date ngayDangKy, Integer tinhTrang, Set donhangs, Set giohangs) {
+    public Nguoidung(String maNguoiDung, Loainguoidung loainguoidung, String tenDangNhap, String matKhau, String tenNguoiDung, String email, String cmnd, String dienThoai, String diaChi, Date ngayDangKy, Integer tinhTrang, Set donhangs, Set giohangs) {
        this.maNguoiDung = maNguoiDung;
        this.loainguoidung = loainguoidung;
        this.tenDangNhap = tenDangNhap;
@@ -91,18 +91,18 @@ public class Nguoidung  implements java.io.Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Integer getCmnd() {
+    public String getCmnd() {
         return this.cmnd;
     }
     
-    public void setCmnd(Integer cmnd) {
+    public void setCmnd(String cmnd) {
         this.cmnd = cmnd;
     }
-    public Integer getDienThoai() {
+    public String getDienThoai() {
         return this.dienThoai;
     }
     
-    public void setDienThoai(Integer dienThoai) {
+    public void setDienThoai(String dienThoai) {
         this.dienThoai = dienThoai;
     }
     public String getDiaChi() {

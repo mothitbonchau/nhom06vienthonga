@@ -207,8 +207,8 @@ public class process extends HttpServlet {
                 pojo.setTenNguoiDung(request.getParameter("txtName"));
                 pojo.setMatKhau(request.getParameter("txtPass"));
                 pojo.setEmail(request.getParameter("txtEmail"));
-                pojo.setCmnd(Integer.parseInt(request.getParameter("txtCMND")));
-                pojo.setDienThoai(Integer.parseInt(request.getParameter("txtDienThoai")));
+                pojo.setCmnd(request.getParameter("txtCMND"));
+                pojo.setDienThoai(request.getParameter("txtDienThoai"));
                 pojo.setDiaChi(request.getParameter("txtDiaChi"));
                 pojo.setNgayDangKy(NgayHienTai);
                 pojo.setLoainguoidung(lnd);
@@ -216,8 +216,9 @@ public class process extends HttpServlet {
 
                 int kq = NguoiDungDAO.DangKy(pojo);
 
-                //Gán Session Tên Đăng Nhập                    
+                //Gán Session Tên Đăng Nhập
                 session.setAttribute("TenDangNhap", pojo.getTenDangNhap());
+                request.setAttribute("thongbao", "Đã đăng ký thành công !!!");
                 request.getRequestDispatcher("view").forward(request, response);
             }
             //</editor-fold>
@@ -305,8 +306,8 @@ public class process extends HttpServlet {
                             nd.setMatKhau(matKhau);
                             nd.setTenNguoiDung(tenND);
                             nd.setEmail(email);
-                            nd.setCmnd(Integer.parseInt(cmnd));
-                            nd.setDienThoai(Integer.parseInt(dienThoai));
+                            nd.setCmnd(cmnd);
+                            nd.setDienThoai(dienThoai);
                             nd.setDiaChi(diaChi);
                             nd.setLoainguoidung(lnd);
                             nd.setNgayDangKy(NgayHienTai);
@@ -342,8 +343,8 @@ public class process extends HttpServlet {
                                     nd.setMatKhau(matKhau);
                                     nd.setTenNguoiDung(tenND);
                                     nd.setEmail(email);
-                                    nd.setCmnd(Integer.parseInt(cmnd));
-                                    nd.setDienThoai(Integer.parseInt(dienThoai));
+                                    nd.setCmnd(cmnd);
+                                    nd.setDienThoai(dienThoai);
                                     nd.setDiaChi(diaChi);
                                     nd.setLoainguoidung(ndCu.getLoainguoidung());
                                     nd.setNgayDangKy(ndCu.getNgayDangKy());

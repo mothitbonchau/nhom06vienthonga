@@ -23,11 +23,11 @@
         <property name="email" type="string">
             <column name="Email" length="45" />
         </property>
-        <property name="cmnd" type="java.lang.Integer">
-            <column name="CMND" />
+        <property name="cmnd" type="string">
+            <column name="CMND" length="45"/>
         </property>
-        <property name="dienThoai" type="java.lang.Integer">
-            <column name="DienThoai" />
+        <property name="dienThoai" type="string">
+            <column name="DienThoai" length="45" />
         </property>
         <property name="diaChi" type="string">
             <column name="DiaChi" length="45" />
