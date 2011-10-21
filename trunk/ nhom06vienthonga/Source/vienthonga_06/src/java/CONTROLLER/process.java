@@ -6,6 +6,7 @@ package CONTROLLER;
 
 import MODEL.DAO.*;
 import MODEL.POJO.*;
+import MODEL.UTIL.HinhAnh;
 import com.itextpdf.text.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -167,11 +168,10 @@ public class process extends HttpServlet {
                 }
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="Xử lý đăng ký">
-            if(task.equals("Luu"))
-            {
-                Nguoidung pojo=new Nguoidung();
+            if (task.equals("Luu")) {
+                Nguoidung pojo = new Nguoidung();
                 Loainguoidung lnd = NguoiDungDAO.LayDoiTuongTheoMa("MLND2");
 
                 //Lấy Mã người dùng kiểu String tăng tự động
@@ -179,7 +179,7 @@ public class process extends HttpServlet {
                 String ma = "MND";
                 String ChuoiSo = MaND.substring(3);
                 int So = Integer.parseInt(ChuoiSo) + 1;
-                MaND = ma + So;   
+                MaND = ma + So;
 
                 //Lấy giờ hệ thống
                 long current_time = System.currentTimeMillis();
@@ -198,25 +198,23 @@ public class process extends HttpServlet {
                 pojo.setLoainguoidung(lnd);
                 pojo.setTinhTrang(0);
 
-                int kq = NguoiDungDAO.DangKy(pojo);        
+                int kq = NguoiDungDAO.DangKy(pojo);
 
                 //Gán Session Tên Đăng Nhập                    
-                session.setAttribute("TenDangNhap", pojo.getTenDangNhap());                                        
-                request.getRequestDispatcher("view").forward(request, response);                                  
+                session.setAttribute("TenDangNhap", pojo.getTenDangNhap());
+                request.getRequestDispatcher("view").forward(request, response);
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="Xử lý đăng xuất">
-            if (task.equals("DangXuat")) 
-            {
+            if (task.equals("DangXuat")) {
                 session.invalidate();
                 request.getRequestDispatcher("view").forward(request, response);
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="Xử lý liên hệ">
-            if (task.equals("LienHe")) 
-            {                
+            if (task.equals("LienHe")) {
                 request.getRequestDispatcher("view").forward(request, response);
             }
             //</editor-fold>
@@ -529,6 +527,47 @@ public class process extends HttpServlet {
                                     sp.setTenSanPham(params.get("TenSanPham").toString());
                                     Loaisanpham lsp = new Loaisanpham();
                                     lsp.setMaLoaiSanPham(params.get("MaLoaiSanPham").toString());
+                                    if(!sp.getLoaisanpham().getMaLoaiSanPham().equals(lsp.getMaLoaiSanPham()))
+                                    {
+                                        if(sp.getLoaisanpham().getMaLoaiSanPham().equals("DT"))
+                                        {
+                                            ChiTietDienThoaiDAO.Xoa(sp.getMaSanPham());
+                                            Chitietlaptop ctlt = ChiTietLaptopDAO.LayChiTietLaptopCuoiCung();
+                                            int chiso = 1;
+                                            if (ctlt == null) {
+                                                ctlt = new Chitietlaptop();
+                                            } else {
+                                                chiso = Integer.parseInt(ctlt.getMaChiTietLaptop().substring(5).toString());
+                                                chiso += 1;
+                                            }
+                                            ctlt.setMaChiTietLaptop("MCTLT" + chiso);
+                                            ctlt.setSanpham(sp);
+                                            ctlt.setCongNgheCpu(params.get("CongNgheCPU").toString());
+                                            ctlt.setTocDoCpu(params.get("TocDoCPU").toString());
+                                            ctlt.setBoNhoDem(params.get("BoNhoDem").toString());
+
+                                            ChiTietLaptopDAO.Them(ctlt);
+                                        }
+                                        else
+                                        {
+                                            ChiTietLaptopDAO.Xoa(sp.getMaSanPham());
+                                            Chitietdienthoai ctdt = ChiTietDienThoaiDAO.LayChiTietDienThoaiCuoiCung();
+                                            int chiso = 1;
+                                            if (ctdt == null) {
+                                                ctdt = new Chitietdienthoai();
+                                            } else {
+                                                chiso = Integer.parseInt(ctdt.getMaChiTietDienThoai().substring(5).toString());
+                                                chiso += 1;
+                                            }
+                                            ctdt.setMaChiTietDienThoai("MCTDT" + chiso);
+                                            ctdt.setSanpham(sp);
+                                            ctdt.setMang(params.get("Mang").toString());
+                                            ctdt.setLoaiManHinh(params.get("LoaiManHinh").toString());
+                                            ctdt.setNgonNgu(params.get("NgonNgu").toString());
+
+                                            ChiTietDienThoaiDAO.Them(ctdt);
+                                        }
+                                    }
                                     sp.setLoaisanpham(lsp);
                                     Hang h = HangDAO.LayHangTheoMa(params.get("MaHang").toString());
                                     sp.setHang(h);
@@ -582,25 +621,10 @@ public class process extends HttpServlet {
                                         hasp.setTinhTrang(0);
                                         if (!hinhanhsanpham_data.get(i).getName().equals("")) {
                                             hasp.setDuongDan(hinhanhsanpham_data.get(i).getName());
-                                        } else {
-                                            try {
-                                                String path_moi = path + hasp.getDuongDan();
-                                                File hinh_cu = new File(path_cu);
-                                                FileInputStream fis = new FileInputStream(hinh_cu);
-                                                File hinh_moi = new File(path_moi);
-                                                FileOutputStream fos = new FileOutputStream(hinh_moi);
-                                                
-                                                byte[] temp = new byte[10000];
-                                                do {
-                                                    fis.read(temp);
-                                                    fos.write(temp);
-                                                } while (fis.available() > 0);
-                                                
-                                                hinh_cu.delete();
-                                                fis.close();
-                                                fos.close();
-                                            } catch (Exception ex) {
-                                            }
+                                        }
+                                        String path_moi = path + hasp.getDuongDan();
+                                        if (!path_cu.equals(path_moi)) {
+                                            HinhAnh.DiChuyenHinhAnh(path_cu, path_moi);
                                         }
                                         HinhAnhSanPhamDAO.CapNhatHinhAnhSanPham(hasp);
 

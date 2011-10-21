@@ -8,7 +8,7 @@
             <column name="MaChiTietLaptop" length="45" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="sanpham" class="MODEL.POJO.Sanpham" fetch="select">
+        <many-to-one name="sanpham" class="MODEL.POJO.Sanpham" fetch="select" lazy="false">
             <column name="MaSanPham" length="45" />
         </many-to-one>
         <property name="congNgheCpu" type="string">

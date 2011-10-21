@@ -47,6 +47,26 @@ public class ChiTietLaptopDAO {
         return ctlt;
     }
     
+    public static Chitietlaptop LayChiTietLaptopTheoMaSanPham(String msp) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Chitietlaptop ctlt = null;
+
+        String hql = "from Chitietlaptop ctlt ";
+        hql += "where ctlt.maSanPham =:msp ";
+        
+        try {
+            Query query = session.createQuery(hql);
+            query.setString("msp", msp);
+            ctlt = (Chitietlaptop) query.uniqueResult();
+        } catch (Exception ex) {
+        } finally {
+            session.close();
+        }
+
+        return ctlt;
+    }
+    
     public static int Them(Chitietlaptop ctlt) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         int kq = 0;
@@ -79,5 +99,23 @@ public class ChiTietLaptopDAO {
             session.close();
         }
         return kq;    
+    }
+    
+    public static int Xoa(String msp) {
+        Chitietlaptop ctlt = LayChiTietLaptopTheoMaSanPham(msp);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        int kq = 0;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.delete(ctlt);
+            transaction.commit();
+            kq = 1;
+        } catch (Exception ex) {
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        return kq;
     }
 }
