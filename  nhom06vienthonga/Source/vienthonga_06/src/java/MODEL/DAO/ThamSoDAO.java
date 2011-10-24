@@ -4,9 +4,7 @@
  */
 package MODEL.DAO;
 
-import MODEL.POJO.Thamso;
 import MODEL.UTIL.HibernateUtil;
-import org.hibernate.CacheMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -14,7 +12,7 @@ import org.hibernate.Session;
  *
  * @author LAPTOP
  */
-public class ThamSoDao {
+public class ThamSoDAO {
     public static String LayDuongDanHinhAnh()
     {
         Session session = HibernateUtil.getSessionFactory().openSession();

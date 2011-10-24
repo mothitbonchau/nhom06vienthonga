@@ -9,7 +9,7 @@
     DecimalFormat df = new DecimalFormat("###,###,###");
 
     Sanpham sp = (Sanpham) request.getAttribute("sanpham");
-    String path_hinhanh = "images/";
+    String path_hinhanh = ThamSoDAO.LayDuongDanHinhAnh();
     Chitietdienthoai ctdt = new Chitietdienthoai();
     if (sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")) {
         ctdt = (Chitietdienthoai) sp.getChitietdienthoais().toArray()[0];
@@ -57,7 +57,7 @@
     
     function chuyentask(task)
     {
-        var frm = document.getElementById("frmthemsanpham");
+        var frm = document.getElementById("frmcapnhatsanpham");
         frm.setAttribute("action", "process?task=quanlyadmin&task_chitiet=sanpham" + task);
     }
 </script>
@@ -130,7 +130,7 @@
 </div>
 
 <div id="body_mid" style="float: left; width: 75%; margin-left: 0px;">
-    <form id="frmthemsanpham" method="post" action="process?task=quanlyadmin&task_chitiet=sanpham" enctype="multipart/form-data">
+    <form id="frmtcapnhatsanpham" method="post" action="process?task=quanlyadmin&task_chitiet=sanpham" enctype="multipart/form-data">
         <table width="100%" border="0" cellspacing="10" cellpadding="2">
             <tr>
             <td>Mã Sản Phẩm</td>

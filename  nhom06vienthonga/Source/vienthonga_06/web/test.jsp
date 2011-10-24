@@ -1,57 +1,45 @@
-<%@page import="net.tanesha.recaptcha.ReCaptchaResponse"%>
-<%@page import="net.tanesha.recaptcha.ReCaptchaResponse"%>
-<%@page import="net.tanesha.recaptcha.ReCaptchaImpl"%>
-<%@page import="com.itextpdf.text.BaseColor"%>
-<%@page import="com.itextpdf.text.Image"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
-<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package MODEL.DAO;
 
-<%
-    if (request.getParameter("tt") != null) {
-        String remoteAddr = request.getRemoteAddr();
-        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
-        reCaptcha.setPrivateKey("6Ld03sgSAAAAAGI9a-JBcCtJHNgL4umXwtW0uNW- ");
+import MODEL.POJO.Thamso;
+import MODEL.UTIL.HibernateUtil;
+import org.hibernate.CacheMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
-        String challenge = request.getParameter("recaptcha_challenge_field");
-        String uresponse = request.getParameter("recaptcha_response_field");
-        ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
-
-        if (reCaptchaResponse.isValid()) {
-            out.print("Answer was entered correctly!");
-        } else {
-            out.print("Answer is wrong");
-        }
-        return;
+/**
+ *
+ * @author LAPTOP
+ */
+public class ThamSoDAO {
+    public static String LayDuongDanHinhAnh()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        String path = "";
+        
+        String hql = "SELECT duongDanHinhAnh FROM Thamso";
+        Query query = session.createQuery(hql);
+        path = query.list().get(0).toString();
+        
+        session.close();
+        return path;
     }
     
-%>
-
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-        <form action="" method="post">
-            <%
-                ReCaptcha c = ReCaptchaFactory.newReCaptcha("6Ld03sgSAAAAAELYRYbjvhqsILWyj1zxc6DX4cwT ", "6Ld03sgSAAAAAGI9a-JBcCtJHNgL4umXwtW0uNW- ", false);
-                out.print(c.createRecaptchaHtml("abc", null));
-            %>
-            <input type="submit" value="adsfasdf"/>
-            <input type="hidden" name="tt" value="asdf">
-        </form>
-            
-        <form action="" method="post">
-            <input type="radio" name="k" value="1"/>
-            <input type="radio" name="k" value="2"/>
-            <input type="submit" value="adsfasdf"/>
-            <input type="hidden" name="tt2" value="asdf">
-        </form>
-            <%= 1 %>
-    </body>
-</html>
-
-
-
+    public static int LaySoSanPhamTrenTrang()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        int sp1trang = 0;
+        
+        String hql = "SELECT soSanPhamTrenTrang FROM Thamso";
+        Query query = session.createQuery(hql);
+        sp1trang = (Integer) query.uniqueResult();
+        
+        session.close();
+        return sp1trang;
+    }
+}

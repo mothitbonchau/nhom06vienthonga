@@ -27,7 +27,7 @@
             <column name="CMND" length="45"/>
         </property>
         <property name="dienThoai" type="string">
-            <column name="DienThoai" length="45" />
+            <column name="DienThoai" length="45"/>
         </property>
         <property name="diaChi" type="string">
             <column name="DiaChi" length="45" />
@@ -44,7 +44,7 @@
             </key>
             <one-to-many class="MODEL.POJO.Donhang" />
         </set>
-        <set name="giohangs" inverse="true">
+        <set name="giohangs" inverse="true" lazy="false">
             <key>
                 <column name="MaNguoiDung" length="45" />
             </key>

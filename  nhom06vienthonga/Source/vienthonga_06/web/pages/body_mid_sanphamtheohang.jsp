@@ -1,4 +1,4 @@
-<%@page import="MODEL.DAO.ThamSoDao"%>
+<%@page import="MODEL.DAO.ThamSoDAO"%>
 <%@page import="MODEL.POJO.Hinhanhsanpham"%>
 <%@page import="MODEL.POJO.Sanpham"%>
 <%@page import="MODEL.DAO.SanPhamDAO"%>
@@ -28,7 +28,7 @@
                 %>
                 <div class="itemProducts">
                     <a href="view?task=chitietsanpham&MSP=<%= list.get(i).getMaSanPham() %>">
-                        <img height="93" alt="<%= list.get(i).getTenSanPham() %>" src="<%= ThamSoDao.LayDuongDanHinhAnh() %><%= path_lsp %><%= path_hang %><%= hasp.getDuongDan() %>" />
+                        <img height="93" alt="<%= list.get(i).getTenSanPham() %>" src="<%= ThamSoDAO.LayDuongDanHinhAnh() %><%= path_lsp %><%= path_hang %><%= hasp.getDuongDan() %>" />
                     </a>
                     <h3>
                         <a href="view?task=chitietsanpham&MSP=<%= list.get(i).getMaSanPham() %>"><%= list.get(i).getTenSanPham() %></a>

@@ -44,7 +44,7 @@ public class view extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="show sản phẩm của hãng">
             if (task.equals("sanphamtheohang")) {
-                int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                 int tongsotrang = 0;
                 int trang = 1;
                 if (request.getParameter("trang") != null) {
@@ -88,7 +88,7 @@ public class view extends HttpServlet {
                 String task_chitiet = request.getParameter("task_chitiet");
                 //<editor-fold defaultstate="collapsed" desc="show sản phẩm điện thoại">
                 if (task_chitiet.equals("dienthoai")) {
-                    int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                    int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                     int tongsotrang = 0;
                     int trang = 1;
                     if (request.getParameter("trang") != null) {
@@ -116,7 +116,7 @@ public class view extends HttpServlet {
 
                 //<editor-fold defaultstate="collapsed" desc="show sản phẩm laptop">
                 if (task_chitiet.equals("laptop")) {
-                    int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                    int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                     int tongsotrang = 0;
                     int trang = 1;
                     if (request.getParameter("trang") != null) {
@@ -149,20 +149,19 @@ public class view extends HttpServlet {
                 request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="chuyển trang đăng ký">
             if (task.equals("DangKy")) {
                 request.getRequestDispatcher("DangKy.jsp").forward(request, response);
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="chuyển trang liên hệ">
             if (task.equals("LienHe")) {
                 request.getRequestDispatcher("LienHe.jsp").forward(request, response);
             }
-            //</editor-fold>
-            
-           
+            //</editor-fold>            
+
             //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
             if (task.equals("quanly")) {
                 if (session.getAttribute("TenDangNhap") == null) {
@@ -220,7 +219,7 @@ public class view extends HttpServlet {
                             }
                             //</editor-fold>
 
-                            int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                            int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                             int tongsotrang = 0;
                             int trang = 1;
                             if (request.getParameter("trang") != null) {
@@ -241,6 +240,55 @@ public class view extends HttpServlet {
                             request.setAttribute("tongsotrang", tongsotrang);
                             request.setAttribute("list", list);
                             request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+
+                        //<editor-fold defaultstate="collapsed" desc="khuyến mãi">
+                        if (task_chitiet.equals("khuyenmai")) {
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang thêm">                           
+                            if (request.getParameter("Them") != null) {
+                                request.getRequestDispatcher("QuanLyAdmin_KhuyenMai_Them.jsp").forward(request, response);
+                                return;
+                            }
+                            //</editor-fold>
+
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang cập nhật">
+                            if (request.getParameter("CapNhat") != null) {
+                                String capnhat = request.getParameter("CapNhat").toString();
+
+                                if (capnhat.equals("chitiet")) {
+                                    String mkm = request.getParameter("MKM");
+                                    Khuyenmai km = KhuyenMaiDAO.LayKhuyenMaiTheoMa(mkm);
+
+                                    request.setAttribute("khuyenmai", km);
+                                    request.getRequestDispatcher("QuanLyAdmin_KhuyenMai_CapNhat.jsp").forward(request, response);
+                                    return;
+                                }
+                            }
+                            //</editor-fold>
+
+                            int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
+                            int tongsotrang = 0;
+                            int trang = 1;
+                            if (request.getParameter("trang") != null) {
+                                trang = Integer.parseInt(request.getParameter("trang").toString());
+                            }
+                            int batdau = 0;
+                            if (trang > 1) {
+                                batdau = sp1trang * trang - sp1trang;
+                            }
+
+                            List<Khuyenmai> list = KhuyenMaiDAO.LayKhuyenMai(batdau, -1);
+                            tongsotrang = list.size() / sp1trang;
+                            if (list.size() % sp1trang > 0) {
+                                tongsotrang = tongsotrang + 1;
+                            }
+                            list = KhuyenMaiDAO.LayKhuyenMai(batdau, sp1trang);
+
+                            request.setAttribute("tongsotrang", tongsotrang);
+                            request.setAttribute("list", list);
+                            request.getRequestDispatcher("QuanLyAdmin_KhuyenMai.jsp").forward(request, response);
                             return;
                         }
                         //</editor-fold>
@@ -283,6 +331,7 @@ public class view extends HttpServlet {
                     return;
                 }
                 //</editor-fold>
+
             }
             //</editor-fold>
 
@@ -305,7 +354,7 @@ public class view extends HttpServlet {
                     }
                 }
 
-                int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                 int tongsotrang = 0;
                 int trang = 1;
                 if (request.getParameter("trang") != null) {
@@ -343,7 +392,7 @@ public class view extends HttpServlet {
                     }
                 }
 
-                int sp1trang = ThamSoDao.LaySoSanPhamTrenTrang();
+                int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                 int tongsotrang = 0;
                 int trang = 1;
                 if (request.getParameter("trang") != null) {
@@ -367,7 +416,7 @@ public class view extends HttpServlet {
                 return;
             }
             //</editor-fold>
-            
+
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
             int ii = 1;
 
