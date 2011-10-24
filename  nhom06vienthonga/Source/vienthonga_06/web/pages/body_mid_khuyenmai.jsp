@@ -1,3 +1,4 @@
+<%@page import="MODEL.DAO.ThamSoDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="MODEL.POJO.Hinhanhkhuyenmai"%>
 <%@page import="MODEL.DAO.KhuyenMaiDAO"%>
@@ -17,6 +18,10 @@
         <%
             for (int i = 0; i < list.size(); i++) {
                 Hinhanhkhuyenmai hakm = (Hinhanhkhuyenmai) list.get(i).getHinhanhkhuyenmais().toArray()[0];
+                if (!hakm.getDuongDan().startsWith("http")) {
+                    String path = ThamSoDAO.LayDuongDanHinhAnh() + "khuyen mai/" + hakm.getDuongDan();
+                    hakm.setDuongDan(path);
+                }
         %>
         <div class="news_block">
             <a href="view?task=khuyenmai&task_chitiet=chitietkhuyenmai&MKM=<%= list.get(i).getMaKhuyenMai()%>">

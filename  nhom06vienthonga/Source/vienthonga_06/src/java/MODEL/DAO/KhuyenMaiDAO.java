@@ -70,6 +70,28 @@ public class KhuyenMaiDAO {
         return sp;
     }
 
+    public static List<Khuyenmai> LayHetKhuyenMai(int batdau, int sp1trang) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List<Khuyenmai> list = null;
+
+        try {
+            String hql = "FROM Khuyenmai km";
+            Query query = session.createQuery(hql);
+            if (batdau >= 0 && sp1trang > 0) {
+                query.setFirstResult(batdau);
+                query.setMaxResults(sp1trang);
+            }
+
+            list = query.list();
+        } catch (Exception ex) {
+        } finally {
+            session.close();
+        }
+
+        return list;
+    }
+    
     public static int CapNhatKhuyenMai(Khuyenmai km) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         int kq = 0;
