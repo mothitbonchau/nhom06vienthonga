@@ -159,10 +159,13 @@ public class view extends HttpServlet {
             //<editor-fold defaultstate="collapsed" desc="chuyển trang liên hệ">
             if (task.equals("LienHe")) {
                 request.getRequestDispatcher("LienHe.jsp").forward(request, response);
+                PrintWriter out1 = response.getWriter();
             }
-            //</editor-fold>            
+<<<<<<< .mine            //</editor-fold>
+                       
+=======            //</editor-fold>            
 
-            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
+>>>>>>> .theirs            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
             if (task.equals("quanly")) {
                 if (session.getAttribute("TenDangNhap") == null) {
                     request.getRequestDispatcher("DangNhap.jsp").forward(request, response);

@@ -14,13 +14,13 @@
         <property name="tinhTrang" type="java.lang.Integer">
             <column name="TinhTrang" />
         </property>
-        <set name="sanphams" inverse="true">
+        <set name="sanphams" inverse="true" lazy="false">
             <key>
                 <column name="MaLoaiSanPham" length="45" />
             </key>
             <one-to-many class="MODEL.POJO.Sanpham" />
         </set>
-        <set name="loaisanphamhangs" inverse="true">
+        <set name="loaisanphamhangs" inverse="true" lazy="false">
             <key>
                 <column name="MaLoaiSanPham" length="45" />
             </key>

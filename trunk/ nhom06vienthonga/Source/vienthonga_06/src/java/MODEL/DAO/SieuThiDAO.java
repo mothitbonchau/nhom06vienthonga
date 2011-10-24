@@ -31,4 +31,19 @@ public class SieuThiDAO {
         }
         return list;
     }
+    public static List<Sieuthi> LaySieuThiTheoMaVung(String MaVung){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Sieuthi> DS = null;
+        try {
+            String hql = "FROM Sieuthi WHERE maVung = MaVung";
+            Query query = session.createQuery(MaVung);
+            DS = query.list();
+        } catch (Exception e) {
+        }
+        finally{
+            session.close();
+        }
+        return DS;
+        
+    }
 }
