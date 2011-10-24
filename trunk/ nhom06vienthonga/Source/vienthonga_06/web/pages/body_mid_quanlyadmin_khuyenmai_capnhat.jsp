@@ -7,6 +7,14 @@
 <%
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     Khuyenmai km = (Khuyenmai) request.getAttribute("khuyenmai");
+    String noidungkhuyenmai = km.getNoiDungKhuyenMai();    
+    noidungkhuyenmai = noidungkhuyenmai.replaceAll("\n", "");
+    noidungkhuyenmai = noidungkhuyenmai.replaceAll("&para;", "");
+    noidungkhuyenmai = noidungkhuyenmai.replaceAll("\"", "'");
+    noidungkhuyenmai = noidungkhuyenmai.replaceAll("<br>", "");
+    noidungkhuyenmai = noidungkhuyenmai.replaceAll("<br/>", "");
+    noidungkhuyenmai = noidungkhuyenmai.replaceAll("<br />", "");
+    
     Hinhanhkhuyenmai hdd = (Hinhanhkhuyenmai) km.getHinhanhkhuyenmais().toArray()[0];
     String path = ThamSoDAO.LayDuongDanHinhAnh() + "khuyen mai/" + hdd.getDuongDan();
 %>
@@ -51,19 +59,22 @@
             <td>Tình trạng: </td>
             <td><input type="text" name="TinhTrang" id="TinhTrang" value="<%= km.getTinhTrang()%>" /></td>
             </tr>
-            <tr>                
-            <td colspan="4">
+            <tr>
+            <td colspan="4">    
+                <div id="kk" style="display: none;"><%= noidungkhuyenmai %></div>
                 <script type="text/javascript">
                     var oFCKeditor = new FCKeditor('Content'); // name
-		 
+                    var temp = document.getElementById('kk');
+                    
+                    oFCKeditor.Value = temp.innerHTML;
                     oFCKeditor.BasePath = "plugins/fckeditor/";
                     oFCKeditor.Width = "100%";
-                    oFCKeditor.Height = "400px";
+                    oFCKeditor.Height = "600px";
                     oFCKeditor.ToolbarSet = "Default"; // xem cấu hình ToolbarSets trong file fckeditor/fckconfig.js
                     oFCKeditor.Config['AutoDetectLanguage'] = "false";
                     oFCKeditor.Config['DefaultLanguage'] = "vi";
                     oFCKeditor.Config['ToolbarCanCollapse'] = "false";
-                    oFCKeditor.Config['SkinPath'] = "skins/Office2003Blue/";
+                    oFCKeditor.Config['SkinPath'] = "skins/Office2007Real_Actual/";
                     oFCKeditor.Create();
                 </script>    
             </td>

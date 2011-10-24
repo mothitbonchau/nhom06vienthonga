@@ -733,8 +733,8 @@ public class process extends HttpServlet {
                         return;
                     }
                     //</editor-fold>
-                    
-                    //<editor-fold defaultstate="collapsed" desc="Khuêến mãi">
+
+                    //<editor-fold defaultstate="collapsed" desc="Khuyến mãi">
                     if (task_chitiet.equals("khuyenmai")) {
                         //<editor-fold defaultstate="collapsed" desc="thêm">
                         if (request.getParameter("Them") != null) {
@@ -898,10 +898,10 @@ public class process extends HttpServlet {
                                         return;
                                     }
 
-                                    mkm = params.get("MaKhuyenMai").toString();                                    
+                                    mkm = params.get("MaKhuyenMai").toString();
 
                                     Khuyenmai km = KhuyenMaiDAO.LayKhuyenMaiTheoMa(params.get("MaKhuyenMai").toString());
-
+                                    km.setNoiDungKhuyenMai(params.get("Content").toString().replaceAll("\n", ""));
                                     km.setTenKhuyenMai(params.get("TenKhuyenMai").toString());
                                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                                     Date ngaybatdau = null;
@@ -915,13 +915,13 @@ public class process extends HttpServlet {
                                     km.setNgayBatDau(ngaybatdau);
                                     km.setNgayKetThuc(ngayketthuc);
                                     km.setTinhTrang(Integer.parseInt(params.get("TinhTrang").toString()));
-                                    
+
                                     KhuyenMaiDAO.CapNhatKhuyenMai(km);
 
                                     String path = getServletContext().getRealPath("/") + "images\\khuyen mai\\";
 
                                     for (int i = 0; i < hinhanhkhuyenmai_data.size(); i++) {
-                                        Hinhanhkhuyenmai hakm = (Hinhanhkhuyenmai) km.getHinhanhkhuyenmais().toArray()[i];                                        
+                                        Hinhanhkhuyenmai hakm = (Hinhanhkhuyenmai) km.getHinhanhkhuyenmais().toArray()[i];
                                         hakm.setTinhTrang(0);
                                         if (!hinhanhkhuyenmai_data.get(i).getName().equals("")) {
                                             hakm.setDuongDan(hinhanhkhuyenmai_data.get(i).getName());
@@ -935,8 +935,8 @@ public class process extends HttpServlet {
                                             Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
                                         }
                                     }
-                                    //</editor-fold>
                                 }
+                                //</editor-fold>                                
                             } else {
                                 //<editor-fold defaultstate="collapsed" desc="cơ bản">                                                                
                                 String[] stt = request.getParameterValues("ID");
@@ -945,9 +945,9 @@ public class process extends HttpServlet {
 
                                     String makhuyemmai = request.getParameterValues("MaKhuyenMai")[k].toString();
                                     mkm = makhuyemmai;
-                                    String tenkhuyenmai = request.getParameterValues("TenKhuyenMai")[k].toString(); 
+                                    String tenkhuyenmai = request.getParameterValues("TenKhuyenMai")[k].toString();
                                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                                    String ngaybatdau_temp = request.getParameterValues("NgayBatDau")[k].toString();                                    
+                                    String ngaybatdau_temp = request.getParameterValues("NgayBatDau")[k].toString();
                                     String ngayketthuc_temp = request.getParameterValues("NgayKetThuc")[k].toString();
                                     Date ngaybatdau = null;
                                     Date ngayketthuc = null;
@@ -1010,7 +1010,7 @@ public class process extends HttpServlet {
                         return;
                     }
                     //</editor-fold>
-                    
+
                     request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
                     return;
                 }

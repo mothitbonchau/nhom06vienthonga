@@ -279,12 +279,12 @@ public class view extends HttpServlet {
                                 batdau = sp1trang * trang - sp1trang;
                             }
 
-                            List<Khuyenmai> list = KhuyenMaiDAO.LayKhuyenMai(batdau, -1);
+                            List<Khuyenmai> list = KhuyenMaiDAO.LayHetKhuyenMai(batdau, -1);
                             tongsotrang = list.size() / sp1trang;
                             if (list.size() % sp1trang > 0) {
                                 tongsotrang = tongsotrang + 1;
                             }
-                            list = KhuyenMaiDAO.LayKhuyenMai(batdau, sp1trang);
+                            list = KhuyenMaiDAO.LayHetKhuyenMai(batdau, sp1trang);
 
                             request.setAttribute("tongsotrang", tongsotrang);
                             request.setAttribute("list", list);
