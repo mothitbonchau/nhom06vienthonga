@@ -10,6 +10,7 @@ import MODEL.UTIL.HibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -67,5 +68,22 @@ public class KhuyenMaiDAO {
         session.close();
 
         return sp;
+    }
+
+    public static int CapNhatKhuyenMai(Khuyenmai km) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        int kq = 0;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(km);
+            transaction.commit();
+            kq = 1;
+        } catch (Exception ex) {
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        return kq;
     }
 }

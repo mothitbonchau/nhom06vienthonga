@@ -30,7 +30,7 @@
                 <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Hãng</a>
             </li>
             <li>
-                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Khuyến Mãi</a>
+                <a href="view?task=quanly&task_chitiet=khuyenmai" style="text-transform: none;">Khuyến Mãi</a>
             </li>
             <li>
                 <a href="view?task=quanly&task_chitiet=sanpham" style="text-transform: none;">Sản Phẩm</a>

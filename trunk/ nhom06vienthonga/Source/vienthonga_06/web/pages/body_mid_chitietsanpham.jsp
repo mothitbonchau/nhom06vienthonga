@@ -1,6 +1,6 @@
 <%@page import="MODEL.POJO.Chitietlaptop"%>
 <%@page import="MODEL.POJO.Chitietdienthoai"%>
-<%@page import="MODEL.DAO.ThamSoDao"%>
+<%@page import="MODEL.DAO.ThamSoDAO"%>
 <%@page import="MODEL.POJO.Hinhanhsanpham"%>
 <%@page import="MODEL.POJO.Sanpham"%>
 <%@page import="MODEL.DAO.SanPhamDAO"%>
@@ -50,7 +50,7 @@
                                 <td align="center">
                                     <p>
                                         <br>
-                                        <img height="190" alt="<%= sp.getTenSanPham()%>" src="<%= ThamSoDao.LayDuongDanHinhAnh()%><%= path_lsp%><%= path_hang%><%= hasp.getDuongDan()%>" />
+                                        <img height="190" alt="<%= sp.getTenSanPham()%>" src="<%= ThamSoDAO.LayDuongDanHinhAnh()%><%= path_lsp%><%= path_hang%><%= hasp.getDuongDan()%>" />
                                     </p>
                                 </td>
                                 </tr>

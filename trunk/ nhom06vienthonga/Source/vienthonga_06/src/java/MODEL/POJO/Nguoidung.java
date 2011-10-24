@@ -140,10 +140,6 @@ public class Nguoidung  implements java.io.Serializable {
     public void setGiohangs(Set giohangs) {
         this.giohangs = giohangs;
     }
-
-
-
-
 }
 
 

@@ -64,6 +64,18 @@
         <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_sanpham_capnhat.jsp" />      
     </definition>
     
+    <definition name="quanlyadmin_khuyenmai" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_khuyenmai.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_khuyenmai_capnhat" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_khuyenmai_capnhat.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_khuyenmai_them" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_khuyenmai_them.jsp" />      
+    </definition>
+    
     <definition name="quanlynguoidung" extends="template_vienthonga">        
         <put-attribute name="body_left" value="/pages/body_left_quanlynguoidung.jsp" />
         <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_thongtinnguoidung.jsp" />

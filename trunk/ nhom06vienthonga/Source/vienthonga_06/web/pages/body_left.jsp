@@ -49,24 +49,6 @@
                     <option value="9000000"> Trên 9,000,000 </option>
                 </select>
 
-                <!--
-                <table cellspacing="0" cellpadding="0" border="0" width="100%">
-                    <tbody><tr>
-                            <td width="50%"><input type="checkbox" style="width: 20px; border: 0pt none; background: none repeat scroll 0% 0% transparent;" value="touch" id="touch" name="touch" /><label class="stext">Cảm ứng</label></td>
-                            <td width="50%"><input type="checkbox" style="width: 20px; border: 0pt none; background: none repeat scroll 0% 0% transparent;" value="3g" id="3g" name="3g" /><label class="stext">3G</label></td>
-                        </tr>
-                        <tr>
-                            <td width="50%"><input type="checkbox" style="width: 20px; border: 0pt none; background: none repeat scroll 0% 0% transparent;" value="wifi" id="wifi" name="wifi" /><label class="stext">Wifi</label></td>
-                            <td width="50%"><input type="checkbox" style="width: 20px; border: 0pt none; background: none repeat scroll 0% 0% transparent;" value="gps" id="gps" name="gps" /><label class="stext">GPS</label></td>
-                        </tr>
-                        <tr>
-                            <td width="50%"><input type="checkbox" style="width: 20px; border: 0pt none; background: none repeat scroll 0% 0% transparent;" value="qwerty" id="qwerty" name="qwerty" /><label class="stext">Qwerty</label></td>
-                            <td width="50%"><input type="checkbox" style="width: 20px; border: 0pt none; background: none repeat scroll 0% 0% transparent;" value="sim" id="sim" name="sim" /><label class="stext">2 Sim</label></td>
-                        </tr>
-                    </tbody>
-                </table>
-                -->
-
                 <input style="margin-bottom: 5px;" type="image" class="btnSearch" name="Search" id="Search" src="images/linhtinh/btn_timkiem.gif" />
 
             </form>
@@ -81,7 +63,6 @@
                 %>
                 <li>
                     <a style="text-transform: none;" href="view?task=sanphamtheohang&MH=<%= h.getMaHang()%>"><%= h.getTenHang()%></a>
-                    <!--<span><img alt="HTC chính hãng" src="images/linhtinh/9_logo_htc.gif" /></span>-->
                 </li> 
                 <%
                     }
