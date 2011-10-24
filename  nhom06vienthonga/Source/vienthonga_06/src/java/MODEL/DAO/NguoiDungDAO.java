@@ -32,7 +32,6 @@ public class NguoiDungDAO {
             //session.get(ndung.getClass(), ndung);
             Object ob = query.uniqueResult();
             ndung = (Nguoidung) ob;
-
         } catch (HibernateException ex) {
             System.err.println(ex);
 
@@ -51,7 +50,6 @@ public class NguoiDungDAO {
             session.saveOrUpdate(kh);
             transaction.commit();
             kq = 1;
-
         } catch (HibernateException ex) {
             transaction.rollback();
             System.err.println(ex);
@@ -87,7 +85,6 @@ public class NguoiDungDAO {
         } finally {
             session.close();
         }
-
         return Ma;
     }
 

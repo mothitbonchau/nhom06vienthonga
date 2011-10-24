@@ -232,7 +232,45 @@ public class process extends HttpServlet {
             //</editor-fold>
 
             //<editor-fold defaultstate="collapsed" desc="Xử lý liên hệ">
-            if (task.equals("LienHe")) {
+            if (task.equals("XLLienHe")){
+                
+                String remoteAddr = request.getRemoteAddr();
+                ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
+                reCaptcha.setPrivateKey("6Ld03sgSAAAAAGI9a-JBcCtJHNgL4umXwtW0uNW- ");
+
+                String challenge = request.getParameter("recaptcha_challenge_field");
+                String uresponse = request.getParameter("recaptcha_response_field");
+                ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
+
+                if (!reCaptchaResponse.isValid()) {
+                    request.setAttribute("thongbao", "Sai captcha !!!");
+                    request.getRequestDispatcher("view?task=LienHe").forward(request, response);
+                    return;
+                }
+                
+                Gopy gop = new Gopy();
+                
+                // Lấy Mã Góp ý tăng tự động
+                String MaGopY = GopYDAO.LayMaGopYCuoi();
+                String magop = "MGY";
+                String Chuoi = MaGopY.substring(3);
+                int so = Integer.parseInt(Chuoi) + 1;
+                MaGopY = magop + so;
+                
+                // Lấy giờ hệ thống
+                long curren_time = System.currentTimeMillis();
+                java.sql.Date NgayHienTai = new java.sql.Date(curren_time);
+                
+                gop.setMaGopY(MaGopY);
+                gop.setHoTen(request.getParameter("txtHoTen"));
+                gop.setDiaChi(request.getParameter("txtDiaChi"));
+                gop.setEmail(request.getParameter("txtEmail"));
+                gop.setNoiDung(request.getParameter("txtNoiDung"));
+                gop.setNgayGopY(NgayHienTai);
+                
+                int kq = GopYDAO.GopY(gop);
+                
+                request.setAttribute("thongbao", "Đã góp ý thành công !!!");
                 request.getRequestDispatcher("view").forward(request, response);
             }
             //</editor-fold>
@@ -254,7 +292,6 @@ public class process extends HttpServlet {
                         ct.setTenCongTy(request.getParameter("tenCongTy"));
                         ct.setWebsite(request.getParameter("website"));
                         ct.setGioiThieu(request.getParameter("gioiThieu"));
-
                         int kq = CongTyDAO.CapNhatCongTy(ct);
                         if (kq == 1) {
                             String thongbao = "";
