@@ -162,7 +162,7 @@ public class NguoiDungDAO {
         Nguoidung nd = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            nd = (Nguoidung) session.get(Loainguoidung.class, maND);
+            nd = (Nguoidung) session.get(Nguoidung.class, maND);
         } catch (HibernateException ex) {
             System.err.println(ex);
         } finally {

@@ -82,4 +82,145 @@ public class GioHangDAO {
         }
         return kq;
     }
+    
+    public static List<Giohang> LayListGioHangTheoMaNguoiDung(String MaNguoiDung){
+        List<Giohang> list = null;
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try{
+            String hql = "From Giohang Where tinhTrang=0 and maNguoiDung= '" + MaNguoiDung + "'";
+            Query query = session.createQuery(hql);
+            //query.setString("MaNguoiDung", MaNguoiDung);
+            list = query.list();                    
+        }
+        catch(Exception ex){            
+        }
+        finally{
+            session.close();
+        }        
+        
+        return list;
+    }
+    
+    public static int XoaChiTietGioHang(String maGioHang)
+    {
+        int kq = 0;
+        Transaction transaction = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try{
+            transaction = session.beginTransaction();
+            
+            String hql = "Update Giohang Set tinhTrang=1 Where maGioHang = '" + maGioHang + "'" ;
+            Query query = session.createQuery(hql);
+            query.executeUpdate();
+            
+            transaction.commit();
+            kq=1;
+        }
+        catch(Exception ex){
+            transaction.rollback();
+        }
+        finally{
+            session.close();
+        }
+        
+        return kq;
+    }
+    
+    public static float TongTienGioHang(String maNguoiDung){
+        float S = 0;
+        Transaction transaction = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try{
+            transaction = session.beginTransaction();
+            
+            List<Giohang> list = LayListGioHangTheoMaNguoiDung(maNguoiDung);
+            for(int i=0;i<list.size();i++){
+                S += list.get(i).getThanhTien();
+            }
+            
+            transaction.commit();
+        }
+        catch(Exception ex){
+            transaction.rollback();
+        }
+        finally{
+            session.close();
+        }
+        
+        return S;
+    }
+    
+    public static Giohang LayGioHangVoiSanPhamBiTrung(String maNguoiDung, String maSanPham) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Giohang gh = null;       
+        String hql = "Select maGioHang From Giohang Where tinhTrang=0 and maNguoiDung='"+ maNguoiDung +"' and maSanPham='"+ maSanPham +"' ";
+       
+        try {            
+            Query query = session.createQuery(hql);            
+            String mgh =  (String) query.uniqueResult();
+            gh = LayGioHangTheoMa(mgh);
+        } catch (Exception ex) {
+        } finally {
+            session.close();
+        }
+
+        return gh;
+    }
+    
+    public static int CapNhatSoLuongChoSanPhamTrung(String maGioHang,int soLuong)
+    {
+        int kq = 0;
+        Transaction transaction = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try{
+            transaction = session.beginTransaction();
+            
+            String hql = "Update Giohang Set soLuong="+soLuong+" Where maGioHang = '" + maGioHang + "' " ;
+            Query query = session.createQuery(hql);
+            query.executeUpdate();
+            
+            transaction.commit();
+            kq=1;
+        }
+        catch(Exception ex){
+            transaction.rollback();
+        }
+        finally{
+            session.close();
+        }
+        
+        return kq;
+    }
+    
+    public static int CapNhatThanhTienChoSanPhamTrung(String maGioHang,int soLuong)
+    {
+        int kq = 0;
+        Transaction transaction = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try{
+            transaction = session.beginTransaction();
+            
+           String hql = "Update Giohang Set thanhTien=donGia * "+soLuong+" Where maGioHang = '" + maGioHang + "' " ;
+            Query query = session.createQuery(hql);
+            query.executeUpdate();
+            
+            transaction.commit();
+            kq=1;
+        }
+        catch(Exception ex){
+            transaction.rollback();
+        }
+        finally{
+            session.close();
+        }
+        
+        return kq;
+    }
 }

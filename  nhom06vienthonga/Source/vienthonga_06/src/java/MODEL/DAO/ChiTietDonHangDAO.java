@@ -61,4 +61,25 @@ public class ChiTietDonHangDAO {
         }
         return kq;
     }
+    
+    public static Chitietdonhang LayChiTietDonHangCuoiCung() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+       Chitietdonhang ctdh = null;
+
+        String hql = "select max(ctdh.maChiTietDonHang)";
+        hql += "from Chitietdonhang ctdh ";
+        hql += "where length(substring(ctdh.maChiTietDonHang,4)) = (select max(length(substring(ctdh.maChiTietDonHang,4))) from Chitietdonhang ctdh)";
+
+        try {
+            Query query = session.createQuery(hql);
+            String mctdh_cuoi = (String) query.uniqueResult();
+            ctdh = LayChiTietDonHangTheoMa(mctdh_cuoi);
+        } catch (Exception ex) {
+        } finally {
+            session.close();
+        }
+
+        return ctdh;
+    }
 }
