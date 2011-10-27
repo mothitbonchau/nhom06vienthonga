@@ -161,12 +161,19 @@ public class view extends HttpServlet {
                 request.getRequestDispatcher("LienHe.jsp").forward(request, response);
                 PrintWriter out1 = response.getWriter();
             }
-<<<<<<< .mine            //</editor-fold>
+            //</editor-fold>           
                        
-=======            //</editor-fold>            
+            //<editor-fold defaultstate="collapsed" desc="xử lý đăng ký">
+           if (task != null) {
+                if (task.equals("DangKy")) {
+                    request.getRequestDispatcher("DangKy.jsp").forward(request, response);
+                }                
+            }
+            //</editor-fold>
+                                             
 
->>>>>>> .theirs            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
-            if (task.equals("quanly")) {
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
+           if (task.equals("quanly")) {
                 if (session.getAttribute("TenDangNhap") == null) {
                     request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
                     return;
@@ -389,7 +396,9 @@ public class view extends HttpServlet {
                     if (task_chitiet.equals("chitiettintuc")) {
                         Tintuc tt = TinTucDAO.LayTinTucTheoMa(request.getParameter("MTT"));
 
-                        request.setAttribute("tintuc", tt);
+                       request.getRequestDispatcher("TrangChu.jsp").forward(request, response);                  
+     
+                       request.setAttribute("tintuc", tt);
                         request.getRequestDispatcher("ChiTietTinTuc.jsp").forward(request, response);
                         return;
                     }
@@ -424,7 +433,7 @@ public class view extends HttpServlet {
             int ii = 1;
 
         } finally {
-            out.close();
+           out.close();
         }
     }
 
