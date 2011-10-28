@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="vienthonga"/>
+  <table-filter match-name="nguoidung"/>
+  <table-filter match-name="loaisanpham"/>
+  <table-filter match-name="thamso"/>
+  <table-filter match-name="chitietlaptop"/>
+  <table-filter match-name="congty"/>
+  <table-filter match-name="hinhanhtintuc"/>
+  <table-filter match-name="giamgia"/>
+  <table-filter match-name="sanpham"/>
+  <table-filter match-name="gopy"/>
+  <table-filter match-name="donhang"/>
+  <table-filter match-name="khuyenmai"/>
+  <table-filter match-name="chitietdienthoai"/>
+  <table-filter match-name="chitietdonhang"/>
+  <table-filter match-name="hinhthucthanhtoan"/>
+  <table-filter match-name="nganhang"/>
+  <table-filter match-name="hinhanhsanpham"/>
+  <table-filter match-name="vung"/>
+  <table-filter match-name="hinhanhkhuyenmai"/>
+  <table-filter match-name="loainguoidung"/>
+  <table-filter match-name="hinhanhcongty"/>
+  <table-filter match-name="hang"/>
+  <table-filter match-name="sieuthi"/>
+  <table-filter match-name="loaisanphamhang"/>
+  <table-filter match-name="tintuc"/>
+  <table-filter match-name="giohang"/>
+</hibernate-reverse-engineering>
