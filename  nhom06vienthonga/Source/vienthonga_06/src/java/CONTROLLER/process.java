@@ -9,7 +9,10 @@ import MODEL.POJO.*;
 import MODEL.UTIL.HinhAnh;
 import MODEL.UTIL.MD5;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -31,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
+import org.apache.commons.io.IOUtils;
 import org.omg.CORBA.SystemException;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -1225,30 +1229,47 @@ public class process extends HttpServlet {
             //</editor-fold>           
 
             if (task.equals("1")) {
-                ArrayList<FileItem> hinhanhsanpham_data = new ArrayList<FileItem>();
-                Hashtable params = new Hashtable();
-                if (ServletFileUpload.isMultipartContent(request)) {
-                    ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
+                long serialVersionUID = 6748857432950840322L;
+                String DESTINATION_DIR_PATH = "images";
+                String realPath;
+                realPath = getServletContext().getRealPath(DESTINATION_DIR_PATH) + "/";
+                
+                PrintWriter writer = null;
+                InputStream is = null;
+                FileOutputStream fos = null;
+
+                try {
+                    writer = response.getWriter();
+                } catch (IOException ex) {
+                    log(process.class.getName() + "has thrown an exception: " + ex.getMessage());
+                }
+
+                String filename = request.getHeader("X-File-Name");
+                try {
+                    is = request.getInputStream();
+                    fos = new FileOutputStream(new File(realPath + filename));
+                    IOUtils.copy(is, fos);
+                    response.setStatus(response.SC_OK);
+                    writer.print("{success: true}");
+                } catch (FileNotFoundException ex) {
+                    response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
+                    writer.print("{success: false}");
+                    log(process.class.getName() + "has thrown an exception: " + ex.getMessage());
+                } catch (IOException ex) {
+                    response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
+                    writer.print("{success: false}");
+                    log(process.class.getName() + "has thrown an exception: " + ex.getMessage());
+                } finally {
                     try {
-                        List fileItemsList = servletFileUpload.parseRequest(request);
-
-                        Iterator it = fileItemsList.iterator();
-
-                        while (it.hasNext()) {
-                            FileItem fileItem = (FileItem) it.next();
-                            if (fileItem.isFormField()) {
-                                String value = fileItem.getString("UTF-8");
-                                String key = fileItem.getFieldName();
-                                params.put(key, value);
-                            } else {
-                                hinhanhsanpham_data.add(fileItem);
-                            }
-                        }
-                    } catch (Exception e) {
-                        out.println(e);
-                        return;
+                        fos.close();
+                        is.close();
+                    } catch (IOException ignored) {
                     }
                 }
+
+                writer.flush();
+                writer.close();
+                
                 return;
             }
             request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
