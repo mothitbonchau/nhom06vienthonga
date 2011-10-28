@@ -167,9 +167,9 @@ public class process extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
                     response.sendRedirect("view?task=DangNhap");
-                }                
+                }
                 /////////////
-                
+
                 Nguoidung ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), pass);
                 if (ndung != null) {
                     session.setAttribute("MaNguoiDung", ndung.getMaNguoiDung());
@@ -217,7 +217,7 @@ public class process extends HttpServlet {
                 pojo.setMaNguoiDung(MaND);
                 pojo.setTenDangNhap(request.getParameter("txtTenDangNhap"));
                 pojo.setTenNguoiDung(request.getParameter("txtName"));
-                
+
                 //Mã hoá MD5
                 MD5 k = new MD5();
                 String pass = request.getParameter("txtPass").toString();
@@ -225,9 +225,9 @@ public class process extends HttpServlet {
                     pass = k.MD5(request.getParameter("txtPass").toString());
                 } catch (Exception ex) {
                     Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
-                }                
+                }
                 /////////////
-                
+
                 pojo.setMatKhau(pass);
                 pojo.setEmail(request.getParameter("txtEmail"));
                 pojo.setCmnd(request.getParameter("txtCMND").toString());
@@ -1224,6 +1224,33 @@ public class process extends HttpServlet {
             }
             //</editor-fold>           
 
+            if (task.equals("1")) {
+                ArrayList<FileItem> hinhanhsanpham_data = new ArrayList<FileItem>();
+                Hashtable params = new Hashtable();
+                if (ServletFileUpload.isMultipartContent(request)) {
+                    ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
+                    try {
+                        List fileItemsList = servletFileUpload.parseRequest(request);
+
+                        Iterator it = fileItemsList.iterator();
+
+                        while (it.hasNext()) {
+                            FileItem fileItem = (FileItem) it.next();
+                            if (fileItem.isFormField()) {
+                                String value = fileItem.getString("UTF-8");
+                                String key = fileItem.getFieldName();
+                                params.put(key, value);
+                            } else {
+                                hinhanhsanpham_data.add(fileItem);
+                            }
+                        }
+                    } catch (Exception e) {
+                        out.println(e);
+                        return;
+                    }
+                }
+                return;
+            }
             request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
             return;
 
