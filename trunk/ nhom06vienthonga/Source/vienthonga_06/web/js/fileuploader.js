@@ -485,9 +485,11 @@ qq.FileUploader = function(o){
         listElement: null,
                 
         template: '<div class="qq-uploader">' + 
-                '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
-                '<div class="qq-upload-button">Upload a file</div>' +
-                '<ul class="qq-upload-list"></ul>' + 
+                '<div class="qq-upload-drop-area">' +
+                    "<span style=''>Drop files here to upload</span>" +
+                '</div>' +
+                '<div class="qq-upload-button" onClick="kk();">Upload hình ảnh</div>' +
+                '<ul class="qq-upload-list" style="display: none;" onChange="kk();"></ul>' + 
              '</div>',
 
         // template for one item in file list
@@ -497,7 +499,14 @@ qq.FileUploader = function(o){
                 '<span class="qq-upload-size"></span>' +
                 '<a class="qq-upload-cancel" href="#">Cancel</a>' +
                 '<span class="qq-upload-failed-text">Failed</span>' +
-            '</li>',        
+                "<script type='text/javascript'>" +
+                    "if(flag == 1)" +
+                    "{" +
+                        "alert('UPLOAD Thành Công');" +
+                        //"flag = 0;" +
+                    "}" +
+                "</script>" +
+            '</li>',
         
         classes: {
             // used to get elements from templates
