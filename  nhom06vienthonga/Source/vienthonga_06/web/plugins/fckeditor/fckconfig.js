@@ -314,6 +314,8 @@ FCKConfig.LinkUploadAllowedExtensions	= ".(7z|aiff|asf|avi|bmp|csv|doc|fla|flv|g
 FCKConfig.LinkUploadDeniedExtensions	= "" ;	// empty for no one
 
 FCKConfig.ImageUpload = true ;
+var temp = FCKConfig.BasePath.split("/");
+temp = temp[0] + "//" + temp[2] + "/process?task=1";
 FCKConfig.ImageUploadURL = FCKConfig.BasePath + 'filemanager/connectors/' + _QuickUploadLanguage + '/upload.' + _QuickUploadExtension + '?Type=Image' ;
 FCKConfig.ImageUploadAllowedExtensions	= ".(jpg|gif|jpeg|png|bmp)$" ;		// empty for all
 FCKConfig.ImageUploadDeniedExtensions	= "" ;							// empty for no one

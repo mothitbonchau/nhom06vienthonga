@@ -69,7 +69,7 @@
                     oFCKeditor.Value = temp.innerHTML;
                     oFCKeditor.BasePath = "plugins/fckeditor/";
                     oFCKeditor.Width = "100%";
-                    oFCKeditor.Height = "600px";
+                    oFCKeditor.Height = "700px";
                     oFCKeditor.ToolbarSet = "Default"; // xem cấu hình ToolbarSets trong file fckeditor/fckconfig.js
                     oFCKeditor.Config['AutoDetectLanguage'] = "false";
                     oFCKeditor.Config['DefaultLanguage'] = "vi";

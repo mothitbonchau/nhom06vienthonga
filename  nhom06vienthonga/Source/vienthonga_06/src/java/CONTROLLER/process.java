@@ -103,17 +103,16 @@ public class process extends HttpServlet {
                 String maNguoiDung = (String) session.getAttribute("MaNguoiDung");
                 Giohang ghTrung = GioHangDAO.LayGioHangVoiSanPhamBiTrung(maNguoiDung, msp);
                 Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
-                
+
                 if (session.getAttribute("TenDangNhap") == null) {
                     request.getRequestDispatcher("view?task=DangNhap").forward(request, response);
                     return;
                 } else {
-                    if(ghTrung != null){
-                        int soLuong = ghTrung.getSoLuong()+1;
+                    if (ghTrung != null) {
+                        int soLuong = ghTrung.getSoLuong() + 1;
                         int kq = GioHangDAO.CapNhatSoLuongChoSanPhamTrung(ghTrung.getMaGioHang(), soLuong);
                         int kq2 = GioHangDAO.CapNhatThanhTienChoSanPhamTrung(ghTrung.getMaGioHang(), soLuong);
-                    }
-                    else{
+                    } else {
                         Giohang gh = GioHangDAO.LayGioHangCuoiCung();
                         int mgh = 1;
                         if (gh == null) {
@@ -127,7 +126,7 @@ public class process extends HttpServlet {
                         gh.setDonGia(sp.getGiaBan());
                         gh.setSanpham(sp);
                         gh.setSoLuong(1);
-                        gh.setThanhTien(gh.getSoLuong()*gh.getDonGia());
+                        gh.setThanhTien(gh.getSoLuong() * gh.getDonGia());
                         gh.setTinhTrang(0);
                         Nguoidung nd = NguoiDungDAO.LayNguoiDungTheoTenDangNhap(session.getAttribute("TenDangNhap").toString());
                         gh.setNguoidung(nd);
@@ -142,7 +141,7 @@ public class process extends HttpServlet {
                             thongbao = "Đã đặt mua thành công";
                             request.setAttribute("thongbao", thongbao);
                         }
-                    }                                                        
+                    }
 
                     request.getRequestDispatcher("view?task=giohang").forward(request, response);
                 }
@@ -161,7 +160,7 @@ public class process extends HttpServlet {
                 if (ndung != null) {
                     session.setAttribute("MaNguoiDung", ndung.getMaNguoiDung());
                     session.setAttribute("TenDangNhap", ndung.getTenDangNhap());
-                    session.setAttribute("TenNguoiDung", ndung.getTenNguoiDung());                    
+                    session.setAttribute("TenNguoiDung", ndung.getTenNguoiDung());
                     request.getRequestDispatcher("view").forward(request, response);
                 } else {
                     response.sendRedirect("view?task=DangNhap");
@@ -187,8 +186,8 @@ public class process extends HttpServlet {
 
                 Nguoidung pojo = new Nguoidung();
                 Loainguoidung lnd = NguoiDungDAO.LayDoiTuongTheoMa("MLND2");
-                    
-                  //Lấy Mã người dùng kiểu String tăng tự động
+
+                //Lấy Mã người dùng kiểu String tăng tự động
                 String MaND = NguoiDungDAO.LayMaNguoiDungCuoiCung();
                 String ma = "MND";
                 String ChuoiSo = MaND.substring(3);
@@ -212,18 +211,18 @@ public class process extends HttpServlet {
                 pojo.setLoainguoidung(lnd);
                 pojo.setTinhTrang(0);
 
-               int kq = NguoiDungDAO.DangKy(pojo);      
-               
+                int kq = NguoiDungDAO.DangKy(pojo);
+
                 //Gán Session Tên Đăng Nhập    
                 session.setAttribute("MaNguoiDung", pojo.getMaNguoiDung());
                 session.setAttribute("TenDangNhap", pojo.getTenDangNhap());
                 session.setAttribute("TenNguoiDung", pojo.getTenNguoiDung());
-                                             
+
                 request.setAttribute("thongbao", "Đã đăng ký thành công !!!");
-               request.getRequestDispatcher("view").forward(request, response); 
+                request.getRequestDispatcher("view").forward(request, response);
             }
-           //</editor-fold>                                      
-            
+            //</editor-fold>                                      
+
             //<editor-fold defaultstate="collapsed" desc="Xử lý đăng xuất">
             if (task.equals("DangXuat")) {
                 session.invalidate();
@@ -234,16 +233,16 @@ public class process extends HttpServlet {
             //<editor-fold defaultstate="collapsed" desc="Giỏ hàng">
             if (task.equals("GioHang")) {
                 String chi_tiet = request.getParameter("btXoa");
-                if(request.getParameter("btXoa") != null){
+                if (request.getParameter("btXoa") != null) {
                     String[] CacMaXoa = request.getParameterValues("chkDel");
-                    if(CacMaXoa != null){
-                        for(int i=0; i<CacMaXoa.length; i++){
+                    if (CacMaXoa != null) {
+                        for (int i = 0; i < CacMaXoa.length; i++) {
                             String ms = CacMaXoa[i];
                             int kq = GioHangDAO.XoaChiTietGioHang(ms);
                         }
                     }
-                }               
-                if(request.getParameter("btnDatMua") != null){
+                }
+                if (request.getParameter("btnDatMua") != null) {
                     /////////////////////////////////////Ghi vào bảng Đơn Hàng                                  
                     Donhang dh = DonHangDAO.LayDonHangCuoiCung();
                     int mdh = 1;
@@ -255,11 +254,11 @@ public class process extends HttpServlet {
                     }
                     dh = new Donhang();
                     String maDonHang = "MDH" + String.valueOf(mdh);
-                    dh.setMaDonHang(maDonHang);                                    
+                    dh.setMaDonHang(maDonHang);
                     //Lấy giờ hệ thống
                     long current_time = System.currentTimeMillis();
                     java.sql.Date NgayHienTai = new java.sql.Date(current_time);
-                    dh.setNgayDat(NgayHienTai);                  
+                    dh.setNgayDat(NgayHienTai);
                     //Set NguoiDung
                     String maNguoiDung = (String) session.getAttribute("MaNguoiDung");
                     Nguoidung nd = NguoiDungDAO.LayNguoiDungTheoMa(maNguoiDung);
@@ -267,16 +266,16 @@ public class process extends HttpServlet {
                     //Set TongTien
                     float TongTien = GioHangDAO.TongTienGioHang(maNguoiDung);
                     dh.setTongTien(TongTien);
-                    
+
                     //Giam Gia
-                    float GiamGia =  (float) session.getAttribute("TienGiamGia"); 
-                    dh.setGiamGia( GiamGia );
+                    float GiamGia = Float.parseFloat(session.getAttribute("TienGiamGia").toString());
+                    dh.setGiamGia(GiamGia);
                     //Thanh Tien
-                    float ThanhTien = (float) session.getAttribute("ThanhTien");
+                    float ThanhTien = Float.parseFloat(session.getAttribute("ThanhTien").toString());
                     dh.setThanhTien(ThanhTien);
-                    
+
                     //HinhThucThanhToan
-                    String maHinhThuc = request.getParameter("rdoHinhThucThanhToan"); 
+                    String maHinhThuc = request.getParameter("rdoHinhThucThanhToan");
                     Hinhthucthanhtoan httt = HinhThucThanhToanDAO.LayHinhThucThanhToanTheoMa(maHinhThuc);
                     dh.setHinhthucthanhtoan(httt);
                     //Tinh trang
@@ -288,10 +287,10 @@ public class process extends HttpServlet {
                         thongbao = "Đặt hàng thành công";
                         request.setAttribute("thongbao", thongbao);
                     }
-                    
+
                     //////////////////////////////////////Ghi vào bảng ChiTietDonHang
                     List<Giohang> listGioHang = GioHangDAO.LayListGioHangTheoMaNguoiDung(maNguoiDung);
-                    for(int i=0;i<listGioHang.size();i++){                                        
+                    for (int i = 0; i < listGioHang.size(); i++) {
                         Chitietdonhang ctdh = ChiTietDonHangDAO.LayChiTietDonHangCuoiCung();
                         int mctdh = 1;
                         if (ctdh == null) {
@@ -302,7 +301,7 @@ public class process extends HttpServlet {
                             mctdh = mctdh + 1;
                         }
                         ctdh = new Chitietdonhang();
-                        ctdh.setMaChiTietDonHang("MCTDH" + String.valueOf(mctdh)); 
+                        ctdh.setMaChiTietDonHang("MCTDH" + String.valueOf(mctdh));
                         //Set Ma Don Hang
                         ctdh.setDonhang(dh);
                         //Set Ma San pham
@@ -318,11 +317,11 @@ public class process extends HttpServlet {
                         float Gia = Float.valueOf(gg.getGiaGiam());
                         ctdh.setGiamGia(Gia);
                         //Set ThanhTien
-                        ctdh.setThanhTien((ctdh.getDonGia()*ctdh.getSoLuong())-ctdh.getGiamGia());
+                        ctdh.setThanhTien((ctdh.getDonGia() * ctdh.getSoLuong()) - ctdh.getGiamGia());
                         //Trang Thai - TInh Trang
                         ctdh.setTrangThai(0);
                         ctdh.setTinhTrang(0);
-                        
+
                         ////Ghi Chi Tiết Đơn Hàng
                         int kq = ChiTietDonHangDAO.Them(ctdh);
                         if (kq != 1) {
@@ -330,20 +329,20 @@ public class process extends HttpServlet {
                             thongbao = "Đặt hàng không thành công";
                             request.setAttribute("thongbao", thongbao);
                         }
-                    }                                     
-                                        
+                    }
+
                     //////////////////////////////////////////Xóa trong bảng GioHang
-                    for(int i=0;i<listGioHang.size();i++){
+                    for (int i = 0; i < listGioHang.size(); i++) {
                         GioHangDAO.XoaChiTietGioHang(listGioHang.get(i).getMaGioHang());
-                    }                    
-                }                
+                    }
+                }
                 request.getRequestDispatcher("view").forward(request, response);
             }
             //</editor-fold>
-            
+
             //<editor-fold defaultstate="collapsed" desc="Xử lý liên hệ">
-            if (task.equals("XLLienHe")){
-                
+            if (task.equals("XLLienHe")) {
+
                 String remoteAddr = request.getRemoteAddr();
                 ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
                 reCaptcha.setPrivateKey("6Ld03sgSAAAAAGI9a-JBcCtJHNgL4umXwtW0uNW- ");
@@ -357,35 +356,35 @@ public class process extends HttpServlet {
                     request.getRequestDispatcher("view?task=LienHe").forward(request, response);
                     return;
                 }
-                
+
                 Gopy gop = new Gopy();
-                
+
                 // Lấy Mã Góp ý tăng tự động
                 String MaGopY = GopYDAO.LayMaGopYCuoi();
                 String magop = "MGY";
                 String Chuoi = MaGopY.substring(3);
                 int so = Integer.parseInt(Chuoi) + 1;
                 MaGopY = magop + so;
-                
+
                 // Lấy giờ hệ thống
                 long curren_time = System.currentTimeMillis();
                 java.sql.Date NgayHienTai = new java.sql.Date(curren_time);
-                
+
                 gop.setMaGopY(MaGopY);
                 gop.setHoTen(request.getParameter("txtHoTen"));
                 gop.setDiaChi(request.getParameter("txtDiaChi"));
                 gop.setEmail(request.getParameter("txtEmail"));
                 gop.setNoiDung(request.getParameter("txtNoiDung"));
                 gop.setNgayGopY(NgayHienTai);
-                
+
                 int kq = GopYDAO.GopY(gop);
-                
+
                 request.setAttribute("thongbao", "Đã góp ý thành công !!!");
                 request.getRequestDispatcher("view").forward(request, response);
             }
             //</editor-fold>
 
-         //<editor-fold defaultstate="collapsed" desc="xử lý quản lý admin">
+            //<editor-fold defaultstate="collapsed" desc="xử lý quản lý admin">
             if (task.equals("quanlyadmin")) {
                 if (request.getParameter("task_chitiet") != null) {
                     String task_chitiet = request.getParameter("task_chitiet");
@@ -1153,16 +1152,51 @@ public class process extends HttpServlet {
                         }
                         //</editor-fold>
 
+                        //<editor-fold defaultstate="collapsed" desc="xử lý upload hình cho bài viết - chưa làm được gì">
+                        if (task.equals("1")) {
+                            ArrayList<FileItem> hinhanhsanpham_data = new ArrayList<FileItem>();
+                            Hashtable params = new Hashtable();
+                            if (ServletFileUpload.isMultipartContent(request)) {
+                                ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
+                                try {
+                                    List fileItemsList = servletFileUpload.parseRequest(request);
+
+                                    Iterator it = fileItemsList.iterator();
+
+                                    while (it.hasNext()) {
+                                        FileItem fileItem = (FileItem) it.next();
+                                        if (fileItem.isFormField()) {
+                                            String value = fileItem.getString("UTF-8");
+                                            String key = fileItem.getFieldName();
+                                            params.put(key, value);
+                                        } else {
+                                            hinhanhsanpham_data.add(fileItem);
+                                        }
+                                    }
+                                } catch (Exception e) {
+                                    out.println(e);
+                                    return;
+                                }
+                            }
+
+                            List<Sanpham> list = SanPhamDAO.LayHetSanPham(5, 2);
+
+                            request.getRequestDispatcher("").forward(request, response);
+
+                            return;
+                        }
+                        //</editor-fold>
+
                         request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
                         return;
                     }
-                    //</editor-fold>
+                    //</editor-fold>                    
 
                     request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
                     return;
                 }
             }
-            //</editor-fold>
+            //</editor-fold>           
 
             request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
             return;
