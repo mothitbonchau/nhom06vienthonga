@@ -7,9 +7,12 @@ package CONTROLLER;
 import MODEL.DAO.*;
 import MODEL.POJO.*;
 import MODEL.UTIL.HinhAnh;
+import MODEL.UTIL.MD5;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -156,7 +159,18 @@ public class process extends HttpServlet {
             //<editor-fold defaultstate="collapsed" desc="Xử lý đăng nhập">
             if (task.equals("XuLy")) {
 
-                Nguoidung ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), request.getParameter("matKhau"));
+                //Mã hoá MD5
+                MD5 k = new MD5();
+                String pass = request.getParameter("matKhau").toString();
+                try {
+                    pass = k.MD5(request.getParameter("matKhau").toString());
+                } catch (Exception ex) {
+                    Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                    response.sendRedirect("view?task=DangNhap");
+                }                
+                /////////////
+                
+                Nguoidung ndung = NguoiDungDAO.DangNhap(request.getParameter("tenDangNhap"), pass);
                 if (ndung != null) {
                     session.setAttribute("MaNguoiDung", ndung.getMaNguoiDung());
                     session.setAttribute("TenDangNhap", ndung.getTenDangNhap());
@@ -164,6 +178,7 @@ public class process extends HttpServlet {
                     request.getRequestDispatcher("view").forward(request, response);
                 } else {
                     response.sendRedirect("view?task=DangNhap");
+                    return;
                 }
             }
             //</editor-fold>
@@ -202,7 +217,18 @@ public class process extends HttpServlet {
                 pojo.setMaNguoiDung(MaND);
                 pojo.setTenDangNhap(request.getParameter("txtTenDangNhap"));
                 pojo.setTenNguoiDung(request.getParameter("txtName"));
-                pojo.setMatKhau(request.getParameter("txtPass"));
+                
+                //Mã hoá MD5
+                MD5 k = new MD5();
+                String pass = request.getParameter("txtPass").toString();
+                try {
+                    pass = k.MD5(request.getParameter("txtPass").toString());
+                } catch (Exception ex) {
+                    Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
+                }                
+                /////////////
+                
+                pojo.setMatKhau(pass);
                 pojo.setEmail(request.getParameter("txtEmail"));
                 pojo.setCmnd(request.getParameter("txtCMND").toString());
                 pojo.setDienThoai(request.getParameter("txtDienThoai").toString());
@@ -1205,7 +1231,7 @@ public class process extends HttpServlet {
             out.close();
         }
     }
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
     /** 
      * Handles the HTTP <code>GET</code> method.
