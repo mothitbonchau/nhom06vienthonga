@@ -3,15 +3,15 @@
 <script type="text/javascript" src="js/fileuploader.js"></script>
 
 <script>
-    var flag = 1;
+    var flag = 0;
     
     function kk()
     {
-        //flag = 1;
-        if(confirm("DSFDSFDSF") == true)
+        flag = 1;
+        /*if(confirm("DSFDSFDSF") == true)
             alert("SDFSDF");
         else
-            return;
+            return;*/
     }
     
     function createUploader(){            

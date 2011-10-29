@@ -33,6 +33,9 @@
                 <a href="view?task=quanly&task_chitiet=khuyenmai" style="text-transform: none;">Khuyến Mãi</a>
             </li>
             <li>
+                <a href="view?task=quanly&task_chitiet=tintuc" style="text-transform: none;">Tin Tức</a>
+            </li>
+            <li>
                 <a href="view?task=quanly&task_chitiet=sanpham" style="text-transform: none;">Sản Phẩm</a>
             </li>
             <li>

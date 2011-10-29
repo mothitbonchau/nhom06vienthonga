@@ -165,270 +165,263 @@ public class view extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
             if (task.equals("quanly")) {
-                //<editor-fold defaultstate="collapsed" desc="xử lý đăng ký">
-                if (task != null) {
-                    if (task.equals("DangKy")) {
-                        request.getRequestDispatcher("DangKy.jsp").forward(request, response);
-                    }
+                if (session.getAttribute("TenDangNhap") == null) {
+                    request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
+                    return;
                 }
-                //</editor-fold>
 
-                //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
-                if (task.equals("quanly")) {
-                    if (session.getAttribute("TenDangNhap") == null) {
-                        request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
-                        return;
-                    }
+                Nguoidung nd = new Nguoidung();
+                nd.setTenDangNhap(session.getAttribute("TenDangNhap").toString());
+                nd = (NguoiDungDAO.TimKiem(nd)).get(0);
 
-                    Nguoidung nd = new Nguoidung();
-                    nd.setTenDangNhap(session.getAttribute("TenDangNhap").toString());
-                    nd = (NguoiDungDAO.TimKiem(nd)).get(0);
-
-                    //<editor-fold defaultstate="collapsed" desc="admin">                                
-                    if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND1")) {
-                        if (request.getParameter("task_chitiet") != null) {
-                            String task_chitiet = request.getParameter("task_chitiet");
-
-                            //<editor-fold defaultstate="collapsed" desc="người dùng">
-                            if (task_chitiet.equals("nguoidung")) {
-
-                                request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
-                                return;
-                            }
-                            //</editor-fold>
-
-                            //<editor-fold defaultstate="collapsed" desc="công ty">
-                            if (task_chitiet.equals("congty")) {
-
-
-                                request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
-                                return;
-                            }
-                            //</editor-fold>
-
-                            //<editor-fold defaultstate="collapsed" desc="sản phẩm">
-                            if (task_chitiet.equals("sanpham")) {
-                                //<editor-fold defaultstate="collapsed" desc="chuyển trang thêm">                           
-                                if (request.getParameter("Them") != null) {
-                                    request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
-                                    return;
-                                }
-                                //</editor-fold>
-
-                                //<editor-fold defaultstate="collapsed" desc="chuyển trang cập nhật">
-                                if (request.getParameter("CapNhat") != null) {
-                                    String capnhat = request.getParameter("CapNhat").toString();
-
-                                    if (capnhat.equals("chitiet")) {
-                                        String msp = request.getParameter("MSP");
-                                        Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
-
-                                        request.setAttribute("sanpham", sp);
-                                        request.getRequestDispatcher("QuanLyAdmin_SanPham_CapNhat.jsp").forward(request, response);
-                                        return;
-                                    }
-                                }
-                                //</editor-fold>
-
-                                int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
-                                int tongsotrang = 0;
-                                int trang = 1;
-                                if (request.getParameter("trang") != null) {
-                                    trang = Integer.parseInt(request.getParameter("trang").toString());
-                                }
-                                int batdau = 0;
-                                if (trang > 1) {
-                                    batdau = sp1trang * trang - sp1trang;
-                                }
-
-                                List<Sanpham> list = SanPhamDAO.LayHetSanPham(batdau, -1);
-                                tongsotrang = list.size() / sp1trang;
-                                if (list.size() % sp1trang > 0) {
-                                    tongsotrang = tongsotrang + 1;
-                                }
-                                list = SanPhamDAO.LayHetSanPham(batdau, sp1trang);
-
-                                request.setAttribute("tongsotrang", tongsotrang);
-                                request.setAttribute("list", list);
-                                request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
-                                return;
-                            }
-                            //</editor-fold>
-
-                            //<editor-fold defaultstate="collapsed" desc="khuyến mãi">
-                            if (task_chitiet.equals("khuyenmai")) {
-                                //<editor-fold defaultstate="collapsed" desc="chuyển trang thêm">                           
-                                if (request.getParameter("Them") != null) {
-                                    request.getRequestDispatcher("QuanLyAdmin_KhuyenMai_Them.jsp").forward(request, response);
-                                    return;
-                                }
-                                //</editor-fold>
-
-                                //<editor-fold defaultstate="collapsed" desc="chuyển trang cập nhật">
-                                if (request.getParameter("CapNhat") != null) {
-                                    String capnhat = request.getParameter("CapNhat").toString();
-
-                                    if (capnhat.equals("chitiet")) {
-                                        String mkm = request.getParameter("MKM");
-                                        Khuyenmai km = KhuyenMaiDAO.LayKhuyenMaiTheoMa(mkm);
-
-                                        request.setAttribute("khuyenmai", km);
-                                        request.getRequestDispatcher("QuanLyAdmin_KhuyenMai_CapNhat.jsp").forward(request, response);
-                                        return;
-                                    }
-                                }
-                                //</editor-fold>
-
-                                int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
-                                int tongsotrang = 0;
-                                int trang = 1;
-                                if (request.getParameter("trang") != null) {
-                                    trang = Integer.parseInt(request.getParameter("trang").toString());
-                                }
-                                int batdau = 0;
-                                if (trang > 1) {
-                                    batdau = sp1trang * trang - sp1trang;
-                                }
-
-                                List<Khuyenmai> list = KhuyenMaiDAO.LayHetKhuyenMai(batdau, -1);
-                                tongsotrang = list.size() / sp1trang;
-                                if (list.size() % sp1trang > 0) {
-                                    tongsotrang = tongsotrang + 1;
-                                }
-                                list = KhuyenMaiDAO.LayHetKhuyenMai(batdau, sp1trang);
-
-                                request.setAttribute("tongsotrang", tongsotrang);
-                                request.setAttribute("list", list);
-                                request.getRequestDispatcher("QuanLyAdmin_KhuyenMai.jsp").forward(request, response);
-                                return;
-                            }
-                            //</editor-fold>
-                        }
-
-                        request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
-                        return;
-                    }
-                    //</editor-fold>
-
-                    //<editor-fold defaultstate="collapsed" desc="người dùng">                               
-                    if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND2")) {
-                        if (request.getParameter("task_chitiet") != null) {
-                            String task_chitiet = request.getParameter("task_chitiet");
-
-                            //<editor-fold defaultstate="collapsed" desc="thông tin người dùng">
-                            if (task_chitiet.equals("thongtinnguoidung")) {
-                                request.getRequestDispatcher("XXXXXX.jsp").forward(request, response);
-                                return;
-                            }
-                            //</editor-fold>
-                        }
-
-                        request.getRequestDispatcher("QuanLyNguoiDung.jsp").forward(request, response);
-                        return;
-                    }
-                    //</editor-fold>
-
-                    //<editor-fold defaultstate="collapsed" desc="nhân viên">                                
-                    if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND3")) {
-                        if (request.getParameter("task_chitiet") != null) {
-                            String task_chitiet = request.getParameter("task_chitiet");
-
-                            //<editor-fold defaultstate="collapsed" desc="sản phẩm">
-
-                            //</editor-fold>
-                        }
-
-                        request.getRequestDispatcher("QuanLyNhanVien.jsp").forward(request, response);
-                        return;
-                    }
-                    //</editor-fold>
-
-                }
-                //</editor-fold>
-
-                //<editor-fold defaultstate="collapsed" desc="quản lý giỏ hàng">
-                if (task.equals("giohang")) {
-                    request.getRequestDispatcher("GioHang.jsp").forward(request, response);
-                }
-                //</editor-fold>
-
-                //<editor-fold defaultstate="collapsed" desc="chuyển trang khuyến mãi">
-                if (task.equals("khuyenmai")) {
+                //<editor-fold defaultstate="collapsed" desc="admin">                                
+                if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND1")) {
                     if (request.getParameter("task_chitiet") != null) {
                         String task_chitiet = request.getParameter("task_chitiet");
-                        if (task_chitiet.equals("chitietkhuyenmai")) {
-                            Khuyenmai km = KhuyenMaiDAO.LayKhuyenMaiTheoMa(request.getParameter("MKM"));
 
-                            request.setAttribute("khuyenmai", km);
-                            request.getRequestDispatcher("ChiTietKhuyenMai.jsp").forward(request, response);
+                        //<editor-fold defaultstate="collapsed" desc="người dùng">
+                        if (task_chitiet.equals("nguoidung")) {
+
+                            request.getRequestDispatcher("QuanLyAdmin_NguoiDung.jsp").forward(request, response);
                             return;
                         }
+                        //</editor-fold>
+
+                        //<editor-fold defaultstate="collapsed" desc="công ty">
+                        if (task_chitiet.equals("congty")) {
+
+
+                            request.getRequestDispatcher("QuanLyAdmin_CongTy.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+
+                        //<editor-fold defaultstate="collapsed" desc="sản phẩm">
+                        if (task_chitiet.equals("sanpham")) {
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang thêm">                           
+                            if (request.getParameter("Them") != null) {
+                                request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                                return;
+                            }
+                            //</editor-fold>
+
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang cập nhật">
+                            if (request.getParameter("CapNhat") != null) {
+                                String capnhat = request.getParameter("CapNhat").toString();
+
+                                if (capnhat.equals("chitiet")) {
+                                    String msp = request.getParameter("MSP");
+                                    Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
+
+                                    request.setAttribute("sanpham", sp);
+                                    request.getRequestDispatcher("QuanLyAdmin_SanPham_CapNhat.jsp").forward(request, response);
+                                    return;
+                                }
+                            }
+                            //</editor-fold>
+
+                            int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
+                            int tongsotrang = 0;
+                            int trang = 1;
+                            if (request.getParameter("trang") != null) {
+                                trang = Integer.parseInt(request.getParameter("trang").toString());
+                            }
+                            int batdau = 0;
+                            if (trang > 1) {
+                                batdau = sp1trang * trang - sp1trang;
+                            }
+
+                            List<Sanpham> list = SanPhamDAO.LayHetSanPham(batdau, -1);
+                            tongsotrang = list.size() / sp1trang;
+                            if (list.size() % sp1trang > 0) {
+                                tongsotrang = tongsotrang + 1;
+                            }
+                            list = SanPhamDAO.LayHetSanPham(batdau, sp1trang);
+
+                            request.setAttribute("tongsotrang", tongsotrang);
+                            request.setAttribute("list", list);
+                            request.getRequestDispatcher("QuanLyAdmin_SanPham.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+
+                        //<editor-fold defaultstate="collapsed" desc="khuyến mãi">
+                        if (task_chitiet.equals("khuyenmai")) {
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang thêm">                           
+                            if (request.getParameter("Them") != null) {
+                                request.getRequestDispatcher("QuanLyAdmin_KhuyenMai_Them.jsp").forward(request, response);
+                                return;
+                            }
+                            //</editor-fold>
+
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang cập nhật">
+                            if (request.getParameter("CapNhat") != null) {
+                                String capnhat = request.getParameter("CapNhat").toString();
+
+                                if (capnhat.equals("chitiet")) {
+                                    String mkm = request.getParameter("MKM");
+                                    Khuyenmai km = KhuyenMaiDAO.LayKhuyenMaiTheoMa(mkm);
+
+                                    request.setAttribute("khuyenmai", km);
+                                    request.getRequestDispatcher("QuanLyAdmin_KhuyenMai_CapNhat.jsp").forward(request, response);
+                                    return;
+                                }
+                            }
+                            //</editor-fold>
+
+                            int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
+                            int tongsotrang = 0;
+                            int trang = 1;
+                            if (request.getParameter("trang") != null) {
+                                trang = Integer.parseInt(request.getParameter("trang").toString());
+                            }
+                            int batdau = 0;
+                            if (trang > 1) {
+                                batdau = sp1trang * trang - sp1trang;
+                            }
+
+                            List<Khuyenmai> list = KhuyenMaiDAO.LayHetKhuyenMai(batdau, -1);
+                            tongsotrang = list.size() / sp1trang;
+                            if (list.size() % sp1trang > 0) {
+                                tongsotrang = tongsotrang + 1;
+                            }
+                            list = KhuyenMaiDAO.LayHetKhuyenMai(batdau, sp1trang);
+
+                            request.setAttribute("tongsotrang", tongsotrang);
+                            request.setAttribute("list", list);
+                            request.getRequestDispatcher("QuanLyAdmin_KhuyenMai.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
                     }
 
-                    int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
-                    int tongsotrang = 0;
-                    int trang = 1;
-                    if (request.getParameter("trang") != null) {
-                        trang = Integer.parseInt(request.getParameter("trang").toString());
-                    }
-                    int batdau = 0;
-                    if (trang > 1) {
-                        batdau = sp1trang * trang - sp1trang;
-                    }
-
-                    List<Khuyenmai> list = KhuyenMaiDAO.LayKhuyenMai(batdau, -1);
-                    tongsotrang = list.size() / sp1trang;
-                    if (list.size() % sp1trang > 0) {
-                        tongsotrang = tongsotrang + 1;
-                    }
-                    list = KhuyenMaiDAO.LayKhuyenMai(batdau, sp1trang);
-
-                    request.setAttribute("tongsotrang", tongsotrang);
-                    request.setAttribute("list", list);
-                    request.getRequestDispatcher("KhuyenMai.jsp").forward(request, response);
+                    request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
                     return;
                 }
                 //</editor-fold>
 
-                //<editor-fold defaultstate="collapsed" desc="chuyển trang tin tức">
-                if (task.equals("tintuc")) {
+                //<editor-fold defaultstate="collapsed" desc="người dùng">                               
+                if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND2")) {
                     if (request.getParameter("task_chitiet") != null) {
                         String task_chitiet = request.getParameter("task_chitiet");
-                        if (task_chitiet.equals("chitiettintuc")) {
-                            Tintuc tt = TinTucDAO.LayTinTucTheoMa(request.getParameter("MTT"));
 
-                            request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
-
-                            request.setAttribute("tintuc", tt);
-                            request.getRequestDispatcher("ChiTietTinTuc.jsp").forward(request, response);
+                        //<editor-fold defaultstate="collapsed" desc="thông tin người dùng">
+                        if (task_chitiet.equals("thongtinnguoidung")) {
+                            request.getRequestDispatcher("XXXXXX.jsp").forward(request, response);
                             return;
                         }
+                        //</editor-fold>
                     }
 
-                    int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
-                    int tongsotrang = 0;
-                    int trang = 1;
-                    if (request.getParameter("trang") != null) {
-                        trang = Integer.parseInt(request.getParameter("trang").toString());
-                    }
-                    int batdau = 0;
-                    if (trang > 1) {
-                        batdau = sp1trang * trang - sp1trang;
-                    }
-
-                    List<Tintuc> list = TinTucDAO.LayTinTuc(batdau, -1);
-                    tongsotrang = list.size() / sp1trang;
-                    if (list.size() % sp1trang > 0) {
-                        tongsotrang = tongsotrang + 1;
-                    }
-                    list = TinTucDAO.LayTinTuc(batdau, sp1trang);
-
-                    request.setAttribute("tongsotrang", tongsotrang);
-                    request.setAttribute("list", list);
-                    request.getRequestDispatcher("TinTuc.jsp").forward(request, response);
+                    request.getRequestDispatcher("QuanLyNguoiDung.jsp").forward(request, response);
                     return;
                 }
                 //</editor-fold>
+
+                //<editor-fold defaultstate="collapsed" desc="nhân viên">                                
+                if (nd.getLoainguoidung().getMaLoaiNguoiDung().equals("MLND3")) {
+                    if (request.getParameter("task_chitiet") != null) {
+                        String task_chitiet = request.getParameter("task_chitiet");
+
+                        //<editor-fold defaultstate="collapsed" desc="sản phẩm">
+
+                        //</editor-fold>
+                    }
+
+                    request.getRequestDispatcher("QuanLyNhanVien.jsp").forward(request, response);
+                    return;
+                }
+                //</editor-fold>
+
+            }
+            //</editor-fold>
+
+            //<editor-fold defaultstate="collapsed" desc="quản lý giỏ hàng">
+            if (task.equals("giohang")) {
+                if(session.getAttribute("TenDangNhap") == null)
+                {
+                    request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
+                    return;
+                }
+
+                request.getRequestDispatcher("GioHang.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang khuyến mãi">
+            if (task.equals("khuyenmai")) {
+                if (request.getParameter("task_chitiet") != null) {
+                    String task_chitiet = request.getParameter("task_chitiet");
+                    if (task_chitiet.equals("chitietkhuyenmai")) {
+                        Khuyenmai km = KhuyenMaiDAO.LayKhuyenMaiTheoMa(request.getParameter("MKM"));
+
+                        request.setAttribute("khuyenmai", km);
+                        request.getRequestDispatcher("ChiTietKhuyenMai.jsp").forward(request, response);
+                        return;
+                    }
+                }
+
+                int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
+                int tongsotrang = 0;
+                int trang = 1;
+                if (request.getParameter("trang") != null) {
+                    trang = Integer.parseInt(request.getParameter("trang").toString());
+                }
+                int batdau = 0;
+                if (trang > 1) {
+                    batdau = sp1trang * trang - sp1trang;
+                }
+
+                List<Khuyenmai> list = KhuyenMaiDAO.LayKhuyenMai(batdau, -1);
+                tongsotrang = list.size() / sp1trang;
+                if (list.size() % sp1trang > 0) {
+                    tongsotrang = tongsotrang + 1;
+                }
+                list = KhuyenMaiDAO.LayKhuyenMai(batdau, sp1trang);
+
+                request.setAttribute("tongsotrang", tongsotrang);
+                request.setAttribute("list", list);
+                request.getRequestDispatcher("KhuyenMai.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang tin tức">
+            if (task.equals("tintuc")) {
+                if (request.getParameter("task_chitiet") != null) {
+                    String task_chitiet = request.getParameter("task_chitiet");
+                    if (task_chitiet.equals("chitiettintuc")) {
+                        Tintuc tt = TinTucDAO.LayTinTucTheoMa(request.getParameter("MTT"));
+
+                        request.setAttribute("tintuc", tt);
+                        request.getRequestDispatcher("ChiTietTinTuc.jsp").forward(request, response);
+                        return;
+                    }
+                }
+
+                int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
+                int tongsotrang = 0;
+                int trang = 1;
+                if (request.getParameter("trang") != null) {
+                    trang = Integer.parseInt(request.getParameter("trang").toString());
+                }
+                int batdau = 0;
+                if (trang > 1) {
+                    batdau = sp1trang * trang - sp1trang;
+                }
+
+                List<Tintuc> list = TinTucDAO.LayTinTuc(batdau, -1);
+                tongsotrang = list.size() / sp1trang;
+                if (list.size() % sp1trang > 0) {
+                    tongsotrang = tongsotrang + 1;
+                }
+                list = TinTucDAO.LayTinTuc(batdau, sp1trang);
+
+                request.setAttribute("tongsotrang", tongsotrang);
+                request.setAttribute("list", list);
+                request.getRequestDispatcher("TinTuc.jsp").forward(request, response);
+                return;
             }
             //</editor-fold>
 

@@ -25,16 +25,16 @@
         //Kiểm tra người nhận hàng giống người đặt hàng đã check chưa
         myformobj = document.formDatHang
         if(myformobj.chkNguoiNhanHang.checked == false)
-            {
-                window.alert("Bạn chưa check Người Nhận Hàng !");
-                return false;
-            }        
+        {
+            window.alert("Bạn chưa check Người Nhận Hàng !");
+            return false;
+        }        
         //Kiểm tra đã chọn Tôi đồng ý chưa
         if(myformobj.chkAgree.checked == false )
-            {
-                window.alert("Bạn chưa check chọn đồng ý các điều khoản !");
-                return false;
-            }
+        {
+            window.alert("Bạn chưa check chọn đồng ý các điều khoản !");
+            return false;
+        }
         return true
     }
     
@@ -66,28 +66,28 @@
         session.setAttribute("ThanhTien", ThanhTien);
     %>
     <!--Begin content-->
-    <form id="formDatHang" name="formDatHang" method="post" action="process?task=GioHang" onsubmit="return Test()">
-    <div id="content_giohang">
-        <table width="100%" cellpadding="3" cellspacing="3" align="center">
-            <tr>
-            <td style="width:100%">
-                <table cellpadding="3" cellspacing="3" border="0" class="dathang_table">
-                    <tr>
-                    <td colspan="3" class="TextTitle"><div align="left" ><strong>ĐẶT MUA ONLINE</strong></div></td>
-                    </tr>
-                    <tr>
+    <form style="margin-left: -25px;" id="formDatHang" name="formDatHang" method="post" action="process?task=GioHang" onsubmit="return Test()">
+        <div id="content_giohang">
+            <table width="100%" cellpadding="3" cellspacing="3" align="center">
+                <tr>
+                <td style="width:100%">
+                    <table cellpadding="3" cellspacing="3" border="0" class="dathang_table">
+                        <tr>
+                        <td colspan="3" class="TextTitle"><div align="left" ><strong>ĐẶT MUA ONLINE</strong></div></td>
+                        </tr>
+                        <tr>
 
-                    <td colspan="3">
-                        Vui lòng điền đầy đủ & chính xác các thông tin bên dưới để chúng tôi phục vụ bạn tốt hơn.<% if (tenDangNhap == null) {%> Đã có tài khoản? <a href="view?task=DangNhap">Đăng nhập tại đây!</a>    <% }%>               
-                    </td>
+                        <td colspan="3">
+                            Vui lòng điền đầy đủ & chính xác các thông tin bên dưới để chúng tôi phục vụ bạn tốt hơn.<% if (tenDangNhap == null) {%> Đã có tài khoản? <a href="view?task=DangNhap">Đăng nhập tại đây!</a>    <% }%>               
+                        </td>
 
-                    </tr>
-                    <tr>
-                    <td style="border-right:1px solid #d7d7d7; width:270px;" valign="top"> 
+                        </tr>
+                        <tr>
+                        <td style="border-right:1px solid #d7d7d7; width:270px;" valign="top"> 
 
 
 
-                        
+
                             <table cellpadding="3" cellspacing="3" border="0" class="dathang_table">
                                 <tr>
                                 <td colspan="2" class="TextTitleSmall">
@@ -98,120 +98,120 @@
                                 <tr>
                                 <td colspan="2">
                                     Họ tên người đặt hàng <span style="color:Red;">*</span>           
-                                </td>
-                                </tr>
-                                <tr>
-                                <td colspan="2">
-                                    <input name="txtHoTen" type="text" value="<%= nd.getTenNguoiDung()%>" id="txtHoTen" class="text" onblur="if(this.value=='') this.value='Họ và tên';" onfocus="if(this.value=='Họ và tên') this.value='';" style="width:250px;" />            
-                                </td>
-                                </tr>
-                                <tr>
-                                <td>
-                                    CMND/Passport            </td>
-                                <td>            </td>
-                                </tr>
-                                <tr>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2">
+                            <input name="txtHoTen" type="text" value="<%= nd.getTenNguoiDung()%>" id="txtHoTen" class="text" onblur="if(this.value=='') this.value='Họ và tên';" onfocus="if(this.value=='Họ và tên') this.value='';" style="width:250px;" />            
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            CMND/Passport            </td>
+                        <td>            </td>
+                        </tr>
+                        <tr>
 
-                                <td>
-                                    <input name="txtCMND" type="text" id="txtCMND" class="text" />            </td>
-                                <td>                    
-                                </td>
-                                </tr>
-                                <tr>
-                                <td>
-                                    Email <span style="color:Red;">*</span>            </td>
-                                <td>
-                                    Điện thoại <span style="color:Red;">*</span>            </td>
-                                </tr>
-                                <tr>
+                        <td>
+                            <input name="txtCMND" type="text" id="txtCMND" class="text" value="<%= nd.getCmnd()%>" />            </td>
+                        <td>                    
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            Email <span style="color:Red;">*</span>            </td>
+                <td>
+                    Điện thoại <span style="color:Red;">*</span>            </td>
+                </tr>
+                <tr>
 
-                                <td>
-                                    <input name="txtEmail" type="text" id="txtEmail" class="text" value="<%= nd.getEmail()%>"/>            
-                                </td>
-                                <td>
-                                    <input name="txtDienThoai" type="text" id="txtDienThoai" class="text" value="<%= nd.getDienThoai()%>" style="width:80px;" />          
-                                </td>
-                                </tr>
-                                <tr>
-                                <td colspan="2">
-                                    Địa chỉ người đặt hàng <span style="color:Red;">*</span>        
-                                </td>
-                                </tr>
-                                <tr>
-                                <td colspan="2">
-                                    <input name="txtDiaChi" type="text" id="txtDiaChi" class="text" value="<%= nd.getDiaChi()%>" style="width:250px;" />            </td>
-                                </tr>
+                <td>
+                    <input name="txtEmail" type="text" id="txtEmail" class="text" value="<%= nd.getEmail()%>"/>            
+                </td>
+                <td>
+                    <input name="txtDienThoai" type="text" id="txtDienThoai" class="text" value="<%= nd.getDienThoai()%>" style="width:80px;" />          
+                </td>
+                </tr>
+                <tr>
+                <td colspan="2">
+                    Địa chỉ người đặt hàng <span style="color:Red;">*</span>        
+                </td>
+                </tr>
+                <tr>
+                <td colspan="2">
+                    <input name="txtDiaChi" type="text" id="txtDiaChi" class="text" value="<%= nd.getDiaChi()%>" style="width:250px;" />            </td>
+                </tr>
 
-                                <tr>
-                                <td colspan="2" style="color:#b34040;">
-                                <input id="chkNguoiNhanHang" type="checkbox" name="chkNguoiNhanHang" checked="checked" onclick="" /><label for="chkNguoiNhanHang">NGƯỜI NHẬN HÀNG GIỐNG ĐẶT HÀNG</label>           
-                                </td>
-                                </tr>
-                            </table>                    
-                    </td>
-                    <td style="border-right:0px solid #d7d7d7; width:290px;" valign="top"> 
+                <tr>
+                <td colspan="2" style="color:#b34040;">
+                <input id="chkNguoiNhanHang" type="checkbox" name="chkNguoiNhanHang" checked="checked" onclick="" /><label for="chkNguoiNhanHang">NGƯỜI NHẬN HÀNG GIỐNG ĐẶT HÀNG</label>           
+                </td>
+                </tr>
+            </table>                    
+            </td>
+            <td style="border-right:0px solid #d7d7d7; width:290px;" valign="top"> 
 
-                        <div id="dialog1" title="Giao hàng nội thành" style="display:none;overflow:hidden;">
-                            <iframe src="html/phivanchuyen.html" style="width:500px; height:300px; border:0;" frameborder=0  SCROLLING=NO >	</iframe>
-                        </div>
+                <div id="dialog1" title="Giao hàng nội thành" style="display:none;overflow:hidden;">
+                    <iframe src="html/phivanchuyen.html" style="width:500px; height:300px; border:0;" frameborder=0  SCROLLING=NO >	</iframe>
+                </div>
 
-                        <div id="dialog2" title="Giao hàng nội thành" style="display:none;overflow:hidden;">
-                            <iframe src="html/phivanchuyen.html" style="width:500px; height:300px; border:0;" frameborder=0  SCROLLING=NO >	</iframe>
-                        </div>
+                <div id="dialog2" title="Giao hàng nội thành" style="display:none;overflow:hidden;">
+                    <iframe src="html/phivanchuyen.html" style="width:500px; height:300px; border:0;" frameborder=0  SCROLLING=NO >	</iframe>
+                </div>
 
-                        <div id="dialog3" title="Chuyển khoản ngân hàng" style="display:none;overflow:hidden;">
-                            <iframe src="html/thanhtoannganhang.html" style="width:700px; height:800px; border:0;" frameborder=0  SCROLLING=YES >	</iframe>
-                        </div>
+                <div id="dialog3" title="Chuyển khoản ngân hàng" style="display:none;overflow:hidden;">
+                    <iframe src="html/thanhtoannganhang.html" style="width:700px; height:800px; border:0;" frameborder=0  SCROLLING=YES >	</iframe>
+                </div>
 
-                        <div id="dialog4" title="Chuyển tiền qua bưu điện" style="display:none;overflow:hidden;">
-                            <iframe src="html/thanhtoanbuudien.html" style="width:700px; height:700px; border:0;" frameborder=0  SCROLLING=YES >	</iframe>
-                        </div>
+                <div id="dialog4" title="Chuyển tiền qua bưu điện" style="display:none;overflow:hidden;">
+                    <iframe src="html/thanhtoanbuudien.html" style="width:700px; height:700px; border:0;" frameborder=0  SCROLLING=YES >	</iframe>
+                </div>
 
-                        <div id="dialog5" title="Thanh toán khi giao nhận" style="display:none;overflow:hidden;">
-                            <iframe src="html/thanhtoantienmat.html" style="width:700px; height:300px; border:0;" frameborder=0  SCROLLING=YES >	</iframe>
-                        </div>
+                <div id="dialog5" title="Thanh toán khi giao nhận" style="display:none;overflow:hidden;">
+                    <iframe src="html/thanhtoantienmat.html" style="width:700px; height:300px; border:0;" frameborder=0  SCROLLING=YES >	</iframe>
+                </div>
 
 
-                        <table cellpadding="3" cellspacing="3" border="0" class="dathang_table">
-                            <tr>
-                            <td colspan="2" class="TextTitleSmall">
-                                <img src="images/linhtinh/OnePageCheckOut_2.jpg" style="text-align:left; vertical-align:middle;" alt="" />HÌNH THỨC GIAO NHẬN            </td>
-                            </tr>
-                            <tr>
-                            <td colspan="2">
-                                <b>
-                                    <span style="display:inline-block;border-width:0px;width:200px;"><label for="HinhThucGiaoNhan_rdoDenKhoOnline">Đến siêu thị nhận hàng</label></span>                </b><br />                     
-                            </td>            
-                            </tr>
-
-                            <tr>
-                            <td colspan="2">
-                                <b>
-                                    <span class="DropDownList" style="display:inline-block;border-width:0px;width:200px;"><label for="HinhThucGiaoNhan_rdoGiaoHangTanNoi">Giao hàng tận nơi</label></span>                </b>
-                                <br />            
-                                <b>&nbsp;&nbsp;Nội thành:</b>&nbsp;từ 1 - 2 ngày 
-                                <p></p>
-                                <b>&nbsp;&nbsp;Tỉnh thành khác:</b>&nbsp;từ 3 - 4 ngày   </td>
-                            </tr>
-
-                            <tr>
-                            <td colspan="2" class="TextTitleSmall">
-                                <img src="images/linhtinh/OnePageCheckOut_3.jpg" style="text-align:left; vertical-align:middle;" alt="" />HÌNH THỨC THANH TOÁN            </td>
-                            </tr>
-
-                            <%
-                                List<Hinhthucthanhtoan> list = HinhThucThanhToanDAO.LayListHinhThucThanhToan();
-                                for (int i = 0; i < list.size(); i++) {
-                            %>
-                            <tr>
-                            <td colspan="2" style="text-align:left">
-                            <span class="DropDownList" style="display:inline-block;border-width:0px;width:200px;"><input id="rdoHinhThucThanhToan" type="radio" name="rdoHinhThucThanhToan" checked="checked" value="<%= list.get(i).getMaHinhThucThanhToan()%>" /><label for="HinhThucGiaoNhan_rdoChuyenKhoanNH"><%= list.get(i).getTenHinhThucThanhToan()%></label></span>  </td>
+                <table cellpadding="3" cellspacing="3" border="0" class="dathang_table">
+                    <tr>
+                    <td colspan="2" class="TextTitleSmall">
+                        <img src="images/linhtinh/OnePageCheckOut_2.jpg" style="text-align:left; vertical-align:middle;" alt="" />HÌNH THỨC GIAO NHẬN            </td>
                     </tr>
-                    <%
-                        }
-                    %>
+                    <tr>
+                    <td colspan="2">
+                        <b>
+                            <span style="display:inline-block;border-width:0px;width:200px;"><label for="HinhThucGiaoNhan_rdoDenKhoOnline">Đến siêu thị nhận hàng</label></span>                </b><br />                     
+                    </td>            
+                    </tr>
 
-                </table>                    </td>
+                    <tr>
+                    <td colspan="2">
+                        <b>
+                            <span class="DropDownList" style="display:inline-block;border-width:0px;width:200px;"><label for="HinhThucGiaoNhan_rdoGiaoHangTanNoi">Giao hàng tận nơi</label></span>                </b>
+                        <br />            
+                        <b>&nbsp;&nbsp;Nội thành:</b>&nbsp;từ 1 - 2 ngày 
+                        <p></p>
+                        <b>&nbsp;&nbsp;Tỉnh thành khác:</b>&nbsp;từ 3 - 4 ngày   </td>
+                    </tr>
+
+                    <tr>
+                    <td colspan="2" class="TextTitleSmall">
+                        <img src="images/linhtinh/OnePageCheckOut_3.jpg" style="text-align:left; vertical-align:middle;" alt="" />HÌNH THỨC THANH TOÁN            </td>
+                    </tr>
+
+                    <%
+                        List<Hinhthucthanhtoan> list = HinhThucThanhToanDAO.LayListHinhThucThanhToan();
+                        for (int i = 0; i < list.size(); i++) {
+                    %>
+                    <tr>
+                    <td colspan="2" style="text-align:left">
+                    <span class="DropDownList" style="display:inline-block;border-width:0px;width:200px;"><input id="rdoHinhThucThanhToan" type="radio" name="rdoHinhThucThanhToan" checked="checked" value="<%= list.get(i).getMaHinhThucThanhToan()%>" /><label for="HinhThucGiaoNhan_rdoChuyenKhoanNH"><%= list.get(i).getTenHinhThucThanhToan()%></label></span>  </td>
+            </tr>
+            <%
+                }
+            %>
+
+            </table>                    </td>
             <td style="width:auto;" valign="top"> 
                 <div style="float:left;width:auto; border:3px solid #d7d7d7;">
                     <table cellpadding="3" cellspacing="3" width="100%" class="dathang_table" style="background-color:#fffeee;">
@@ -324,12 +324,11 @@
                     <div id="DonHangCuaBan_div1"></div>
                 </div>                    </td>
             </tr>
-        </table>        
-        </td>
+            </table>        
+            </td>
 
-        </tr>
-        </table>
+            </tr>
+            </table>
 
-    </div> 
+        </div> 
 </div>
-                       
