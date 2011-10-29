@@ -10,7 +10,8 @@
 //
 // Helper functions
 //
-
+var path_temp = FCKConfig.BasePath.split("/");
+path_temp = path_temp[0] + "//" + path_temp[2] + "/images/khuyen mai/bai viet/";
 var qq = qq || {};
 
 /**
@@ -489,21 +490,21 @@ qq.FileUploader = function(o){
                     "<span style=''>Drop files here to upload</span>" +
                 '</div>' +
                 '<div class="qq-upload-button" onClick="kk();">Upload hình ảnh</div>' +
-                '<ul class="qq-upload-list" style="display: none;" onChange="kk();"></ul>' + 
+                '<ul class="qq-upload-list"></ul>' + 
              '</div>',
 
         // template for one item in file list
         fileTemplate: '<li>' +
-                '<span class="qq-upload-file"></span>' +
+                path_temp + '<span class="qq-upload-file"></span>' + ' - ' +
                 '<span class="qq-upload-spinner"></span>' +
                 '<span class="qq-upload-size"></span>' +
                 '<a class="qq-upload-cancel" href="#">Cancel</a>' +
-                '<span class="qq-upload-failed-text">Failed</span>' +
+                //'<span class="qq-upload-failed-text">Failed</span>' +
                 "<script type='text/javascript'>" +
                     "if(flag == 1)" +
                     "{" +
                         "alert('UPLOAD Thành Công');" +
-                        //"flag = 0;" +
+                        "flag = 0;" +
                     "}" +
                 "</script>" +
             '</li>',

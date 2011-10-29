@@ -104,12 +104,14 @@ public class process extends HttpServlet {
             }
             //</editor-fold>
 
-            //<editor-fold defaultstate="collapsed" desc="đặt mua sản phẩm">
+            //<editor-fold defaultstate="collapsed" desc="xử lý đặt mua sản phẩm">
             if (task.equals("datmua")) {
                 String msp = request.getParameter("MSP");
                 String maNguoiDung = (String) session.getAttribute("MaNguoiDung");
                 Giohang ghTrung = GioHangDAO.LayGioHangVoiSanPhamBiTrung(maNguoiDung, msp);
                 Sanpham sp = SanPhamDAO.LaySanPhamTheoMa(msp);
+
+                int flag = 0;
 
                 if (session.getAttribute("TenDangNhap") == null) {
                     request.getRequestDispatcher("view?task=DangNhap").forward(request, response);
@@ -117,8 +119,8 @@ public class process extends HttpServlet {
                 } else {
                     if (ghTrung != null) {
                         int soLuong = ghTrung.getSoLuong() + 1;
-                        int kq = GioHangDAO.CapNhatSoLuongChoSanPhamTrung(ghTrung.getMaGioHang(), soLuong);
-                        int kq2 = GioHangDAO.CapNhatThanhTienChoSanPhamTrung(ghTrung.getMaGioHang(), soLuong);
+                        flag = GioHangDAO.CapNhatSoLuongChoSanPhamTrung(ghTrung.getMaGioHang(), soLuong);
+                        flag = GioHangDAO.CapNhatThanhTienChoSanPhamTrung(ghTrung.getMaGioHang(), soLuong);
                     } else {
                         Giohang gh = GioHangDAO.LayGioHangCuoiCung();
                         int mgh = 1;
@@ -141,16 +143,15 @@ public class process extends HttpServlet {
                         request.setAttribute("TenSanPham", sp.getTenSanPham());
                         request.setAttribute("ThanhTien", sp.getGiaBan());
 
-                        int kq = GioHangDAO.Them(gh);
+                        flag = GioHangDAO.Them(gh);
 
-                        if (kq == 1) {
-                            String thongbao = "";
-                            thongbao = "Đã đặt mua thành công";
-                            request.setAttribute("thongbao", thongbao);
-                        }
                     }
 
-                    request.getRequestDispatcher("view?task=giohang").forward(request, response);
+                    if (flag == 1) {
+                        String thongbao = "";
+                        thongbao = "Đã đặt mua thành công";
+                        request.setAttribute("thongbao", thongbao);
+                    }
                 }
 
                 //request.getRequestDispatcher("view?task=chitietsanpham&MSP=MSP31").forward(request, response);
@@ -260,7 +261,7 @@ public class process extends HttpServlet {
             }
             //</editor-fold>
 
-            //<editor-fold defaultstate="collapsed" desc="Giỏ hàng">
+            //<editor-fold defaultstate="collapsed" desc="xử lý giỏ hàng">
             if (task.equals("GioHang")) {
                 String chi_tiet = request.getParameter("btXoa");
                 if (request.getParameter("btXoa") != null) {
@@ -1228,12 +1229,18 @@ public class process extends HttpServlet {
             }
             //</editor-fold>           
 
-            if (task.equals("1")) {
+            //<editor-fold defaultstate="collapsed" desc="upload hình cho bài viết khuyến mãi - tin tức">                        
+            //task = 1 => khuyến mãi
+            //task = 2 => tin tức
+            if (task.equals("1") || task.equals("2")) {
                 long serialVersionUID = 6748857432950840322L;
-                String DESTINATION_DIR_PATH = "images";
+                String DESTINATION_DIR_PATH = "images/khuyen mai/bai viet";
+                if (task.equals("2")) {
+                    DESTINATION_DIR_PATH = "images/tin tuc/bai viet";
+                }
                 String realPath;
                 realPath = getServletContext().getRealPath(DESTINATION_DIR_PATH) + "/";
-                
+
                 PrintWriter writer = null;
                 InputStream is = null;
                 FileOutputStream fos = null;
@@ -1269,9 +1276,11 @@ public class process extends HttpServlet {
 
                 writer.flush();
                 writer.close();
-                
+
                 return;
             }
+            //</editor-fold>
+
             request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
             return;
 
