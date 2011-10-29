@@ -35,8 +35,8 @@ public class SieuThiDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Sieuthi> DS = null;
         try {
-            String hql = "FROM Sieuthi WHERE maVung = MaVung";
-            Query query = session.createQuery(MaVung);
+            String hql = "FROM Sieuthi WHERE maVung = '"+MaVung+"'";
+            Query query = session.createQuery(hql);
             DS = query.list();
         } catch (Exception e) {
         }

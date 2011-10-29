@@ -16,40 +16,25 @@
 <link href="css/maintabletitle.css" rel="stylesheet" type="text/css" />
 <link href="css/lienhe.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript">
-    function show(tenvung)
-    {
-        if(tenvung == "Hồ Chí Minh")
-        {
-            var hienthi = document.getElementById('hienthi');
-            var noidung = document.getElementById('HCM');
-            hienthi.innerHTML = noidung.innerHTML;
-            return;
-        }
-
-        if(tenvung == "Hà Nội ")
-        {            
-            var hthi = document.getElementById('hienthi');
-            var ndung = document.getElementById('HN');
-            hthi.innerHTML = ndung.innerHTML;
-            return;
-        }
+<script type="text/javascript">    
+    function show(mavung)
+    { 
+        $.ajax({url:'process?task=XLLienHe&task_chitiet=vung',
+            data:"MV=" + mavung,
+            success:function(res){ 
+                //alert(res);
+                var noidung = "<select class='timkiemlist' id='cboAddress' onChange='SetBranch()'>";
+                noidung += res;
+                noidung += "</select>";
+                //alert(noidung);
+                
+                var hthi = document.getElementById('hienthi');
+                hthi.innerHTML = "" + noidung;
+                return;
+            }
+        })
     }
 </script>
-
-<div id="HCM" style="display: none;">
-    <select class="timkiemlist" id="cboAddress" onChange="SetBranch()">
-        <option selected="selected" value="0">Địa chỉ</option>
-        <option value="HaiPhong_BigCHaiPhong.gif">adsfasjdkfhadskjhfl</option>
-    </select>
-</div>
-
-<div id="HN" style="display: none;">
-    <select class="timkiemlist" id="cboAddress" onChange="SetBranch()">
-        <option selected="selected" value="0">Địa chỉ</option>
-        <option value="HaiPhong_BigCHaiPhong.gif">hihi</option>
-    </select>
-</div>
 
 <div id="body_mid" style="float:left; width:56%;">
     <form name="formLienHe" id="formLienHe" Action="process?task=XLLienHe" method="post">
@@ -103,7 +88,7 @@
                                             <%
                                                 for (int i = 0; i < list.size(); i++) {
                                             %>
-                                            <option onclick="show('<%=list.get(i).getTenVung()%>');" value="<%=list.get(i).getMaVung()%>"><%=list.get(i).getTenVung()%></option>
+                                            <option onclick="show('<%=list.get(i).getMaVung()%>');" value="<%=list.get(i).getMaVung()%>"><%=list.get(i).getTenVung()%></option>
                                             <%
                                                 }
                                             %>
@@ -113,7 +98,6 @@
                                         <div id="hienthi">
                                             <select class="timkiemlist" id="cboAddress" onChange="SetBranch()">
                                                 <option selected="selected" value="0">Địa chỉ</option>
-                                                <option value="HaiPhong_BigCHaiPhong.gif">Lô 1/20 Khu Đô Thị Ngã 5, Sân Bay Cát Bi</option>
                                             </select>
                                         </div>
                                     </td>
@@ -191,7 +175,7 @@
                                         <table border="0" cellpadding="5" cellspacing="0" width="100">
                                             <tbody>
                                                 <tr>
-                                                
+
                                                 <td align="center"><td>
                                                     <form action="" method="post">
                                                         <%
@@ -199,8 +183,8 @@
                                                             out.print(c.createRecaptchaHtml("abc", null));
                                                         %>
                                                     </form>
-                                                
-                                                </tr>
+
+                                                    </tr>
                                             </tbody>
                                         </table>
                                     </td>

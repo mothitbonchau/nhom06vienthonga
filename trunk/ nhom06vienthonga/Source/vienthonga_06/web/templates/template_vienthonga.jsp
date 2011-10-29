@@ -25,7 +25,7 @@
         <script type="text/javascript" src="css/swfobject.js"></script>
         <script type="text/javascript" src="plugins/fckeditor/fckeditor.js"></script>
         <script type="text/javascript" src="js/fileuploader.js"></script>
-        <script type="text/javascript" src="js/ajaxupload.js"></script>
+        <script type="text/javascript" src="js/jquery-1.6.4.js"></script>
         
         <style media="screen" type="text/css">
             #bannertop {visibility:hidden}
