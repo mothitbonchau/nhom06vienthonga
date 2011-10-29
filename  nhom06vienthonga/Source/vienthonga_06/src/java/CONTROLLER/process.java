@@ -373,7 +373,25 @@ public class process extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="Xử lý liên hệ">
             if (task.equals("XLLienHe")) {
-
+                String task_chitiet = "";
+                if(request.getParameter("task_chitiet") != null)
+                {
+                    task_chitiet = request.getParameter("task_chitiet").toString();
+                }
+                
+                if(task_chitiet.equals("vung"))
+                {
+                    String mavung = request.getParameter("MV").toString();
+                    List<Sieuthi> list = SieuThiDAO.LaySieuThiTheoMaVung(mavung);
+                    
+                    for(int i=0; i<list.size(); i++)
+                    {
+                        out.println("<option value='" + list.get(i).getMaSieuThi() + "'>" + list.get(i).getTenSieuThi() + "</option>");
+                    }
+                    
+                    return;
+                }
+                
                 String remoteAddr = request.getRemoteAddr();
                 ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
                 reCaptcha.setPrivateKey("6Ld03sgSAAAAAGI9a-JBcCtJHNgL4umXwtW0uNW- ");
