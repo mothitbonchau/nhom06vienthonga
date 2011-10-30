@@ -59,6 +59,7 @@
     {
         var frm = document.getElementById("frmcapnhatsanpham");
         frm.setAttribute("action", "process?task=quanlyadmin&task_chitiet=sanpham" + task);
+        frm.submit();
     }
 </script>
 
@@ -130,7 +131,7 @@
 </div>
 
 <div id="body_mid" style="float: left; width: 75%; margin-left: 0px;">
-    <form id="frmtcapnhatsanpham" method="post" action="process?task=quanlyadmin&task_chitiet=sanpham" enctype="multipart/form-data">
+    <form id="frmcapnhatsanpham" method="post" action="process?task=quanlyadmin&task_chitiet=sanpham" enctype="multipart/form-data">
         <table width="100%" border="0" cellspacing="10" cellpadding="2">
             <tr>
             <td>Mã Sản Phẩm</td>
