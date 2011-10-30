@@ -44,7 +44,6 @@
                         <tr>
                         <td width="33%" valign="top">
 
-
                             <table cellspacing="0" cellpadding="5" border="0" width="100%">
                                 <tr>
                                 <td align="center">
@@ -120,7 +119,7 @@
 
                         <td valign="top" style="width: 130px; text-align: center;">
 
-                            <a href="process?task=datmua&MSP=<%= sp.getMaSanPham() %>">
+                            <a href="process?task=datmua&MSP=<%= sp.getMaSanPham()%>">
 
                                 <img alt="" style="border: 0px none;" src="images/linhtinh/dathang_but.gif" />
                             </a>
@@ -365,18 +364,19 @@
     </table>
 </td>
 </tr>
-</table></td>
+</table>
+</td>
 </tr>
 <tr>
 <td>
     <%
         if (ctlt != null) {
             //chi tiết laptop
-%>
+    %>
     <div class="detail_tab_content" style="margin-left: 10px;">
         <table cellspacing="0" cellpadding="0" width="100%" style="border: 1px solid rgb(220, 220, 220);" class="bodyChitiet">
             <tr>
-                <td style="border-bottom: 1px solid rgb(220, 220, 220);" colspan="2">&nbsp;</td>
+            <td style="border-bottom: 1px solid rgb(220, 220, 220);" colspan="2">&nbsp;</td>
             </tr>                      
             <tr>
             <td width="200" valign="middle" style="border: 0px solid rgb(220, 220, 220);">
@@ -416,12 +416,12 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Kích thước/trọng lượng</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKichThuocTrongLuong"><%= sp.getKichThuoc() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKichThuocTrongLuong"><%= sp.getKichThuoc()%></td>
 
                     </tr>   
                     <tr>
                     <td width="40%" class="borderLRTop">Bảo hành</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdbaohanh"><%= sp.getThoiGianBaoHanh() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdbaohanh"><%= sp.getThoiGianBaoHanh()%></td>
 
                     </tr>   
 
@@ -441,31 +441,31 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Công nghệ CPU</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheCPU"><%= ctlt.getCongNgheCpu() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheCPU"><%= ctlt.getCongNgheCpu()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="height: 29px;" class="borderLRTop">Tốc độ CPU</td>
-                    <td width="60%" style="height: 29px;" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdTocdoCPU"><%= ctlt.getTocDoCpu() %></td>
+                    <td width="60%" style="height: 29px;" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdTocdoCPU"><%= ctlt.getTocDoCpu()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Bộ nhớ đệm (cache)</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBoNhoDem"><%= ctlt.getBoNhoDem() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBoNhoDem"><%= ctlt.getBoNhoDem()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Front side Bus (FSB)</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSB"><%= ctlt.getFortSizeBus() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSB"><%= ctlt.getFortSizeBus()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Hãng sản xuất CPU</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdHangSXCPU"><%= ctlt.getHangCpu() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdHangSXCPU"><%= ctlt.getHangCpu()%></td>
 
                     </tr>
 
@@ -480,13 +480,13 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Thông tin Motherboard</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThongTinMotherBoard"><%= ctlt.getThongTinMotherBoard() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThongTinMotherBoard"><%= ctlt.getThongTinMotherBoard()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Front side Bus hỗ trợ</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSBMotherboardHoTro"><%= ctlt.getFortSizeBus() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdFSBMotherboardHoTro"><%= ctlt.getFortSizeBus()%></td>
 
                     </tr>
                     <tr>
@@ -505,25 +505,25 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Dung lượng RAM</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungLuongRAM"><%= ctlt.getDungLuongRam() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungLuongRAM"><%= ctlt.getDungLuongRam()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Công nghệ RAM</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheRAM"><%= ctlt.getCongNgheRam() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheRAM"><%= ctlt.getCongNgheRam()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Bus RAM</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBusRAM"><%= ctlt.getBusRam() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBusRAM"><%= ctlt.getBusRam()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Mức RAM tối đa</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdRAMToida"><%= ctlt.getMucRamToiDa() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdRAMToida"><%= ctlt.getMucRamToiDa()%></td>
 
                     </tr>
 
@@ -538,25 +538,25 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Dung lượng</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongHDD"><%= ctlt.getDungLuongOcung() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongHDD"><%= ctlt.getDungLuongOcung()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Công nghệ</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheHDD"><%= ctlt.getCongNgheOcung() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCongNgheHDD"><%= ctlt.getCongNgheOcung()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Giao thức kết nối</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdGiaoThucKetNoiHDD"><%= ctlt.getGiaoThucKetNoi() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdGiaoThucKetNoiHDD"><%= ctlt.getGiaoThucKetNoi()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Số vòng quay</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdSoVongQuayHDD"><%= ctlt.getSoVongQuay() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdSoVongQuayHDD"><%= ctlt.getSoVongQuay()%></td>
 
                     </tr>
 
@@ -599,7 +599,7 @@
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Chuẩn màn hình</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanManHinh"><%= ctlt.getChuanManHinh() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanManHinh"><%= ctlt.getChuanManHinh()%></td>
 
                     </tr>                                                            
 
@@ -614,13 +614,13 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Card đồ họa</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardDoHoa"><%= ctlt.getCardDoHoa() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardDoHoa"><%= ctlt.getCardDoHoa()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Loại card</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdLoaiCardDohoa"><%= ctlt.getLoaiCard() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdLoaiCardDohoa"><%= ctlt.getLoaiCard()%></td>
 
                     </tr>
                     <tr>
@@ -630,7 +630,7 @@
                     </tr>
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Dung lượng card</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongcarddohoa"><%= ctlt.getDungLuongCard() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdDungluongcarddohoa"><%= ctlt.getDungLuongCard()%></td>
 
                     </tr>
 
@@ -645,19 +645,19 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Card âm thanh</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardAmThanh"><%= ctlt.getCardAmThanh() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardAmThanh"><%= ctlt.getCardAmThanh()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Chuẩn âm thanh</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanAmThanh"><%= ctlt.getChuanAmThanh() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdChuanAmThanh"><%= ctlt.getChuanAmThanh()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Kết nối</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKetNoiAmThanh"><%= ctlt.getKetNoi() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdKetNoiAmThanh"><%= ctlt.getKetNoi()%></td>
 
                     </tr>
 
@@ -700,13 +700,13 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Bluetooth</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBluetooth"><%= ctlt.getBluetooth() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdBluetooth"><%= ctlt.getBluetooth()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Camera (Webcam)</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCamera"><%= ctlt.getCamera() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCamera"><%= ctlt.getCamera()%></td>
 
                     </tr>
 
@@ -721,7 +721,7 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">USB</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdUSB"><%= ctlt.getUsb() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdUSB"><%= ctlt.getUsb()%></td>
 
                     </tr>
 
@@ -733,19 +733,19 @@
 
                     <tr>
                     <td width="40%" class="borderLRTop">Video out</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdVideoOut"><%= ctlt.getVideoOut() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdVideoOut"><%= ctlt.getVideoOut()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">Card Reader</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardReader"><%= ctlt.getCardReader() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCardReader"><%= ctlt.getCardReader()%></td>
 
                     </tr>
 
                     <tr>
                     <td width="40%" class="borderLRTop">e-SATA</td>
-                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdeSATA"><%= ctlt.getGiaoThucKetNoi() %></td>
+                    <td width="60%" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdeSATA"><%= ctlt.getGiaoThucKetNoi()%></td>
 
                     </tr>
 
@@ -784,7 +784,7 @@
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Thời gian sử dụng Pin</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThoigiansudungPin"><%= ctlt.getThoiGianSuDungPin() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdThoigiansudungPin"><%= ctlt.getThoiGianSuDungPin()%></td>
 
                     </tr>
 
@@ -826,7 +826,7 @@
 
                     <tr>
                     <td width="40%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderLRTop">Các hệ điều hành hỗ trợ</td>
-                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCacLoaiHDH"><%= ctlt.getThongTinHeDieuHanh() %></td>
+                    <td width="60%" style="border-bottom: 1px solid rgb(220, 220, 220);" class="borderCellTop" id="VTA_LoadContent1_ctl00_VTA_Detaillaptopmain1_tdCacLoaiHDH"><%= ctlt.getThongTinHeDieuHanh()%></td>
 
                     </tr>
 
@@ -909,7 +909,7 @@
     </div>
     <%            } else {
         //chi tiết điện thoại
-%>
+    %>
     <div class="detail_tab_content" style="margin-left: 10px;">
         <a style="color: rgb(255, 255, 255);" id="Focus" href="#">&nbsp;</a>
         <div id="detail_1" style="">
@@ -919,16 +919,16 @@
                 <td><table cellspacing="0" cellpadding="5" border="0" width="100%">
                         <tr>
                         <td class="borderLRTop">Mạng </td>
-                        <td class="borderCellTop"><%= ctdt.getMang() %></td>
+                        <td class="borderCellTop"><%= ctdt.getMang()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Màu sắc</td>
-                        <td class="borderCellTop"><%= sp.getMauSac() %></td>
+                        <td class="borderCellTop"><%= sp.getMauSac()%></td>
                         </tr>
 
                         <tr>
                         <td width="144" class="borderFull">Kích thước/Trọng lượng </td>
-                        <td class="borderCellTopBottom"><%= sp.getKichThuoc() %></td>
+                        <td class="borderCellTopBottom"><%= sp.getKichThuoc()%></td>
                         </tr>
                     </table></td>
                 </tr>
@@ -940,15 +940,15 @@
                 <td><table cellspacing="0" cellpadding="5" border="0" width="100%">
                         <tr>
                         <td width="144" class="borderLRTop">Ngôn ngữ </td>
-                        <td class="borderCellTop"><%= ctdt.getNgonNgu() %></td>
+                        <td class="borderCellTop"><%= ctdt.getNgonNgu()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Loại màn hình </td>
-                        <td class="borderCellTop"><%= ctdt.getLoaiManHinh() %></td>
+                        <td class="borderCellTop"><%= ctdt.getLoaiManHinh()%></td>
                         </tr>
                         <tr>
                         <td class="borderFull">Kích thước hiển thị</td>
-                        <td class="borderCellTopBottom"><%= ctdt.getKichThuocHienThi() %></td>
+                        <td class="borderCellTopBottom"><%= ctdt.getKichThuocHienThi()%></td>
                         </tr>
                     </table></td>
                 </tr>
@@ -960,19 +960,19 @@
                 <td><table cellspacing="0" cellpadding="5" border="0" width="100%">
                         <tr>
                         <td width="144" class="borderLRTop">Kiểu chuông </td>
-                        <td class="borderCellTop"><%= ctdt.getKieuChuong() %></td>
+                        <td class="borderCellTop"><%= ctdt.getKieuChuong()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Tin nhắn</td>
-                        <td class="borderCellTop"><%= ctdt.getTinNhan() %></td>
+                        <td class="borderCellTop"><%= ctdt.getTinNhan()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Kết nối</td>
-                        <td class="borderCellTop"><%= ctdt.getKetNoi() %></td>
+                        <td class="borderCellTop"><%= ctdt.getKetNoi()%></td>
                         </tr>
                         <tr>
                         <td class="borderFull">Camera</td>
-                        <td class="borderCellTopBottom"><%= ctdt.getCamera() %></td>
+                        <td class="borderCellTopBottom"><%= ctdt.getCamera()%></td>
                         </tr>
                     </table></td>
                 </tr>
@@ -984,11 +984,11 @@
                 <td><table cellspacing="0" cellpadding="5" border="0" width="100%">
                         <tr>
                         <td width="144" class="borderLRTop">Danh bạ </td>
-                        <td class="borderCellTop"><%= ctdt.getDanhBa() %></td>
+                        <td class="borderCellTop"><%= ctdt.getDanhBa()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Bộ nhớ trong </td>
-                        <td class="borderCellTop"><%= ctdt.getBoNhoTrong() %></td>
+                        <td class="borderCellTop"><%= ctdt.getBoNhoTrong()%></td>
                         </tr>
                         <tr>
                         <td class="borderFull">Thẻ nhớ</td>
@@ -1011,11 +1011,11 @@
                         </tr>
                         <tr>
                         <td class="borderLRTop">Rung</td>
-                        <td class="borderCellTop"><%= ctdt.getRung() %></td>
+                        <td class="borderCellTop"><%= ctdt.getRung()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">GPRS</td>
-                        <td class="borderCellTop"><%= ctdt.getGpgs() %></td>
+                        <td class="borderCellTop"><%= ctdt.getGpgs()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">HSCSD</td>
@@ -1027,11 +1027,11 @@
                         </tr>
                         <tr>
                         <td class="borderLRTop">3G</td>
-                        <td class="borderCellTop"><%= ctdt.getM3g() %></td>
+                        <td class="borderCellTop"><%= ctdt.getM3g()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">WLAN</td>
-                        <td class="borderCellTop"><%= ctdt.getWlan() %></td>
+                        <td class="borderCellTop"><%= ctdt.getWlan()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Hệ điều hành</td>
@@ -1040,44 +1040,44 @@
 
                         <tr>
                         <td class="borderLRTop">Đồng hồ</td>
-                        <td class="borderCellTop"><%= ctdt.getDongHo() %></td>
+                        <td class="borderCellTop"><%= ctdt.getDongHo()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Báo thức</td>
-                        <td class="borderCellTop"><%= ctdt.getBaoThuc() %></td>
+                        <td class="borderCellTop"><%= ctdt.getBaoThuc()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Đài FM</td>
-                        <td class="borderCellTop"><%= ctdt.getDaiFm() %></td>
+                        <td class="borderCellTop"><%= ctdt.getDaiFm()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Trò chơi</td>
-                        <td class="borderCellTop"><%= ctdt.getTroChoi() %></td>
+                        <td class="borderCellTop"><%= ctdt.getTroChoi()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Trình duyệt</td>
-                        <td class="borderCellTop"><%= ctdt.getTrinhDuyet() %></td>
+                        <td class="borderCellTop"><%= ctdt.getTrinhDuyet()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Java</td>
-                        <td class="borderCellTop"><%= ctdt.getJaVa() %></td>
+                        <td class="borderCellTop"><%= ctdt.getJaVa()%></td>
                         </tr>
 
                         <tr>
                         <td class="borderLRTop">Quay phim</td>
-                        <td class="borderCellTop"><%= ctdt.getQuayPhim() %></td>
+                        <td class="borderCellTop"><%= ctdt.getQuayPhim()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Ghi âm</td>
-                        <td class="borderCellTop"><%= ctdt.getGhiAm() %></td>
+                        <td class="borderCellTop"><%= ctdt.getGhiAm()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Nghe nhạc</td>
-                        <td class="borderCellTop"><%= ctdt.getNgheNhac() %></td>
+                        <td class="borderCellTop"><%= ctdt.getNgheNhac()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Xem phim</td>
-                        <td class="borderCellTop"><%= ctdt.getXemPhim() %></td>
+                        <td class="borderCellTop"><%= ctdt.getXemPhim()%></td>
                         </tr>
                         <tr>
                         <td class="borderLRTop">Ghi âm cuộc gọi</td>
@@ -1086,7 +1086,7 @@
                         <tr>
                         <td class="borderFull">
                             Loa ngoài</td>
-                        <td class="borderCellTopBottom"><%= ctdt.getLoaNgoai() %></td>
+                        <td class="borderCellTopBottom"><%= ctdt.getLoaNgoai()%></td>
                         </tr>
                     </table></td>
                 </tr>

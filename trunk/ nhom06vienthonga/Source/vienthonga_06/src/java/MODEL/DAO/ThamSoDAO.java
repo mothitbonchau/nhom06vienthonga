@@ -35,9 +35,10 @@ public class ThamSoDAO {
         
         String hql = "SELECT soSanPhamTrenTrang FROM Thamso";
         Query query = session.createQuery(hql);
-        sp1trang = (Integer) query.uniqueResult();
-        
+        sp1trang = (Integer) query.uniqueResult();        
         session.close();
         return sp1trang;
     }
+    
+    
 }

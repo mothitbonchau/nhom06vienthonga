@@ -12,10 +12,10 @@
         <h2 style="background-image: url(images/linhtinh/bgd_title.gif)" >QUẢN LÝ</h2>
         <ul>
             <li>
-                <a style="text-transform: none;" href="" style="text-transform: none;">Thông Tin</a>
+                <a style="text-transform: none;" href="view?task=quanly&task_chitiet=thongtinnguoidung" style="text-transform: none;">Thông Tin</a>
             </li> 
             <li>
-                <a href="view?task=sanphamtheohang&MH=MH1" style="text-transform: none;">Lịch Sử Mua Hàng</a>
+                <a href="view?task=quanly&task_chitiet=lichsumuahang" style="text-transform: none;">Lịch Sử Mua Hàng</a>
             </li>            
         </ul>
     </div>

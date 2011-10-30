@@ -25,17 +25,17 @@
     <form method="post" action="process?task=quanlyadmin&task_chitiet=nguoidung">
         <table class="test" width="100%" border="2" cellspacing="2" cellpadding="2">            
             <tr align='center'>
-                <td>Xóa</td>            
-                <td>Tên Đăng Nhập</td>
-                <td>Mật Khẩu</td>
-                <td>Tên Người Dùng </td>
-                <td>Email </td>
-                <td>CMND </td>
-                <td>Điện Thoại </td>
-                <td>Địa Chỉ </td>
-                <td>Loại Người Dùng </td>
-                <td>Ngày Đăng Ký </td>
-                <td>Cap Nhat</td>
+                <th>Xóa</th>            
+                <th>Tên Đăng Nhập</th>
+                <th>Mật Khẩu</th>
+                <th>Tên Người Dùng </th>
+                <th>Email </th>
+                <th>CMND </th>
+                <th>Điện Thoại </th>
+                <th>Địa Chỉ </th>
+                <th>Loại Người Dùng </th>
+                <th>Ngày Đăng Ký </th>
+                <th>Cập Nhật</th>
             </tr>
             <%
                 for(int i=0; i< list.size() ; i++){  

@@ -186,7 +186,7 @@ public class SanPhamDAO {
             {
                 hql += " and giaBan <= " + (sp.getGiaBan() + 3000000);
             }
-            
+
             Query query = session.createQuery(hql);
 
             if (batdau >= 0 && sp1trang > 1) {
@@ -235,5 +235,21 @@ public class SanPhamDAO {
             session.close();
         }
         return kq;
+    }
+    
+    public static List<Sanpham> LayListSanPhamTheoMaNguoiDung(String maNguoiDung){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Sanpham> listsp = null;
+        try {
+            String hql = "FROM Sanpham WHERE tinhTrang=0 AND maNguoiDung='"+maNguoiDung+"'";
+            Query query = session.createQuery(hql);
+            listsp = query.list();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        finally{
+            session.close();
+        }
+        return listsp;
     }
 }

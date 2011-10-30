@@ -58,7 +58,7 @@
                                                             <%
                                                             if (request.getParameter("tenDangNhap") != null) {
                                                             %>
-                                                             value="<%=request.getParameter("tenDangNhap")%>"
+                                                            value="<%=request.getParameter("tenDangNhap")%>"
                                                             <%}%>                      
                                                             />   
                                                                

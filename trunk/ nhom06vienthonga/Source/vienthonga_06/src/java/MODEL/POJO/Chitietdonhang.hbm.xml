@@ -8,10 +8,10 @@
             <column name="MaChiTietDonHang" length="45" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="sanpham" class="MODEL.POJO.Sanpham" fetch="select">
+        <many-to-one name="sanpham" class="MODEL.POJO.Sanpham" fetch="join" lazy="false">
             <column name="MaSanPham" length="45" />
         </many-to-one>
-        <many-to-one name="donhang" class="MODEL.POJO.Donhang" fetch="select">
+        <many-to-one name="donhang" class="MODEL.POJO.Donhang" fetch="join" lazy="false">
             <column name="MaDonHang" length="45" />
         </many-to-one>
         <property name="soLuong" type="java.lang.Integer">

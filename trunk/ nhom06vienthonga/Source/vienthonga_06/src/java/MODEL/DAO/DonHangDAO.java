@@ -6,14 +6,12 @@ package MODEL.DAO;
 
 import MODEL.POJO.Donhang;
 import MODEL.UTIL.HibernateUtil;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author thienanh
- */
+
 public class DonHangDAO {
     public static int DatHang(Donhang dh){
         int kq = 0;
@@ -69,4 +67,37 @@ public class DonHangDAO {
         return dh;
     }
     
+    public static List<Donhang> LayListDonHang(String maNguoiDung){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Donhang> listdh = null;
+        try {
+            String hql = "FROM Donhang WHERE tinhTrang=0 AND maNguoiDung='"+maNguoiDung+"'";
+            Query query = session.createQuery(hql);
+            listdh = query.list();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        finally{
+            session.close();
+        }
+        return listdh;
+    }
+    public static List<Donhang>LayHetDonHang(int batdau, int sp1trang){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Donhang> list = null;
+        try {
+            String hql = "FROM Donhang";
+            Query query = session.createQuery(hql);
+            if(batdau >= 0 & sp1trang >0){
+                query.setFirstResult(batdau);
+                query.setMaxResults(sp1trang);
+            }
+            list = query.list();
+        } catch (Exception e) {
+        }
+        finally{
+            session.close();
+        }
+        return list;
+    }
 }

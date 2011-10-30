@@ -1,11 +1,4 @@
-<%@page import="java.util.List"%>
-<%@page import="MODEL.DAO.KhuyenMaiDAO"%>
-<%@page import="MODEL.POJO.Khuyenmai"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<%
-    List<Khuyenmai> list = KhuyenMaiDAO.LayKhuyenMai();
-%>
 
 <div id="body_right" style="float:left; width:15%;" >
     <div class="contextual" > 
@@ -31,35 +24,18 @@
         <div class="supportOnline" style="background-image: url(images/linhtinh/border_03.gif)">
             <h2 style="background: url(images/linhtinh/bgd_title.gif) no-repeat scroll left transparent; text-align:center; padding-top: 10px;">Hỗ trợ bán hàng</h2>
             <ul>
-                <li style="background: url(images/linhtinh/phone_03.gif) no-repeat scroll left center transparent;" class="phone">
-                    <a href="ymsgr:addfriend?sau_con_89">
-                        <img src="http://opi.yahoo.com/online?u=sau_con_89&m=g&t=1" border="0">
-                    </a>
-                </li>
-                <li style="background: url(images/linhtinh/phone_03.gif) no-repeat scroll left center transparent;" class="phone">
-                    <a href="ymsgr:addfriend?anhangle292000">
-                        <img src="http://opi.yahoo.com/online?u=anhangle292000&m=g&t=1" border="0">
-                    </a>
-                </li>
-                <li style="background: url(images/linhtinh/phone_03.gif) no-repeat scroll left center transparent;" class="phone">
-                    <a href="ymsgr:addfriend?pha_le_tim151189">
-                        <img src="http://opi.yahoo.com/online?u=pha_le_tim151189&m=g&t=1" border="0">
-                    </a>
-                </li>
+                <li style="background: url(images/linhtinh/phone_03.gif) no-repeat scroll left center transparent;" class="phone">(08) 66.786.570</li>
+                <li style="background: url(images/linhtinh/phone_03.gif) no-repeat scroll left center transparent;" class="phone">(08) 66.786.570</li>
+                <li style="background: url(images/linhtinh/phone_03.gif) no-repeat scroll left center transparent;" class="phone">(08) 66.786.570</li>
             </ul>
         </div>
 
         <div class="blocNews" style="background-image: url(images/linhtinh/border_xanh03.gif); " >
             <h2 style="background: url(images/linhtinh/top_xanh_03.gif) no-repeat scroll left transparent; text-align:center; padding-top: 10px;">Thông tin khuyến mãi</h2>
-            <ul>               
-                <%
-                    for (int i = 0; i < list.size() && i < 3; i++) {
-                %>
-                <li class="last">
-                    <a title="<%= list.get(i).getTenKhuyenMai()%>" href="view?task=khuyenmai&task_chitiet=chitietkhuyenmai&MKM=<%= list.get(i).getMaKhuyenMai()%>"><%= list.get(i).getTenKhuyenMai()%></a>
-                </li>  
-                <%                        }
-                %>
+            <ul>                                                                                                                                                                                                                                                                                                                                                                                                                 
+                <li class=""><a title="Siêu khuyến mãi 2/9, cơ hội trúng Tivi LCD Sony Bravia" href="http://www.hnammobile.com/tin-tuc/sieu-khuyen-mai-29-co-hoi-trung-tivi-lcd-sony-bravia.8.17.5350.html">Siêu khuyến mãi 2/9, cơ hội trúng Tivi LCD Sony Bravia</a></li>
+                <li class=""><a title="&quot;Ngược dòng bão giá&quot;, giảm tiền mặt lên đến 200.000đ." href="http://www.hnammobile.com/tin-tuc/nguoc-dong-bao-gia-giam-tien-mat-len-den-200000d.8.17.4773.html">"Ngược dòng bão giá", giảm tiền mặt lên đến 200.000đ.</a></li>
+                <li class="last"><a title="Siêu giảm giá 2/9, giảm đến 2.000.000đ (new)" href="http://www.hnammobile.com/tin-tuc/sieu-giam-gia-29-giam-den-2000000d-new.8.17.4943.html">Siêu giảm giá 2/9, giảm đến 2.000.000đ (new)</a></li>
             </ul>
         </div>
         <br/>                                                                                                                                                                                                        
