@@ -42,7 +42,7 @@ public class view extends HttpServlet {
                 task = request.getParameter("task").toString();
             }
 
-            //<editor-fold defaultstate="collapsed" desc="show sản phẩm của hãng">
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang sản phẩm của hãng">
             if (task.equals("sanphamtheohang")) {
                 int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                 int tongsotrang = 0;
@@ -71,7 +71,7 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
-            //<editor-fold defaultstate="collapsed" desc="show chi tiết sản phẩm">
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang chi tiết sản phẩm">
             if (task.equals("chitietsanpham")) {
                 String MSP = request.getParameter("MSP");
 
@@ -83,7 +83,7 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
-            //<editor-fold defaultstate="collapsed" desc="show theo danh mục sản phẩm">
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang theo danh mục sản phẩm">
             if (task.equals("danhmucsanpham")) {
                 String task_chitiet = request.getParameter("task_chitiet");
                 //<editor-fold defaultstate="collapsed" desc="show sản phẩm điện thoại">
