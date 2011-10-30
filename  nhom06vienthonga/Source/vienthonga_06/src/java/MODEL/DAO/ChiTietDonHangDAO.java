@@ -79,7 +79,23 @@ public class ChiTietDonHangDAO {
         } finally {
             session.close();
         }
-
         return ctdh;
+    }
+    
+    public static List<Chitietdonhang> LayChiTietDonHangTheoMaDonHang(String maDonhang) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List<Chitietdonhang> list = null;
+
+        try {
+            String hql = "FROM Chitietdonhang WHERE tinhTrang=0 AND maDonHang='"+maDonhang+"'";
+            Query query = session.createQuery(hql);            
+            list = query.list();
+        } catch (Exception ex) {
+        } finally {
+            session.close();
+        }
+
+        return list;
     }
 }

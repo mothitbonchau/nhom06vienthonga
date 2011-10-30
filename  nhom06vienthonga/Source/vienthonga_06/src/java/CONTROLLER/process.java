@@ -66,7 +66,7 @@ public class process extends HttpServlet {
                 task = request.getParameter("task").toString();
             }
 
-            //<editor-fold defaultstate="collapsed" desc="xử lý tìm kiếm sản phẩm">
+            //<editor-fold defaultstate="collapsed" desc="tìm kiếm sản phẩm">
             if (task.equals("timkiem")) {
                 Sanpham sp = new Sanpham();
                 sp.setTenSanPham(request.getParameter("TSP"));
@@ -183,8 +183,8 @@ public class process extends HttpServlet {
                     request.getRequestDispatcher("view").forward(request, response);
                 } else {
                     response.sendRedirect("view?task=DangNhap");
-                    return;
                 }
+                return;
             }
             //</editor-fold>
 
@@ -231,7 +231,7 @@ public class process extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                /////////////
+
 
                 pojo.setMatKhau(pass);
                 pojo.setEmail(request.getParameter("txtEmail"));
@@ -374,24 +374,21 @@ public class process extends HttpServlet {
             //<editor-fold defaultstate="collapsed" desc="Xử lý liên hệ">
             if (task.equals("XLLienHe")) {
                 String task_chitiet = "";
-                if(request.getParameter("task_chitiet") != null)
-                {
+                if (request.getParameter("task_chitiet") != null) {
                     task_chitiet = request.getParameter("task_chitiet").toString();
                 }
-                
-                if(task_chitiet.equals("vung"))
-                {
+
+                if (task_chitiet.equals("vung")) {
                     String mavung = request.getParameter("MV").toString();
                     List<Sieuthi> list = SieuThiDAO.LaySieuThiTheoMaVung(mavung);
-                    
-                    for(int i=0; i<list.size(); i++)
-                    {
+
+                    for (int i = 0; i < list.size(); i++) {
                         out.println("<option value='" + list.get(i).getMaSieuThi() + "'>" + list.get(i).getTenSieuThi() + "</option>");
                     }
-                    
+
                     return;
                 }
-                
+
                 String remoteAddr = request.getRemoteAddr();
                 ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
                 reCaptcha.setPrivateKey("6Ld03sgSAAAAAGI9a-JBcCtJHNgL4umXwtW0uNW- ");
@@ -1245,7 +1242,21 @@ public class process extends HttpServlet {
                     return;
                 }
             }
-            //</editor-fold>           
+            //</editor-fold>  
+
+            //<editor-fold defaultstate="collapsed" desc="xử lý quản lý người dùng">
+            if (task.equals("quanlynguoidung")) {
+                if (request.getParameter("task_chitiet") != null) {
+                    String task_chitiet = request.getParameter("task_chitiet");
+                    //<editor-fold defaultstate="collapsed" desc="Lịch sử mua hàng">
+                    if (task_chitiet.equals("lichsumuahang")) {
+                    }
+                    //</editor-fold>
+                }
+                request.getRequestDispatcher("QuanLyNguoiDung_LichSuMuaHang.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
 
             //<editor-fold defaultstate="collapsed" desc="upload hình cho bài viết khuyến mãi - tin tức">                        
             //task = 1 => khuyến mãi
@@ -1306,7 +1317,7 @@ public class process extends HttpServlet {
             out.close();
         }
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
     /** 
      * Handles the HTTP <code>GET</code> method.

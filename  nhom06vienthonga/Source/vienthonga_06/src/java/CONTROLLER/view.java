@@ -42,7 +42,7 @@ public class view extends HttpServlet {
                 task = request.getParameter("task").toString();
             }
 
-            //<editor-fold defaultstate="collapsed" desc="chuyển trang sản phẩm của hãng">
+            //<editor-fold defaultstate="collapsed" desc="show sản phẩm của hãng">
             if (task.equals("sanphamtheohang")) {
                 int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                 int tongsotrang = 0;
@@ -71,7 +71,7 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
-            //<editor-fold defaultstate="collapsed" desc="chuyển trang chi tiết sản phẩm">
+            //<editor-fold defaultstate="collapsed" desc="show chi tiết sản phẩm">
             if (task.equals("chitietsanpham")) {
                 String MSP = request.getParameter("MSP");
 
@@ -83,7 +83,7 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
-            //<editor-fold defaultstate="collapsed" desc="chuyển trang theo danh mục sản phẩm">
+            //<editor-fold defaultstate="collapsed" desc="show theo danh mục sản phẩm">
             if (task.equals("danhmucsanpham")) {
                 String task_chitiet = request.getParameter("task_chitiet");
                 //<editor-fold defaultstate="collapsed" desc="show sản phẩm điện thoại">
@@ -163,7 +163,7 @@ public class view extends HttpServlet {
             }
             //</editor-fold>           
 
-            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý admin">
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang quản lý">
             if (task.equals("quanly")) {
                 if (session.getAttribute("TenDangNhap") == null) {
                     request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
@@ -262,13 +262,55 @@ public class view extends HttpServlet {
                                     String mkm = request.getParameter("MKM");
                                     Khuyenmai km = KhuyenMaiDAO.LayKhuyenMaiTheoMa(mkm);
 
-                                    request.setAttribute("khuyenmai", km);
-                                    request.getRequestDispatcher("QuanLyAdmin_KhuyenMai_CapNhat.jsp").forward(request, response);
+                                    //<editor-fold defaultstate="collapsed" desc="thông tin người dùng">
+                                    if (task_chitiet.equals("thongtinnguoidung")) {
+                                        request.getRequestDispatcher("QuanLyNguoiDung_ThongTinNguoiDung.jsp").forward(request, response);
+                                        return;
+                                    }
+                                    //</editor-fold>
+
+                                    //<editor-fold defaultstate="collapsed" desc="lịch sử mua hàng">
+                                    if (task_chitiet.equals("lichsumuahang")) {
+                                        //<editor-fold defaultstate="collapsed" desc="chuyển trang chi tiết đơn hàng">                           
+                                        if (request.getParameter("chitietdonhang") != null) {
+                                            String Chitietdonhang = request.getParameter("chitietdonhang").toString();
+                                            if (Chitietdonhang.equals("chitiet")) {
+                                                String mdh = request.getParameter("MDH");
+                                                List<Chitietdonhang> ctdh = ChiTietDonHangDAO.LayChiTietDonHangTheoMaDonHang(mdh);
+                                                request.setAttribute("lichsumuahang", ctdh);
+                                                request.getRequestDispatcher("ChiTietDonHang.jsp").forward(request, response);
+                                                return;
+                                            }
+                                        }
+                                        int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
+                                        int tongsotrang = 0;
+                                        int trang = 1;
+                                        if (request.getParameter("trang") != null) {
+                                            trang = Integer.parseInt(request.getParameter("trang").toString());
+                                        }
+                                        int batdau = 0;
+                                        if (trang > 1) {
+                                            batdau = sp1trang * trang - sp1trang;
+                                        }
+                                        List<Donhang> dh = DonHangDAO.LayHetDonHang(batdau, -1);
+                                        tongsotrang = dh.size() / sp1trang;
+                                        if (dh.size() % sp1trang > 0) {
+                                            tongsotrang = tongsotrang + 1;
+                                        }
+                                        dh = DonHangDAO.LayHetDonHang(batdau, sp1trang);
+                                        request.setAttribute("tongsotrang", tongsotrang);
+                                        request.setAttribute("dh", dh);
+                                    }
+                                    //</editor-fold>
+                                    request.getRequestDispatcher("QuanLyNguoiDung_LichSuMuaHang.jsp").forward(request, response);
                                     return;
                                 }
+                                //</editor-fold>
+
+                                request.getRequestDispatcher("QuanLyNguoiDung.jsp").forward(request, response);
+                                return;
                             }
                             //</editor-fold>
-
                             int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
                             int tongsotrang = 0;
                             int trang = 1;
@@ -305,9 +347,48 @@ public class view extends HttpServlet {
                     if (request.getParameter("task_chitiet") != null) {
                         String task_chitiet = request.getParameter("task_chitiet");
 
-                        //<editor-fold defaultstate="collapsed" desc="thông tin người dùng">
+                        //<editor-fold defaultstate="collapsed" desc="chuyển trang thông tin người dùng">
                         if (task_chitiet.equals("thongtinnguoidung")) {
-                            request.getRequestDispatcher("XXXXXX.jsp").forward(request, response);
+                            request.getRequestDispatcher("QuanLyNguoiDung_ThongTinNguoiDung.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+
+                        //<editor-fold defaultstate="collapsed" desc="chuyển trang lịch sử mua hàng">
+                        if (task_chitiet.equals("lichsumuahang")) {
+                            //<editor-fold defaultstate="collapsed" desc="chuyển trang chi tiết đơn hàng">                           
+                            if (request.getParameter("chitietdonhang") != null) {
+                                String Chitietdonhang = request.getParameter("chitietdonhang").toString();
+                                if (Chitietdonhang.equals("chitiet")) {
+                                    String mdh = request.getParameter("MDH");
+                                    List<Chitietdonhang> ctdh = ChiTietDonHangDAO.LayChiTietDonHangTheoMaDonHang(mdh);
+                                    request.setAttribute("lichsumuahang", ctdh);
+                                    request.getRequestDispatcher("ChiTietDonHang.jsp").forward(request, response);
+                                    return;
+                                }
+                            }
+                            //</editor-fold>
+
+                            int sp1trang = ThamSoDAO.LaySoSanPhamTrenTrang();
+                            int tongsotrang = 0;
+                            int trang = 1;
+                            if (request.getParameter("trang") != null) {
+                                trang = Integer.parseInt(request.getParameter("trang").toString());
+                            }
+                            int batdau = 0;
+                            if (trang > 1) {
+                                batdau = sp1trang * trang - sp1trang;
+                            }
+                            List<Donhang> dh = DonHangDAO.LayHetDonHang(batdau, -1);
+                            tongsotrang = dh.size() / sp1trang;
+                            if (dh.size() % sp1trang > 0) {
+                                tongsotrang = tongsotrang + 1;
+                            }
+                            dh = DonHangDAO.LayHetDonHang(batdau, sp1trang);
+                            
+                            request.setAttribute("tongsotrang", tongsotrang);
+                            request.setAttribute("dh", dh);
+                            request.getRequestDispatcher("QuanLyNguoiDung_LichSuMuaHang.jsp").forward(request, response);
                             return;
                         }
                         //</editor-fold>
@@ -424,17 +505,6 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
-            //<editor-fold defaultstate="collapsed" desc="chuyển trang diễn đàn">
-            if (task.equals("diendan")) {
-                String thongbao = "";
-                thongbao = "Đang hoàn thiện, vui lòng quay lại sau !!!";
-                request.setAttribute("thongbao", thongbao);
-
-                request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
-                return;
-            }
-            //</editor-fold>
-            
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
             return;
         } finally {

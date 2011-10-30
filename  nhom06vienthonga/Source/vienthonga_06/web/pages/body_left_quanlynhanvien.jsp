@@ -16,10 +16,7 @@
             </li> 
             <li>
                 <a href="view?task=sanphamtheohang&MH=MH1" style="text-transform: none;">Khu Vực Quản Lý</a>
-            </li>
-            <li>
-                <a href="view?task=sanphamtheohang&MH=MH1" style="text-transform: none;">Lịch Sử Mua Hàng</a>
-            </li>
+            </li>            
         </ul>
     </div>
 </div>

@@ -27,7 +27,7 @@
     <definition name="sanphamtheoloai" extends="template_vienthonga">
         <put-attribute name="body_mid" value="/pages/body_mid_sanphamtheoloai.jsp" />        
     </definition>
-    
+         
     <definition name="timkiem" extends="template_vienthonga">
         <put-attribute name="body_mid" value="/pages/body_mid_timkiem.jsp" />        
     </definition>
@@ -85,6 +85,14 @@
     
     <definition name="quanlynguoidung_thongtinnguoidung" extends="quanlynguoidung">        
         <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_thongtinnguoidung.jsp" />      
+    </definition>
+    
+    <definition name="quanlynguoidung_lichsumuahang" extends="quanlynguoidung">
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_lichsumuahang.jsp"/>            
+    </definition>
+    
+     <definition name="chitietdonhang" extends="quanlynguoidung">
+        <put-attribute name="body_mid" value="/pages/body_mid_chitietdonhang.jsp" />        
     </definition>
     
     <definition name="quanlynhanvien" extends="template_vienthonga">        
