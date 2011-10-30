@@ -173,9 +173,20 @@ public class SanPhamDAO {
                 hql += " and hang = '" + sp.getHang().getMaHang() + "'";
             }
             if (sp.getGiaBan() > 0) {
-                hql += " and giaBan = " + sp.getGiaBan().toString();
+                if(sp.getGiaBan() == 9000000)
+                {
+                    hql += " and giaBan >= " + sp.getGiaBan().toString();
+                }
+                else
+                {
+                    hql += " and giaBan >= " + sp.getGiaBan().toString() + " and giaBan <= " + (sp.getGiaBan() + 2000000);
+                }
             }
-
+            else
+            {
+                hql += " and giaBan <= " + (sp.getGiaBan() + 3000000);
+            }
+            
             Query query = session.createQuery(hql);
 
             if (batdau >= 0 && sp1trang > 1) {

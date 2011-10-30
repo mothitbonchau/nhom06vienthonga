@@ -338,8 +338,7 @@ public class view extends HttpServlet {
 
             //<editor-fold defaultstate="collapsed" desc="quản lý giỏ hàng">
             if (task.equals("giohang")) {
-                if(session.getAttribute("TenDangNhap") == null)
-                {
+                if (session.getAttribute("TenDangNhap") == null) {
                     request.getRequestDispatcher("DangNhap.jsp").forward(request, response);
                     return;
                 }
@@ -425,6 +424,17 @@ public class view extends HttpServlet {
             }
             //</editor-fold>
 
+            //<editor-fold defaultstate="collapsed" desc="chuyển trang diễn đàn">
+            if (task.equals("diendan")) {
+                String thongbao = "";
+                thongbao = "Đang hoàn thiện, vui lòng quay lại sau !!!";
+                request.setAttribute("thongbao", thongbao);
+
+                request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
+                return;
+            }
+            //</editor-fold>
+            
             request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
             return;
         } finally {

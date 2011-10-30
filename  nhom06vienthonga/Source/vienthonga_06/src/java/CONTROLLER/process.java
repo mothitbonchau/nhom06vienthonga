@@ -66,7 +66,7 @@ public class process extends HttpServlet {
                 task = request.getParameter("task").toString();
             }
 
-            //<editor-fold defaultstate="collapsed" desc="tìm kiếm sản phẩm">
+            //<editor-fold defaultstate="collapsed" desc="xử lý tìm kiếm sản phẩm">
             if (task.equals("timkiem")) {
                 Sanpham sp = new Sanpham();
                 sp.setTenSanPham(request.getParameter("TSP"));
