@@ -82,6 +82,27 @@ public class DonHangDAO {
         }
         return listdh;
     }
+    
+    public static List<Donhang> LayDonHangTheoMaNguoiDung(String maNguoiDung, int batdau, int sp1trang){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Donhang> listdh = null;
+        try {
+            String hql = "FROM Donhang WHERE tinhTrang=0 AND maNguoiDung='"+maNguoiDung+"'";
+            Query query = session.createQuery(hql);
+            if(batdau >= 0 & sp1trang >0){
+                query.setFirstResult(batdau);
+                query.setMaxResults(sp1trang);
+            }
+            listdh = query.list();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        finally{
+            session.close();
+        }
+        return listdh;
+    }
+    
     public static List<Donhang>LayHetDonHang(int batdau, int sp1trang){
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Donhang> list = null;

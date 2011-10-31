@@ -4,6 +4,7 @@
     Author     : HP
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="MODEL.DAO.GiamGiaDAO"%>
 <%@page import="MODEL.POJO.Giamgia"%>
 <%@page import="MODEL.DAO.NguoiDungDAO"%>
@@ -43,6 +44,7 @@
 
 <div id="body_mid" style="float:left; width:100%;">
     <%
+        DecimalFormat df = new DecimalFormat("#,###");        
         String tenDangNhap = (String) session.getAttribute("TenDangNhap");
         String maNguoiDung = (String) session.getAttribute("MaNguoiDung");
         //Tính tổng tiền
@@ -249,7 +251,7 @@
                                                 <td><span id="lblTenSanPham" style="display:inline-block;width:167px;"><%= SanPhamDAO.LaySanPhamTheoMa(listGioHang.get(i).getSanpham().getMaSanPham()).getTenSanPham()%> </span> </td>
                                                 <td><input name="txtSL" type="text" value="<%= listGioHang.get(i).getSoLuong()%>" maxlength="4" id="txtSL" style="width:50px;" />
                                                 <span id="DonHangCuaBan_DataGrid1_ctl02_RequireTo" style="color:Red;"></span> </td>
-                                                <td><span id="lblTT" style="color:Red;"><%= listGioHang.get(i).getThanhTien()%></span> </td>
+                                                <td><span id="lblTT" style="color:Red;"><%= (int)listGioHang.get(i).getThanhTien().doubleValue()%></span> </td>
                                                 </tr>                                            
                                                 <%
                                                     }
@@ -283,15 +285,15 @@
                             <br />      </td>
                         </tr>
                         <tr>
-                        <td colspan="2" style="color:#003466;font-weight:bold;"> Tổng giá trị đơn hàng&nbsp;<span style="font-weight:bold;color:#cc3333;"> <%= TongTien%> VNĐ</span> </td>
+                        <td colspan="2" style="color:#003466;font-weight:bold;"> Tổng giá trị đơn hàng&nbsp;<span style="font-weight:bold;color:#cc3333;"> <%= (int)TongTien%> VNĐ</span> </td>
                         </tr>
                         <tr>
                         <td style="text-align:right; width:40%;" > Số Tiền giảm giá </td>
-                        <td><input name="txtVIPCard" type="text" id="DonHangCuaBan_txtVIPCard" class="text" value="<%= TienGiamGia%>" /> </td>
+                        <td><input name="txtVIPCard" type="text" id="DonHangCuaBan_txtVIPCard" class="text" value="<%= (int) TienGiamGia%>" /> </td>
                         </tr>
                         <tr>
                         <td><span style="color:#003466;font-weight:bold;">Tổng Tiền :</span></td>
-                        <td>&nbsp;<span style="color:#003466;font-weight:bold;">&nbsp;<span style="font-weight:bold;color:#cc3333;"><%= ThanhTien%> VNĐ</span></span> </td>
+                        <td>&nbsp;<span style="color:#003466;font-weight:bold;">&nbsp;<span style="font-weight:bold;color:#cc3333;"><%= (int) ThanhTien%> VNĐ</span></span> </td>
                         </tr>
 
 

@@ -13,7 +13,7 @@
             <h2 style="background-image: url(images/linhtinh/title_product.gif)">HÀNG BÁN CHẠY NHẤT</h2>
             <div class="topProductsWrap">
                 <%
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i<list.size() && i<10; i++) {
                         Hinhanhsanpham hasp = (Hinhanhsanpham) list.get(i).getHinhanhsanphams().toArray()[0];
                         String path_lsp = "";
                         String path_hang = "";

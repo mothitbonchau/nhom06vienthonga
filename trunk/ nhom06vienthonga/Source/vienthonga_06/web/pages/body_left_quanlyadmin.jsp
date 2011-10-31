@@ -41,6 +41,9 @@
             <li>
                 <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Siêu Thị</a>
             </li>
+            <li>
+                <a href="view?task=quanly&task_chitiet=lichsumuahang" style="text-transform: none;">Lịch Sử Mua Hàng</a>
+            </li>
         </ul>
     </div>
 </div>
