@@ -7,7 +7,10 @@
 
 <%
     Sanpham sp_cuoi = SanPhamDAO.LaySanPhamCuoiCung();
-    int chiso = Integer.parseInt(sp_cuoi.getMaSanPham().substring(3));
+    int chiso = 0;
+    if (sp_cuoi != null) {
+        chiso = Integer.parseInt(sp_cuoi.getMaSanPham().substring(3));
+    }
     chiso += 1;
     String msp = "MSP" + chiso;
 %>

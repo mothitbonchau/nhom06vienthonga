@@ -182,6 +182,10 @@ public class SanPhamDAO {
                     hql += " and giaBan >= " + sp.getGiaBan().toString() + " and giaBan <= " + (sp.getGiaBan() + 2000000);
                 }
             }
+            if(sp.getGiaBan() < 0)
+            {
+                
+            }
             else
             {
                 hql += " and giaBan <= " + (sp.getGiaBan() + 3000000);

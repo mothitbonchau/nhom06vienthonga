@@ -17,7 +17,7 @@
 <%
     int tongsotrang = Integer.parseInt(request.getAttribute("tongsotrang").toString());
     String maNguoiDung = (String) session.getAttribute("MaNguoiDung");
-    List<Donhang> list = DonHangDAO.LayListDonHang(maNguoiDung);
+    List<Donhang> list = (List<Donhang>) request.getAttribute("dh");
 %>
 
 <style>
@@ -63,21 +63,21 @@
             </label>
             </td>
             <td>
-                <%=list.get(i).getTongTien()%>
+                <%= (int)list.get(i).getTongTien().doubleValue()%>
             <label>
                 <input type='hidden' name='TongTien<%=list.get(i).getMaDonHang()%>' id='tbTongTien' value='<%=list.get(i).getTongTien()%>' style="width:120px;"/>
             </label>
             </td> 
             <td>
-                <%=list.get(i).getGiamGia()%>
+                <%= (int)list.get(i).getGiamGia().doubleValue()%>
             <label>
-                <input type='hidden' name='GiamGia<%=list.get(i).getMaDonHang()%>' id='tbGiamGia' value='<%=list.get(i).getGiamGia()%>' style="width:120px;"/>
+                <input type='hidden' name='GiamGia<%= list.get(i).getMaDonHang()%>' id='tbGiamGia' value='<%=list.get(i).getGiamGia()%>' style="width:120px;"/>
             </label>  
             </td>
             <td>
-                <%=list.get(i).getThanhTien()%>
+                <%= (int)list.get(i).getThanhTien().doubleValue()%>
             <label>
-                <input type='hidden' name='ThanhTien<%=list.get(i).getMaDonHang()%>' id='tbThanhTien' value='<%=list.get(i).getThanhTien()%>' style="width:120px;"/>
+                <input type='hidden' name='ThanhTien<%= list.get(i).getMaDonHang()%>' id='tbThanhTien' value='<%=list.get(i).getThanhTien()%>' style="width:120px;"/>
             </label>
             </td>
             <td>
