@@ -1,0 +1,14 @@
+﻿Link nộp đồ án cuối kỳ
+Cấu trúc nộp bài
+MSSV1_MSSV2_MaDoAn_TenDoAnCuoiKy.RAR
+{
+10HCA-IN-VẤN-ĐÁP.xlsx {Bắt buộc}
+Readme.docx {Các thông tin thêm – nếu có}
+01. Source {Chứa source code của ứng dụng}
+02. Database {Chứa script CSDL}
+03. HuongDan {Chứa file hướng dẫn cài đặt và sử dụng}
+04. Library {Chứa các thư viện sử dụng trong ứng dụng}
+05. Reference {Chứa các tài liệu tham khảo}
+06. Misc {Chứa các tài liệu khác
+}
+Nộp sai cấu trúc trừ 3 điểm
