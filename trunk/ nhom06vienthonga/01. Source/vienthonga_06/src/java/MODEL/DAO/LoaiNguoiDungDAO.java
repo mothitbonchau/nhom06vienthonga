@@ -34,4 +34,17 @@ public class LoaiNguoiDungDAO {
         }
         return list;
     }
+    public static Loainguoidung LayLoaiNguoiDungTheoMa(String maLND){
+        Loainguoidung lnd = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            lnd = (Loainguoidung)session.get(Loainguoidung.class, lnd);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        finally{
+            session.close();
+        }
+        return  lnd;
+    }
 }

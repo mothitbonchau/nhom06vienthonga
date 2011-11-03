@@ -83,6 +83,22 @@ public class DonHangDAO {
         return listdh;
     }
     
+    public static List<Donhang> LayDanhSachDonHang(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Donhang> listdh = null;
+        try {
+            String hql = "FROM Donhang WHERE tinhTrang=0";
+            Query query = session.createQuery(hql);
+            listdh = query.list();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        finally{
+            session.close();
+        }
+        return listdh;
+    }
+    
     public static List<Donhang> LayDonHangTheoMaNguoiDung(String maNguoiDung, int batdau, int sp1trang){
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Donhang> listdh = null;

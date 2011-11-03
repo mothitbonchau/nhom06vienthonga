@@ -12,8 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    List<Nguoidung> list = NguoiDungDAO.LayListNguoiDung();
-    
+    List<Nguoidung> list = NguoiDungDAO.LayListNguoiDung();    
 %>
 <style>
     .test tr

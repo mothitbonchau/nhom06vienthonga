@@ -48,6 +48,18 @@
         <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_nguoidung.jsp" />      
     </definition>
     
+    <definition name="quanlyadmin_donhang" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_donhang.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_donhang_chitietdonhang" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_donhang_chitietdonhang.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_gopy" extends="quanlyadmin">
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_gopy.jsp" />      
+    </definition>
+    
     <definition name="quanlyadmin_congty" extends="quanlyadmin">        
         <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_congty.jsp" />      
     </definition>

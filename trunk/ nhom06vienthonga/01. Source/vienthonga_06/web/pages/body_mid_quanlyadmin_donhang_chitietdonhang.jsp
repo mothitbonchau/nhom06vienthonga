@@ -10,11 +10,11 @@
 
 
 <%    
-    List<Chitietdonhang> listctdh = (List <Chitietdonhang>)request.getAttribute("lichsumuahang");
+    List<Chitietdonhang> listctdh = (List <Chitietdonhang>)request.getAttribute("donhang");
     int i=1;
 %>
 <div id="body_mid" style="float:left; width:76.5%;">    
-     <form method="post" action="process?task=quanlynguoidung&task_chitiet=lichsumuahang">
+     <form method="post" action="process?task=quanlyadmin&task_chitiet=donhang">
         <table class="test" width="100%" border="2" cellspacing="2" cellpadding="2">
             <tr align='center' style="background-color: #CCCCCC">
                 <th>MĐH</th>            

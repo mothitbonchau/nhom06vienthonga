@@ -18,13 +18,13 @@
                 <a href="view?task=quanly&task_chitiet=nguoidung" style="text-transform: none;">Người Dùng</a>
             </li>
             <li>
-                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Đơn Hàng</a>
+                <a href="view?task=quanly&task_chitiet=donhang" style="text-transform: none;">Đơn Hàng</a>
             </li>
             <li>
                 <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Giảm Giá</a>
             </li>
             <li>
-                <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Góp Ý</a>
+                <a href="view?task=quanly&task_chitiet=gopy" style="text-transform: none;">Góp Ý</a>
             </li>
             <li>
                 <a href="view?task=quanly&task_chitiet=congty" style="text-transform: none;">Hãng</a>

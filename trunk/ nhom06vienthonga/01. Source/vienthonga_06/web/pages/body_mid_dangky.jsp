@@ -272,7 +272,7 @@
                             <td align="right" style="width: 202px;">  </td>
                             <td>
                                 <input type="image" name="btnDangKy" id="btnDangKy" src="images/linhtinh/dangky.gif" style="border-width:0px;height: 25px;"/>
-                                <input type="image" name="btnXoa" id="btnXoa" src="images/linhtinh/xoa_btn.gif" style="border-width:0px;height: 25px;"/>
+                                <!-- <input type="image" name="btnXoa" id="btnXoa" src="images/linhtinh/xoa_btn.gif" style="border-width:0px;height: 25px;"/> -->
                             </td>
                             </tr>
                         </tbody> 
