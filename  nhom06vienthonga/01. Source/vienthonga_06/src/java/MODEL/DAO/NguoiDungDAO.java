@@ -124,7 +124,6 @@ public class NguoiDungDAO {
     
     public static List<Nguoidung> LayListNguoiDung(){
         Session session = HibernateUtil.getSessionFactory().openSession();
-
         List<Nguoidung> listnd = null;
 
         try {
@@ -192,6 +191,19 @@ public class NguoiDungDAO {
         }
         return i;
     }
-             
+    public static int CapNhatNguoiDung(Nguoidung nd){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        int kq = 0;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(nd);
+            transaction.commit();
+            kq = 1;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return kq;
+    }
     
 }
