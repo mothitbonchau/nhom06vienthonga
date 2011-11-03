@@ -333,6 +333,33 @@ public class view extends HttpServlet {
                             return;
                         }
                         //</editor-fold>
+
+                        //<editor-fold defaultstate="collapsed" desc="chuyển trang góp ý">
+                        if (task_chitiet.equals("gopy")) {
+                            request.getRequestDispatcher("QuanLyAdmin_GopY.jsp").forward(request, response);
+                            return;
+                        }
+                        //</editor-fold>
+
+                        //<editor-fold defaultstate="collapsed" desc="chuyển trang đơn hàng">
+                        if (task_chitiet.equals("donhang")) {
+                            if (request.getParameter("quanlyadmin_donhang_chitietdonhang") != null) {
+                                String Chitietdonhang = request.getParameter("quanlyadmin_donhang_chitietdonhang").toString();
+                                if (Chitietdonhang.equals("ctdonhang")) {
+                                    String mdh = request.getParameter("MDH");
+                                    List<Chitietdonhang> ctdh = ChiTietDonHangDAO.LayChiTietDonHangTheoMaDonHang(mdh);
+                                    request.setAttribute("donhang", ctdh);
+                                    request.getRequestDispatcher("QuanLyAdmin_DonHang_ChiTietDonHang.jsp").forward(request, response);
+                                    return;
+                                }
+                            }
+                            List<Donhang> dh = DonHangDAO.LayDanhSachDonHang();
+                            request.setAttribute("dh", dh);
+                            request.getRequestDispatcher("QuanLyAdmin_DonHang.jsp").forward(request, response);
+                            return;
+                        }
+
+                        //</editor-fold>
                     }
 
                     request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
