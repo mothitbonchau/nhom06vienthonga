@@ -1,0 +1,68 @@
+.news_top{ width:100%;}
+
+.news_top .header{ font-size:18px; color:orange; font-weight:bold}
+
+.news_top .block{width: 200px; float:left; margin-bottom:10px;}
+
+.news_top .block p{padding:5px; margin:0; font-weight:bold; font-size:11px;}
+
+.news_top .block p a{text-decoration:none;}
+.news_top .block p a:hover{text-decoration:underline; color:orange}
+.border_right{border-right:1px solid #CCCCCC}
+
+.news_top .block img{float:left; margin:2px; border:1px solid #CCCCCC; max-width:90px; max-height:70px;}
+
+.news_header{
+	height:20px; width:100%; background:#e2e2e2; width:608px;
+}
+.news_header a{
+	color:#666666; font-size:12px; line-height:18px; margin-left:10px; margin:10px;
+}
+
+.news_header a.selected{
+	font-size:13px; font-weight:bold; color:#000000
+}
+
+.news_header a:hover{
+	color:#000000; border-bottom:1px dotted #666666
+}
+
+.sborder{
+	border-left:1px solid #cccccc;	border-top:1px solid #cccccc;border-bottom:1px solid #777777;  border-right:1px solid #999999; 
+}
+
+.nborder{
+	border:1px solid #CCCCCC;
+}
+	
+.news_left{
+	float:left; width:278px; height:214px; overflow:hidden
+}
+
+.news_right{ float:left; width:318px; height:214px; overflow:hidden}
+
+.news_right .header{
+	background:#f9f9f9; color:#000000;
+}
+
+.news_right .header p{padding:2px; padding-left:10px; font-weight:bold; font-size:12px;}
+
+.news_right ul li{ padding:2px; padding-left:5px; border-bottom:1px dotted #cccccc; width:310px; overflow:hidden; height:16px; line-height:20px}
+
+.news_right ul li span{font-size:14px; color:orange}
+.news_right ul li a{font-size:12px;}
+
+.news_block{width: 610px; float:left; margin:10px 0; padding:0 0 10px 0; border-bottom:1px dotted #CCCCCC}
+.news_block div{margin-left:10px; float:left; width:440px;}
+.news_block div p{margin-top:10px;}
+.news_block div a {color:#FF7C00;font-size:13px; font-weight:bold;}
+.news_block div a:hover{text-decoration:underline}
+.news_block div a span{font-size:11px; color:#666666}
+.news_block img{float:left; margin:3px; width:130px; height:100px; padding:3px;}
+
+
+
+._paging a{ border:1px solid orange}
+
+
+#showcase_right img{border:1px solid #CCCCCC}

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="template_vienthonga" template="/templates/template_vienthonga.jsp">
+        <put-attribute name="header" value="/pages/header.jsp" />      
+        <put-attribute name="body_left" value="/pages/body_left.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid.jsp" />
+        <put-attribute name="body_right" value="/pages/body_right.jsp" />
+        <put-attribute name="footer1" value="/pages/footer1.jsp" />
+        <put-attribute name="footer2" value="/pages/footer2.jsp" />                    
+    </definition>
+    
+    <definition name="DangNhap" extends="template_vienthonga">                 
+        <put-attribute name="body_mid" value="/pages/body_mid_dangnhap.jsp" />            
+    </definition>
+
+    <definition name="sanphamtheohang" extends="template_vienthonga">
+        <put-attribute name="body_mid" value="/pages/body_mid_sanphamtheohang.jsp" />        
+    </definition>
+    
+    <definition name="chitietsanpham" extends="template_vienthonga">
+        <put-attribute name="body_mid" value="/pages/body_mid_chitietsanpham.jsp" />        
+    </definition>
+  
+    <definition name="sanphamtheoloai" extends="template_vienthonga">
+        <put-attribute name="body_mid" value="/pages/body_mid_sanphamtheoloai.jsp" />        
+    </definition>
+         
+    <definition name="timkiem" extends="template_vienthonga">
+        <put-attribute name="body_mid" value="/pages/body_mid_timkiem.jsp" />        
+    </definition>
+
+    <definition name="DangKy" extends="template_vienthonga">        
+        <put-attribute name="body_mid" value="/pages/body_mid_dangky.jsp" />        
+    </definition>
+    
+ 
+    <definition name="quanlyadmin" extends="template_vienthonga">        
+        <put-attribute name="body_left" value="/pages/body_left_quanlyadmin.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_nguoidung.jsp" />
+        <put-attribute name="body_right" value="/pages/null.jsp" />
+        <put-attribute name="footer1" value="/pages/null.jsp" />         
+    </definition>
+    
+    <definition name="quanlyadmin_nguoidung" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_nguoidung.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_congty" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_congty.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_sanpham" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_sanpham.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_sanpham_them" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_sanpham_them.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_sanpham_capnhat" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_sanpham_capnhat.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_khuyenmai" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_khuyenmai.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_khuyenmai_capnhat" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_khuyenmai_capnhat.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_khuyenmai_them" extends="quanlyadmin">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlyadmin_khuyenmai_them.jsp" />      
+    </definition>
+    
+    <definition name="quanlyadmin_lichsumuahang" extends="quanlyadmin">
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_lichsumuahang.jsp"/>            
+    </definition>
+    
+    <definition name="quanlynguoidung" extends="template_vienthonga">        
+        <put-attribute name="body_left" value="/pages/body_left_quanlynguoidung.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_thongtinnguoidung.jsp" />
+        <put-attribute name="body_right" value="/pages/null.jsp" />
+        <put-attribute name="footer1" value="/pages/null.jsp" />
+    </definition>
+    
+    <definition name="quanlynguoidung_thongtinnguoidung" extends="quanlynguoidung">        
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_thongtinnguoidung.jsp" />      
+    </definition>
+    
+    <definition name="quanlynguoidung_lichsumuahang" extends="quanlynguoidung">
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_lichsumuahang.jsp"/>            
+    </definition>
+    
+    <definition name="chitietdonhang" extends="quanlynguoidung">
+        <put-attribute name="body_mid" value="/pages/body_mid_chitietdonhang.jsp" />        
+    </definition>
+    
+    <definition name="quanlynhanvien" extends="template_vienthonga">        
+        <put-attribute name="body_left" value="/pages/body_left_quanlynhanvien.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynhanvien_thongtinnhanvien.jsp" />
+        <put-attribute name="body_right" value="/pages/null.jsp" />
+        <put-attribute name="footer1" value="/pages/null.jsp" />
+    </definition>
+    
+    <definition name="quanlynhanvien_lichsumuahang" extends="quanlynhanvien">
+        <put-attribute name="body_mid" value="/pages/body_mid_quanlynguoidung_lichsumuahang.jsp"/>            
+    </definition>
+    
+    <definition name="giohang" extends="template_vienthonga">      
+        <put-attribute name="body_left" value="/pages/null.jsp" />
+        <put-attribute name="body_mid" value="/pages/body_mid_giohang.jsp" />      
+        <put-attribute name="body_right" value="/pages/null.jsp" />
+    </definition>
+    
+    <definition name="khuyenmai" extends="template_vienthonga">        
+        <put-attribute name="body_mid" value="/pages/body_mid_khuyenmai.jsp" />
+    </definition>
+    
+    <definition name="LienHe" extends="template_vienthonga">                 
+        <put-attribute name="body_mid" value="/pages/body_mid_lienhe.jsp" />            
+    </definition>
+    
+    <definition name="tintuc" extends="template_vienthonga">        
+        <put-attribute name="body_mid" value="/pages/body_mid_tintuc.jsp" />
+    </definition>
+    
+    <definition name="chitietkhuyenmai" extends="template_vienthonga">        
+        <put-attribute name="body_mid" value="/pages/body_mid_chitietkhuyenmai.jsp" />
+    </definition>
+
+    <definition name="chitiettintuc" extends="template_vienthonga">        
+        <put-attribute name="body_mid" value="/pages/body_mid_chitiettintuc.jsp" />
+    </definition>    
+</tiles-definitions>
