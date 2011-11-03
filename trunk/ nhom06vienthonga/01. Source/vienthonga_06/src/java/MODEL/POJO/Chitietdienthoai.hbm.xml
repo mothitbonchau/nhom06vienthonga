@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 13, 2011 8:14:41 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="MODEL.POJO.Chitietdienthoai" table="chitietdienthoai" catalog="vienthonga">
+        <id name="maChiTietDienThoai" type="string">
+            <column name="MaChiTietDienThoai" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="sanpham" class="MODEL.POJO.Sanpham" fetch="select" lazy="false">
+            <column name="MaSanPham" length="45" />
+        </many-to-one>
+        <property name="mang" type="string">
+            <column name="Mang" />
+        </property>
+        <property name="ngonNgu" type="string">
+            <column name="NgonNgu" />
+        </property>
+        <property name="loaiManHinh" type="string">
+            <column name="LoaiManHinh" />
+        </property>
+        <property name="kichThuocHienThi" type="string">
+            <column name="KichThuocHienThi" />
+        </property>
+        <property name="kieuChuong" type="string">
+            <column name="KieuChuong" />
+        </property>
+        <property name="tinNhan" type="string">
+            <column name="TinNhan" />
+        </property>
+        <property name="ketNoi" type="string">
+            <column name="KetNoi" />
+        </property>
+        <property name="camera" type="string">
+            <column name="Camera" />
+        </property>
+        <property name="danhBa" type="string">
+            <column name="DanhBa" />
+        </property>
+        <property name="boNhoTrong" type="string">
+            <column name="BoNhoTrong" />
+        </property>
+        <property name="rung" type="string">
+            <column name="Rung" />
+        </property>
+        <property name="gpgs" type="string">
+            <column name="GPGS" />
+        </property>
+        <property name="m3g" type="string">
+            <column name="m3G" />
+        </property>
+        <property name="wlan" type="string">
+            <column name="WLan" />
+        </property>
+        <property name="dongHo" type="string">
+            <column name="DongHo" />
+        </property>
+        <property name="baoThuc" type="string">
+            <column name="BaoThuc" />
+        </property>
+        <property name="daiFm" type="string">
+            <column name="DaiFM" />
+        </property>
+        <property name="troChoi" type="string">
+            <column name="TroChoi" />
+        </property>
+        <property name="trinhDuyet" type="string">
+            <column name="TrinhDuyet" />
+        </property>
+        <property name="jaVa" type="string">
+            <column name="JaVa" />
+        </property>
+        <property name="quayPhim" type="string">
+            <column name="QuayPhim" />
+        </property>
+        <property name="ghiAm" type="string">
+            <column name="GhiAm" />
+        </property>
+        <property name="ngheNhac" type="string">
+            <column name="NgheNhac" />
+        </property>
+        <property name="xemPhim" type="string">
+            <column name="XemPhim" />
+        </property>
+        <property name="ghiAmCuocGoi" type="string">
+            <column name="GhiAmCuocGoi" />
+        </property>
+        <property name="loaNgoai" type="string">
+            <column name="LoaNgoai" />
+        </property>
+        <property name="tinhTrang" type="java.lang.Integer">
+            <column name="TinhTrang" />
+        </property>
+    </class>
+</hibernate-mapping>

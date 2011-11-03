@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 13, 2011 8:14:41 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="MODEL.POJO.Thamso" table="thamso" catalog="vienthonga">
+        <id name="maThamSo" type="string">
+            <column name="MaThamSo" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="soSanPhamTrenTrang" type="java.lang.Integer">
+            <column name="SoSanPhamTrenTrang" />
+        </property>
+        <property name="duongDanHinhAnh" type="string">
+            <column name="DuongDanHinhAnh" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

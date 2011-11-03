@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 13, 2011 8:14:41 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="MODEL.POJO.Congty" table="congty" catalog="vienthonga">
+        <id name="maCongTy" type="string">
+            <column name="MaCongTy" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="tenCongTy" type="string">
+            <column name="TenCongTy" length="45" />
+        </property>
+        <property name="diaChi" type="string">
+            <column name="DiaChi" length="45" />
+        </property>
+        <property name="dienThoai" type="string">
+            <column name="DienThoai" length="45" />
+        </property>
+        <property name="hotLine" type="string">
+            <column name="HotLine" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" />
+        </property>
+        <property name="website" type="string">
+            <column name="Website" length="45" />
+        </property>
+        <property name="gioiThieu" type="string">
+            <column name="GioiThieu" />
+        </property>
+        <property name="fax" type="string">
+            <column name="Fax" length="45" />
+        </property>
+        <set name="hinhanhcongties" inverse="true">
+            <key>
+                <column name="MaCongTy" length="45" />
+            </key>
+            <one-to-many class="MODEL.POJO.Hinhanhcongty" />
+        </set>
+    </class>
+</hibernate-mapping>

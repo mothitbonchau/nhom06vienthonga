@@ -1,0 +1,7 @@
+		div.rotator { position: relative; height: 200px; width: 480px; padding: 10px; background: #fff; border:1px solid #b9b9b9}
+      div.navigation { position: absolute; top: 190px; right: 5px; }
+      div.navigation div.current, div.navigation a { width: 15px; height: 15px; margin: 0 8px 0 0; float: left; overflow: hidden; top:20px; font-size:11px; text-decoration:none; color:BLACK; background-color:#b9b9b9 }
+      div.navigation a:hover { text-decoration: none; }
+      div.navigation div.current { background: #c00; }
+	  div.rotator p {margin:0; padding:0}
+	  div.rotator p a img{width:480px; height:200px; margin:0; padding:0}
