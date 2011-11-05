@@ -20,13 +20,13 @@
     function show(mavung)
     { 
         $.ajax({url:'process?task=XLLienHe&task_chitiet=vung',
-            data:"MV=" + mavung,
+            data:"MV=" + mavung + '&D=1',
             success:function(res){ 
-                //alert(res);
+                alert(res);
                 var noidung = "<select class='timkiemlist' id='cboAddress' onChange='SetBranch()'>";
                 noidung += res;
                 noidung += "</select>";
-                //alert(noidung);
+                alert(noidung);
                 
                 var hthi = document.getElementById('hienthi');
                 hthi.innerHTML = "" + noidung;
