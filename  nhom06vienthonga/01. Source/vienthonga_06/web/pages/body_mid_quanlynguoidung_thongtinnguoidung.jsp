@@ -16,7 +16,7 @@
 %>
 
 <div id="body_mid" style="float:left; width:76.5%;" align="center">  
-    <form action="process?task=quanlynguoidung&task_chitiet=capnhatnguoidung" method="post" style="margin-left: 10px;">        
+    <form action="process?task=quanlynguoidung&task_chitiet=thongtinkhachhang" method="post" style="margin-left: 10px;">        
         <table border="2px" width="100%" >
             <tr>
                 <td colspan="2" align="center" style="font-size: 2EM; font-weight: bold; color: #a2c62d;">THÔNG TIN KHÁCH HÀNG</td>
@@ -32,9 +32,7 @@
                     <input name="capnhat" type="submit" value="CẬP NHẬT" style="height: 20px;" />
                 </td>
 
-                <td width="5%">
-                    <input name="huy" type="reset" value="HUỶ" style="height: 20px;" />
-                </td>
+                
             </tr>
 
             <tr>
@@ -63,21 +61,8 @@
                 <td>
                     <input size="50px" name="diaChi" type="text" value="<%=nd.getDiaChi() %>" />
                 </td>
-            </tr>
-
-            <tr>
-                <td style="font-size: 1.2EM; font-weight: bold;">Tên loại người dùng: </td>
-                <td>
-                    <input size="50px" name="tenLoaiNguoiDung" type="text" value="Thành Viên" />
-                </td>
-            </tr>
-
-            <tr>
-                <td style="font-size: 1.2EM; font-weight: bold;">Ngày đăng ký: </td>
-                <td>
-                    <input size="50px" name="ngayDangKy" type="text" value="<%=nd.getNgayDangKy() %>" />
-                </td>
-            </tr>      
+            </tr>           
+                  
         </table>
     </form>
 </div>
