@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html><head>
+    
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<title>Using reCAPTCHA with Java/JSP - reCAPTCHA - Google Code</title>
+<script src="java_files/googleapis.js"></script><script type="text/javascript"><!--
+(function(){function a(){this.t={};this.tick=function(c){this.t[c]=(new Date).getTime()};this.tick("start")}var b=new a;window.jstiming={Timer:a,load:b};if(window.external&&window.external.pageT)window.jstiming.pt=window.external.pageT;})();
+
+var _tocPath_ = '/apis/recaptcha/_toc.ezt';
+var codesite_token = '09d34014c9e3cbb81ec5aa67c4c8fdf9';
+var logged_in_user_email = 'phathuynh.hcmus@gmail.com';
+//--></script>
+<link href="java_files/codesite.css" type="text/css" rel="stylesheet">
+<script src="java_files/codesite_head.js" type="text/javascript"></script>
+<script type="text/javascript">CODESITE_CSITimer['load'].tick('bhs');</script>
+<link rel="search" type="application/opensearchdescription+xml" title="Google Code" href="http://code.google.com/osd.xml">
+
+<!--[if IE]><link rel="stylesheet" type="text/css" href="/css/iehacks.css"><![endif]-->
+
+    <link href="java_files/semantic_headers.css" rel="stylesheet" type="text/css">
+  <script src="java_files/ga.js" async="" type="text/javascript"></script></head>
+
+  <body class="gc-documentation">
+
+    
+    
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+
+var cookiePath = '/apis/recaptcha/';
+if (cookiePath.lastIndexOf('.html') > cookiePath.lastIndexOf('/')) {
+  cookiePath = cookiePath.substring(0, cookiePath.lastIndexOf('/') + 1);
+};
+
+_gaq.push(
+
+
+    ['siteTracker._setAccount', 'UA-18071-1'],
+    ['siteTracker._setDomainName', 'code.google.com'],
+    ['siteTracker._trackPageview']
+);
+(function() {
+  var ga = document.createElement('script');
+  ga.type = 'text/javascript';
+  ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  (document.getElementsByTagName('head')[0] ||
+   document.getElementsByTagName('body')[0]).appendChild(ga);
+ })();
+</script>
+
+
+<div id="gb">
+ <span>
+  
+   
+    <b>phathuynh.hcmus@gmail.com</b>
+    |
+   
+    <a href="http://code.google.com/u/phathuynh.hcmus/" id="projects-dropdown" onclick="return false;"><span style="text-decoration:underline">My favorites</span> <span style="font-size:.75em;">▼</span></a>
+    |
+  
+    <a id="lang-dropdown" href="http://code.google.com/" onclick="return false;"><span style="text-decoration:underline">English</span> <span style="font-size:.75em;">▼</span></a>
+  
+   
+    | <a href="http://www.google.com/accounts/Logout?continue=http%3A%2F%2Fcode.google.com%2Fapis%2Frecaptcha%2Fdocs%2Fjava.html" onclick="CODESITE_click('/gb/sc/signout');"><span style="text-decoration:underline">Sign out</span></a>
+   
+  
+ </span>
+</div>
+
+<div class="gbh" style="left:0px;"></div>
+<div class="gbh" style="right:0px;"></div>
+
+
+<div id="gc-container" class="labs">
+<a id="top"></a>
+<div id="skipto">
+  <a href="#gc-pagecontent">Skip to page content</a>
+  <a href="#gc-toc">Skip to main navigation</a>
+</div>
+
+<div id="gc-header">
+  <div id="logo"><a href="http://code.google.com/">
+  
+  
+     <img src="java_files/code_labs_logo.gif" alt="Google Code Labs" style="border: 0pt none;" width="167" height="40">
+  
+  
+  </a></div>
+  <div id="search">
+    <div id="searchForm">
+      <form id="cse" action="http://www.google.com/cse" accept-charset="utf-8" onsubmit="executeGSearch(document.getElementById('gsearchInput').value); return false;">
+      <noscript>
+      <input type="hidden" name="cref" value="http://code.google.com/cse/googlecode-context.xml">
+      </noscript>
+      <div id="gsc-search-box">
+        <input id="gsearchInput" name="q" maxlength="2048" class="gsc-input" autocomplete="off" title="Google Code Search" style="width: 345px;" type="text">
+        <div id="cs-searchresults" onclick="event.cancelBubble = true;"></div>
+        <input title="Search" id="gsearchButton" class="gsc-search-button" name="sa" value="Search" type="submit">
+        <div class="greytext">e.g. "adwords" or "open source"</div>
+      </div>
+      </form>
+    </div> <!-- end searchForm -->
+  </div> <!-- end search -->
+
+
+
+
+</div> <!-- end gc-header -->
+
+
+<div id="codesiteContent">
+
+<a id="gc-topnav-anchor"></a>
+<div id="gc-topnav"><img id="gc-star" src="java_files/star_off.gif" width="15" height="15">
+  <h1 class="mozilla">reCAPTCHA (<a href="http://code.google.com/labs/">Labs</a>)</h1>
+  <ul id="docs" class="gc-topnav-tabs">
+
+    <li id="home_link">
+      <a href="http://code.google.com/apis/recaptcha/" title="reCAPTCHA home page">Home</a>
+    </li>
+  
+    <li id="docs_link">
+      <a href="http://code.google.com/apis/recaptcha/intro.html" class="selected" title="Official reCAPTCHA documentation">Docs</a>
+    </li>
+  
+    <li id="faq_link">
+      <a href="http://code.google.com/apis/recaptcha/docs/troubleshooting.html" title="Answers to frequently asked questions about reCAPTCHA">FAQ</a>
+    </li>
+  
+    <li>
+      <a href="http://groups.google.com/group/recaptcha" title="reCAPTCHA developer forum">Forum</a>
+    </li>
+  
+
+  
+  
+  
+  
+  <li><div style="height: 15px; width: 24px; display: inline-block; text-indent: 0pt; margin: 0pt; padding: 0pt; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;" id="___plusone_0"><iframe allowtransparency="true" hspace="0" id="I1_1317872314012" marginheight="0" marginwidth="0" name="I1_1317872314012" src="java_files/fastbutton.htm" style="position: static; left: 0pt; top: 0pt; width: 24px; margin: 0px; border-style: none; height: 15px; visibility: visible;" tabindex="-1" vspace="0" title="+1" scrolling="no" width="100%" frameborder="0"></iframe></div>&nbsp;</li>
+</ul>
+</div> <!-- end gc-topnav -->
+
+
+    <div class="g-section g-tpl-170">
+
+      <div class="g-unit g-first" id="gc-toc">
+        <ul class="treelist tlw-nested-only tlw-processed tlw-instance-0">
+  <li><a href="https://www.google.com/recaptcha/admin/create">Sign up for an API key</a></li>
+</ul>
+<div class="line"></div>
+<ul class="treelist tlw-nested-only tlw-processed tlw-instance-1">
+  <li><h2 class="tlw-ignore">Documentation</h2>
+    <ul>
+      <li><a href="http://code.google.com/apis/recaptcha/intro.html">Introduction</a></li>
+      <li><a href="http://code.google.com/apis/recaptcha/docs/display.html">Display Without Plugins</a></li>
+      <li><a href="http://code.google.com/apis/recaptcha/docs/verify.html">Verify Without Plugins</a></li>
+      <li><a href="http://code.google.com/apis/recaptcha/docs/customization.html">Customization</a></li>
+      <li><a href="http://code.google.com/apis/recaptcha/docs/tips.html">Tips and Guidelines</a></li>
+      <li><a href="http://code.google.com/apis/recaptcha/docs/troubleshooting.html">Troubleshooting</a></li>
+               <ul>
+                 <li style="padding-top: 0pt; padding-bottom: 0pt;">
+                    <div class="tlw-title tlw-branch"><a href="javascript:void(0)" class="tlw-control" title="Collapse Plugins:"><img src="java_files/cleardot.gif" alt="Collapse Plugins:" class="tlw-control tlw-minus"></a><h2 class="tlw-expanded">Plugins:</h2></div><ul style="display: block;" id="1-sub-0">
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/php.html">PHP</a></li>
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/aspnet.html">ASP.NET</a></li>
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/asp.html">Classic ASP</a></li>
+                      <li class="selected"><a href="http://code.google.com/apis/recaptcha/docs/java.html">Java/JSP</a></li>
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/perl.html">Perl</a></li>
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/wordpress.html">WordPress</a></li>
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/mediawiki.html">MediaWiki</a></li>
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/phpbb.html">phpBB</a></li>
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/formmail.html">FormMail</a></li>
+                      <li><a href="http://code.google.com/apis/recaptcha/docs/otherplatforms.html">Other Platforms</a></li>
+                    </ul></li>
+                </ul>
+      <li><a href="http://code.google.com/apis/recaptcha/docs/mailhideapi.html">Mailhide API</a></li>
+    </ul>
+  </li>
+</ul>
+
+        <a class="hidden" href="#gc-topnav-anchor">More reCAPTCHA resource links</a>
+      </div>
+
+      <div style="position: relative;" class="g-unit" id="gc-pagecontent">
+        <script type="text/javascript">CODESITE_docEarlyProcessing();</script>
+
+
+        <h1 class="page_title">Using reCAPTCHA with Java/JSP</h1>
+
+
+<p>The reCAPTCHA Java Library provides a simple way to place a <a href="http://www.google.com/recaptcha/captcha">CAPTCHA</a>
+on your Java-based website, helping you stop bots from abusing it. The library wraps the
+<a href="http://code.google.com/apis/recaptcha/intro.html">reCAPTCHA API</a>.</p>
+
+<p>To use reCAPTCHA with Java/JSP, you can download the <a href="http://code.google.com/p/recaptcha/downloads/list?q=label:java-Latest">reCAPTCHA Java
+Library here</a> (contributed by Soren) and unzip it. Typically the only thing you'll need is
+the jar file (recaptcha4j-X.X.X.jar), which you have to copy to a place where it can be loaded
+by your java application. For example, if you are using Tomcat to run JSP, you may put the jar
+file in a directory called <i>WEB-INF/lib/</i>.</p>
+
+<h2>Quick Start</h2>
+
+<p>After you've signed up for your API keys and downloaded the reCAPTCHA Java Library, below are basic instructions for
+installing reCAPTCHA on your site.</p>
+
+<h3>Client Side (How to make the CAPTCHA image show up)</h3>
+
+<p>If you want to use the Java plugin to display the reCAPTCHA widget, you'll need to import
+the appropriate reCAPTCHA classes. In JSP, you would do this by inserting these lines near the
+top of the file with the form element where the reCAPTCHA widget will be displayed:</p>
+
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; </span><span class="pun">&lt;%@</span><span class="pln"> page </span><span class="kwd">import</span><span class="pun">=</span><span class="str">"net.tanesha.recaptcha.ReCaptcha"</span><span class="pln"> %&gt;<br>&nbsp; &nbsp; </span><span class="pun">&lt;%@</span><span class="pln"> page </span><span class="kwd">import</span><span class="pun">=</span><span class="str">"net.tanesha.recaptcha.ReCaptchaFactory"</span><span class="pln"> %&gt;</span></pre>
+
+<p>Then, you need to create an instance of reCAPTCHA:</p>
+
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; </span><span class="typ">ReCaptcha</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> </span><span class="typ">ReCaptchaFactory</span><span class="pun">.</span><span class="pln">newReCaptcha</span><span class="pun">(</span><span class="str">"</span><font color="red"><span class="str">your_public_key</span></font><span class="str">"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"</span><font color="red"><span class="str">your_private_key</span></font><span class="str">"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></pre>
+
+<p>Finally, the HTML to display the reCAPTCHA widget can be obtained from the following
+function call:</p>
+
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; c</span><span class="pun">.</span><span class="pln">createRecaptchaHtml</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span></pre>
+
+<p>So, in JSP your code may look something like this:</p>
+
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; </span><span class="pun">&lt;%@</span><span class="pln"> page </span><span class="kwd">import</span><span class="pun">=</span><span class="str">"net.tanesha.recaptcha.ReCaptcha"</span><span class="pln"> %&gt;<br>&nbsp; &nbsp; </span><span class="pun">&lt;%@</span><span class="pln"> page </span><span class="kwd">import</span><span class="pun">=</span><span class="str">"net.tanesha.recaptcha.ReCaptchaFactory"</span><span class="pln"> %&gt;<br><br>&nbsp; &nbsp; </span><span class="tag">&lt;html&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;body&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;form</span><span class="pln"> </span><span class="atn">action</span><span class="pun">=</span><span class="atv">""</span><span class="pln"> </span><span class="atn">method</span><span class="pun">=</span><span class="atv">"post"</span><span class="tag">&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">&lt;%</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">ReCaptcha</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> </span><span class="typ">ReCaptchaFactory</span><span class="pun">.</span><span class="pln">newReCaptcha</span><span class="pun">(</span><span class="str">"</span><font color="red"><span class="str">your_public_key</span></font><span class="str">"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"</span><font color="red"><span class="str">your_private_key</span></font><span class="str">"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">c</span><span class="pun">.</span><span class="pln">createRecaptchaHtml</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">));</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; %&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"submit"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"submit"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/form&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/body&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/html&gt;</span></pre>
+
+<p>Don't forget to replace <code>your_public_key</code> and <code>your_private_key</code> with
+your API key values.</p>
+
+<h3>Server Side (How to test if the user entered the right answer)</h3>
+
+<p>In the application that verifies your form, you'll first need to import the necessary
+reCAPTCHA classes:</p>
+
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; </span><span class="kwd">import</span><span class="pln"> net</span><span class="pun">.</span><span class="pln">tanesha</span><span class="pun">.</span><span class="pln">recaptcha</span><span class="pun">.</span><span class="typ">ReCaptchaImpl</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">import</span><span class="pln"> net</span><span class="pun">.</span><span class="pln">tanesha</span><span class="pun">.</span><span class="pln">recaptcha</span><span class="pun">.</span><span class="typ">ReCaptchaResponse</span><span class="pun">;</span></pre>
+
+<p>Next, you need to insert the code that verifies the reCAPTCHA solution entered by the user.
+The example below (in JSP) shows how this can be done:</p>
+
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; </span><span class="pun">&lt;%@</span><span class="pln"> page </span><span class="kwd">import</span><span class="pun">=</span><span class="str">"net.tanesha.recaptcha.ReCaptchaImpl"</span><span class="pln"> %&gt;<br>&nbsp; &nbsp; </span><span class="pun">&lt;%@</span><span class="pln"> page </span><span class="kwd">import</span><span class="pun">=</span><span class="str">"net.tanesha.recaptcha.ReCaptchaResponse"</span><span class="pln"> %&gt;<br><br>&nbsp; &nbsp; </span><span class="tag">&lt;html&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;body&gt;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">&lt;%</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">String</span><span class="pln"> remoteAddr </span><span class="pun">=</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">getRemoteAddr</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">ReCaptchaImpl</span><span class="pln"> reCaptcha </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ReCaptchaImpl</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; reCaptcha</span><span class="pun">.</span><span class="pln">setPrivateKey</span><span class="pun">(</span><span class="str">"</span><font color="red"><span class="str">your_private_key</span></font><span class="str">"</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">String</span><span class="pln"> challenge </span><span class="pun">=</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">getParameter</span><span class="pun">(</span><span class="str">"recaptcha_challenge_field"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">String</span><span class="pln"> uresponse </span><span class="pun">=</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">getParameter</span><span class="pun">(</span><span class="str">"recaptcha_response_field"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">ReCaptchaResponse</span><span class="pln"> reCaptchaResponse </span><span class="pun">=</span><span class="pln"> reCaptcha</span><span class="pun">.</span><span class="pln">checkAnswer</span><span class="pun">(</span><span class="pln">remoteAddr</span><span class="pun">,</span><span class="pln"> challenge</span><span class="pun">,</span><span class="pln"> uresponse</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">reCaptchaResponse</span><span class="pun">.</span><span class="pln">isValid</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"Answer was entered correctly!"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"Answer is wrong"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; %&gt;<br>&nbsp; &nbsp; &nbsp; </span><span class="tag">&lt;/body&gt;</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="tag">&lt;/html&gt;</span></pre>
+
+<p>In the code above:</p>
+<li><code>remoteAddr</code> is the user's IP address (which is passed to the reCAPTCHA
+servers)</li>
+<li><code>uresponse</code> contains the user's answer to the reCAPTCHA challenge.</li>
+
+<p>If you're having trouble, you can also see the following article that explains how to add
+reCAPTCHA to your Java application: <a href="http://wheelersoftware.com/articles/recaptcha-java.html">How to reCAPTCHA Your Java Application</a></p>
+
+<h3>Important: DNS Caching</h3>
+
+<p>Java has an annoying issue that may cause the connection between your server and reCAPTCHA
+to be interrupted every few months, and reCAPTCHA will stop working in your site when that
+happens. Read below to see how to fix this.</p>
+
+<p>By default the Java Virtual Machine (JVM) caches all DNS lookups forever instead of using
+the time-to-live (TTL) value which is specified in the DNS record of each host. For those of
+you how do not know it, a DNS lookup is a request sent to a DNS server which converts a
+readable hostname to an IP address. For example, it converts <b>www.recaptcha.net</b> to the
+IP address <b>69.12.97.164</b>. It is of course much more complex than this, and if you want
+to learn more, <a href="http://en.wikipedia.org/wiki/Domain_Name_System">wikipedia's entry on
+DNS</a> is a good starting point.</p>
+
+<p>Although not frequently, reCAPTCHA servers can change IP addresses. Because Java caches DNS
+lookups forever, this can cause the connection between your server and reCAPTCHA to go down
+when the reCAPTCHA IP address changes. If this happens, restarting your JVM (e.g., restarting
+Tomcat) can fix the problem because it causes a new DNS lookup. However, you probably don't
+want to restart your JVM once every few months whenever your site breaks because the reCAPTCHA
+servers changed IP address.</p>
+
+<p>To fix this issue for good, you can pass <b>-Dsun.net.inetaddr.ttl=30</b> to your
+app-server (this tells Java to only cache DNS for 30 seconds). In Tomcat for Windows, this can
+be done by
+
+</p><ol>
+<li>Stop Tomcat</li>
+<li>Go to tomcat\bin</li>
+<li>Run Tomcat5w.exe</li>
+<li>Goto java tab</li>
+<li>Add java property to java options section: -Dsun.net.inetaddr.ttl=30</li>
+<li>Exit</li>
+<li>Start Tomcat</li>
+</ol>
+
+<p>In Tomcat for Linux or MacOS X, you need to run the following command in the command line
+(and then restart Tomcat):</p>
+
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; </span><span class="kwd">export</span><span class="pln"> JAVA_OPTS</span><span class="pun">=</span><span class="str">"$JAVA_OPTS -Dsun.net.inetaddr.ttl=30"</span></pre>
+
+<p><a href="http://www.sdn.sap.com/irj/scn/weblogs?blog=/pub/wlg/1887">Here is an article</a>
+explaining more about this issue.</p>
+
+<h3>Further Reading</h3>
+
+<li><a href="http://code.google.com/apis/recaptcha/docs/customization.html">Customizing Look and Feel</a></li>
+<li><a href="http://code.google.com/apis/recaptcha/docs/tips.html">Tips and Guidelines</a></li>
+<li><a href="http://code.google.com/apis/recaptcha/docs/troubleshooting.html">Troubleshooting</a></li>
+
+
+      <div class="" style="height: 2468px;" id="gc-collapsible"></div></div><!-- end gc-pagecontent -->
+   </div><!-- end gooey wrapper -->
+
+    </div> <!-- end codesite content -->
+
+
+<div id="gc-footer" dir="ltr">
+  <div class="text">
+    
+    ©2011 Google -
+    <a href="http://code.google.com/">Code Home</a> -
+    <a href="http://code.google.com/terms.html">Site Terms of Service</a> -
+    <a href="http://code.google.com/privacy.html">Privacy Policy</a> -
+    <a href="http://code.google.com/more/">Site Directory</a>
+    <br> <br>
+    Google Code offered in:
+    <a href="http://code.google.com/intl/en/">English</a> -
+    <a href="http://code.google.com/intl/es/">Español</a> -
+    <a href="http://code.google.com/intl/ja/">日本語</a> -
+    <a href="http://code.google.com/intl/ko/">한국어</a> -
+    <a href="http://code.google.com/intl/pt-BR/">Português</a> -
+    <a href="http://code.google.com/intl/ru/">Pусский</a> -
+    <a href="http://code.google.com/intl/zh-CN/">中文(简体)</a> -
+    <a href="http://code.google.com/intl/zh-TW/">中文(繁體)</a>
+  </div>
+</div><!-- end gc-footer -->
+
+</div><!-- end gc-container -->
+
+<script type="text/javascript">CODESITE_CSITimer['load'].tick('ats');</script>
+<script src="java_files/codesite_tail.js" type="text/javascript"></script>
+<script type="text/javascript" src="java_files/plusone.js"></script>
+
+
+
+
+
+  
+
+
+<div style="position: absolute; top: 22px; left: 988px; display: none; width: 175px;" id="menuDiv-lang-dropdown" class="menuDiv instance0"><div class="menuCategory default first"><a href="http://code.google.com/intl/en/apis/recaptcha/docs/java.html" style="display: block;" class="menuItem">English</a><a href="http://code.google.com/intl/es/apis/recaptcha/docs/java.html" style="display: block;" class="menuItem">Español</a><a href="http://code.google.com/intl/ja/apis/recaptcha/docs/java.html" style="display: block;" class="menuItem">日本語</a><a href="http://code.google.com/intl/ko/apis/recaptcha/docs/java.html" style="display: block;" class="menuItem">한국어</a><a href="http://code.google.com/intl/pt-BR/apis/recaptcha/docs/java.html" style="display: block;" class="menuItem">Português (Brasil)</a><a href="http://code.google.com/intl/ru/apis/recaptcha/docs/java.html" style="display: block;" class="menuItem">Pусский</a><a href="http://code.google.com/intl/zh-CN/apis/recaptcha/docs/java.html" style="display: block;" class="menuItem">中文 (简体)</a><a href="http://code.google.com/intl/zh-TW/apis/recaptcha/docs/java.html" style="display: block;" class="menuItem">中文 (繁體)</a></div></div><div style="display: none; left: 181px; top: 281px;" class="" id="gc-collapsible-arrow"></div><div style="left: 181px; top: 74.5px; width: 345px;" id="cs-searchresults"><div id="cs-recommended">Suggestions</div><div id="searchResult1"></div><div id="searchResult2"></div><div id="searchResult3"></div><div id="searchResult4"></div><div id="searchResult5"></div><div id="searchResult6"></div><div id="searchResult7"></div></div><div style="position: absolute; top: 22px; left: 894px; display: none;" id="menuDiv-projects-dropdown" class="menuDiv instance1"><b style="display: block;" class="categoryTitle projects">Projects</b><div class="menuCategory projects first"><a href="http://code.google.com/p/3gao/" style="display: block;" class="menuItem">3gao</a><a href="http://code.google.com/p/javahcmus/" style="display: block;" class="menuItem">javahcmus</a><a href="http://code.google.com/p/seprojectphathuy/" style="display: block;" class="menuItem">seprojectphathuy</a><a href="http://code.google.com/p/zingdeal/" style="display: block;" class="menuItem">zingdeal</a></div><div class="menuCategory controls"><hr class="menuSeparator"><a href="http://code.google.com/more/" style="display: block;" class="menuItem">Find developer products...</a><a href="http://code.google.com/hosting/" style="display: block;" class="menuItem">Find open source projects...</a></div></div></body></html>
