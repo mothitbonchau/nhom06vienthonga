@@ -937,7 +937,7 @@ public class process extends HttpServlet {
                     if (task_chitiet.equals("khuyenmai")) {
                         //<editor-fold defaultstate="collapsed" desc="thêm">
                         if (request.getParameter("Them") != null) {
-                            ArrayList<FileItem> hinhanhsanpham_data = new ArrayList<FileItem>();
+                            ArrayList<FileItem> hinhanhkhuyenmai_data = new ArrayList<FileItem>();
                             Hashtable params = new Hashtable();
                             if (ServletFileUpload.isMultipartContent(request)) {
                                 ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
@@ -953,7 +953,7 @@ public class process extends HttpServlet {
                                             String key = fileItem.getFieldName();
                                             params.put(key, value);
                                         } else {
-                                            hinhanhsanpham_data.add(fileItem);
+                                            hinhanhkhuyenmai_data.add(fileItem);
                                         }
                                     }
                                 } catch (Exception e) {
@@ -961,104 +961,58 @@ public class process extends HttpServlet {
                                     return;
                                 }
 
-                                Sanpham sp = new Sanpham();
-                                sp.setMaSanPham(params.get("MaSanPham").toString());
-                                sp.setTenSanPham(params.get("TenSanPham").toString());
-                                Loaisanpham lsp = new Loaisanpham();
-                                lsp.setMaLoaiSanPham(params.get("MaLoaiSanPham").toString());
-                                sp.setLoaisanpham(lsp);
-                                Hang h = HangDAO.LayHangTheoMa(params.get("MaHang").toString());
-                                sp.setHang(h);
-                                sp.setSoLuong(Integer.parseInt(params.get("SoLuong").toString()));
-                                sp.setGiaBan(Float.parseFloat(params.get("GiaBan").toString()));
-                                sp.setMauSac(params.get("MauSac").toString());
-                                sp.setThoiGianBaoHanh(params.get("ThoiGianBaoHanh").toString());
-                                sp.setKichThuoc(params.get("KichThuoc").toString());
-                                sp.setTrongLuong(params.get("TrongLuong").toString());
-                                sp.setTinhTrang(0);
+                                Khuyenmai km = new Khuyenmai();
+                                km.setMaKhuyenMai(params.get("MaKhuyenMai").toString());
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                Date temp = new Date();
+                                sdf.parse(params.get("NgayBatDau").toString());
+                                km.setNgayBatDau(temp);
+                                temp = sdf.parse(params.get("NgayKetThuc").toString());
+                                km.setNgayKetThuc(temp);
+                                km.setNoiDungKhuyenMai(params.get("Content").toString());
+                                km.setTenKhuyenMai(params.get("TenKhuyenmai").toString());
+                                km.setTinhTrang(0);
+                                
+                                KhuyenMaiDAO.ThemKhuyenMai(km);
 
-                                SanPhamDAO.ThemSanPham(sp);
+                                String path = getServletContext().getRealPath("/") + "images\\khuyen mai\\";
 
-                                String path = getServletContext().getRealPath("/") + "images\\";
-
-                                if (sp.getLoaisanpham().getMaLoaiSanPham().equals("DT")) {
-                                    path += "dien thoai\\";
-
-                                    Chitietdienthoai ctdt = ChiTietDienThoaiDAO.LayChiTietDienThoaiCuoiCung();
-                                    int chiso = 1;
-                                    if (ctdt == null) {
-                                        ctdt = new Chitietdienthoai();
-                                    } else {
-                                        chiso = Integer.parseInt(ctdt.getMaChiTietDienThoai().substring(5).toString());
-                                        chiso += 1;
-                                    }
-                                    ctdt.setMaChiTietDienThoai("MCTDT" + chiso);
-                                    ctdt.setSanpham(sp);
-                                    ctdt.setMang(params.get("Mang").toString());
-                                    ctdt.setLoaiManHinh(params.get("LoaiManHinh").toString());
-                                    ctdt.setNgonNgu(params.get("NgonNgu").toString());
-
-                                    ChiTietDienThoaiDAO.Them(ctdt);
-                                }
-
-                                if (sp.getLoaisanpham().getMaLoaiSanPham().equals("LT")) {
-                                    path += "laptop\\";
-
-                                    Chitietlaptop ctlt = ChiTietLaptopDAO.LayChiTietLaptopCuoiCung();
-                                    int chiso = 1;
-                                    if (ctlt == null) {
-                                        ctlt = new Chitietlaptop();
-                                    } else {
-                                        chiso = Integer.parseInt(ctlt.getMaChiTietLaptop().substring(5).toString());
-                                        chiso += 1;
-                                    }
-                                    ctlt.setMaChiTietLaptop("MCTLT" + chiso);
-                                    ctlt.setSanpham(sp);
-                                    ctlt.setCongNgheCpu(params.get("CongNgheCPU").toString());
-                                    ctlt.setTocDoCpu(params.get("TocDoCPU").toString());
-                                    ctlt.setBoNhoDem(params.get("BoNhoDem").toString());
-
-                                    ChiTietLaptopDAO.Them(ctlt);
-                                }
-
-                                path += sp.getHang().getTenHang() + "\\";
-
-                                Hinhanhsanpham hasp_cuoi = HinhAnhSanPhamDAO.LayHinhAnhSanPhamCuoiCung();
+                                Hinhanhkhuyenmai hakm_cuoi = HinhAnhKhuyenMaiDAO.LayHinhAnhKhuyenMaiCuoiCung();
                                 int chiso = 1;
-                                if (hasp_cuoi == null) {
-                                    hasp_cuoi = new Hinhanhsanpham();
+                                if (hakm_cuoi == null) {
+                                    hakm_cuoi = new Hinhanhkhuyenmai();
                                 } else {
-                                    chiso = Integer.parseInt(hasp_cuoi.getMaHinhAnhSanPham().substring(5));
+                                    chiso = Integer.parseInt(hakm_cuoi.getMaHinhAnhKhuyenMai().substring(5));
                                     chiso += 1;
                                 }
-                                String mhasp = "MHASP" + chiso;
+                                String mhakm = "MHAKM" + chiso;
 
-                                for (int i = 0; i < hinhanhsanpham_data.size(); i++) {
-                                    Hinhanhsanpham hasp = new Hinhanhsanpham();
-                                    hasp.setMaHinhAnhSanPham(mhasp);
-                                    hasp.setSanpham(sp);
-                                    hasp.setTinhTrang(0);
-                                    hasp.setDuongDan(hinhanhsanpham_data.get(i).getName());
+                                for (int i = 0; i < hinhanhkhuyenmai_data.size(); i++) {
+                                    Hinhanhkhuyenmai hakm = new Hinhanhkhuyenmai();
+                                    hakm.setMaHinhAnhKhuyenMai(mhakm);
+                                    hakm.setKhuyenmai(km);
+                                    hakm.setTinhTrang(0);
+                                    hakm.setDuongDan(hinhanhkhuyenmai_data.get(i).getName());
 
-                                    HinhAnhSanPhamDAO.Them(hasp);
+                                    HinhAnhKhuyenMaiDAO.Them(hakm);
 
-                                    File file = new File(path + hinhanhsanpham_data.get(i).getName());
+                                    File file = new File(path + hinhanhkhuyenmai_data.get(i).getName());
                                     try {
-                                        hinhanhsanpham_data.get(i).write(file);
+                                        hinhanhkhuyenmai_data.get(i).write(file);
                                     } catch (Exception ex) {
                                         Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
                                     }
 
                                     chiso += 1;
-                                    mhasp = "MHASP" + chiso;
+                                    mhakm = "MHAKM" + chiso;
                                 }
 
                                 String thongbao = "";
-                                thongbao = "Đã thêm sản phẩm thành công";
+                                thongbao = "Đã thêm khuyến mãi thành công";
                                 request.setAttribute("thongbao", thongbao);
                             }
 
-                            request.getRequestDispatcher("QuanLyAdmin_SanPham_Them.jsp").forward(request, response);
+                            request.getRequestDispatcher("QuanLyAdmin_KhuyenMai_Them.jsp").forward(request, response);
                             return;
                         }
                         //</editor-fold>
@@ -1354,6 +1308,8 @@ public class process extends HttpServlet {
             request.getRequestDispatcher("QuanLyAdmin.jsp").forward(request, response);
             return;
 
+        } catch (ParseException ex) {
+            Logger.getLogger(process.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }
