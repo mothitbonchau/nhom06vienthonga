@@ -177,9 +177,7 @@ public class NguoiDungDAO {
         int i = 0;
         try{
             String hql = "Update Nguoidung Set tinhTrang=1 Where maNguoiDung = '" + maND + "'" ;
-            Query query = session.createQuery(hql);
-            //query.setString("maNguoiDung", maND);
-            //List list = query.list();
+            Query query = session.createQuery(hql);          
             i = query.executeUpdate();
             int k =2;
         }

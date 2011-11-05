@@ -345,7 +345,11 @@ public class process extends HttpServlet {
                         //Set Giam Gia  --- Sua lai kieu du lieu GiamGia cua bang GiamGia thanh Float
                         String msp = listGioHang.get(i).getSanpham().getMaSanPham();
                         Giamgia gg = GiamGiaDAO.LayTienGiamGiaTheoMaSanPham(msp);
-                        float Gia = Float.valueOf(gg.getGiaGiam());
+                        float Gia = 0 ;     
+                        if(gg != null)
+                        {
+                            Gia = Float.valueOf(gg.getGiaGiam());
+                        }                                               
                         ctdh.setGiamGia(Gia);
                         //Set ThanhTien
                         ctdh.setThanhTien((ctdh.getDonGia() * ctdh.getSoLuong()) - ctdh.getGiamGia());
@@ -466,7 +470,10 @@ public class process extends HttpServlet {
                             if (CacMaXoa != null) {
                                 for (int i = 0; i < CacMaXoa.length; i++) {
                                     String ms = CacMaXoa[i];
-                                    int j = NguoiDungDAO.XoaNguoiDungTheoMa(ms);
+                                    Nguoidung nd = new Nguoidung();
+                                    nd = NguoiDungDAO.LayNguoiDungTheoMa(ms);
+                                    nd.setTinhTrang(1);
+                                    int j = NguoiDungDAO.CapNhatNguoiDung(nd);
                                 }
                             }
                         }
@@ -1250,6 +1257,40 @@ public class process extends HttpServlet {
                     String task_chitiet = request.getParameter("task_chitiet");
                     //<editor-fold defaultstate="collapsed" desc="Lịch sử mua hàng">
                     if (task_chitiet.equals("lichsumuahang")) {
+                        
+                    }
+                    //</editor-fold>
+                    
+                     //<editor-fold defaultstate="collapsed" desc="Thông tin người khách hàng">
+                    if (task_chitiet.equals("thongtinkhachhang")) {
+                        if(request.getParameter("capnhat") != null){
+                            String maND = (String) session.getAttribute("MaNguoiDung");
+                            
+                            String tenND = request.getParameter("tenNguoiDung");
+                            String Email = request.getParameter("email");
+                            String CMND = request.getParameter("cmnd");
+                            String DT = request.getParameter("dienThoai");
+                            String DC = request.getParameter("diaChi");
+                            
+                            //Lấy người dùng theo mã
+                            Nguoidung ndCu = NguoiDungDAO.LayNguoiDungTheoMa(maND);
+                            
+                            Nguoidung nd = new Nguoidung();
+                            nd.setMaNguoiDung(maND);
+                            nd.setTenDangNhap((ndCu.getTenDangNhap()));
+                            nd.setMatKhau(ndCu.getMatKhau());
+                            nd.setTenNguoiDung(tenND);
+                            nd.setEmail(Email);
+                            nd.setCmnd(CMND);
+                            nd.setDienThoai(DT);
+                            nd.setDiaChi(DC);
+                            nd.setLoainguoidung(ndCu.getLoainguoidung());
+                            nd.setNgayDangKy(ndCu.getNgayDangKy());
+                            nd.setTinhTrang(ndCu.getTinhTrang());
+                            int i = NguoiDungDAO.CapNhatNguoiDung(nd);
+                            request.getRequestDispatcher("QuanLyNguoiDung_ThongTinNguoiDung.jsp").forward(request, response);
+                            return;
+                        }
                     }
                     //</editor-fold>
                 }
